@@ -47,7 +47,8 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app/CRM/Utilities/helpers.php"
+            "app/CRM/Utilities/helpers.php",
+            "tests/Utilities/utils.php"
         ]
     },
     "minimum-stability": "dev",

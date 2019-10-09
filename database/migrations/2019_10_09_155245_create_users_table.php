@@ -22,7 +22,7 @@ class CreateUsersTable extends Migration
             $table->integer('company_id')->nullable();
             $table->string('first_name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
-            $table->string('email', 255)->nullable();
+            $table->string('email', 255)->unique()->nullable();
             $table->dateTime('email_verified_at')->nullable();
             $table->string('phone', 45)->nullable();
             $table->string('remember_token', 255)->nullable();
@@ -30,7 +30,6 @@ class CreateUsersTable extends Migration
             $table->nullableTimestamps();
             $table->softDeletes();
 
-            $table->unique('email', 'email_UNIQUE');
             $table->index('company_id', 'fk_users_companies_idx');
 
             $table->foreign('company_id', 'fk_users_companies')

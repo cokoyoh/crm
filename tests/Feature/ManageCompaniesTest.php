@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use CRM\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -10,18 +11,10 @@ class ManageCompaniesTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function invite_a_company_to_create_a_profile()
+    public function system_admin_can_invite_a_company_to_create_a_profile()
     {
-        //a user who is the admin of the system adds  a user email
+        //a user of the system who has a role admin sends an invite to a company
 
-        //the email is sent to the user
-
-        //the user clicks the link in th email
-
-        //then they finish up the company profile
-
-        //they can then start adding users in the system
-
-        //assert that the link is sent
+        //a record is added in the system with the email of the invitee
     }
 }

@@ -20,6 +20,7 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 100)->nullable();
+            $table->string('slug', 100)->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
         });

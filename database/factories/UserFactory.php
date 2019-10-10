@@ -2,7 +2,8 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use CRM\User;
+use CRM\Models\Role;
+use CRM\Models\User;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 
@@ -25,5 +26,33 @@ $factory->define(User::class, function (Faker $faker) {
         'email_verified_at' => now(),
         'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
         'remember_token' => Str::random(10),
+    ];
+});
+
+$factory->define(Role::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+        'slug' => $faker->slug
+    ];
+});
+
+$factory->define(\CRM\Models\Permission::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+        'slug' => $faker->slug
+    ];
+});
+
+$factory->define(\CRM\Models\RoleUser::class, function (Faker $faker) {
+    return [
+        'role_id' => null,
+        'user_id' => null
+    ];
+});
+
+$factory->define(\CRM\Models\Company::class, function (Faker $faker) {
+    return [
+        'name' => $faker->company,
+        'email' => $faker->companyEmail
     ];
 });

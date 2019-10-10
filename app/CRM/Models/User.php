@@ -36,4 +36,14 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isSuperAdmin()
+    {
+        return $this->roleUser()->where('role_id', 1)->exists();
+    }
+
+    public function roleUser()
+    {
+        return $this->hasMany(RoleUser::class);
+    }
 }

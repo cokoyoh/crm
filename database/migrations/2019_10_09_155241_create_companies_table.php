@@ -20,6 +20,7 @@ class CreateCompaniesTable extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 255)->nullable();
+            $table->string('email', 100)->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
 

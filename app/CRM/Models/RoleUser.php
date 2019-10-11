@@ -9,4 +9,9 @@ class RoleUser extends Model
     protected $table = 'role_user';
 
     protected $guarded = [];
+
+    public function role()
+    {
+        return $this->belongsTo(Role::class);
+    }
 }

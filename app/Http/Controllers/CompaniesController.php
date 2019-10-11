@@ -28,8 +28,8 @@ class CompaniesController extends Controller
 
         $validated['name'] = \request('name');
 
-        Company::create(\request()->except('_token'));
+        $company =  Company::create(\request()->except('_token'));
 
-        return redirect(route('companies.index'));
+        return redirect(route('companies.show', $company->id));
     }
 }

@@ -41,8 +41,7 @@ class ManageCompaniesTest extends TestCase
             'email' => 'example@gmail.com'
         ];
 
-        $this->post(route('companies.store'), $attributes)
-            ->assertRedirect(route('companies.index'));
+        $this->post(route('companies.store'), $attributes);
 
         $this->assertEquals(1, Company::count());
 

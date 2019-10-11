@@ -46,8 +46,29 @@ class User extends Authenticatable
             ->exists();
     }
 
+    public function roles()
+    {
+        return $this->roleUser()
+            ->whereHas('role', function ($role) {
+                $role->where('user_id', $this->id);
+            })
+            ->get();
+    }
+
     public function roleUser()
     {
         return $this->hasMany(RoleUser::class);
+    }
+
+    public function addRole($roleSlug)
+    {
+        $role = $this->getRole($roleSlug);
+
+        return $this->roleUser()->create(['role_id' => $role->id]);
+    }
+
+    private function getRole($roleSlug)
+    {
+        return Role::where('slug', $roleSlug)->first();
     }
 }

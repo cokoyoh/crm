@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use CRM\User;
+use CRM\Models\RoleUser;
+use CRM\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -65,11 +66,15 @@ class RegisterController extends Controller
     {
         $namesArray = processName($data['name']);
 
-        return User::create([
+        $user = User::create([
             'first_name' => $namesArray[0],
             'last_name' => $namesArray[1],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->addRole('user');
+
+        return $user;
     }
 }

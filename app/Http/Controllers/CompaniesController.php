@@ -3,13 +3,19 @@
 namespace App\Http\Controllers;
 
 use CRM\Models\Company;
-use Illuminate\Http\Request;
 
 class CompaniesController extends Controller
 {
     public function index()
     {
         //code here
+    }
+
+    public function create()
+    {
+        $this->authorize('create', Company::class);
+
+        return view('companies.create');
     }
 
     public function store()

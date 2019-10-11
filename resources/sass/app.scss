@@ -1,5 +1,10 @@
 @tailwind base;
 
+//Custom styles
+@import "card";
+
+@import "button";
+
 @tailwind components;
 
 @tailwind utilities;

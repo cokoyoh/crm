@@ -23,6 +23,8 @@ class ManageCompaniesTest extends TestCase
     {
         $this->signIn();
 
+        $this->get(route('companies.create'))->assertStatus(403);
+
         $this->post(route('companies.store'), raw(Company::class))
             ->assertStatus(403);
     }
@@ -31,6 +33,8 @@ class ManageCompaniesTest extends TestCase
     public function system_admin_can_invite_a_company_to_create_a_profile()
     {
         $this->signInWithRole('super_admin');
+
+        $this->get(route('companies.create'))->assertStatus(200);
 
         $attributes = [
             'name' => 'Example Inc',

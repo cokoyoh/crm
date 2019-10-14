@@ -35,6 +35,7 @@
                     {{ config('app.name', 'Laravel') }}
                 </h1>
                 <p class="font-hairline text-gray-800 text-2xl">
+{{--                <p class="font-hairline my-heading">--}}
                     This is a million dollar app <br>
                     <span class="text-sm font-hairline ml-16">Signed cokoyoh</span>
                 </p>

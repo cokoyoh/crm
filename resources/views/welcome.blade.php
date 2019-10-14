@@ -30,16 +30,13 @@
 
     <div class="min-h-screen flex items-center justify-center">
         <div class="flex flex-col justify-around h-full">
-            <div>
-                <h1 class="text-gray-600 text-center font-light tracking-wider text-5xl mb-6">
-                    {{ config('app.name', 'Laravel') }}
-                </h1>
-                <p class="font-hairline text-gray-800 text-2xl">
-{{--                <p class="font-hairline my-heading">--}}
-                    This is a million dollar app <br>
-                    <span class="text-sm font-hairline ml-16">Signed cokoyoh</span>
-                </p>
-            </div>
+            <h1 class="text-gray-600 text-center font-light tracking-wider text-5xl mb-6">
+                {{ config('app.name', 'Laravel') }}
+            </h1>
+            <p class="font-hairline text-gray-800 text-center text-2xl">
+                This is a million dollar app <br>
+                <span class="text-sm font-hairline">Signed by cokoyoh</span>
+            </p>
         </div>
     </div>
 </div>

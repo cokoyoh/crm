@@ -1,4 +1,8 @@
 
 .card {
-    @apply bg-white p-5 rounded-lg shadow;
+    @apply bg-white p-5 rounded shadow;
+}
+
+.card-rounded {
+    @apply .card rounded-lg;
 }

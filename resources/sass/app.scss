@@ -1,6 +1,11 @@
 @tailwind base;
 
-//Custom styles
+$material-icons-font-path: '~material-icons/iconfont/';
+@import '~material-icons/iconfont/material-icons.scss';
+@import '~material-icons/css/material-icons.scss';
+
+
+//Custom style
 @import "card";
 
 @import "button";

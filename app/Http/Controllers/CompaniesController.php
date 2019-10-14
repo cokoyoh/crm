@@ -18,6 +18,11 @@ class CompaniesController extends Controller
         return view('companies.create');
     }
 
+    public function show(Company $company)
+    {
+        return view('companies.show', compact('company'));
+    }
+
     public function store()
     {
         $this->authorize('create', Company::class);

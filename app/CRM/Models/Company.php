@@ -9,4 +9,9 @@ class Company extends Model
     protected $table = 'companies';
 
     protected $guarded = [];
+
+    public function path()
+    {
+        return '/companies/' . $this->id;
+    }
 }

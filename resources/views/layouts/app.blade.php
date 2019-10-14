@@ -44,7 +44,10 @@
             </div>
         </nav>
 
-        @yield('content')
+        <main class="container mx-auto py-4">
+            @yield('content')
+        </main>
+
     </div>
 
     <!-- Scripts -->

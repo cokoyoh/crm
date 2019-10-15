@@ -82,7 +82,7 @@
             width: 100%;
             color: #176A5D;
             background: #f6f8fa">
-        <p>Jamiicare CRM Inc</p>
+        <p>Jamiicare CRM</p>
     </div>
     <div style="padding: 10px;
             line-height: 1.5em;

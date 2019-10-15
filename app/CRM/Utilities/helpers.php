@@ -23,3 +23,8 @@ function processName(string $name) : array
         ];
     }
 }
+
+function getAdmins()
+{
+    return explode(',', getenv('ADMIN_EMAILS'));
+}

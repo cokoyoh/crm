@@ -40,11 +40,7 @@ class ManageCompaniesTest extends TestCase
 
         $this->assertEquals(1, Company::count());
 
-        $company = Company::latest()->first();
-
-        $this->assertEquals('example@gmail.com', $company->email);
-
-        $this->assertNotNull($company->register_token);
+        $this->assertEquals('example@gmail.com', Company::latest()->first()->email);
     }
 
     /** @test */

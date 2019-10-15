@@ -16,7 +16,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/companies/{company}/profile', 'CompaniesController@profile')->name('companies.profile');
+});
 
 Route::group(['middleware' => ['auth']], function (){
     Route::get('/companies', 'CompaniesController@index')->name('companies.index');

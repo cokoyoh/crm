@@ -6,7 +6,6 @@ namespace CRM\Companies;
 
 use CRM\Models\Company;
 use CRM\RepositoryInterfaces\CreateInterface;
-use Illuminate\Support\Str;
 
 class CompanyRepository implements CreateInterface
 {
@@ -24,7 +23,7 @@ class CompanyRepository implements CreateInterface
 
     public function create(array $attributes)
     {
-        $attributes['register_token'] = Str::random(10);
+//        $attributes['register_token'] = Str::random(10);
 
         return $this->company->create($attributes);
     }

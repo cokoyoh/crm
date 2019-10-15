@@ -31,11 +31,11 @@ class WhenCompanyInvited implements ShouldQueue
 
         tap($company, function ($company) {
             $data = [
-                'firstname' => 'Customer',
                 'to' => $company->email,
-                'subject' => 'Welcome to Jamiicare CRM',
-                'view' => 'emails.reports.default',
-                'content' => 'Welcome to Jamiicare CRM'
+                'subject' => 'Welcome to ' . config('app.name'),
+                'view' => 'emails.companies.invite',
+                'id' => $company->id,
+                'companyName' => $company->name
             ];
 
             Mail::queue(new SimpleMail($data));

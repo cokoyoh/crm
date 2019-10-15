@@ -48,5 +48,7 @@ class Admin extends Command
         ];
 
         Mail::queue(new SimpleMail($data));
+
+        dd('Done');
     }
 }

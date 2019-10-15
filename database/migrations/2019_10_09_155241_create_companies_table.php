@@ -21,6 +21,8 @@ class CreateCompaniesTable extends Migration
             $table->increments('id');
             $table->string('name', 255)->nullable();
             $table->string('email', 100)->nullable();
+            $table->string('register_token', 255)->nullable();
+            $table->dateTime('confirmed_at')->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
 

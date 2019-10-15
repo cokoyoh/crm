@@ -32,6 +32,8 @@ class ManageCompaniesTest extends TestCase
     /** @test */
     public function system_admin_can_invite_a_company_to_create_a_profile()
     {
+        $this->withoutExceptionHandling();
+
         $this->signInWithRole('super_admin');
 
         $this->get(route('companies.create'))->assertStatus(200);
@@ -40,7 +42,11 @@ class ManageCompaniesTest extends TestCase
 
         $this->assertEquals(1, Company::count());
 
-        $this->assertEquals('example@gmail.com', Company::first()->email);
+        $company = Company::latest()->first();
+
+        $this->assertEquals('example@gmail.com', $company->email);
+
+        $this->assertNotNull($company->register_token);
     }
 
     /** @test */

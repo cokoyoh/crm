@@ -3,10 +3,22 @@
 namespace App\Http\Controllers;
 
 use App\Events\Companies\CompanyInvited;
+use App\Repositories\Company\CompanyRepository;
 use CRM\Models\Company;
 
 class CompaniesController extends Controller
 {
+    protected $company;
+
+    /**
+     * CompaniesController constructor.
+     * @param CompanyRepository $company
+     */
+    public function __construct(CompanyRepository $company)
+    {
+        $this->company = $company;
+    }
+
     public function index()
     {
         //code here
@@ -28,13 +40,9 @@ class CompaniesController extends Controller
     {
         $this->authorize('create', Company::class);
 
-        $validated = request()->validate([
-            'email' => 'email | required'
-        ]);
+        request()->validate(['email' => 'email | required']);
 
-        $validated['name'] = \request('name');
-
-        $company =  Company::create(\request()->except('_token'));
+        $company = $this->company->create(request()->except('_token'));
 
         event(new CompanyInvited($company));
 

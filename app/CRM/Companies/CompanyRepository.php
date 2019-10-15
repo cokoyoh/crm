@@ -1,13 +1,14 @@
 <?php
 
 
-namespace App\Repositories\Company;
+namespace CRM\Companies;
 
 
 use CRM\Models\Company;
+use CRM\RepositoryInterfaces\CreateInterface;
 use Illuminate\Support\Str;
 
-class CompanyRepository implements CompanyInterface
+class CompanyRepository implements CreateInterface
 {
     protected $company;
 
@@ -23,7 +24,7 @@ class CompanyRepository implements CompanyInterface
 
     public function create(array $attributes)
     {
-        $attributes['register_token'] =Str::random(10);
+        $attributes['register_token'] = Str::random(10);
 
         return $this->company->create($attributes);
     }

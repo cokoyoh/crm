@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Companies\CompanyInvited;
-use App\Repositories\Company\CompanyRepository;
+use CRM\Companies\CompanyRepository;
 use CRM\Models\Company;
 
 class CompaniesController extends Controller

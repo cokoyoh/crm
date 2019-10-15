@@ -32,8 +32,6 @@ class ManageCompaniesTest extends TestCase
     /** @test */
     public function system_admin_can_invite_a_company_to_create_a_profile()
     {
-        $this->withoutExceptionHandling();
-
         $this->signInWithRole('super_admin');
 
         $this->get(route('companies.create'))->assertStatus(200);

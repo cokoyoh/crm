@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Companies\CompanyInvited;
 use CRM\Models\Company;
 
 class CompaniesController extends Controller
@@ -34,6 +35,8 @@ class CompaniesController extends Controller
         $validated['name'] = \request('name');
 
         $company =  Company::create(\request()->except('_token'));
+
+        event(new CompanyInvited($company));
 
         return redirect(route('companies.show', $company->id));
     }

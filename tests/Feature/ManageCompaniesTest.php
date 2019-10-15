@@ -36,12 +36,7 @@ class ManageCompaniesTest extends TestCase
 
         $this->get(route('companies.create'))->assertStatus(200);
 
-        $attributes = [
-            'name' => 'Example Inc',
-            'email' => 'example@gmail.com'
-        ];
-
-        $this->post(route('companies.store'), $attributes);
+        $this->post(route('companies.store'), ['name' => 'Example Inc', 'email' => 'example@gmail.com']);
 
         $this->assertEquals(1, Company::count());
 

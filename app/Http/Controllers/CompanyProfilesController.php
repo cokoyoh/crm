@@ -40,6 +40,8 @@ class CompanyProfilesController extends Controller
 
         $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');
 
+        //send an email to the company with the confirmed details
+
         return redirect(route('login'));
     }
 }

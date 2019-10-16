@@ -6,6 +6,7 @@ use CRM\Models\Company;
 use CRM\Models\Role;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Str;
 use Tests\TestCase;
 
 class ManageCompaniesTest extends TestCase
@@ -105,5 +106,14 @@ class ManageCompaniesTest extends TestCase
 
         $this->post(route('companies.profiles.store', $company->id), $data)
             ->assertSessionHasErrors('password');
+    }
+
+    /** @test */
+    public function complete_company_profile_link_can_only_be_used_once()
+    {
+        $company = create(Company::class, ['register_token' => Str::random(10), 'confirmed_at' => now()]);
+
+        $this->post(route('companies.profiles.store', $company->id), [])
+            ->assertStatus(403);
     }
 }

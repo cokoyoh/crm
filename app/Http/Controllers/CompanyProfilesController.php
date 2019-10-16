@@ -25,14 +25,18 @@ class CompanyProfilesController extends Controller
 
     public function complete(Company $company)
     {
+        $this->authorize('updateProfile', $company);
+
         return view('companies.profiles.complete', compact('company'));
     }
 
-    public function store($companyId)
+    public function store(Company $company)
     {
+        $this->authorize('updateProfile', $company);
+
         request()->validate(['email' => 'email|required', 'password' => 'required|min:8']);
 
-        $this->company->update($companyId, request()->only('company_name', 'company_email'));
+        $this->company->update($company->id, request()->only('company_name', 'company_email'));
 
         $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');
 

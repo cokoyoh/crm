@@ -53,4 +53,36 @@ class ManageCompaniesTest extends TestCase
         $this->post(route('companies.store'), $attributes)
             ->assertSessionHasErrors('email');
     }
+
+    /** @test */
+    public function a_user_can_complete_a_company_profile()
+    {
+        $company = create(Company::class);
+
+        $this->get(route('companies.profiles.complete', $company->id))
+            ->assertSee($company->name)
+            ->assertStatus(200);
+
+        $data = [
+            'company_name' => $company->name,
+            'company_email' => $company->email,
+            'name' => 'Admin Adam',
+            'email' => 'admin@example.com',
+            'password' => '$2y$10$107gJvuKZ2ycq79wl/FKMu2NxTHnvommlIzIgYmRQepANpoOdJiwm',
+            'password_confirmation' => '$2y$10$107gJvuKZ2ycq79wl/FKMu2NxTHnvommlIzIgYmRQepANpoOdJiwm'
+        ];
+
+        $this->post(route('companies.profiles.store', $company->id), $data)
+            ->assertRedirect(route('login'));
+
+        $this->assertDatabaseHas('users', ['email' => $data['email']]);
+
+        tap($company->fresh(), function ($company) use($data) {
+            $this->assertEquals($company->email, $data['company_email']);
+
+            $this->assertNotNull($company->register_token);
+
+            $this->assertNotNull($company->confirmed_at);
+        });
+    }
 }

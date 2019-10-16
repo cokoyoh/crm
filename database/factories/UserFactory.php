@@ -54,7 +54,7 @@ $factory->define(\CRM\Models\Company::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
         'email' => $faker->companyEmail,
-        'register_token' => $faker->randomAscii,
-        'confirmed_at' => now()
+        'register_token' => null,
+        'confirmed_at' => null
     ];
 });

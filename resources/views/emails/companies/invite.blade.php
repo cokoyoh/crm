@@ -11,8 +11,8 @@
 
         <p>
             Kindly use this <a
-                href="{{ URL::to(route('companies.profile', $id)) }}">link </a>to
-            complete your company profile and begin using the platform
+                href="{{ URL::to(route('companies.complete-profile', $id)) }}">link </a>to
+            complete your company profile and begin using the platform. Please note that this link can only be used once.
         </p>
 
         <p>Thank you.</p>

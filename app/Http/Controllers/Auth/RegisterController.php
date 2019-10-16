@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use CRM\Models\RoleUser;
 use CRM\Models\User;
+use CRM\Users\UserRepository;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -31,13 +32,17 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/home';
 
+    protected $user;
+
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @param UserRepository $user
      */
-    public function __construct()
+    public function __construct(UserRepository $user)
     {
+        $this->user = $user;
+
         $this->middleware('guest');
     }
 
@@ -64,14 +69,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        $namesArray = processName($data['name']);
-
-        $user = User::create([
-            'first_name' => $namesArray[0],
-            'last_name' => $namesArray[1],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
+        $user = $this->user->create($data);
 
         $user->addRole('user');
 

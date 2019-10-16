@@ -18,7 +18,8 @@ Auth::routes();
 
 Route::group(['middleware' => ['guest']], function () {
     Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/companies/{company}/profile', 'CompaniesController@profile')->name('companies.profile');
+    Route::get('/companies/{company}/profile', 'CompanyProfilesController@complete')->name('companies.profiles.complete');
+    Route::post('/companies/{company}/profiles', 'CompanyProfilesController@store')->name('companies.profiles.store');
 });
 
 Route::group(['middleware' => ['auth']], function (){

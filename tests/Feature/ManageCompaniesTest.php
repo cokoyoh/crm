@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -63,14 +64,7 @@ class ManageCompaniesTest extends TestCase
             ->assertSee($company->name)
             ->assertStatus(200);
 
-        $data = [
-            'company_name' => $company->name,
-            'company_email' => $company->email,
-            'name' => 'Admin Adam',
-            'email' => 'admin@example.com',
-            'password' => '$2y$10$107gJvuKZ2ycq79wl/FKMu2NxTHnvommlIzIgYmRQepANpoOdJiwm',
-            'password_confirmation' => '$2y$10$107gJvuKZ2ycq79wl/FKMu2NxTHnvommlIzIgYmRQepANpoOdJiwm'
-        ];
+        $data = rawState(User::class, 'raw') + ['company_name' => $company->name, 'company_email' => $company->email];
 
         $this->post(route('companies.profiles.store', $company->id), $data)
             ->assertRedirect(route('login'));

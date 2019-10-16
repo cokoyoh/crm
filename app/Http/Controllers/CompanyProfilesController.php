@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use CRM\Companies\CompanyRepository;
 use CRM\Models\Company;
-use CRM\Models\User;
 use CRM\Users\UserRepository;
 
 class CompanyProfilesController extends Controller

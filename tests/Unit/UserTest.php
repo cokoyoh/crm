@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use CRM\Models\Role;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Facades\Tests\Setup\UserFactory;
 use Tests\TestCase;
 
 class UserTest extends TestCase
@@ -37,5 +38,13 @@ class UserTest extends TestCase
         $user->addRole('super_admin');
 
         $this->assertEquals(1, $user->roles()->count());
+    }
+
+    /** @test */
+    public function it_checks_if_a_user_has_a_particular_role()
+    {
+        $user = UserFactory::withRole('company_admin')->create();
+
+        $this->assertTrue($user->hasRole('company_admin'));
     }
 }

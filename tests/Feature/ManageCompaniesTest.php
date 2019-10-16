@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\Role;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -66,6 +67,8 @@ class ManageCompaniesTest extends TestCase
 
         $data = rawState(User::class, 'raw') + ['company_name' => $company->name, 'company_email' => $company->email];
 
+        create(Role::class, ['slug' => 'company_admin']);
+
         $this->post(route('companies.profiles.store', $company->id), $data)
             ->assertRedirect(route('login'));
 
@@ -77,6 +80,8 @@ class ManageCompaniesTest extends TestCase
             $this->assertNotNull($company->register_token);
 
             $this->assertNotNull($company->confirmed_at);
+
+            $this->assertTrue(User::first()->hasRole('company_admin'));
         });
     }
 }

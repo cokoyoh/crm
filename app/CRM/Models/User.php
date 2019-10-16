@@ -39,11 +39,22 @@ class User extends Authenticatable
 
     public function isSuperAdmin()
     {
+        return $this->checkRole()->exists();
+    }
+
+    public function hasRole($role)
+    {
+        return $this->checkRole($role)->exists();
+    }
+
+    private function checkRole($roleSlug = null)
+    {
+        $roleSlug = $roleSlug ?? 'super_admin';
+
         return $this->roleUser()
-            ->whereHas('role', function ($role) {
-                $role->where('slug', 'super_admin');
-            })
-            ->exists();
+            ->whereHas('role', function ($role) use ($roleSlug){
+                $role->where('slug', $roleSlug);
+            });
     }
 
     public function roles()

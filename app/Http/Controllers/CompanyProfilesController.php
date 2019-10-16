@@ -32,7 +32,7 @@ class CompanyProfilesController extends Controller
     {
         $this->company->update($companyId, request()->only('company_name', 'company_email'));
 
-        $this->user->create(request()->only('name', 'email', 'password'));
+        $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');
 
         return redirect(route('login'));
     }

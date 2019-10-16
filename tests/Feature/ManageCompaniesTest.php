@@ -60,20 +60,17 @@ class ManageCompaniesTest extends TestCase
     /** @test */
     public function a_user_can_complete_a_company_profile()
     {
-        $company = create(Company::class);
+        create(Role::class, ['slug' => 'company_admin']);
 
-        $this->get(route('companies.profiles.complete', $company->id))
-            ->assertSee($company->name)
-            ->assertStatus(200);
+        $company = create(Company::class);
 
         $data = rawState(User::class, [], 'raw') + ['company_name' => $company->name, 'company_email' => $company->email];
 
-        create(Role::class, ['slug' => 'company_admin']);
+        tap($company, function ($company) use ($data) {
+            $this->post(route('companies.profiles.store', $company->id), $data)->assertRedirect(route('login'));
 
-        $this->post(route('companies.profiles.store', $company->id), $data)
-            ->assertRedirect(route('login'));
-
-        $this->assertDatabaseHas('users', ['email' => $data['email']]);
+            $this->assertDatabaseHas('users', ['email' => $data['email']]);
+        });
 
         tap($company->fresh(), function ($company) use($data) {
             $this->assertEquals($company->email, $data['company_email']);

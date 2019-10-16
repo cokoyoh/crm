@@ -33,7 +33,7 @@ class SimpleMail extends Mailable
             ->to($this->data['to'])
             ->subject($this->data['subject'])
             ->addCC($this, $this->data)
-            ->addBCC($this, $this->data)
+            ->addBcc($this, $this->data)
             ->with($this->data);
     }
 }

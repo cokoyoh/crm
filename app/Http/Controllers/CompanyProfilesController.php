@@ -30,6 +30,8 @@ class CompanyProfilesController extends Controller
 
     public function store($companyId)
     {
+        request()->validate(['email' => 'email|required', 'password' => 'required|min:8']);
+
         $this->company->update($companyId, request()->only('company_name', 'company_email'));
 
         $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');

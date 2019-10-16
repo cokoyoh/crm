@@ -65,7 +65,7 @@ class ManageCompaniesTest extends TestCase
             ->assertSee($company->name)
             ->assertStatus(200);
 
-        $data = rawState(User::class, 'raw') + ['company_name' => $company->name, 'company_email' => $company->email];
+        $data = rawState(User::class, [], 'raw') + ['company_name' => $company->name, 'company_email' => $company->email];
 
         create(Role::class, ['slug' => 'company_admin']);
 
@@ -83,5 +83,27 @@ class ManageCompaniesTest extends TestCase
 
             $this->assertTrue(User::first()->hasRole('company_admin'));
         });
+    }
+
+    /** @test */
+    public function admin_email_is_required()
+    {
+        $data = raw(User::class, ['email' => '']);
+
+        $company = create(Company::class);
+
+        $this->post(route('companies.profiles.store', $company->id), $data)
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function admin_password_is_required()
+    {
+        $data = rawState(User::class, ['password' => ''], 'raw');
+
+        $company = create(Company::class);
+
+        $this->post(route('companies.profiles.store', $company->id), $data)
+            ->assertSessionHasErrors('password');
     }
 }

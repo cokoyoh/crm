@@ -14,4 +14,9 @@ class Company extends Model
     {
         return '/companies/' . $this->id;
     }
+
+    public function users()
+    {
+        return $this->hasMany(User::class);
+    }
 }

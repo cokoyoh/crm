@@ -36,9 +36,11 @@ class CompanyProfilesController extends Controller
 
         request()->validate(['email' => 'email|required', 'password' => 'required|min:8']);
 
+        $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');
+
         $this->company->update($company->id, request()->only('company_name', 'company_email'));
 
-        $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');
+//        $company->addUser($this->user);
 
         //send an email to the company with the confirmed details
 

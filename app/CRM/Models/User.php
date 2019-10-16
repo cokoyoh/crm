@@ -82,4 +82,11 @@ class User extends Authenticatable
     {
         return Role::where('slug', $roleSlug)->first();
     }
+
+    public function associateCompany(Company $company)
+    {
+        $this->company_id = $company->id;
+
+        $this->save();
+    }
 }

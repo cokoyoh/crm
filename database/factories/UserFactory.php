@@ -53,6 +53,8 @@ $factory->define(\CRM\Models\RoleUser::class, function (Faker $faker) {
 $factory->define(\CRM\Models\Company::class, function (Faker $faker) {
     return [
         'name' => $faker->company,
-        'email' => $faker->companyEmail
+        'email' => $faker->companyEmail,
+        'register_token' => null,
+        'confirmed_at' => null
     ];
 });

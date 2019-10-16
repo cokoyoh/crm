@@ -82,7 +82,7 @@
             width: 100%;
             color: #176A5D;
             background: #f6f8fa">
-        <p>Jamiicare CRM</p>
+        <p>{!! config('app.name') !!}</p>
     </div>
     <div style="padding: 10px;
             line-height: 1.5em;
@@ -101,15 +101,15 @@
             min-height: 100px;
             width: 80%;
             color: #565656;">
-        <p style="margin: 0;">Jamiicare CRM, HQ</p>
-        <p style="margin: 0;">Nairobi, Lower Kabete</p>
-        <p style="margin: 0;">crm.jamiicare.com</p>
+        <p style="margin: 0;">{!! config('app.name') !!}, HQ</p>
+        <p style="margin: 0;">{!! config('company.address') !!}</p>
+        <p style="margin: 0;">{!! \Illuminate\Support\Str::substr(config('app.url'), 8) !!}</p>
         <div style="border-top:1px solid #adb0b5;color:#adb0b5;margin-bottom:10px;margin-top:30px;padding-top:10px;width:97%">
             <div style="float:left;width:50%">
-                <small style="font-size:10px"> &copy; {!!  now()->year !!} Jamiicare CRM </small>
+                <small style="font-size:10px"> &copy; {!!  now()->year !!} {!! config('app.name') !!} </small>
             </div>
             <div style="margin-left:50%;text-align:right">
-                <small style="font-size:10px"> A product of <a href="https://crm.jamiicare.com/" style="font-family:Helvetica Neue,Helvetica,Arial;font-size:inherit!important;font-weight:bold;text-decoration:none;color:inherit">Jamiicare CRM</a> </small>
+                <small style="font-size:10px"> A product of <a href="{!! config('app.url') !!}" style="font-family:Helvetica Neue,Helvetica,Arial;font-size:inherit!important;font-weight:bold;text-decoration:none;color:inherit">{!! config('app.name') !!}</a> </small>
             </div>
             <div style="clear:both"></div>
         </div>

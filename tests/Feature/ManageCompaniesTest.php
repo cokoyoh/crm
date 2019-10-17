@@ -108,6 +108,17 @@ class ManageCompaniesTest extends TestCase
     }
 
     /** @test */
+    public function admin_name_is_required()
+    {
+        $data = rawState(User::class, ['name' => ''], 'raw');
+
+        $company = create(Company::class);
+
+        $this->post(route('companies.profiles.store', $company->id), $data)
+            ->assertSessionHasErrors('name');
+    }
+
+    /** @test */
     public function complete_company_profile_link_can_only_be_used_once()
     {
         $company = create(Company::class, ['register_token' => Str::random(10), 'confirmed_at' => now()]);

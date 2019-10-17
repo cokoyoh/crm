@@ -40,7 +40,7 @@ class CompaniesController extends Controller
     {
         $this->authorize('create', Company::class);
 
-        request()->validate(['email' => 'email | required']);
+        request()->validate(['email' => 'required|email']);
 
         $company = $this->company->create(request()->except('_token'));
 

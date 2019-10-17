@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CompanyProfileRequest;
 use CRM\Companies\CompanyProfilesRepository;
 use CRM\Models\Company;
 
@@ -26,12 +27,8 @@ class CompanyProfilesController extends Controller
         return view('companies.profiles.complete', compact('company'));
     }
 
-    public function store(Company $company)
+    public function store(CompanyProfileRequest $request, Company $company)
     {
-        $this->authorize('updateProfile', $company);
-
-        request()->validate(['email' => 'email|required', 'password' => 'required|min:8']);
-
         $this->company->updateProfile($company, request()->except('_token'));
 
         return redirect(route('login'));

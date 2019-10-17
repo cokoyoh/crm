@@ -44,7 +44,7 @@ class Admin extends Command
             'subject' => 'Admin Trial Email',
             'content' => 'This is a trial email',
             'firstname' => 'Ogutuz',
-            'to' => 'ogutuomondi18@students.ku.ac.ke'
+            'to' => 'ogutuomondi18@students.ku.ac.ke',
         ];
 
         Mail::queue(new SimpleMail($data));

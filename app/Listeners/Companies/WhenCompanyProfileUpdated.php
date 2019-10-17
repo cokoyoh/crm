@@ -40,7 +40,8 @@ class WhenCompanyProfileUpdated
         $data = [
             'view' => 'emails.companies.notify_company_admin',
             'to' => $user->email,
-            'cc' => $company,
+            'cc' => $company->email,
+            'subject' => config('app.name') . ' - ' . $company->name .' Profile', //Jamiicare CRM - Horgwarts LLC Profile
         ];
     }
 }

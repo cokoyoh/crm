@@ -29,7 +29,7 @@ class CompanyProfileRequest extends FormRequest
             'name' => 'required' ,
             'password' => 'required|confirmed|min:8',
             'company_name' => 'required',
-            'company_email' => 'required|email|unique:companies,email'.$this->route('company')->id,
+            'company_email' => 'required|email',
         ];
     }
 }

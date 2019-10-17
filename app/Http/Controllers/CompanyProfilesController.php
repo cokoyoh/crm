@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CompanyProfileRequest;
 use CRM\Companies\CompanyProfilesRepository;
 use CRM\Models\Company;
+use Illuminate\Support\Facades\DB;
 
 class CompanyProfilesController extends Controller
 {
@@ -29,7 +30,9 @@ class CompanyProfilesController extends Controller
 
     public function store(CompanyProfileRequest $request, Company $company)
     {
-        $this->company->updateProfile($company, request()->except('_token'));
+        DB::transaction(function () use ($company) {
+            $this->company->updateProfile($company, request()->except('_token'));
+        });
 
         return redirect(route('login'));
     }

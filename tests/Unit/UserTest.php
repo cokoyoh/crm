@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use CRM\Models\Company;
 use CRM\Models\Role;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -54,5 +55,19 @@ class UserTest extends TestCase
         $user = create(User::class, ['first_name' => 'John', 'last_name' => 'Doe']);
 
         $this->assertEquals($user->fullname, 'John Doe');
+    }
+
+    /** @test */
+    public function it_can_be_added_to_a_company()
+    {
+        $company = create(Company::class);
+
+        $user = create(User::class)->addToCompany($company);
+
+        $companyUsers = $company->fresh()->users;
+
+        $this->assertCount(1, $companyUsers);
+
+        $this->assertTrue($companyUsers->contains($user));
     }
 }

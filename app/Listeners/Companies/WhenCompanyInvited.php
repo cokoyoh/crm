@@ -38,7 +38,7 @@ class WhenCompanyInvited implements ShouldQueue
                 'companyName' => $company->name
             ];
 
-            Mail::queue(new SimpleMail($data));
+            sendMail($data);
         });
     }
 }

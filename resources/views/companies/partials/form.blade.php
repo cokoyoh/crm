@@ -4,7 +4,7 @@
 
     <div class="control">
         <input type="text"
-               class="input bg-transparent border border-gray-300 rounded p-2 text-sm w-full"
+               class="input appearance-none bg-transparent border border-gray-300 rounded py-3 px-4 text-sm w-full focus:outline-none focus:bg-white"
                value="{!! $company->name !!}"
                name="name"
                required
@@ -17,7 +17,7 @@
 
     <div class="control">
         <input type="email"
-               class="input bg-transparent border border-gray-300 rounded p-2 text-sm w-full"
+               class="input appearance-none bg-transparent border border-gray-300 rounded py-3 px-4 text-sm w-full focus:outline-none focus:bg-white"
                value="{!! $company->email !!}"
                name="email"
                required

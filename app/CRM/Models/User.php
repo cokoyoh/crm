@@ -84,7 +84,9 @@ class User extends Authenticatable
     {
         $role = $this->getRole($roleSlug);
 
-        return $this->roleUser()->create(['role_id' => $role->id]);
+        $this->roleUser()->create(['role_id' => $role->id]);
+
+        return $this;
     }
 
     private function getRole($roleSlug)
@@ -92,10 +94,12 @@ class User extends Authenticatable
         return Role::where('slug', $roleSlug)->first();
     }
 
-    public function associateCompany(Company $company)
+    public function addToCompany(Company $company)
     {
         $this->company_id = $company->id;
 
         $this->save();
+
+        return $this;
     }
 }

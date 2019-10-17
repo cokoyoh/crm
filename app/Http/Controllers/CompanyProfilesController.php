@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Events\Companies\CompanyProfileUpdated;
-use CRM\Companies\CompanyRepository;
+use CRM\Companies\CompanyProfilesRepository;
 use CRM\Models\Company;
-use CRM\Users\UserRepository;
 
 class CompanyProfilesController extends Controller
 {
     protected $company;
-    protected $user;
 
     /**
      * CompanyProfilesController constructor.
-     * @param UserRepository $user
-     * @param CompanyRepository $company
+     * @param CompanyProfilesRepository $company
      */
-    public function __construct(UserRepository $user, CompanyRepository $company)
+    public function __construct(CompanyProfilesRepository $company)
     {
         $this->company = $company;
-        $this->user = $user;
     }
 
 
@@ -37,13 +32,7 @@ class CompanyProfilesController extends Controller
 
         request()->validate(['email' => 'email|required', 'password' => 'required|min:8']);
 
-        $user = $this->user->create(request()->only('name', 'email', 'password'));
-
-        $user->addRole('company_admin');
-
-        $this->company->update($company->id, request()->only('company_name', 'company_email'));
-
-        event(new CompanyProfileUpdated($user, $company->fresh()));
+        $this->company->updateProfile($company, request()->except('_token'));
 
         return redirect(route('login'));
     }

@@ -25,9 +25,11 @@ class CompanyProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'name' => 'required' ,
-            'password' => 'required|confirmed|min:8'
+            'password' => 'required|confirmed|min:8',
+            'company_name' => 'required',
+            'company_email' => 'required|email|unique:companies,email'.$this->route('company')->id,
         ];
     }
 }

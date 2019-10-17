@@ -60,6 +60,8 @@ class ManageCompaniesTest extends TestCase
     /** @test */
     public function a_user_can_complete_a_company_profile()
     {
+        $this->withoutExceptionHandling();
+
         create(Role::class, ['slug' => 'company_admin']);
 
         $company = create(Company::class);

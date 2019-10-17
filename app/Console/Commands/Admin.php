@@ -2,9 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Mail\SimpleMail;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Mail;
 
 class Admin extends Command
 {
@@ -39,14 +37,12 @@ class Admin extends Command
      */
     public function handle()
     {
-        $data = [
+        sendMail([
             'view' => 'emails.general',
             'subject' => 'Admin Trial Email',
             'content' => 'This is a trial email',
             'firstname' => 'Ogutuz',
             'to' => 'ogutuomondi18@students.ku.ac.ke',
-        ];
-
-        Mail::queue(new SimpleMail($data));
+        ]);
     }
 }

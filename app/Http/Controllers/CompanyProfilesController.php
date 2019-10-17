@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Companies\CompanyProfileUpdated;
 use CRM\Companies\CompanyRepository;
 use CRM\Models\Company;
 use CRM\Users\UserRepository;
@@ -36,13 +37,13 @@ class CompanyProfilesController extends Controller
 
         request()->validate(['email' => 'email|required', 'password' => 'required|min:8']);
 
-        $this->user->create(request()->only('name', 'email', 'password'))->addRole('company_admin');
+        $user = $this->user->create(request()->only('name', 'email', 'password'));
+
+        $user->addRole('company_admin');
 
         $this->company->update($company->id, request()->only('company_name', 'company_email'));
 
-//        $company->addUser($this->user);
-
-        //send an email to the company with the confirmed details
+        event(new CompanyProfileUpdated($user, $company->fresh()));
 
         return redirect(route('login'));
     }

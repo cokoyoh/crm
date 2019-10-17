@@ -35,7 +35,7 @@ class WhenCompanyProfileUpdated
 
     private function notifyUser($user, $company)
     {
-        $data = [
+        sendMail([
             'view' => 'emails.companies.notify_company_admin',
             'to' => $user->email,
             'cc' => $company->email,
@@ -43,29 +43,33 @@ class WhenCompanyProfileUpdated
             'firstname' => $user->first_name,
             'role' => $this->role($user),
             'companyName' => $company->name
-        ];
-
-        sendMail($data);
+        ]);
     }
 
     private function notifyRegisteredCompany($user, $company)
     {
-        $data = [
+        sendMail([
             'to' => $company->email,
             'cc' => $user->email,
             'view' => 'emails.companies.notify_company',
+            'subject' => config('app.name') . ' - ' . $company->name . ' Profile Update',
             'firstname' => 'Sir/Madam',
             'adminName' => $user->fullname,
+            'adminEmail' => $user->email,
             'companyName' => $company->name,
             'companyEmail' => $company->email,
             'adminRole' => $this->role($user)
-        ];
-
-        sendMail($data);
+        ]);
     }
 
     private function role($user)
     {
-        return optional($user->userRoles()->latest()->first())->name;
+        $roleUser = $user->roleUser()->latest()->first();
+
+        if ($roleUser) {
+            return $roleUser->role->name;
+        }
+
+        return '';
     }
 }

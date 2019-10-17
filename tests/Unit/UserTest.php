@@ -47,4 +47,12 @@ class UserTest extends TestCase
 
         $this->assertTrue($user->hasRole('company_admin'));
     }
+
+    /** @test */
+    public function it_retrieves_the_full_name_of_a_user()
+    {
+        $user = create(User::class, ['first_name' => 'John', 'last_name' => 'Doe']);
+
+        $this->assertEquals($user->fullname, 'John Doe');
+    }
 }

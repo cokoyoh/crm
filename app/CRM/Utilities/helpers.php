@@ -1,5 +1,17 @@
 <?php
 
+use App\Mail\SimpleMail;
+use Illuminate\Support\Facades\Mail;
+
+function sendMail(array $data, $queue = true)
+{
+    if ($queue) {
+        return Mail::queue(new SimpleMail($data));
+    }
+
+    Mail::send(new SimpleMail($data));
+}
+
 function processName(string $name) : array
 {
     $explodedNameArray = explode(' ', trim($name));

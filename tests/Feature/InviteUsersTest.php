@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\Role;
 use CRM\Models\User;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -25,6 +26,8 @@ class InviteUsersTest extends TestCase
     /** @test */
     public function company_admin_can_invite_other_users()
     {
+        create(Role::class, ['slug' => 'user']);
+
         $company = create(Company::class);
 
         $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
@@ -40,7 +43,7 @@ class InviteUsersTest extends TestCase
 
         $this->assertDatabaseHas('users', ['email' => $attributes['email']]);
 
-        $this->assertCount(1, $company->users);
+        $this->assertCount(2, $company->users);
     }
 
     /** @test */

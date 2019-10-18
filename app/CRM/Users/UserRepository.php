@@ -34,14 +34,18 @@ class UserRepository implements CreateInterface
         ]);
     }
 
-    public function invite(array $attributes)
+    public function invite($company, array $attributes)
     {
         $names = processName($attributes['name']);
 
-        return $this->user->create([
+        $user = $this->user->create([
             'first_name' => $names[0],
             'last_name' => $names[1],
             'email' => $attributes['email']
         ]);
+
+        $user->addRole('user')->addToCompany($company);
+
+        return $user;
     }
 }

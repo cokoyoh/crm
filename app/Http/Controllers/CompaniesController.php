@@ -61,7 +61,7 @@ class CompaniesController extends Controller
 
         request()->validate(['name' => 'required', 'email' => 'required|email|unique:users,email']);
 
-        $user = $this->user->invite(request()->except('_token'));
+        $user = $this->user->invite($company, request()->except('_token'));
 
         //send notifications
 

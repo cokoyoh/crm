@@ -33,4 +33,15 @@ class UserRepository implements CreateInterface
             'password' => Hash::make($attributes['password'])
         ]);
     }
+
+    public function invite(array $attributes)
+    {
+        $names = processName($attributes['name']);
+
+        return $this->user->create([
+            'first_name' => $names[0],
+            'last_name' => $names[1],
+            'email' => $attributes['email']
+        ]);
+    }
 }

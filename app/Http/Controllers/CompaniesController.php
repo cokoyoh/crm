@@ -5,18 +5,22 @@ namespace App\Http\Controllers;
 use App\Events\Companies\CompanyInvited;
 use CRM\Companies\CompanyRepository;
 use CRM\Models\Company;
+use CRM\Users\UserRepository;
 
 class CompaniesController extends Controller
 {
     protected $company;
+    protected $user;
 
     /**
      * CompaniesController constructor.
      * @param CompanyRepository $company
+     * @param UserRepository $user
      */
-    public function __construct(CompanyRepository $company)
+    public function __construct(CompanyRepository $company, UserRepository $user)
     {
         $this->company = $company;
+        $this->user = $user;
     }
 
     public function index()
@@ -49,5 +53,18 @@ class CompaniesController extends Controller
         event(new CompanyInvited($company));
 
         return redirect(route('companies.show', $company->id));
+    }
+
+    public function invites(Company $company)
+    {
+        $this->authorize('manageCompany', $company);
+
+        request()->validate(['name' => 'required', 'email' => 'required|email|unique:users,email']);
+
+        $user = $this->user->invite(request()->except('_token'));
+
+        //send notifications
+
+        return redirect(route('companies.show', $company));
     }
 }

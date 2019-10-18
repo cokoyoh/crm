@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Companies\CompanyInvited;
+use App\Events\Users\UserInvited;
 use CRM\Companies\CompanyRepository;
 use CRM\Models\Company;
 use CRM\Users\UserRepository;
@@ -63,7 +64,7 @@ class CompaniesController extends Controller
 
         $user = $this->user->invite($company, request()->except('_token'));
 
-        //send notifications
+        event(new UserInvited($user));
 
         return redirect(route('companies.show', $company));
     }

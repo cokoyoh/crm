@@ -22,6 +22,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Companies\WhenCompanyInvited'
         ],
 
+        'App\Events\Users\UserInvited' => [
+            'App\Listeners\Users\WhenUserInvited'
+        ],
+
         'App\Events\Companies\CompanyProfileUpdated' => [
             'App\Listeners\Companies\WhenCompanyProfileUpdated'
         ]

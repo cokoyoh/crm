@@ -70,4 +70,14 @@ class UserTest extends TestCase
 
         $this->assertTrue($companyUsers->contains($user));
     }
+
+    /** @test */
+    public function a_user_is_associated_with_a_company()
+    {
+        $company = create(Company::class);
+
+        $user = UserFactory::fromCompany($company)->create();
+
+        $this->assertInstanceOf(Company::class, $user->company);
+    }
 }

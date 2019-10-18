@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Events\Companies\CompanyInvited;
-use App\Events\Users\UserInvited;
 use CRM\Companies\CompanyRepository;
 use CRM\Models\Company;
 use CRM\Users\UserRepository;
@@ -54,18 +53,5 @@ class CompaniesController extends Controller
         event(new CompanyInvited($company));
 
         return redirect(route('companies.show', $company->id));
-    }
-
-    public function invites(Company $company)
-    {
-        $this->authorize('manageCompany', $company);
-
-        request()->validate(['name' => 'required', 'email' => 'required|email|unique:users,email']);
-
-        $user = $this->user->invite($company, request()->except('_token'));
-
-        event(new UserInvited($user));
-
-        return redirect(route('companies.show', $company));
     }
 }

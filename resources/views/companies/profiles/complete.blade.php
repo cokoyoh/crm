@@ -78,7 +78,7 @@
             </div>
 
             <div class="control mt-4 px-3 py-4">
-                <button class="button px-3 py-3 font-semibold">Submit Profile</button>
+                <button class="button px-3 py-3 font-semibold focus:outline-none">Submit Profile</button>
             </div>
 
         </form>

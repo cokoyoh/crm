@@ -10,6 +10,13 @@
         </p>
 
         <table class="crm-table">
+            <thead>
+               <tr>
+                   <th></th>
+                   <th>Name</th>
+                   <th>Email</th>
+               </tr>
+            </thead>
             <tbody>
             <tr>
                 <td>Company</td>

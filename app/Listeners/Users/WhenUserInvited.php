@@ -49,7 +49,7 @@ class WhenUserInvited
 
     private function role(User $user)
     {
-        $role = $user->roleUser()->latest()->first();
+        $role = $user->roleUser()->latest()->first()->role;
 
         if ($role) {
             return $role->name;

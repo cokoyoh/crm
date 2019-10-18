@@ -19,7 +19,7 @@ class InviteUsersTest extends TestCase
         $company = create(Company::class);
 
         $this->actingAs(create(User::class))
-            ->post(route('companies.users.invite', $company), [])
+            ->post(route('users.invite', $company), [])
             ->assertStatus(403);
     }
 
@@ -38,7 +38,7 @@ class InviteUsersTest extends TestCase
         ];
 
         $this->actingAs($companyAdmin)
-            ->post(route('companies.users.invite', $company), $attributes)
+            ->post(route('users.invite', $company), $attributes)
             ->assertRedirect(route('companies.show', $company->id));
 
         $this->assertDatabaseHas('users', ['email' => $attributes['email']]);
@@ -54,7 +54,7 @@ class InviteUsersTest extends TestCase
         $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
 
         $this->actingAs($companyAdmin)
-            ->post(route('companies.users.invite', $company), ['email' => ''])
+            ->post(route('users.invite', $company), ['email' => ''])
             ->assertSessionHasErrors('email');
     }
 
@@ -66,7 +66,7 @@ class InviteUsersTest extends TestCase
         $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
 
         $this->actingAs($companyAdmin)
-            ->post(route('companies.users.invite', $company), ['name' => ''])
+            ->post(route('users.invite', $company), ['name' => ''])
             ->assertSessionHasErrors('name');
     }
 }

@@ -24,6 +24,18 @@ class InviteUsersTest extends TestCase
     }
 
     /** @test */
+    public function the_link_to_update_profile_can_only_be_used_once()
+    {
+        $goldmanSachs = create(Company::class);
+
+        $user = create(User::class, ['email_verified_at' => null])->addToCompany($goldmanSachs);
+
+        $this->actingAs($user)
+            ->get(route('users.profile', $goldmanSachs))
+            ->assertStatus(403);
+    }
+
+    /** @test */
     public function company_admin_can_invite_other_users()
     {
         create(Role::class, ['slug' => 'user']);

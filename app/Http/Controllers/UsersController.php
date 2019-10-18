@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\Users\UserInvited;
 use CRM\Models\Company;
+use CRM\Models\User;
 use CRM\Users\UserRepository;
 
 class UsersController extends Controller
@@ -19,9 +20,18 @@ class UsersController extends Controller
         $this->user = $user;
     }
 
+    public function profile(User $user)
+    {
+        $this->authorize('completeProfile', $user);
+
+        return view('users.profile', compact('user'));
+    }
+
 
     public function invite(Company $company)
     {
+        $this->authorize('manageCompany', $company);
+
         return view('companies.users.invite', compact('company'));
     }
 

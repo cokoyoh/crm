@@ -1,0 +1,69 @@
+<?php
+
+namespace Tests\Feature;
+
+use CRM\Models\Company;
+use CRM\Models\User;
+use Facades\Tests\Setup\UserFactory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
+
+class InviteUsersTest extends TestCase
+{
+    use RefreshDatabase;
+
+    /** @test */
+    public function unauthorised_users_who_are_not_company_admins_cannot_invite_other_users()
+    {
+        $company = create(Company::class);
+
+        $this->actingAs(create(User::class))
+            ->post(route('companies.users.invite', $company), [])
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function company_admin_can_invite_other_users()
+    {
+        $company = create(Company::class);
+
+        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+
+        $attributes = [
+            'email' => 'john@example.com',
+            'name' => 'John Doe'
+        ];
+
+        $this->actingAs($companyAdmin)
+            ->post(route('companies.users.invite', $company), $attributes)
+            ->assertRedirect(route('companies.show', $company->id));
+
+        $this->assertDatabaseHas('users', ['email' => $attributes['email']]);
+
+        $this->assertCount(1, $company->users);
+    }
+
+    /** @test */
+    public function email_is_required_when_inviting_a_user()
+    {
+        $company = create(Company::class);
+
+        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+
+        $this->actingAs($companyAdmin)
+            ->post(route('companies.users.invite', $company), ['email' => ''])
+            ->assertSessionHasErrors('email');
+    }
+
+    /** @test */
+    public function user_name_is_required_when_inviting_a_user()
+    {
+        $company = create(Company::class);
+
+        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+
+        $this->actingAs($companyAdmin)
+            ->post(route('companies.users.invite', $company), ['name' => ''])
+            ->assertSessionHasErrors('name');
+    }
+}

@@ -147,25 +147,4 @@ class ManageCompaniesTest extends TestCase
         $this->post(route('companies.profiles.store', $company->id), [])
             ->assertStatus(403);
     }
-
-    /** @test */
-    public function company_admin_can_invite_other_users()
-    {
-        $company = create(Company::class);
-
-        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
-
-        $attributes = [
-            'email' => 'john@example.com',
-            'name' => 'John Doe'
-        ];
-
-        $this->actingAs($companyAdmin)
-            ->post(route('companies.users.invite', $company), $attributes)
-            ->assertRedirect(route('companies.show', $company->id));
-
-        $this->assertDatabaseHas('users', ['email' => $attributes['email']]);
-
-        $this->assertCount(1, $company->users);
-    }
 }

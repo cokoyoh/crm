@@ -16,9 +16,10 @@ Route::get('/', function () {
 });
 Auth::routes();
 
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/companies/{company}/profiles', 'CompanyProfilesController@complete')->name('companies.profiles.complete');
+
 Route::group(['middleware' => ['guest']], function () {
-    Route::get('/home', 'HomeController@index')->name('home');
-    Route::get('/companies/{company}/profiles', 'CompanyProfilesController@complete')->name('companies.profiles.complete');
     Route::post('/companies/{company}/profiles', 'CompanyProfilesController@store')->name('companies.profiles.store');
 });
 

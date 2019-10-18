@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use CRM\Models\Company;
 use CRM\Models\Role;
 use CRM\Models\User;
+use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
 use Tests\TestCase;
@@ -22,11 +23,31 @@ class ManageCompaniesTest extends TestCase
     }
 
     /** @test */
+    public function only_company_admins_and_super_admins_can_manage_companies()
+    {
+        $company = create(Company::class);
+
+        $superAdmin = UserFactory::withRole('super_admin')->create();
+
+        $john = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+
+        $jane = UserFactory::withRole('user')->create();
+
+        $this->actingAs($superAdmin)->get(route('companies.show', $company->id))->assertStatus(200);
+
+        $this->actingAs($john)->get(route('companies.show', $company->id))->assertStatus(200);
+
+        $this->actingAs($jane)->get(route('companies.show', $company->id))->assertStatus(403);
+    }
+
+    /** @test */
     public function only_super_admins_can_send_company_invites()
     {
-        $this->signIn();
+        $superAdmin = UserFactory::withRole('super_admin')->create();
 
-        $this->get(route('companies.create'))->assertStatus(403);
+        $this->actingAs($superAdmin)->get(route('companies.create'))->assertStatus(200);
+
+        $this->actingAs(create(User::class))->get(route('companies.create'))->assertStatus(403);
 
         $this->post(route('companies.store'), raw(Company::class))
             ->assertStatus(403);

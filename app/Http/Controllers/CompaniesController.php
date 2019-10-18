@@ -26,19 +26,21 @@ class CompaniesController extends Controller
 
     public function create()
     {
-        $this->authorize('create', Company::class);
+        $this->authorize('inviteCompany', Company::class);
 
         return view('companies.create');
     }
 
     public function show(Company $company)
     {
+        $this->authorize('manageCompany', $company);
+
         return view('companies.show', compact('company'));
     }
 
     public function store()
     {
-        $this->authorize('create', Company::class);
+        $this->authorize('inviteCompany', Company::class);
 
         request()->validate(['email' => 'required|email']);
 

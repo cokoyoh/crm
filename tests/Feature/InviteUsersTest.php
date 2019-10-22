@@ -103,4 +103,14 @@ class InviteUsersTest extends TestCase
 
         $this->assertNotNull($user->fresh()->email_verified_at);
     }
+
+    /** @test */
+    public function password_is_required_when_updating_the_user_profile()
+    {
+        $user = create(User::class);
+
+        $this->actingAs($user)
+            ->post(route('users.update', $user), ['password' => ''])
+            ->assertSessionHasErrors('password');
+    }
 }

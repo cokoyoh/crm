@@ -20,7 +20,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'first_name', 'last_name', 'email', 'password',
+        'company_id', 'first_name', 'last_name', 'email', 'password'
     ];
 
     /**
@@ -96,9 +96,9 @@ class User extends Authenticatable
 
     public function addToCompany(Company $company)
     {
-        $this->company_id = $company->id;
-
-        $this->save();
+        $this->update([
+            'company_id' => $company->id
+        ]);
 
         return $this;
     }

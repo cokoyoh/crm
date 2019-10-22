@@ -14,9 +14,11 @@ class UserFactory
 
     protected $company = null;
 
-    public function create()
+    public function create(array $attributes = [])
     {
-        $user = create(User::class, ['company_id' => $this->company ? $this->company->id : null]);
+        $attributes['company_id'] = $this->company ? $this->company->id : null;
+
+        $user = create(User::class, $attributes);
 
         create(Role::class, ['slug' => $this->roleSlug]);
 

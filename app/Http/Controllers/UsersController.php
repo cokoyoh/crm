@@ -48,4 +48,11 @@ class UsersController extends Controller
 
         return redirect(route('companies.show', $company));
     }
+
+    public function update(User $user)
+    {
+        $user = $this->user->update($user, request()->except('_token'));
+
+        return redirect(route('login'));
+    }
 }

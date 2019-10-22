@@ -81,4 +81,26 @@ class InviteUsersTest extends TestCase
             ->post(route('users.invite', $company), ['name' => ''])
             ->assertSessionHasErrors('name');
     }
+
+    /** @test */
+    public function a_user_can_update_their_profile_by_providing_a_users_password()
+    {
+        $user = UserFactory::fromCompany(create(Company::class))
+            ->withRole('user')
+            ->create(['email_verified_at' => null]);
+
+        $this->get(route('users.profile', $user))->assertStatus(200);
+
+        $this->post(route('users.update', $user), [
+            'name' => $user->fullname,
+            'email' => $user->email,
+            'password' => 'xyxhjkls456789_ghohjs',
+            'password_confirmation' => 'xyxhjkls456789_ghohjs'
+        ])
+            ->assertRedirect(route('login'));
+
+        $this->assertNotNull($user->fresh()->password);
+
+        $this->assertNotNull($user->fresh()->email_verified_at);
+    }
 }

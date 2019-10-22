@@ -6,9 +6,10 @@ namespace CRM\Users;
 
 use CRM\Models\User;
 use CRM\RepositoryInterfaces\CreateInterface;
+use CRM\RepositoryInterfaces\UpdateInterface;
 use Illuminate\Support\Facades\Hash;
 
-class UserRepository implements CreateInterface
+class UserRepository implements CreateInterface, UpdateInterface
 {
     protected $user;
 
@@ -47,5 +48,22 @@ class UserRepository implements CreateInterface
         $user->addRole('user')->addToCompany($company);
 
         return $user;
+    }
+
+    public function update($model, array $attributes)
+    {
+        $this->user = $model;
+
+        $names = processName($attributes['name']);
+
+        $this->user->update([
+            'first_name' => $names[0],
+            'last_name' => $names[1],
+            'password' => Hash::make($attributes['password'])
+        ]);
+
+        $this->user->markEmailAsVerified();
+
+        return $this->user->fresh();
     }
 }

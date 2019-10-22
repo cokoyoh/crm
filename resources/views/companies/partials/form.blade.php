@@ -26,7 +26,7 @@
 </div>
 
 <div class="field mb-6">
-    <button type="submit" class="button mr-5">{!! $buttonText !!}</button>
+    <button type="submit" class="button mr-5 focus:outline-none">{!! $buttonText !!}</button>
 {{--    <a href="{!! $project->path() !!}" class="py-2 text-gray-500">Cancel</a>--}}
 </div>
 

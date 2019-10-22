@@ -3,9 +3,10 @@
 namespace App\Providers;
 
 use App\Policies\CompanyPolicy;
+use App\Policies\UserPolicy;
 use CRM\Models\Company;
+use CRM\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,7 +16,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        Company::class => CompanyPolicy::class
+        Company::class => CompanyPolicy::class,
+        User::class => UserPolicy::class
     ];
 
     /**

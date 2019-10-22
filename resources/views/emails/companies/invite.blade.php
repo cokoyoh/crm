@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="email_body">
-        <p>Dear Customer,</p>
+        <p>Dear Sir/Madam,</p>
 
         <p>
             This is to notify you that your company <strong>{!! $companyName !!}</strong> has been registered to

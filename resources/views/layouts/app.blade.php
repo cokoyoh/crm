@@ -21,6 +21,7 @@
                         <a href="{{ url('/') }}" class="text-lg font-semibold text-gray-100 no-underline">
                             {{ config('app.name', 'Laravel') }}
                         </a>
+                        <a href="{!! route('companies.create') !!}" class="no-underline hover:text-teal-200 text-gray-300 text-lg ml-2">Companies</a>
                     </div>
                     <div class="flex-1 text-right">
                         @guest

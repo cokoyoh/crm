@@ -28,7 +28,7 @@ class InviteUsersTest extends TestCase
     {
         $goldmanSachs = create(Company::class);
 
-        $user = create(User::class, ['email_verified_at' => null])->addToCompany($goldmanSachs);
+        $user = create(User::class, ['email_verified_at' => now()])->addToCompany($goldmanSachs);
 
         $this->actingAs($user)
             ->get(route('users.profile', $goldmanSachs))

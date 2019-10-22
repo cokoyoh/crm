@@ -18,6 +18,6 @@ class UserPolicy
      */
     public function completeProfile(?User $user, User $model)
     {
-        return $model->hasVerifiedEmail();
+        return ! $model->hasVerifiedEmail();
     }
 }

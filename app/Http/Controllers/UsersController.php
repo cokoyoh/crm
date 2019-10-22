@@ -20,6 +20,7 @@ class UsersController extends Controller
         $this->user = $user;
     }
 
+
     public function profile(User $user)
     {
         $this->authorize('completeProfile', $user);
@@ -49,9 +50,16 @@ class UsersController extends Controller
         return redirect(route('companies.show', $company));
     }
 
+
     public function update(User $user)
     {
-        $user = $this->user->update($user, request()->except('_token'));
+        request()->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8'
+        ]);
+
+        $this->user->update($user, request()->except('_token'));
 
         return redirect(route('login'));
     }

@@ -59,6 +59,7 @@ class UserRepository implements CreateInterface, UpdateInterface
         $this->user->update([
             'first_name' => $names[0],
             'last_name' => $names[1],
+            'email' => $attributes['email'],
             'password' => Hash::make($attributes['password'])
         ]);
 

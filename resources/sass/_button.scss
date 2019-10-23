@@ -1,5 +1,5 @@
 .btn {
-    @apply text-white no-underline rounded-lg text-sm py-2 px-5;
+    @apply text-white rounded-lg text-sm py-2 px-5;
     box-shadow: 0 2px 7px #b0eaff;
 }
 
@@ -34,4 +34,28 @@
 
 .btn-gray:active {
     @apply bg-gray-600;
+}
+
+
+//Extra small button
+.btn-sm {
+    @apply text-xs text-white py-1 px-2 rounded-lg;
+}
+
+.btn-sm:focus {
+    @apply outline-none shadow-outline;
+}
+
+
+//Red Button
+.btn-danger {
+    @apply bg-red-500;
+}
+
+.btn-danger:hover {
+    @apply bg-red-300;
+}
+
+.btn-danger:active {
+    @apply bg-red-700;
 }

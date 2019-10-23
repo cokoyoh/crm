@@ -26,8 +26,10 @@
 </div>
 
 <div class="field mb-6">
-    <button type="submit" class="button mr-5">{!! $buttonText !!}</button>
-{{--    <a href="{!! $project->path() !!}" class="py-2 text-gray-500">Cancel</a>--}}
+    <button type="submit" class="btn btn-blue mr-5">{!! $buttonText !!}</button>
+    <button class="btn btn-gray">
+        <a href="{!! route('companies.index') !!}">Cancel</a>
+    </button>
 </div>
 
 @include('errors')

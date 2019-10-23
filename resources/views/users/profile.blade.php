@@ -60,7 +60,7 @@
             </div>
 
             <div class="control mt-2 px-3 py-4">
-                <button class="button px-3 py-3 font-semibold focus:outline-none">Submit</button>
+                <button class="btn btn-blue px-3 py-3">Submit</button>
             </div>
 
         </form>

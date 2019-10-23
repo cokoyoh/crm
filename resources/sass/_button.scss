@@ -1,24 +1,37 @@
-.button {
+.btn {
     @apply text-white no-underline rounded-lg text-sm py-2 px-5;
     box-shadow: 0 2px 7px #b0eaff;
 }
 
-.button:focus {
+.btn:focus {
     @apply outline-none shadow-outline;
 }
 
-.button:active {
-    @apply bg-blue-600;
-}
 
-.button:hover {
-    @apply bg-blue-300;
-}
-
-.button-blue {
+//Blue Button
+.btn-blue {
     @apply bg-blue-400;
 }
 
-.button-gray {
-    @apply text-gray-500;
+.btn-blue:hover {
+    @apply bg-blue-300;
+}
+
+.btn-blue:active {
+    @apply bg-blue-600;
+}
+
+
+
+//Gray Button
+.btn-gray {
+    @apply bg-gray-500;
+}
+
+.btn-gray:hover {
+    @apply bg-gray-400;
+}
+
+.btn-gray:active {
+    @apply bg-gray-600;
 }

@@ -33,7 +33,10 @@
             </div>
 
             <div class="control mt-2 px-3 py-4">
-                <button class="button px-3 py-3 font-semibold focus:outline-none">Send Invite</button>
+                <button type="submit" class="btn btn-blue font-semibold mr-2">Send Invite</button>
+                <button class="btn btn-gray font-semibold">
+                    <a href="{!! route('companies.index') !!}">Cancel</a>
+                </button>
             </div>
 
         </form>

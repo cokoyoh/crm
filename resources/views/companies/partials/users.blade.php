@@ -1,6 +1,6 @@
 <div class="flex justify-between items-end">
     <h3 class="text-lg text-gray-700 font-normal mt-20">Users</h3>
-    <a href="{!! route('users.invite', $company) !!}" class="button ml-4">Add User</a>
+    <a href="{!! route('users.invite', $company) !!}" class="btn btn-blue ml-4">Add User</a>
 </div>
 
 <div class="flex justify-between w-full card mt-4">

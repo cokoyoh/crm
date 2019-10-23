@@ -9,7 +9,7 @@
             </p>
 
             <div class="flex items-center">
-                <a href="{!! $company->path() .'/edit' !!}" class="button ml-4">Edit Company</a>
+                <a href="{!! $company->path() .'/edit' !!}" class="btn btn-blue ml-4">Edit Company</a>
             </div>
         </div>
     </header>

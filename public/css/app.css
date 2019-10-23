@@ -4404,8 +4404,7 @@ video {
   border-radius: 0.5rem;
 }
 
-.button {
-  background-color: #63b3ed;
+.btn {
   color: #fff;
   text-decoration: none;
   border-radius: 0.5rem;
@@ -4417,17 +4416,33 @@ video {
   box-shadow: 0 2px 7px #b0eaff;
 }
 
-.button:focus {
+.btn:focus {
   outline: 0;
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
-.button:active {
+.btn-blue {
+  background-color: #63b3ed;
+}
+
+.btn-blue:hover {
+  background-color: #90cdf4;
+}
+
+.btn-blue:active {
   background-color: #3182ce;
 }
 
-.button:hover {
-  background-color: #90cdf4;
+.btn-gray {
+  background-color: #a0aec0;
+}
+
+.btn-gray:hover {
+  background-color: #cbd5e0;
+}
+
+.btn-gray:active {
+  background-color: #718096;
 }
 
 .container {

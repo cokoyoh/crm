@@ -11,28 +11,41 @@
             <th class="text-left p-3 px-5">Email</th>
             <th class="text-left p-3 px-5">Role</th>
             <th class="text-left p-3 px-5">Status</th>
-            <th class="text-left p-3 px-5">Action</th>
+
+            @can('manageUsers', \CRM\Models\User::class)
+                <th class="text-left p-3 px-5">Action</th>
+            @endcan
+
+
             <th></th>
         </tr>
         @foreach($users as $user)
             <tr class="border-b hover:bg-gray-200 {!! $user->id % 2 == 0 ? 'bg-gray-100' : '' !!}">
                 <td class="p-3 px-5">{!! $user->name !!}</td>
                 <td class="p-3 px-5">{!! $user->email !!}</td>
-                <td class="td p-3 px-5">
+                <td class="td p-3 px-5 text-left">
                     <select class="bg-transparent">
                         @foreach($user->roles() as $roleUser)
-                            <option value="{!! $roleUser->id !!}" class="td">{!! $roleUser->role->name !!}</option>
+                            <option value="{!! $roleUser->id !!}" class="text-left">{!! $roleUser->role->name !!}</option>
                         @endforeach
                     </select>
                 </td>
                 <td class="p-3 px-5 text-left">
                     <span class="badge {!! $user->deactivated_at ? 'badge-danger' : 'badge-success' !!}">{!! $user->status !!}</span>
                 </td>
-                <td class="p-3 px-5 text-left flex justify-end">
-                    <button type="button" class="btn-sm btn-danger">
-                        Delete
-                    </button>
-                </td>
+
+                @canany(['manageUsers', 'delete'], $user)
+                    <td class="p-3 px-5 text-left">
+                        <form action="{!! route('users.destroy', $user) !!}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn-sm btn-danger">
+                                Delete
+                            </button>
+                        </form>
+                    </td>
+                @endcanany
+
             </tr>
         @endforeach
         </tbody>

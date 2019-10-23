@@ -42,7 +42,7 @@ class InviteUsersTest extends TestCase
 
         $company = create(Company::class);
 
-        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+        $companyAdmin = UserFactory::fromCompany($company)->withRole('admin')->create();
 
         $attributes = [
             'email' => 'john@example.com',
@@ -63,7 +63,7 @@ class InviteUsersTest extends TestCase
     {
         $company = create(Company::class);
 
-        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+        $companyAdmin = UserFactory::fromCompany($company)->withRole('admin')->create();
 
         $this->actingAs($companyAdmin)
             ->post(route('users.invite', $company), ['email' => ''])
@@ -75,7 +75,7 @@ class InviteUsersTest extends TestCase
     {
         $company = create(Company::class);
 
-        $companyAdmin = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+        $companyAdmin = UserFactory::fromCompany($company)->withRole('admin')->create();
 
         $this->actingAs($companyAdmin)
             ->post(route('users.invite', $company), ['name' => ''])

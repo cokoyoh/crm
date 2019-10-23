@@ -6,8 +6,8 @@ use CRM\Models\Company;
 use CRM\Models\Role;
 use CRM\Models\RoleUser;
 use CRM\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\UserFactory;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
 class ManageUsersTest extends TestCase
@@ -52,12 +52,23 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function a_company_admin_can_only_delete_user_accounts_from_the_same_company()
     {
-        $admin = UserFactory::withRole('admin')->create();
+        $admin = UserFactory::fromCompany(create(Company::class))->withRole('admin')->create();
 
-        $johnDoe = UserFactory::withRole('user')->create();
+        $johnDoe = UserFactory::fromCompany(create(Company::class))->withRole('user')->create();
 
         $this->actingAs($admin)
             ->delete(route('users.destroy', $johnDoe))
+            ->assertStatus(403);
+    }
+
+
+    /** @test */
+    public function a_company_admin_cannot_delete_their_own_account()
+    {
+        $admin = UserFactory::fromCompany(create(Company::class))->withRole('admin')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('users.destroy', $admin))
             ->assertStatus(403);
     }
 

@@ -35,6 +35,6 @@ class CompanyPolicy
 
     public function manageCompany(User $user, Company $company)
     {
-        return $user->hasRole('company_admin');
+        return $user->isAdmin();
     }
 }

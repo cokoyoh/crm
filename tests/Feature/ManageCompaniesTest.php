@@ -29,7 +29,7 @@ class ManageCompaniesTest extends TestCase
 
         $superAdmin = UserFactory::withRole('super_admin')->create();
 
-        $john = UserFactory::fromCompany($company)->withRole('company_admin')->create();
+        $john = UserFactory::fromCompany($company)->withRole('admin')->create();
 
         $jane = UserFactory::withRole('user')->create();
 
@@ -81,9 +81,7 @@ class ManageCompaniesTest extends TestCase
     /** @test */
     public function a_user_can_complete_a_company_profile()
     {
-        $this->withoutExceptionHandling();
-
-        create(Role::class, ['slug' => 'company_admin']);
+        create(Role::class, ['slug' => 'admin']);
 
         $company = create(Company::class);
 
@@ -102,7 +100,7 @@ class ManageCompaniesTest extends TestCase
 
             $this->assertNotNull($company->confirmed_at);
 
-            $this->assertTrue(User::first()->hasRole('company_admin'));
+            $this->assertTrue(User::first()->isAdmin());
         });
     }
 

@@ -48,6 +48,8 @@ class CompaniesController extends Controller
 
         request()->validate(['email' => 'required|email']);
 
+        dd('just testing something');
+
         $company = $this->company->create(request()->except('_token'));
 
         event(new CompanyInvited($company));

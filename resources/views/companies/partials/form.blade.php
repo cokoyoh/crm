@@ -4,7 +4,7 @@
 
     <div class="control">
         <input type="text"
-               class="input appearance-none bg-transparent border border-gray-300 rounded py-3 px-4 text-sm w-full focus:outline-none focus:bg-white"
+               class="input appearance-none bg-transparent border border-gray-300 rounded py-3 px-4 text-sm w-full focus:outline-none focus:border-blue-300 focus:bg-white"
                value="{!! $company->name !!}"
                name="name"
                required
@@ -17,7 +17,7 @@
 
     <div class="control">
         <input type="email"
-               class="input appearance-none bg-transparent border border-gray-300 rounded py-3 px-4 text-sm w-full focus:outline-none focus:bg-white"
+               class="input appearance-none bg-transparent border border-gray-300 rounded py-3 px-4 text-sm w-full focus:outline-none focus:border-blue-300 focus:bg-white"
                value="{!! $company->email !!}"
                name="email"
                required
@@ -26,7 +26,7 @@
 </div>
 
 <div class="field mb-6">
-    <button type="submit" class="button mr-5 focus:outline-none">{!! $buttonText !!}</button>
+    <button type="submit" class="button mr-5">{!! $buttonText !!}</button>
 {{--    <a href="{!! $project->path() !!}" class="py-2 text-gray-500">Cancel</a>--}}
 </div>
 

@@ -13,6 +13,7 @@
                        class=" label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-2">Name</label>
                 <input type="text" name="name"
                        placeholder="John Doe"
+                       required
                        class=" w-full focus:outline-none focus:bg-white py-3 px-4  appearance-none border focus:border-blue-300 border-gray-200 text-sm text-gray-800 rounded mt-2">
                 @if ($errors->has('name'))
                     <p class="text-red-500 text-xs italic mt-1 mb-1">{{ $errors->first('name') }}</p>
@@ -24,6 +25,7 @@
                        class=" label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-2">Email</label>
                 <input type="email" name="email"
                        placeholder="john@example.com"
+                       required
                        class=" w-full focus:outline-none focus:bg-white py-3 px-4  appearance-none border focus:border-blue-300 border-gray-200 text-sm text-gray-800 rounded mt-2">
                 @if ($errors->has('email'))
                     <p class="text-red-500 text-xs italic mt-1 mb-1">{{ $errors->first('email') }}</p>

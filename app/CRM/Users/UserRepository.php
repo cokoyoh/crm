@@ -67,4 +67,9 @@ class UserRepository implements CreateInterface, UpdateInterface
 
         return $this->user->fresh();
     }
+
+    public function destroy($user)
+    {
+        $user->delete();
+    }
 }

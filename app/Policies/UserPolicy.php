@@ -20,4 +20,18 @@ class UserPolicy
     {
         return ! $model->hasVerifiedEmail();
     }
+
+    public function delete(User $user, User $model)
+    {
+        if ($user->hasRole('admin') && $this->sameCompany($user, $model)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    private function sameCompany(User $user, User $model)
+    {
+        return $model->company_id === $user->company_id;
+    }
 }

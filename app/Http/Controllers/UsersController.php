@@ -63,4 +63,16 @@ class UsersController extends Controller
 
         return redirect(route('login'));
     }
+
+
+    public function destroy(User $user)
+    {
+        $this->authorize('delete', $user);
+
+        $company = $user->company;
+
+        $this->user->destroy($user);
+
+        return redirect(route('companies.show', $company));
+    }
 }

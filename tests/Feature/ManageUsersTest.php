@@ -2,10 +2,12 @@
 
 namespace Tests\Feature;
 
+use CRM\Models\Company;
 use CRM\Models\Role;
 use CRM\Models\RoleUser;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Facades\Tests\Setup\UserFactory;
 use Tests\TestCase;
 
 class ManageUsersTest extends TestCase
@@ -31,5 +33,47 @@ class ManageUsersTest extends TestCase
         $this->assertCount(1, RoleUser::all());
 
         $this->assertEquals('user', RoleUser::first()->role->slug);
+    }
+
+    /** @test */
+    public function only_company_admin_can_delete_a_user_account()
+    {
+        $andela = create(Company::class);
+
+        $janeDoe = UserFactory::fromCompany($andela)->withRole('user')->create();
+
+        $johnDoe = UserFactory::fromCompany($andela)->withRole('user')->create();
+
+        $this->actingAs($janeDoe)
+            ->delete(route('users.destroy', $johnDoe))
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function a_company_admin_can_only_delete_user_accounts_from_the_same_company()
+    {
+        $admin = UserFactory::withRole('admin')->create();
+
+        $johnDoe = UserFactory::withRole('user')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('users.destroy', $johnDoe))
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function a_company_admin_can_delete_a_user_account()
+    {
+        $andela = create(Company::class);
+
+        $admin = UserFactory::fromCompany($andela)->withRole('admin')->create();
+
+        $johnDoe = UserFactory::fromCompany($andela)->withRole('user')->create();
+
+        $this->actingAs($admin)
+            ->delete(route('users.destroy', $johnDoe))
+            ->assertRedirect(route('companies.show', $andela));
+
+        $this->assertNotNull($johnDoe->fresh()->deleted_at);
     }
 }

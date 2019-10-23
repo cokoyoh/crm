@@ -92,7 +92,7 @@ class InviteUsersTest extends TestCase
         $this->get(route('users.profile', $user))->assertStatus(200);
 
         $this->post(route('users.update', $user), [
-            'name' => $user->fullname,
+            'name' => $user->name,
             'email' => $user->email,
             'password' => 'xyxhjkls456789_ghohjs',
             'password_confirmation' => 'xyxhjkls456789_ghohjs'

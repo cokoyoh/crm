@@ -38,7 +38,7 @@ class WhenUserInvited
             'bcc' => [$company->email],
             'subject' => config('app.name') . ' - Invitation',
             'view' => 'emails.users.invite',
-            'adminName' => $admin->fullname,
+            'adminName' => $admin->name,
             'adminEmail' => $admin->email,
             'companyName' => $company->name,
             'companyEmail' => $company->email,

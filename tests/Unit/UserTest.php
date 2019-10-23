@@ -54,7 +54,7 @@ class UserTest extends TestCase
     {
         $user = create(User::class, ['first_name' => 'John', 'last_name' => 'Doe']);
 
-        $this->assertEquals($user->fullname, 'John Doe');
+        $this->assertEquals($user->name, 'John Doe');
     }
 
     /** @test */

@@ -39,7 +39,10 @@ class CompaniesController extends Controller
     {
         $this->authorize('manageCompany', $company);
 
-        return view('companies.show', compact('company'));
+        return view('companies.show', [
+            'company' => $company,
+            'users' => $company->users
+        ]);
     }
 
     public function store()
@@ -47,8 +50,6 @@ class CompaniesController extends Controller
         $this->authorize('inviteCompany', Company::class);
 
         request()->validate(['email' => 'required|email']);
-
-        dd('just testing something');
 
         $company = $this->company->create(request()->except('_token'));
 

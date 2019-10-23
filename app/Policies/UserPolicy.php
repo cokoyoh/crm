@@ -12,26 +12,39 @@ class UserPolicy
     /**
      * Determine whether the user can complete the user.
      *
-     * @param \CRM\Models\User $user
-     * @param User $model
+     * @param User|null $authenticatedUser
+     * @param User $user
      * @return mixed
      */
-    public function completeProfile(?User $user, User $model)
+    public function completeProfile(?User $authenticatedUser, User $user)
     {
-        return ! $model->hasVerifiedEmail();
+        return ! $user->hasVerifiedEmail();
     }
 
-    public function delete(User $user, User $model)
+
+    public function manageUsers(User $authenticatedUser)
     {
-        if ($user->hasRole('admin') && $this->sameCompany($user, $model)) {
+        return $authenticatedUser->isAdmin();
+    }
+
+    public function delete(User $authenticatedUser, User $user)
+    {
+        if ($authenticatedUser->isAdmin()
+            && $this->isNotSelf($authenticatedUser, $user)
+            && $this->sameCompany($authenticatedUser, $user)) {
             return true;
         }
 
         return false;
     }
 
-    private function sameCompany(User $user, User $model)
+    private function isNotSelf(User $authenticatedUser, User $user)
     {
-        return $model->company_id === $user->company_id;
+        return ! ($authenticatedUser->id == $user->id);
+    }
+
+    private function sameCompany(User $authenticatedUser, User $user)
+    {
+        return $user->company_id == $authenticatedUser->company_id;
     }
 }

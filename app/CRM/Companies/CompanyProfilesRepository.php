@@ -24,7 +24,7 @@ class CompanyProfilesRepository
     {
         return (new UserRepository(new User()))
             ->create($input)
-            ->addRole('company_admin');
+            ->addRole('admin');
     }
 
     private function sendNotifications($user, $company)

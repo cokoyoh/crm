@@ -62,6 +62,11 @@ class User extends Authenticatable
         return $this->checkRole()->exists();
     }
 
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
     public function hasRole($role)
     {
         return $this->checkRole($role)->exists();

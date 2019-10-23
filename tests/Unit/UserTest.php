@@ -88,4 +88,16 @@ class UserTest extends TestCase
 
         $this->assertEquals($borisJohnson->status, 'Active');
     }
+
+    /** @test */
+    public function it_checks_if_user_has_role_admin()
+    {
+        $nancyPeloci = UserFactory::withRole('admin')->create();
+
+        $mikePence = UserFactory::withRole('user')->create();
+
+        $this->assertTrue($nancyPeloci->isAdmin());
+
+        $this->assertFalse($mikePence->isAdmin());
+    }
 }

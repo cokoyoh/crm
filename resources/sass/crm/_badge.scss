@@ -1,0 +1,11 @@
+.badge {
+    @apply text-white text-xs font-semibold border  rounded-lg px-2 mt-3;
+}
+
+.badge-success {
+    @apply border-green-400 bg-green-400;
+}
+
+.badge-danger {
+    @apply border-red-600 bg-red-600;
+}

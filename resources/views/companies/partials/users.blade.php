@@ -15,7 +15,7 @@
             <th></th>
         </tr>
         @foreach($users as $user)
-            <tr class="border-b hover:bg-gray-200" :class="{!! 1 == 2 ? 'bg-gray-100' : 'bg-red-200' !!}">
+            <tr class="border-b hover:bg-gray-200 {!! $user->id % 2 == 0 ? 'bg-gray-100' : '' !!}">
                 <td class="p-3 px-5">{!! $user->name !!}</td>
                 <td class="p-3 px-5">{!! $user->email !!}</td>
                 <td class="td p-3 px-5">
@@ -25,8 +25,10 @@
                         @endforeach
                     </select>
                 </td>
-                <td class="p-3 px-5">{!! $user->status !!}</td>
-                <td class="p-3 px-5 flex justify-end">
+                <td class="p-3 px-5 text-left">
+                    <span class="badge {!! $user->deactivated_at ? 'badge-danger' : 'badge-success' !!}">{!! $user->status !!}</span>
+                </td>
+                <td class="p-3 px-5 text-left flex justify-end">
                     <button type="button" class="btn-sm btn-danger">
                         Delete
                     </button>

@@ -80,4 +80,12 @@ class UserTest extends TestCase
 
         $this->assertInstanceOf(Company::class, $user->company);
     }
+
+    /** @test */
+    public function it_gets_the_status_of_a_user()
+    {
+        $borisJohnson = create(User::class);
+
+        $this->assertEquals($borisJohnson->status, 'Active');
+    }
 }

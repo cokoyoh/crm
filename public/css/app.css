@@ -4460,7 +4460,7 @@ video {
 }
 
 .btn-danger {
-  background-color: #f56565;
+  background-color: #e53e3e;
 }
 
 .btn-danger:hover {
@@ -4469,6 +4469,10 @@ video {
 
 .btn-danger:active {
   background-color: #c53030;
+}
+
+.btn-success {
+  background-color: #48bb78;
 }
 
 .crm-table {
@@ -4480,6 +4484,27 @@ video {
   color: #4a5568;
   font-size: 0.875rem;
   background-color: #fff;
+}
+
+.badge {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border-width: 1px;
+  border-radius: 0.5rem;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.badge-success {
+  border-color: #68d391;
+  background-color: #68d391;
+}
+
+.badge-danger {
+  border-color: #e53e3e;
+  background-color: #e53e3e;
 }
 
 .container {

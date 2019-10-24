@@ -17,8 +17,8 @@
             <tr class="border-b hover:bg-gray-200 {!! $company->id % 2 == 0 ? 'bg-gray-100' : '' !!}">
                 <td class="p-3 px-5">{!! $company->name !!}</td>
                 <td class="p-3 px-5">{!! $company->email !!}</td>
-                <td class="p-3 px-5">{!! $company->email !!}</td>
-                <td class="p-3 px-5">{!! $company->email !!}</td>
+                <td class="p-3 px-5">{!! $company->admin->name !!}</td>
+                <td class="p-3 px-5">{!! $company->admin->email !!}</td>
                 <td class="p-3 px-5 text-left">
                     <span class="badge badge-success ">{!! $company->users()->count() !!}</span>
                 </td>

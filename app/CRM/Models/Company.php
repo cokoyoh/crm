@@ -19,4 +19,15 @@ class Company extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function getAdminAttribute()
+    {
+        return $this->users()
+            ->whereHas('roleUser', function ($roleUser) {
+                $roleUser->whereHas('role', function ($role) {
+                    $role->whereSlug('admin');
+                });
+            })
+            ->first();
+    }
 }

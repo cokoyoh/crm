@@ -28,6 +28,7 @@ class Company extends Model
                     $role->whereSlug('admin');
                 });
             })
+            ->active()
             ->first();
     }
 }

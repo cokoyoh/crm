@@ -100,4 +100,20 @@ class UserTest extends TestCase
 
         $this->assertFalse($mikePence->isAdmin());
     }
+
+    /** @test */
+    public function it_retrieves_only_active_users()
+    {
+        $activeUser = create(User::class);
+
+        $deactivatedUser = create(User::class, ['deactivated_at' => now()->subWeeks(1)]);
+
+        $users = User::active()->get();
+
+        $this->assertCount(1, $users);
+
+        $this->assertTrue($users->contains($activeUser));
+
+        $this->assertFalse($users->contains($deactivatedUser));
+    }
 }

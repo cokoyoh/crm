@@ -123,4 +123,13 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Company::class);
     }
+
+    public function scopeActive($query, $condition = true)
+    {
+        if (!$condition) {
+            return $query->whereNotNull('deactivated_at');
+        }
+
+        return $query->whereNull('deactivated_at');
+    }
 }

@@ -4503,6 +4503,11 @@ video {
   background-color: #68d391;
 }
 
+.badge-primary {
+  border-color: #63b3ed;
+  background-color: #63b3ed;
+}
+
 .badge-danger {
   border-color: #e53e3e;
   background-color: #e53e3e;

@@ -6,6 +6,10 @@
     @apply border-green-400 bg-green-400;
 }
 
+.badge-primary {
+    @apply border-blue-400 bg-blue-400;
+}
+
 .badge-danger {
     @apply border-red-600 bg-red-600;
 }

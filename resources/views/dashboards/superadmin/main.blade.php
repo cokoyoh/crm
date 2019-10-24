@@ -7,5 +7,9 @@
     </div>
 
 
-    <div class="w-1/4 ml-1">Right</div>
+    <div class="w-1/4 ml-8">
+        @include('dashboards.schedules.today')
+        @include('dashboards.schedules.upcoming')
+        @include('dashboards.recent.recent_activities')
+    </div>
 </div>

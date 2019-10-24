@@ -20,7 +20,7 @@
                 <td class="p-3 px-5">{!! $company->admin->name !!}</td>
                 <td class="p-3 px-5">{!! $company->admin->email !!}</td>
                 <td class="p-3 px-5 text-left">
-                    <span class="badge badge-success ">{!! $company->users()->count() !!}</span>
+                    <span class="badge badge-primary ">{!! $company->users()->count() !!}</span>
                 </td>
             </tr>
         @endforeach

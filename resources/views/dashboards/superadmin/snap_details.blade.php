@@ -6,7 +6,7 @@
             </svg>
         </div>
         <div class="bg-blue-200 text-blue-900 p-5 text-lg font-hairline text-center">
-            24 Companies
+            {!! $companiesCount !!} {!! pluralise('Company', $companiesCount) !!}
         </div>
     </div>
 
@@ -17,7 +17,7 @@
             </svg>
         </div>
         <div class="bg-blue-200 text-blue-900 p-5 text-lg font-hairline text-center">
-            20 Users
+            {!! $usersCount !!} {!!  pluralise('User', $usersCount) !!}
         </div>
     </div>
 
@@ -29,7 +29,7 @@
             </svg>
         </div>
         <div class="bg-blue-200 text-blue-900 p-5 text-lg font-hairline text-center">
-            38 Deals
+            {!! $dealsCount !!} {!!  pluralise('Deal', $dealsCount) !!}
         </div>
     </div>
 </div>

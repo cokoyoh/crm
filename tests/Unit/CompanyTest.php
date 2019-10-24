@@ -37,4 +37,10 @@ class CompanyTest extends TestCase
 
         $this->assertEquals($lehmanBrothers->admin->name, $hepzibahSmith->name);
     }
+
+    /** @test */
+    public function it_gets_the_plural()
+    {
+        $this->assertEquals('Companies', pluralise('Company', 2));
+    }
 }

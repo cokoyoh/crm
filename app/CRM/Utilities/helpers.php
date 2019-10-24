@@ -2,6 +2,7 @@
 
 use App\Mail\SimpleMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 function sendMail(array $data, $queue = true)
 {
@@ -39,4 +40,9 @@ function processName(string $name) : array
 function getAdmins()
 {
     return explode(',', getenv('ADMIN_EMAILS'));
+}
+
+function pluralise($string, $count = 1)
+{
+    return Str::plural($string, $count);
 }

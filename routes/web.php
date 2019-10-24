@@ -35,5 +35,9 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/companies/{company}/users/invites', 'UsersController@storeInvitedUser')->name('users.invite.store');
 
     Route::delete('/users/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
+
+    Route::get('/dashboard', 'DashboardController@superAdmin')->name('dashboard.superadmin');
+    Route::get('/dashboard/{user}/admin', 'DashboardController@admin')->name('dashboard.admin');
+    Route::get('/dashboard/{user}/user', 'DashboardController@user')->name('dashboard.user');
 });
 

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use CRM\Models\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -35,5 +37,18 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function authenticated(Request $request, User $user)
+    {
+        if ($user->isSuperAdmin()) {
+            return redirect(route('dashboard.superadmin'));
+        }
+
+        if ($user->isAdmin()) {
+            return redirect(route('dashboard.admin', $user));
+        }
+
+        return redirect(route('dashboard.user', $user));
     }
 }

@@ -4513,8 +4513,42 @@ video {
   background-color: #e53e3e;
 }
 
-.bg-gradient-blue-to-purple {
-  background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
+.price-button {
+  border-radius: 0.25rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  border-width: 1px;
+  border-color: #e2e8f0;
+  border-radius: 9999px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #1a202c;
+  width: 100%;
+}
+
+.price-button:hover {
+  border-color: #63b3ed;
+  color: #3182ce;
+  background-color: transparent;
+}
+
+.price-tag {
+  margin-bottom: 1.25rem;
+  position: relative;
+  width: 75%;
+  background-color: #fff;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border-radius: 0.5rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  padding-top: 1.25rem;
+  padding-bottom: 1.5rem;
+  text-align: center;
+  height: 100%;
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
+  display: flex;
 }
 
 .container {
@@ -15652,10 +15686,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .sm\:bg-gradient-blue-to-purple {
-    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
-  }
-
   .sm\:sr-only {
     position: absolute;
     width: 1px;
@@ -26764,10 +26794,6 @@ video {
 }
 
 @media (min-width: 768px) {
-  .md\:bg-gradient-blue-to-purple {
-    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
-  }
-
   .md\:sr-only {
     position: absolute;
     width: 1px;
@@ -37876,10 +37902,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:bg-gradient-blue-to-purple {
-    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
-  }
-
   .lg\:sr-only {
     position: absolute;
     width: 1px;
@@ -48988,10 +49010,6 @@ video {
 }
 
 @media (min-width: 1280px) {
-  .xl\:bg-gradient-blue-to-purple {
-    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
-  }
-
   .xl\:sr-only {
     position: absolute;
     width: 1px;

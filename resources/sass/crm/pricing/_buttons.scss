@@ -1,0 +1,7 @@
+.price-button {
+     @apply rounded shadow border border-gray-300 rounded-full py-4 uppercase font-semibold text-gray-900 w-full;
+}
+
+.price-button:hover {
+    @apply border-blue-400 text-blue-600 bg-transparent;
+}

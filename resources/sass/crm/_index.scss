@@ -6,8 +6,4 @@
 
 @import "badge";
 
-@responsive {
-    .bg-gradient-blue-to-purple {
-        background-image: linear-gradient(to right, config('colors.blue'), config('colors.purple'));
-    }
-}
+@import "pricing";

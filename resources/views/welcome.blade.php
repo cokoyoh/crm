@@ -204,16 +204,17 @@
 
 
 <section id="pricing" class="w-full bg-blue-900  py-10 pb-10">
-    <div class="container mx-auto">
-        <div class="lg:flex justify-center lg:pb-6">
-            <div class="flex-1 mx-auto lg:mx-0">
-                <div
-                    class="plan mb-5 lg:mb-0 relative z-10 bg-white rounded-lg px-6 lg:px-4 pt-5 pb-6 text-center h-full mx-3 flex mobile:mx-auto">
+    <div class="container mx-auto items-center">
+       <div class="text-teal-300 lg:text-6xl md:text-center font-thin">Pricing</div>
+        <div class="lg:flex justify-center lg:py-16">
+
+            <div class="flex-1 mx-auto lg:mx-0 ">
+                <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
-                                class="uppercase font-bold text-black text-base lg:text-xs mr-auto"><a
+                                class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
                                     href="/signup?plan=monthly-15" class="inherits-color">Monthly</a></h5>
-                            <div class="plan-price font-semibold text-5xl leading-none">
+                            <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
                                         class="dollar text-lg">$</span> <span>800</span> <!----></div>
                             </div>
@@ -222,19 +223,23 @@
                                 data-src="/images/plans/sub-monthly.svg?v=3" alt="Monthly Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
-                        <p class="mb-8 px-4 text-lg lg:text-base text-black">Manage your clients with our <strong>monthly</strong> plan.</p>
-                        <a href="/signup?plan=monthly-15" class="plan-start-learning-button btn mobile:mx-auto w-full text-black border-grey">Sign Up</a></div>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">Manage your clients with our <strong>monthly</strong> plan.</p>
+                        <a href="/signup?plan=monthly-15"
+                           class="price-button tracking-wide sm:mx-auto">Sign Up
+                        </a>
+                    </div>
                     <div></div>
                 </div>
             </div>
+
+
             <div class="flex-1 mx-auto lg:mx-0">
-                <div
-                    class="plan mb-5 lg:mb-0 relative z-10 bg-white rounded-lg px-6 lg:px-4 pt-5 pb-6 text-center h-full mx-3 flex mobile:mx-auto is-featured">
+                <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
-                                class="uppercase font-bold text-black text-base lg:text-xs mr-auto"><a
+                                class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
                                     href="/signup?plan=yearly-99" class="inherits-color">Yearly</a></h5>
-                            <div class="plan-price font-semibold text-5xl leading-none">
+                            <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
                                         class="dollar text-lg">$</span><span>7,200</span> <!----></div>
                             </div>
@@ -243,20 +248,19 @@
                                 data-src="/images/plans/sub-yearly.svg?v=3" alt="Yearly Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
-                        <p class="mb-8 px-4 text-lg lg:text-base text-black">Set client management on steroids and <strong>save 25%</strong>.</p>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">Set client management on steroids and <strong>save 25%</strong>.</p>
                         <a href="/signup?plan=yearly-99"
-                           class="plan-start-learning-button btn mobile:mx-auto w-full btn-blue">Sign Up</a></div>
+                           class="price-button tracking-wide sm:mx-auto bg-blue-500 text-gray-100">Sign Up</a></div>
                     <div></div>
                 </div>
             </div>
             <div class="flex-1 mx-auto lg:mx-0">
-                <div
-                    class="plan mb-5 lg:mb-0 relative z-10 bg-white rounded-lg px-6 lg:px-4 pt-5 pb-6 text-center h-full mx-3 flex mobile:mx-auto">
+                <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
-                                class="uppercase font-bold text-black text-base lg:text-xs mr-auto"><a
+                                class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
                                     href="/signup?plan=forever" class="inherits-color">Forever</a></h5>
-                            <div class="plan-price font-semibold text-5xl leading-none">
+                            <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
                                         class="dollar text-lg">$</span> <span>30,000</span> <!----></div>
                             </div>
@@ -265,8 +269,8 @@
                                 data-src="/images/plans/sub-forever.svg?v=3" alt="Forever Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
-                        <p class="mb-8 px-4 text-lg lg:text-base text-black">Get a dedicated domain, customised mails and a <strong>2 year</strong> support for free.</p>
-                        <a href="/signup?plan=forever" class="plan-start-learning-button btn mobile:mx-auto w-full text-black border-grey">Sign Up</a></div>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">Get a dedicated domain, customised mails and a <strong>2 year</strong> support for free.</p>
+                        <a href="/signup?plan=forever" class="price-button tracking-wide sm:mx-auto">Sign Up</a></div>
                     <div></div>
                 </div>
             </div>
@@ -278,7 +282,8 @@
 
 <svg class="fill-current text-blue-900" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%"
      viewBox="0 0 90 20" preserveAspectRatio="none">
-    <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>
+{{--    <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>--}}
+    <path d="M0 9 H5 C25 8 25 19 40 20 S60 5 85 5 H90 V-5 H0z" stroke="transparent"/>
 </svg>
 
 <footer class="px-4 py-12 text-center text-gray-600 hover:border-gray-400 text-md">

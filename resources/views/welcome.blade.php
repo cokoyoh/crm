@@ -184,34 +184,110 @@
     </div>
 </section>
 
-<section id="header-section" class="bg-cover bg-no-repeat bg-bottom h-auto py-10"
-         style="background-image: url('/images/background/bg-hologram.png');">
+{{--<section id="header-section" class="bg-cover bg-no-repeat bg-bottom h-auto py-10"--}}
+{{--         style="background-image: url('/images/background/bg-hologram.png');">--}}
 
-    <div class="text-center max-w-3xl px-4 mx-auto">
-        <h2 class="text-teal-100 text-2xl lg:text-4xl mb-6 font-hairline font-semibold">Want to mange your clients?</h2>
-        <p class="lg:text-2xl leading-tight lg:px-8 mb-10 text-teal-100 mt-10">
-             We got you covered
-        </p>
-        <div class="flex items-center justify-center mt-10">
-            <a href="#"
-               class="inline-block text-gray-800 hover:text-gray-600 text-lg md:text-xl font-medium md:ml-8 mr-5 md:mr-0 px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-800 hover:border-gray-500 whitespace-no-wrap">Begin
-                Trial</a>
+{{--    <div class="text-center max-w-3xl px-4 mx-auto">--}}
+{{--        <h2 class="text-teal-100 text-2xl lg:text-4xl mb-6 font-hairline font-semibold">Want to mange your clients?</h2>--}}
+{{--        <p class="lg:text-2xl leading-tight lg:px-8 mb-10 text-teal-100 mt-10">--}}
+{{--             We got you covered--}}
+{{--        </p>--}}
+{{--        <div class="flex items-center justify-center mt-10">--}}
+{{--            <a href="#"--}}
+{{--               class="inline-block text-gray-800 hover:text-gray-600 text-lg md:text-xl font-medium md:ml-8 mr-5 md:mr-0 px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-800 hover:border-gray-500 whitespace-no-wrap">Begin--}}
+{{--                Trial</a>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--</section>--}}
+
+
+
+
+<section id="pricing" class="w-full bg-blue-900  py-10 pb-10">
+    <div class="container mx-auto">
+        <div class="lg:flex justify-center lg:pb-6">
+            <div class="flex-1 mx-auto lg:mx-0">
+                <div
+                    class="plan mb-5 lg:mb-0 relative z-10 bg-white rounded-lg px-6 lg:px-4 pt-5 pb-6 text-center h-full mx-3 flex mobile:mx-auto">
+                    <div class="flex flex-col justify-around h-full w-full">
+                        <div class="flex mb-8 items-center"><h5
+                                class="uppercase font-bold text-black text-base lg:text-xs mr-auto"><a
+                                    href="/signup?plan=monthly-15" class="inherits-color">Monthly</a></h5>
+                            <div class="plan-price font-semibold text-5xl leading-none">
+                                <div class="text-blue flex items-baseline font-semibold"><span
+                                        class="dollar text-lg">$</span> <span>800</span> <!----></div>
+                            </div>
+                        </div>
+                        <a href="/signup?plan=monthly-15" class="flex justify-center"><img
+                                data-src="/images/plans/sub-monthly.svg?v=3" alt="Monthly Plan" class="relative"
+                                style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
+                                data-loaded="true"></a>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-black">Manage your clients with our <strong>monthly</strong> plan.</p>
+                        <a href="/signup?plan=monthly-15" class="plan-start-learning-button btn mobile:mx-auto w-full text-black border-grey">Sign Up</a></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="flex-1 mx-auto lg:mx-0">
+                <div
+                    class="plan mb-5 lg:mb-0 relative z-10 bg-white rounded-lg px-6 lg:px-4 pt-5 pb-6 text-center h-full mx-3 flex mobile:mx-auto is-featured">
+                    <div class="flex flex-col justify-around h-full w-full">
+                        <div class="flex mb-8 items-center"><h5
+                                class="uppercase font-bold text-black text-base lg:text-xs mr-auto"><a
+                                    href="/signup?plan=yearly-99" class="inherits-color">Yearly</a></h5>
+                            <div class="plan-price font-semibold text-5xl leading-none">
+                                <div class="text-blue flex items-baseline font-semibold"><span
+                                        class="dollar text-lg">$</span><span>7,200</span> <!----></div>
+                            </div>
+                        </div>
+                        <a href="/signup?plan=yearly-99" class="flex justify-center"><img
+                                data-src="/images/plans/sub-yearly.svg?v=3" alt="Yearly Plan" class="relative"
+                                style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
+                                data-loaded="true"></a>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-black">Set client management on steroids and <strong>save 25%</strong>.</p>
+                        <a href="/signup?plan=yearly-99"
+                           class="plan-start-learning-button btn mobile:mx-auto w-full btn-blue">Sign Up</a></div>
+                    <div></div>
+                </div>
+            </div>
+            <div class="flex-1 mx-auto lg:mx-0">
+                <div
+                    class="plan mb-5 lg:mb-0 relative z-10 bg-white rounded-lg px-6 lg:px-4 pt-5 pb-6 text-center h-full mx-3 flex mobile:mx-auto">
+                    <div class="flex flex-col justify-around h-full w-full">
+                        <div class="flex mb-8 items-center"><h5
+                                class="uppercase font-bold text-black text-base lg:text-xs mr-auto"><a
+                                    href="/signup?plan=forever" class="inherits-color">Forever</a></h5>
+                            <div class="plan-price font-semibold text-5xl leading-none">
+                                <div class="text-blue flex items-baseline font-semibold"><span
+                                        class="dollar text-lg">$</span> <span>30,000</span> <!----></div>
+                            </div>
+                        </div>
+                        <a href="/signup?plan=forever" class="flex justify-center"><img
+                                data-src="/images/plans/sub-forever.svg?v=3" alt="Forever Plan" class="relative"
+                                style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
+                                data-loaded="true"></a>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-black">Get a dedicated domain, customised mails and a <strong>2 year</strong> support for free.</p>
+                        <a href="/signup?plan=forever" class="plan-start-learning-button btn mobile:mx-auto w-full text-black border-grey">Sign Up</a></div>
+                    <div></div>
+                </div>
+            </div>
         </div>
     </div>
 </section>
 
-<svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%"
+
+
+<svg class="fill-current text-blue-900" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%"
      viewBox="0 0 90 20" preserveAspectRatio="none">
     <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>
 </svg>
 
-<footer class="px-4 py-12 text-center text-gray-600 text-md">
+<footer class="px-4 py-12 text-center text-gray-600 hover:border-gray-400 text-md">
     <div class="flex items-center justify-center mb-6">
-        <a href="#" class="mx-5 text-gray-700 hover:bg-gray-500">Terms of Use</a>
+        <a href="#" class="mx-5 text-gray-700 hover:text-gray-500">Terms of Use</a>
         <span class="text-gray-400 align-bottom">.</span>
-        <a href="#" class="mx-5 text-gray-700 hover:bg-gray-500">Privacy Policy</a>
+        <a href="#" class="mx-5 text-gray-700 hover:text-gray-500">Privacy Policy</a>
         <span class="text-gray-400 align-bottom">.</span>
-        <a href="#" class="mx-5 text-gray-700 hover:bg-gray-500">All rights Reserved</a>
+        <a href="#" class="mx-5 text-gray-700 hover:text-gray-500">All rights Reserved</a>
     </div>
     Copyright © {!! now()->year !!} {!! config('company.name') !!}.
 </footer>

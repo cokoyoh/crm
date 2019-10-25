@@ -150,7 +150,7 @@
                 They include;
             </div>
             <div class="w-full lg:w-1/2 lg:px-8">
-                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow mb-5">
+                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow-lg mb-5">
                     <p class="font-medium  text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
                         "{!! config('app.name') !!} is built for you and your clients, we merely provide the service."
                     </p>
@@ -158,14 +158,14 @@
                         <img class="block w-16 rounded-full pr-3 mr-2" src="/images/default.png" alt="Member Image">
                         <div class="text-lg">
                             <cite class="block not-italic font-medium text-gray-700 mb-1">Charles Okoyoh</cite>
-                            <div class="text-gray-600">
+                            <div class="text-gray-600 italic">
                                 Software Engineer, Founder & CEO
                                 {{--                                <a class="text-teal-500 hover:underline" href="#" target="_blank">Link</a>--}}
                             </div>
                         </div>
                     </footer>
                 </div>
-                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow mb-5">
+                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow-lg mb-5">
                     <p class="font-medium text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
                         "{!! config('app.name') !!} is very well the best CRM product out there."
                     </p>
@@ -173,7 +173,7 @@
                         <img class="block w-16 rounded-full pr-3 mr-2" src="/images/default.png" alt="Member Image">
                         <div class="text-lg">
                             <cite class="block not-italic font-medium text-gray-700 mb-1">Edgar Anjejo</cite>
-                            <div class="text-gray-600">
+                            <div class="text-gray-600 italic">
                                 Product & Marketing Manager
                             </div>
                         </div>
@@ -183,11 +183,6 @@
         </div>
     </div>
 </section>
-
-
-
-
-
 
 <section id="header-section" class="bg-cover bg-no-repeat bg-bottom h-auto py-10"
          style="background-image: url('/images/background/bg-hologram.png');">
@@ -209,12 +204,6 @@
      viewBox="0 0 90 20" preserveAspectRatio="none">
     <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>
 </svg>
-
-
-
-
-
-
 
 <footer class="px-4 py-12 text-center text-gray-600 text-md">
     <div class="flex items-center justify-center mb-6">

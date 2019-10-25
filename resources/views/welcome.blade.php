@@ -16,7 +16,7 @@
 <body class="bg-gray-100 h-screen antialiased leading-none">
 
 {{--<section id="header-section" class="bg-cover bg-no-repeat mb-24 md:mb-64 xl:mb-48 h-auto pb-8"--}}
-<section id="header-section" class="bg-cover bg-no-repeat mb-24 md:mb-20 xl:mb-40 h-auto pb-16"
+<section id="header-section" class="bg-cover bg-no-repeat h-auto pb-8"
          style="background-image: url('/images/background/dark-image.jpeg');">
     <header class="container mx-auto p-4 flex items-center justify-between mb-12 md:mb-16 bg-transparent">
         <a href="/" class="text-4xl font-weight-light text-white font-semibold tracking-widest ">CRM</a>
@@ -49,6 +49,10 @@
     {{--        <img class="absolute block w-full" src="/images/background/bg-hologram.png" alt="Jamiicare CRM Beauty">--}}
     {{--    </div>--}}
 </section>
+
+<svg class="fill-current text-gray-900" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%" viewBox="0 0 90 20" preserveAspectRatio="none">
+    <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>
+</svg>
 
 <section id="features-section" class="container mx-auto px-6 py-12 md:py-16">
     <h3 class="text-3xl md:text-4xl text-center text-blue-900 mb-12 lg:mb-24 leading-tight">
@@ -134,6 +138,48 @@
 <div class="container mx-auto px-4">
     <hr class="block border-b-2 border-gray-500 opacity-10">
 </div>
+
+<section id="team-members" class="py-12 md:py-16 md:mb-16">
+    <div class="container mx-auto px-4">
+        <div class="lg:flex w-full lg:-mx-8">
+            <div class="w-full lg:w-1/2 lg:px-8 text-3xl md:text-4xl text-center lg:text-left text-blue-900 font-light leading-tight lg:pr-16 mb-12">
+                <span class="text-teal-500">{!! config('company.name') !!}</span>
+                and {!! config('app.name') !!} is built, maintained and promoted by a team of intelligent individuals. They include;
+            </div>
+            <div class="w-full lg:w-1/2 lg:px-8">
+                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow mb-5">
+                    <p class="font-medium  text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
+                        "{!! config('app.name') !!} is built for you and your clients, we merely provide the service."
+                    </p>
+                    <footer class="flex items-center">
+                        <img class="block w-16 rounded-full pr-3 mr-2" src="/images/default.png" alt="Member Image">
+                        <div class="text-lg">
+                            <cite class="block not-italic font-medium text-gray-700 mb-1">Charles Okoyoh</cite>
+                            <div class="text-gray-600">
+                                Software Engineer, Founder & CEO
+{{--                                <a class="text-teal-500 hover:underline" href="#" target="_blank">Link</a>--}}
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow mb-5">
+                    <p class="font-medium text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
+                        "{!! config('app.name') !!} is very well the best CRM product out there."
+                    </p>
+                    <footer class="flex items-center">
+                        <img class="block w-16 rounded-full pr-3 mr-2" src="/images/default.png" alt="Member Image">
+                        <div class="text-lg">
+                            <cite class="block not-italic font-medium text-gray-700 mb-1">Edgar Anjejo</cite>
+                            <div class="text-gray-600">
+                                Product & Marketing Manager
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 <footer class="px-4 py-12 text-center text-gray-600 text-md">
     <div class="flex items-center justify-center mb-6">

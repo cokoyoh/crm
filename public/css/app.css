@@ -4513,6 +4513,10 @@ video {
   background-color: #e53e3e;
 }
 
+.bg-gradient-blue-to-purple {
+  background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
+}
+
 .container {
   width: 100%;
 }
@@ -15648,6 +15652,10 @@ video {
 }
 
 @media (min-width: 640px) {
+  .sm\:bg-gradient-blue-to-purple {
+    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
+  }
+
   .sm\:sr-only {
     position: absolute;
     width: 1px;
@@ -26756,6 +26764,10 @@ video {
 }
 
 @media (min-width: 768px) {
+  .md\:bg-gradient-blue-to-purple {
+    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
+  }
+
   .md\:sr-only {
     position: absolute;
     width: 1px;
@@ -37864,6 +37876,10 @@ video {
 }
 
 @media (min-width: 1024px) {
+  .lg\:bg-gradient-blue-to-purple {
+    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
+  }
+
   .lg\:sr-only {
     position: absolute;
     width: 1px;
@@ -48972,6 +48988,10 @@ video {
 }
 
 @media (min-width: 1280px) {
+  .xl\:bg-gradient-blue-to-purple {
+    background-image: linear-gradient(to right, config("colors.blue"), config("colors.purple"));
+  }
+
   .xl\:sr-only {
     position: absolute;
     width: 1px;

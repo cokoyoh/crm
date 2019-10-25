@@ -44,13 +44,10 @@
                href="#features-section">Learn More</a>
         </div>
     </div>
-
-    {{--    <div class="relative container xl:max-w-5xl mx-auto">--}}
-    {{--        <img class="absolute block w-full" src="/images/background/bg-hologram.png" alt="Jamiicare CRM Beauty">--}}
-    {{--    </div>--}}
 </section>
 
-<svg class="fill-current text-gray-900" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%" viewBox="0 0 90 20" preserveAspectRatio="none">
+<svg class="fill-current text-gray-900" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%"
+     viewBox="0 0 90 20" preserveAspectRatio="none">
     <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>
 </svg>
 
@@ -83,7 +80,8 @@
                       stroke-linejoin="round"></path>
             </svg>
             <h4 class="text-blue-900 font-medium mb-3">Scheduled Interactions</h4>
-            <p class="text-lg leading-tight">All your client interactions for the day, week, month will be available to you using automated reminders.</p>
+            <p class="text-lg leading-tight">All your client interactions for the day, week, month will be available to
+                you using automated reminders.</p>
         </div>
         <div class="w-full sm:w-1/2 lg:w-1/3 sm:px-6 mb-12">
             <svg class="block h-8 mb-6 text-teal-500" viewBox="0 0 32 32" fill="none"
@@ -109,7 +107,8 @@
                     stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
             <h4 class="text-blue-900 font-medium mb-3">Events Scheduling</h4>
-            <p class="text-lg leading-tight">Using our automated events manager, we help you manage events and integrate them with clients</p>
+            <p class="text-lg leading-tight">Using our automated events manager, we help you manage events and integrate
+                them with clients</p>
         </div>
         <div class="w-full sm:w-1/2 lg:w-1/3 sm:px-6 mb-12">
             <svg class="block h-8 mb-6 text-teal-500" viewBox="0 0 32 32" fill="none"
@@ -121,7 +120,8 @@
                       stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
             <h4 class="text-blue-900 font-medium mb-3">Daily Client Reports</h4>
-            <p class="text-lg leading-tight">At the end of each day, we send you a report for all the activities that most matter to you. Clients recorded, converted and more.</p>
+            <p class="text-lg leading-tight">At the end of each day, we send you a report for all the activities that
+                most matter to you. Clients recorded, converted and more.</p>
         </div>
         <div class="w-full sm:w-1/2 lg:w-1/3 sm:px-6 sm:mb-12">
             <svg class="block h-8 mb-6 text-teal-500" viewBox="0 0 30 32" fill="none"
@@ -130,7 +130,8 @@
                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
             </svg>
             <h4 class="text-blue-900 font-medium mb-3">Approvals of important transactions</h4>
-            <p class="text-lg leading-tight">For important transactions such as deals, and edit of critical client details, the admin approves them and necessary parties are notified</p>
+            <p class="text-lg leading-tight">For important transactions such as deals, and edit of critical client
+                details, the admin approves them and necessary parties are notified</p>
         </div>
     </div>
 </section>
@@ -142,9 +143,11 @@
 <section id="team-members" class="py-12 md:py-16 md:mb-16">
     <div class="container mx-auto px-4">
         <div class="lg:flex w-full lg:-mx-8">
-            <div class="w-full lg:w-1/2 lg:px-8 text-3xl md:text-4xl text-center lg:text-left text-blue-900 font-light leading-tight lg:pr-16 mb-12">
+            <div
+                class="w-full lg:w-1/2 lg:px-8 text-3xl md:text-4xl text-center lg:text-left text-blue-900 font-light leading-tight lg:pr-16 mb-12">
                 <span class="text-teal-500">{!! config('company.name') !!}</span>
-                and {!! config('app.name') !!} is built, maintained and promoted by a team of intelligent individuals. They include;
+                and {!! config('app.name') !!} is built, maintained and promoted by a team of intelligent individuals.
+                They include;
             </div>
             <div class="w-full lg:w-1/2 lg:px-8">
                 <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow mb-5">
@@ -157,7 +160,7 @@
                             <cite class="block not-italic font-medium text-gray-700 mb-1">Charles Okoyoh</cite>
                             <div class="text-gray-600">
                                 Software Engineer, Founder & CEO
-{{--                                <a class="text-teal-500 hover:underline" href="#" target="_blank">Link</a>--}}
+                                {{--                                <a class="text-teal-500 hover:underline" href="#" target="_blank">Link</a>--}}
                             </div>
                         </div>
                     </footer>
@@ -180,6 +183,38 @@
         </div>
     </div>
 </section>
+
+
+
+
+
+
+<section id="header-section" class="bg-cover bg-no-repeat bg-bottom h-auto py-10"
+         style="background-image: url('/images/background/bg-hologram.png');">
+
+    <div class="text-center max-w-3xl px-4 mx-auto">
+        <h2 class="text-teal-100 text-2xl lg:text-4xl mb-6 font-hairline font-semibold">Want to mange your clients?</h2>
+        <p class="lg:text-2xl leading-tight lg:px-8 mb-10 text-teal-100 mt-10">
+             We got you covered
+        </p>
+        <div class="flex items-center justify-center mt-10">
+            <a href="#"
+               class="inline-block text-gray-800 hover:text-gray-600 text-lg md:text-xl font-medium md:ml-8 mr-5 md:mr-0 px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-800 hover:border-gray-500 whitespace-no-wrap">Begin
+                Trial</a>
+        </div>
+    </div>
+</section>
+
+<svg class="fill-current text-white" version="1.1" xmlns="http://www.w3.org/2000/svg" height="100" width="100%"
+     viewBox="0 0 90 20" preserveAspectRatio="none">
+    <path d="M0 5 H5 C25 5 25 20 45 20 S65 5 85 5 H90 V-5 H0z" stroke="transparent"/>
+</svg>
+
+
+
+
+
+
 
 <footer class="px-4 py-12 text-center text-gray-600 text-md">
     <div class="flex items-center justify-center mb-6">

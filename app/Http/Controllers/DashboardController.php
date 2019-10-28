@@ -26,4 +26,28 @@ class DashboardController extends Controller
             'latestUsers' => $latestUsers
         ]);
     }
+
+    public function admin(User $user)
+    {
+        $companyUsers = $user->company->users;
+
+        $latestUsers = $this->getLatestUsersFromCompany($user->company);
+
+        return view('dashboards.admin', [
+           'user' => $user,
+           'companyUsers' => $companyUsers,
+            'usersCount' => $companyUsers->count(),
+            'latestUsersCount' => $latestUsers->count(),
+            'latestUsers' => $latestUsers,
+            'dealsCount' => 0
+        ]);
+    }
+
+    private function getLatestUsersFromCompany(Company $company)
+    {
+        return $company->users()
+            ->where('created_at', '>=', now()->subWeek())
+            ->where('created_at', '<=', now())
+            ->get();
+    }
 }

@@ -13,3 +13,7 @@
 .badge-danger {
     @apply border-red-600 bg-red-600;
 }
+
+.badge-warning {
+    @apply border-yellow-400 bg-yellow-400 text-yellow-800;
+}

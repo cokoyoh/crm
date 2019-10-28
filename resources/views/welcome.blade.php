@@ -205,7 +205,7 @@
 
 <section id="pricing" class="w-full bg-blue-900  py-10 pb-10 sm:mx-auto">
     <div class="container mx-auto items-center sm:mx-auto">
-       <div class="text-teal-300 lg:text-6xl sm:text-center sm:text-4xl sm:font-semibold font-thin mx-auto md:w-full">Pricing</div>
+       <div class="text-teal-300 lg:text-6xl sm:text-center sm:text-4xl md:font-thin sm:font-semibold font-thin mx-auto md:w-full">Pricing</div>
         <div class="lg:flex justify-center lg:py-16">
 
 

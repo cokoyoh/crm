@@ -25,7 +25,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $this->admins($schedule);
+//        $this->admins($schedule);
     }
 
     /**

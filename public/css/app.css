@@ -4552,14 +4552,6 @@ video {
 }
 
 @media (min-width: 640px) {
-  .price-tag {
-    width: 50%;
-    background-color: #fff;
-  }
-
-  .dollar {
-    font-size: 0.875rem;
-  }
 }
 
 .container {

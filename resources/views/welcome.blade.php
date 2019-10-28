@@ -210,7 +210,7 @@
 
 
             <div class="flex-1 lg:mx-0 ">
-                <div class="price-tag sm:mx-auto lg:mb-0 sm:mt-5 lg:px-10 lg:py-10">
+                <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
                                 class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
@@ -224,7 +224,7 @@
                                 data-src="/images/plans/sub-monthly.svg?v=3" alt="Monthly Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
-                        <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">For users less than 100, you can pay <span class="text-gray-900 font-semibold">$8 per user, per month</span></p>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">For users less than 100, you can pay <span class="font-semibold">$8 per user, per month</span></p>
                         <a href="#"
                            class="price-button tracking-wide sm:mx-auto">Sign Up
                         </a>

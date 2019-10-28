@@ -92,7 +92,15 @@
             color: #565656;
             overflow: scroll">
         @yield('content')
+
+        <p>Thank you.</p>
+
+        Regards,<br/>
+
+        {!! config('app.name') !!}<br/>
+        -------------------------------------------
     </div>
+
     <hr style="border:1px solid #afafaf;">
     <div style="padding: 10px;
             line-height: 1.5em;

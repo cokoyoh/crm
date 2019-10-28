@@ -28,6 +28,6 @@
 
     Regards,<br/>
 
-    Jamiicare CRM<br/>
+    {!! config('app.name') !!}<br/>
     -------------------------------------------
 @endsection

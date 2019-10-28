@@ -12,12 +12,5 @@
         <p>
             Kindly ensure you attend to the duties required of you in your new role.
         </p>
-
-        <p>Thank you.</p>
-
-        Regards,<br/>
-
-        {!! config('app.name') !!}<br/>
-        -------------------------------------------
     </div>
 @endsection

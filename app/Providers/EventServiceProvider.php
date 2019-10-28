@@ -26,6 +26,10 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\Users\WhenUserInvited'
         ],
 
+        'App\Events\Users\UserAccountDeleted' => [
+            'App\Listeners\Users\WhenUserAccountDeleted'
+        ],
+
         'App\Events\Companies\CompanyProfileUpdated' => [
             'App\Listeners\Companies\WhenCompanyProfileUpdated'
         ]

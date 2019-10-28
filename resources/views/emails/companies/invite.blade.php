@@ -14,12 +14,5 @@
                 href="{{ URL::to(route('companies.profiles.complete', $id)) }}">link </a>to
             complete your company profile and begin using the platform. Please note that this link can only be used once.
         </p>
-
-        <p>Thank you.</p>
-
-        Regards,<br/>
-
-        {!! config('app.name') !!}<br/>
-        -------------------------------------------
     </div>
 @endsection

@@ -4,6 +4,7 @@
 namespace CRM\Users;
 
 
+use App\Events\Users\UserAccountDeleted;
 use CRM\Models\User;
 use CRM\RepositoryInterfaces\CreateInterface;
 use CRM\RepositoryInterfaces\UpdateInterface;
@@ -70,6 +71,10 @@ class UserRepository implements CreateInterface, UpdateInterface
 
     public function destroy($user)
     {
+        $this->user = $user;
+
         $user->delete();
+
+        event(new UserAccountDeleted($this->user));
     }
 }

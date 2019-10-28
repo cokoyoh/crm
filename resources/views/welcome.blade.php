@@ -144,12 +144,12 @@
     <div class="container mx-auto px-4">
         <div class="lg:flex w-full lg:-mx-8">
             <div
-                class="w-full lg:w-1/2 lg:px-8 text-3xl md:text-4xl text-center lg:text-left text-blue-900 font-light leading-tight lg:pr-16 mb-12">
+                class="w-full lg:w-1/2 lg:px-8 sm:w-3/4 sm:mx-auto text-3xl md:text-4xl text-center lg:text-left text-blue-900 font-light leading-tight lg:pr-16 mb-12">
                 <span class="text-teal-500">{!! config('company.name') !!}</span>
                 and {!! config('app.name') !!} is built, maintained and promoted by a team of intelligent individuals.
                 They include;
             </div>
-            <div class="w-full lg:w-1/2 lg:px-8">
+            <div class="w-full lg:w-1/2 lg:px-8 sm:w-3/4 sm:mx-auto">
                 <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow-lg mb-5">
                     <p class="font-medium  text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
                         "{!! config('app.name') !!} is built for you and your clients, we merely provide the service."
@@ -205,26 +205,51 @@
 
 <section id="pricing" class="w-full bg-blue-900  py-10 pb-10">
     <div class="container mx-auto items-center">
-       <div class="text-teal-300 lg:text-6xl md:text-center font-thin">Pricing</div>
+       <div class="text-teal-300 lg:text-6xl sm:text-center sm:text-4xl sm:font-semibold font-thin mx-auto md:w-full">Pricing</div>
         <div class="lg:flex justify-center lg:py-16">
 
-            <div class="flex-1 mx-auto lg:mx-0 ">
+
+            <div class="flex-1 lg:mx-0 ">
+                <div class="price-tag sm:mx-auto lg:mb-0 sm:mt-5 lg:px-10 lg:py-10">
+                    <div class="flex flex-col justify-around h-full w-full">
+                        <div class="flex mb-8 items-center"><h5
+                                class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
+                                    href="#" class="inherits-color">Per User</a></h5>
+                            <div class="text-blue-600 font-thin text-4xl leading-none">
+                                <div class="text-blue flex items-baseline font-semibold"><span
+                                        class="dollar text-lg">$</span> <span>8</span> <!----></div>
+                            </div>
+                        </div>
+                        <a href="#" class="flex justify-center"><img
+                                data-src="/images/plans/sub-monthly.svg?v=3" alt="Monthly Plan" class="relative"
+                                style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
+                                data-loaded="true"></a>
+                        <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">For users less than 100, you can pay <span class="text-gray-900 font-semibold">$8 per user, per month</span></p>
+                        <a href="#"
+                           class="price-button tracking-wide sm:mx-auto">Sign Up
+                        </a>
+                    </div>
+                    <div></div>
+                </div>
+            </div>
+
+            <div class="flex-1 lg:mx-0 ">
                 <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
                                 class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
-                                    href="/signup?plan=monthly-15" class="inherits-color">Monthly</a></h5>
+                                    href="#" class="inherits-color">Monthly</a></h5>
                             <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
                                         class="dollar text-lg">$</span> <span>800</span> <!----></div>
                             </div>
                         </div>
-                        <a href="/signup?plan=monthly-15" class="flex justify-center"><img
+                        <a href="#" class="flex justify-center"><img
                                 data-src="/images/plans/sub-monthly.svg?v=3" alt="Monthly Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
                         <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">Manage your clients with our <strong>monthly</strong> plan.</p>
-                        <a href="/signup?plan=monthly-15"
+                        <a href="#"
                            class="price-button tracking-wide sm:mx-auto">Sign Up
                         </a>
                     </div>
@@ -233,44 +258,44 @@
             </div>
 
 
-            <div class="flex-1 mx-auto lg:mx-0">
+            <div class="flex-1 lg:mx-0">
                 <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
                                 class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
-                                    href="/signup?plan=yearly-99" class="inherits-color">Yearly</a></h5>
+                                    href="#" class="inherits-color">Yearly</a></h5>
                             <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
                                         class="dollar text-lg">$</span><span>7,200</span> <!----></div>
                             </div>
                         </div>
-                        <a href="/signup?plan=yearly-99" class="flex justify-center"><img
+                        <a href="#" class="flex justify-center"><img
                                 data-src="/images/plans/sub-yearly.svg?v=3" alt="Yearly Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
                         <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">Set client management on steroids and <strong>save 25%</strong>.</p>
-                        <a href="/signup?plan=yearly-99"
+                        <a href="#"
                            class="price-button tracking-wide sm:mx-auto bg-blue-500 text-gray-100">Sign Up</a></div>
                     <div></div>
                 </div>
             </div>
-            <div class="flex-1 mx-auto lg:mx-0">
+            <div class="flex-1 lg:mx-0">
                 <div class="price-tag sm:mx-auto lg:mb-0 lg:px-10 lg:py-10">
                     <div class="flex flex-col justify-around h-full w-full">
                         <div class="flex mb-8 items-center"><h5
                                 class="uppercase font-bold text-gray-900 text-base lg:text-xs mr-auto"><a
-                                    href="/signup?plan=forever" class="inherits-color">Forever</a></h5>
+                                    href="#" class="inherits-color">Forever</a></h5>
                             <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
                                         class="dollar text-lg">$</span> <span>30,000</span> <!----></div>
                             </div>
                         </div>
-                        <a href="/signup?plan=forever" class="flex justify-center"><img
+                        <a href="#" class="flex justify-center"><img
                                 data-src="/images/plans/sub-forever.svg?v=3" alt="Forever Plan" class="relative"
                                 style="width: 165px; height: 120px; top: -25px;" src="/images/default-company.png"
                                 data-loaded="true"></a>
                         <p class="mb-8 px-4 text-lg lg:text-base text-gray-900">Get a dedicated domain, customised mails and a <strong>2 year</strong> support for free.</p>
-                        <a href="/signup?plan=forever" class="price-button tracking-wide sm:mx-auto">Sign Up</a></div>
+                        <a href="#" class="price-button tracking-wide sm:mx-auto">Sign Up</a></div>
                     <div></div>
                 </div>
             </div>

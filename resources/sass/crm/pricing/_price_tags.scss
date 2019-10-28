@@ -1,3 +1,13 @@
 .price-tag {
-    @apply mb-5 relative w-3/4 bg-white shadow-2xl rounded-lg px-6 pt-5 pb-6 text-center h-full mx-3 flex;
+    @apply mb-5 relative w-10/12 bg-white shadow-2xl rounded-lg px-6 pt-5 pb-6 text-center h-full mx-3 flex;
+}
+
+@screen sm {
+    .price-tag {
+        @apply w-1/2;
+    }
+
+    .dollar {
+        @apply text-sm;
+    }
 }

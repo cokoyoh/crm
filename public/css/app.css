@@ -4536,7 +4536,7 @@ video {
 .price-tag {
   margin-bottom: 1.25rem;
   position: relative;
-  width: 75%;
+  width: 83.333333%;
   background-color: #fff;
   box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   border-radius: 0.5rem;
@@ -4549,6 +4549,16 @@ video {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
   display: flex;
+}
+
+@media (min-width: 640px) {
+  .price-tag {
+    width: 50%;
+  }
+
+  .dollar {
+    font-size: 0.875rem;
+  }
 }
 
 .container {

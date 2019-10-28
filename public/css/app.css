@@ -4554,6 +4554,7 @@ video {
 @media (min-width: 640px) {
   .price-tag {
     width: 50%;
+    background-color: #fff;
   }
 
   .dollar {

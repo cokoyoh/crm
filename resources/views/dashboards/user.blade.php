@@ -4,7 +4,7 @@
     <div class="container mx-auto">
         <div class="flex items-center justify-between -mt-12 py-4">
             <div class="flex items-center justify-between">
-                <button class="border border-gray-500 rounded-sm px-3 py-2 text-sm text-gray-700 font-medium">User
+                <button class="btn-default">User
                 </button>
                 <svg class="h-5 w-5 ml-2 fill-current text-gray-700 font-thin" viewBox="0 0 20 20">
                     <path d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
@@ -25,6 +25,18 @@
                     <h3 class="text-lg text-green-600 font-bold">{!! $user->name !!}</h3>
                     <span
                         class="badge-default badge-default-success">{!! $user->roles()[0]->role->name !!}</span>
+                </div>
+
+                <div class="flex items-center justify-between border-b border-gray-300 py-4">
+                    <div class="flex items-center text-gray-500 uppercase text-xs font-semibold w-1/2">
+                        <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20">
+                            <path d="M8 20H3V10H0L10 0l10 10h-3v10h-5v-6H8v6z"/>
+                        </svg>
+                        <h3 class="ml-1">Company</h3>
+                    </div>
+                    <div class="w-1/2 w-full text-left text-gray-800 text-sm">
+                        <p>{!! $user->company->name !!}</p>
+                    </div>
                 </div>
 
                 <div class="flex items-center justify-between border-b border-gray-300 py-4">

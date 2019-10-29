@@ -44,7 +44,8 @@
                 <div class="flex items-center justify-between border-b border-gray-300 py-4">
                     <div class="flex items-center text-gray-500 uppercase text-xs font-semibold w-1/2">
                         <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20">
-                            <path d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
+                            <path
+                                d="M18 2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4c0-1.1.9-2 2-2h16zm-4.37 9.1L20 16v-2l-5.12-3.9L20 6V4l-10 8L0 4v2l5.12 4.1L0 14v2l6.37-4.9L10 14l3.63-2.9z"/>
                         </svg>
                         <h3 class="ml-1">Email</h3>
                     </div>
@@ -66,10 +67,11 @@
                     </div>
                 </div>
 
-                <div class="flex items-center justify-between border-b border-gray-300 py-4">
+                <div class="flex items-center justify-between py-4">
                     <div class="flex items-center text-gray-500 uppercase text-xs font-semibold w-1/2">
                         <svg class="h-3 w-3 fill-current" viewBox="0 0 20 20">
-                            <path d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z"/>
+                            <path
+                                d="M1 4c0-1.1.9-2 2-2h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V4zm2 2v12h14V6H3zm2-6h2v2H5V0zm8 0h2v2h-2V0zM5 9h2v2H5V9zm0 4h2v2H5v-2zm4-4h2v2H9V9zm0 4h2v2H9v-2zm4-4h2v2h-2V9zm0 4h2v2h-2v-2z"/>
                         </svg>
                         <h3 class="ml-1">Since</h3>
                     </div>
@@ -82,7 +84,56 @@
 
             </div>
 
-            <div class="w-3/4 px-4 py-5">Right</div>
+            <div class="w-3/4 px-5 py-5">
+                <tabs>
+                    <ul class="flex items-center justify-between w-3/4 mx-auto border rounded">
+                        <li class="border-r bg-blue-600 px-8 py-2 font-medium text-sm text-white rounded">Schedules</li>
+                        <li class="border-r px-8 py-2 font-medium text-sm text-gray-700">Clients</li>
+                        <li class="border-r px-8 py-2 font-medium text-sm text-gray-700">Interactions</li>
+                        <li class="border-r px-8 py-2 font-medium text-sm text-gray-700">Deals</li>
+                        <li class="px-8 py-2 font-medium text-sm text-gray-700">Reports</li>
+                    </ul>
+                </tabs>
+
+                <div class="mt-8 w-full">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center justify-between w-1/2">
+                            <input class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none" type="date" name="start_date" value="{!! now()->subWeek()->toDateString() !!}">
+                            <span class="ml-1 font-semibold text-gray-700 ">-</span>
+                            <input class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none ml-1" type="date" name="end_date" value="{!! now()->toDateString() !!}">
+
+                            <select name="status" id="status" class="block h-8 bg-white border border-gray-500 text-sm text-gray-700 px-2 py-4 rounded focus:outline-none focus:bg-white focus:border-gray-500 ml-3">
+                                <option value="">All Statuses</option>
+                                <option value="">Upcoming</option>
+                                <option value="">Completed</option>
+                                <option value="">In Progress</option>
+                            </select>
+
+                            <button type="submit" class="flex items-center ml-3 btn-default">
+                                <svg class="h-3 w-3 fill-current font-medium" viewBox="0 0 20 20">
+                                    <path d="M13 8V2H7v6H2l8 8 8-8h-5zM0 18h20v2H0v-2z"/>
+                                </svg>
+                                <span class="ml-2">Export</span>
+                            </button>
+                        </div>
+
+                        <button class="flex items-center btn btn-success">
+                            <svg class="h-4 w-4 fill-current font-medium" viewBox="0 0 20 20">
+                                <path
+                                    d="M11 9h4v2h-4v4H9v-4H5V9h4V5h2v4zm-1 11a10 10 0 1 1 0-20 10 10 0 0 1 0 20zm0-2a8 8 0 1 0 0-16 8 8 0 0 0 0 16z"/>
+                            </svg>
+                            <span class="ml-1 font-medium">Schedule</span>
+                        </button>
+                    </div>
+
+                    <div class="mt-8">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dicta enim illum impedit
+                            itaque laboriosam laborum libero placeat possimus quis rem tempore unde. Ad dignissimos
+                            doloremque laudantium minima necessitatibus tempore.</p>
+                    </div>
+                </div>
+
+            </div>
         </div>
     </div>
 @endsection

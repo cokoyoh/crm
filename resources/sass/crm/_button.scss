@@ -7,6 +7,25 @@
     @apply outline-none shadow-outline;
 }
 
+//Default btn
+.btn-default {
+    @apply border border-gray-500 rounded font-medium px-4 py-2 text-sm text-gray-700;
+}
+
+.btn-default:focus {
+    @apply outline-none shadow-outline;
+}
+
+.btn-default:hover {
+    @apply bg-white text-gray-600;
+}
+
+.btn-default:active {
+    @apply bg-gray-200 text-gray-800;
+}
+
+
+
 
 //Blue Button
 .btn-blue {

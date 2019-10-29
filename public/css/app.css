@@ -4420,6 +4420,34 @@ video {
   box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
 }
 
+.btn-default {
+  border-width: 1px;
+  border-color: #a0aec0;
+  border-radius: 0.25rem;
+  font-weight: 500;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  font-size: 0.875rem;
+  color: #4a5568;
+}
+
+.btn-default:focus {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+.btn-default:hover {
+  background-color: #fff;
+  color: #718096;
+}
+
+.btn-default:active {
+  background-color: #edf2f7;
+  color: #2d3748;
+}
+
 .btn-blue {
   background-color: #63b3ed;
 }

@@ -24,7 +24,7 @@
                 <div class="flex items-center py-4">
                     <h3 class="text-lg text-green-600 font-bold">{!! $user->name !!}</h3>
                     <span
-                        class="badge badge-success ml-5 py-1 font-bold text-white bg-green-500">{!! $user->roles()[0]->role->name !!}</span>
+                        class="badge-default badge-default-success">{!! $user->roles()[0]->role->name !!}</span>
                 </div>
 
                 <div class="flex items-center justify-between border-b border-gray-300 py-4">
@@ -98,11 +98,16 @@
                 <div class="mt-8 w-full">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center justify-between w-1/2">
-                            <input class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none" type="date" name="start_date" value="{!! now()->subWeek()->toDateString() !!}">
+                            <input
+                                class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none"
+                                type="date" name="start_date" value="{!! now()->subWeek()->toDateString() !!}">
                             <span class="ml-1 font-semibold text-gray-700 ">-</span>
-                            <input class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none ml-1" type="date" name="end_date" value="{!! now()->toDateString() !!}">
+                            <input
+                                class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none ml-1"
+                                type="date" name="end_date" value="{!! now()->toDateString() !!}">
 
-                            <select name="status" id="status" class="block h-8 bg-white border border-gray-500 text-sm text-gray-700 px-2 py-4 rounded focus:outline-none focus:bg-white focus:border-gray-500 ml-3">
+                            <select name="status" id="status"
+                                    class="block h-8 bg-white border border-gray-500 text-sm text-gray-700 px-2 py-4 rounded focus:outline-none focus:bg-white focus:border-gray-500 ml-3">
                                 <option value="">All Statuses</option>
                                 <option value="">Upcoming</option>
                                 <option value="">Completed</option>
@@ -127,9 +132,27 @@
                     </div>
 
                     <div class="mt-8">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deserunt, dicta enim illum impedit
-                            itaque laboriosam laborum libero placeat possimus quis rem tempore unde. Ad dignissimos
-                            doloremque laudantium minima necessitatibus tempore.</p>
+                        <table class="rounded-b-lg table-auto w-full px-2">
+                            <tbody>
+                            @foreach(range(0, 5) as $index)
+                            <tr class="border border-gray-300 px-2 h-16 @if($index > 1) bg-white @endif ">
+                                <td class="pl-4">
+                                    @if($index < 2)
+                                        <span class="badge-default badge-default-success uppercase">completed</span>
+                                    @else
+                                        <span class="badge-default badge-default-indigo uppercase">In Progress</span>
+                                    @endif
+                                </td>
+                                <td class="text-sm text-gray-600 font-medium">{!! now()->toFormattedDateString() !!}</td>
+                                <td class="text-sm text-gray-600 font-normal">{!! now()->subRealMinutes(4)->format('H:i a')!!} - {!! now()->format('H:i a')!!} </td>
+                                <td class="leading-snug">
+                                    <p class="uppercase text-xs text-gray-600 font-semibold">Some Title</p>
+                                    <p class="text-gray-700 text-sm font-semibold">Some Name</p>
+                                </td>
+                            </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
                     </div>
                 </div>
 

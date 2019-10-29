@@ -2,6 +2,22 @@
     @apply text-xs font-medium border rounded-full px-3;
 }
 
+.badge-default{
+    @apply text-xs border rounded-full px-3 ml-5 py-1 font-medium;
+}
+
+.badge-default-success {
+    @apply text-white border-green-500 bg-green-500;
+}
+
+.badge-default-primary {
+    @apply text-white border-blue-500 bg-blue-500;
+}
+
+.badge-default-indigo {
+    @apply text-white border-indigo-500 bg-indigo-500;
+}
+
 .badge-success {
     @apply text-green-600 bg-green-200 border-green-400;
 }

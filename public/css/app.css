@@ -4532,6 +4532,36 @@ video {
   padding-right: 0.75rem;
 }
 
+.badge-default {
+  font-size: 0.75rem;
+  border-width: 1px;
+  border-radius: 9999px;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  margin-left: 1.25rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  font-weight: 500;
+}
+
+.badge-default-success {
+  color: #fff;
+  border-color: #48bb78;
+  background-color: #48bb78;
+}
+
+.badge-default-primary {
+  color: #fff;
+  border-color: #4299e1;
+  background-color: #4299e1;
+}
+
+.badge-default-indigo {
+  color: #fff;
+  border-color: #667eea;
+  background-color: #667eea;
+}
+
 .badge-success {
   color: #38a169;
   background-color: #c6f6d5;

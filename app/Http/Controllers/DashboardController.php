@@ -34,8 +34,8 @@ class DashboardController extends Controller
         $latestUsers = $this->getLatestUsersFromCompany($user->company);
 
         return view('dashboards.admin', [
-           'user' => $user,
-           'companyUsers' => $companyUsers,
+            'user' => $user,
+            'companyUsers' => $companyUsers,
             'usersCount' => $companyUsers->count(),
             'latestUsersCount' => $latestUsers->count(),
             'latestUsers' => $latestUsers,

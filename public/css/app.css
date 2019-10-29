@@ -4487,36 +4487,36 @@ video {
 }
 
 .badge {
-  display: inline-block;
-  color: #fff;
   font-size: 0.75rem;
-  font-weight: 600;
+  font-weight: 500;
   border-width: 1px;
   border-radius: 9999px;
-  padding-left: 0.5rem;
-  padding-right: 0.5rem;
-  margin-top: 0.75rem;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
 }
 
 .badge-success {
+  color: #38a169;
+  background-color: #c6f6d5;
   border-color: #68d391;
-  background-color: #68d391;
 }
 
 .badge-primary {
+  color: #3182ce;
+  background-color: #bee3f8;
   border-color: #63b3ed;
-  background-color: #63b3ed;
 }
 
 .badge-danger {
-  border-color: #e53e3e;
-  background-color: #e53e3e;
+  color: #e53e3e;
+  background-color: #fed7d7;
+  border-color: #fc8181;
 }
 
 .badge-warning {
+  color: #d69e2e;
+  background-color: #fefcbf;
   border-color: #f6e05e;
-  background-color: #f6e05e;
-  color: #975a16;
 }
 
 .price-button {

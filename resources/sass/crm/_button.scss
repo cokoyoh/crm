@@ -62,5 +62,13 @@
 
 //Green Button
 .btn-success {
-    @apply bg-green-500;
+    @apply bg-green-500 font-medium;
+}
+
+.btn-success:hover {
+    @apply bg-green-400;
+}
+
+.btn-success:active {
+    @apply bg-green-700;
 }

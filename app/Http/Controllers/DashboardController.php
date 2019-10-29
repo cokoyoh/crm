@@ -43,6 +43,13 @@ class DashboardController extends Controller
         ]);
     }
 
+    public function user(User $user)
+    {
+        return view('dashboards.user', [
+            'user' => $user
+        ]);
+    }
+
     private function getLatestUsersFromCompany(Company $company)
     {
         return $company->users()

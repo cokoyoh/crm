@@ -4473,6 +4473,15 @@ video {
 
 .btn-success {
   background-color: #48bb78;
+  font-weight: 500;
+}
+
+.btn-success:hover {
+  background-color: #68d391;
+}
+
+.btn-success:active {
+  background-color: #2f855a;
 }
 
 .crm-table {

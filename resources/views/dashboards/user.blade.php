@@ -14,6 +14,10 @@
                         @include('.dashboards.user.schedules')
                     </tab>
 
+                    <tab title="Leads">
+                        <p>Leads here</p>
+                    </tab>
+
                     <tab title="Clients">
                         <p>Clients here</p>
                     </tab>

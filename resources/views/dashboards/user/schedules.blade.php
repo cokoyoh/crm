@@ -34,7 +34,7 @@
         </button>
     </div>
 
-    
+
 
     <modal name="add-schedule" classes="rounded lg bg-white px-4 py-2">
         <p>Add schedule mofo!!!!</p>

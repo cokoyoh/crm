@@ -3,8 +3,8 @@
          <ul class="flex items-center justify-between w-3/4 mx-auto border rounded" role="tablist">
              <li
                  v-for="(tab, index) in tabs"
-                 class="px-8 py-2 text-gray-700 border-r text-center"
-                 :class="{ 'bg-blue-600 rounded' : tab.isActive }"
+                 class="px-8 py-2 text-gray-700 border-l text-center"
+                 :class="{ 'bg-blue-600 rounded' : tab.isActive}"
              >
 <!--                 :style="tab.isActive ? 'margin-bottom: -1px' : ''"-->
                  <button

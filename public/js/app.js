@@ -2494,7 +2494,7 @@ var render = function() {
           return _c(
             "li",
             {
-              staticClass: "px-8 py-2 text-gray-700 border-r text-center",
+              staticClass: "px-8 py-2 text-gray-700 border-l text-center",
               class: { "bg-blue-600 rounded": tab.isActive }
             },
             [

@@ -28,7 +28,11 @@ class LeadRepository implements CreateInterface
 
         $attributes['last_name'] = $names ? $names[0] : $attributes['last_name'];
 
-        return $this->lead->create($attributes);
+        $lead = $this->lead->create($attributes);
+
+        $lead->markAsNotFollowedUp();
+
+        return $lead;
     }
 
     private function processNames(array &$attributes)

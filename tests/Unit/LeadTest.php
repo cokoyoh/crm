@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
+use CRM\Models\LeadClass;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -23,5 +24,19 @@ class LeadTest extends TestCase
         $this->assertInstanceOf(LeadAssignee::class, $lead->leadAssignee);
 
         $this->assertEquals($lead->id, $lead->leadAssignee->lead_id);
+    }
+
+    /** @test */
+    public function it_changes_a_lead_class_id()
+    {
+        $lead = create(Lead::class, ['lead_class_id' => null]);
+
+        $leadClass = create(LeadClass::class, ['slug' => 'not_followed_up']);
+
+        $this->assertNull($lead->lead_class_id);
+
+        $lead->markAsNotFollowedUp();
+
+        $this->assertEquals($lead->lead_class_id, $leadClass->id);
     }
 }

@@ -2,10 +2,13 @@
 
 namespace CRM\Models;
 
+use CRM\LeadClasses\ChangeLeadClass;
 use Illuminate\Database\Eloquent\Model;
 
 class Lead extends Model
 {
+    use ChangeLeadClass;
+
     protected $table = 'leads';
 
     protected $guarded = [];

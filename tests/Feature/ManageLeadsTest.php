@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Lead;
+use CRM\Models\LeadClass;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Session;
@@ -61,6 +62,8 @@ class ManageLeadsTest extends TestCase
 
         $attributes = rawState(Lead::class);
 
+        $leadClass = create(LeadClass::class, ['slug' => 'not_followed_up']);
+
         $this->actingAs($user)
             ->post(route('leads.store'), $attributes)
             ->assertRedirect(route('dashboard.user', $user));
@@ -68,5 +71,7 @@ class ManageLeadsTest extends TestCase
         $this->assertEquals(1, Lead::count());
 
         $this->assertEquals($user->id, Lead::first()->leadAssignee->user_id);
+
+        $this->assertEquals(Lead::first()->lead_class_id, $leadClass->id);
     }
 }

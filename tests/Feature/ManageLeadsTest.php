@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use CRM\Models\Lead;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\Session;
 use Tests\TestCase;
 
 class ManageLeadsTest extends TestCase

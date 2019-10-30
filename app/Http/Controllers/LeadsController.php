@@ -2,33 +2,34 @@
 
 namespace App\Http\Controllers;
 
-use CRM\Models\Lead;
-use CRM\Models\LeadAssignee;
+use App\Http\Requests\StoreLeadRequest;
+use CRM\LeadAssignees\LeadAssigneeRepository;
+use CRM\Leads\LeadRepository;
 
 class LeadsController extends Controller
 {
-    public function store()
+    protected $lead;
+    protected $leadAssignee;
+
+    /**
+     * LeadsController constructor.
+     * @param LeadRepository $lead
+     * @param LeadAssigneeRepository $leadAssignee
+     */
+    public function __construct(
+        LeadRepository $lead,
+        LeadAssigneeRepository $leadAssignee
+    ) {
+        $this->lead = $lead;
+        $this->leadAssignee = $leadAssignee;
+    }
+
+
+    public function store(StoreLeadRequest $request)
     {
-        \request()->validate([
-            'email' => "required_if:phone_number,''|email|unique:leads",
-            'country_code' => "required_if:email,''",
-            'phone_number' => "required_if:email,''"
-        ]);
+        $lead = $this->lead->create($request->all());
 
-        $names = processName(\request('name'));
-
-        $attributes = \request()->except('_token', 'name');
-
-        $attributes['first_name'] = $names[0];
-
-        $attributes['last_name'] = $names[1];
-
-        $lead = Lead::create($attributes);
-
-        LeadAssignee::create([
-            'lead_id' => $lead->id,
-            'user_id' => auth()->id()
-        ]);
+        $this->leadAssignee->store(auth()->user(), $lead);
 
         return redirect(route('dashboard.user', auth()->id()));
     }

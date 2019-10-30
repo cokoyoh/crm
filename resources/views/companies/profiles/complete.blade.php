@@ -20,7 +20,7 @@
 
                 <div class="w-full px-3 mb-12">
                     <label for="company_email"
-                           class=" label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-2">Company
+                           class="label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-2">Company
                         Email</label>
                     <input type="email" name="company_email" value="{!! $company->email !!}"
                            placeholder="company@domain.com"

@@ -34,7 +34,6 @@
                         <p>Reports</p>
                     </tab>
                 </tabs>
-
             </div>
         </div>
     </div>

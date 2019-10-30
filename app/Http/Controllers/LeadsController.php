@@ -31,6 +31,10 @@ class LeadsController extends Controller
 
         $this->leadAssignee->store(auth()->user(), $lead);
 
+        if ($request->wantsJson()) {
+            return ['message' => route('dashboard.user', auth()->id())];
+        }
+
         return redirect(route('dashboard.user', auth()->id()));
     }
 }

@@ -10,11 +10,11 @@
             <div class="w-3/4 px-5 py-5">
 
                 <tabs>
-                    <tab title="Schedules">
+                    <tab title="Schedules" active>
                         @include('.dashboards.user.schedules')
                     </tab>
 
-                    <tab title="Clients" active>
+                    <tab title="Clients">
                         <p>Clients here</p>
                     </tab>
 

@@ -41,9 +41,9 @@
                 <tr class="border border-gray-300 px-2 h-16 @if($index > 1) bg-white @endif ">
                     <td class="pl-4">
                         @if($index < 2)
-                            <span class="badge-default badge-default-success uppercase">completed</span>
+                            <span class="badge-default badge-default-success">completed</span>
                         @else
-                            <span class="badge-default badge-default-indigo uppercase">In Progress</span>
+                            <span class="badge-default badge-default-indigo">In Progress</span>
                         @endif
                     </td>
                     <td class="text-sm text-gray-600 font-medium">{!! now()->toFormattedDateString() !!}</td>

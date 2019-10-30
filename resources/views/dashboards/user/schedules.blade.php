@@ -1,4 +1,4 @@
-<div class="mt-8 w-full">
+<div class="w-full">
     <div class="flex items-center justify-between">
         <div class="flex items-center justify-between w-1/2">
             <input

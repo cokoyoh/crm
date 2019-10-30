@@ -8,16 +8,29 @@
             @include('.dashboards.user.user_details')
 
             <div class="w-3/4 px-5 py-5">
+
                 <tabs>
-                    <ul class="flex items-center justify-between w-3/4 mx-auto border rounded">
-                        <li class="border-r bg-blue-600 px-8 py-2 font-medium text-sm text-white rounded">Schedules</li>
-                        <li class="border-r px-8 py-2 font-medium text-sm text-gray-700">Clients</li>
-                        <li class="border-r px-8 py-2 font-medium text-sm text-gray-700">Interactions</li>
-                        <li class="border-r px-8 py-2 font-medium text-sm text-gray-700">Deals</li>
-                        <li class="px-8 py-2 font-medium text-sm text-gray-700">Reports</li>
-                    </ul>
+                    <tab title="Schedules">
+                        @include('.dashboards.user.schedules')
+                    </tab>
+
+                    <tab title="Clients" active>
+                        <p>Clients here</p>
+                    </tab>
+
+                    <tab title="Interactions">
+                        <p>Interactions here</p>
+                    </tab>
+
+                    <tab title="Deals" active>
+                        <p>Deals here</p>
+                    </tab>
+
+                    <tab title="Reports">
+                        <p>Reports</p>
+                    </tab>
                 </tabs>
-                @include('.dashboards.user.schedules')
+
             </div>
         </div>
     </div>

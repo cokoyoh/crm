@@ -1,0 +1,36 @@
+<?php
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+
+use CRM\Models\Lead;
+use Faker\Generator as Faker;
+
+$factory->define(Lead::class, function (Faker $faker) {
+    return [
+        'first_name' => $faker->firstName,
+        'last_name' => $faker->lastName,
+        'country_code' => $faker->countryCode,
+        'phone_number' => $faker->phoneNumber,
+        'email' => $faker->email
+    ];
+});
+
+$factory->state(Lead::class, 'raw', function (Faker $faker) {
+   return [
+       'name' => $faker->name()
+   ];
+});
+
+$factory->define(CRM\Models\LeadClass::class, function (Faker $faker) {
+    return [
+        'name' => $faker->word,
+        'slug' => $faker->slug(3, false)
+    ];
+});
+
+$factory->define(CRM\Models\LeadAssignee::class, function (Faker $faker) {
+    return [
+        'user_id' => create(\CRM\Models\User::class)->id,
+        'lead_id' => create(Lead::class)->id
+    ];
+});

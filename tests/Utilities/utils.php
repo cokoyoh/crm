@@ -15,7 +15,7 @@ function raw($class, $attributes = [], $count = null)
     return factory($class, $count)->raw($attributes);
 }
 
-function rawState($class, $attributes = [], $state = null)
+function rawState($class, $attributes = [], $state = 'raw')
 {
     return factory($class)->state($state)->raw($attributes);
 }

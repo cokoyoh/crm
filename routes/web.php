@@ -39,5 +39,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/dashboard', 'DashboardController@superAdmin')->name('dashboard.superadmin');
     Route::get('/dashboard/{user}/admin', 'DashboardController@admin')->name('dashboard.admin');
     Route::get('/dashboard/{user}/user', 'DashboardController@user')->name('dashboard.user');
+
+    Route::post('/leads', 'LeadsController@store')->name('leads.store');
 });
 

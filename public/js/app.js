@@ -27942,11 +27942,15 @@ var render = function() {
       attrs: {
         name: "new-schedule-modal",
         height: "auto",
-        classes: "p-5 card rounded-lg"
+        classes: "px-5 py-16 card rounded-lg"
       }
     },
     [
-      _c("p", [_vm._v("Add Schedule")]),
+      _c(
+        "p",
+        { staticClass: "text-2xl text-center text-gray-700 font-medium" },
+        [_vm._v("Add Schedule")]
+      ),
       _vm._v(" "),
       _c(
         "form",
@@ -27994,105 +27998,77 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("div", { staticClass: "mb-6" }, [
-            _c(
-              "label",
-              {
-                staticClass:
-                  "label text-gray-600 font-semibold uppercase text-xs tracking-wider",
-                attrs: { for: "start_at" }
-              },
-              [_vm._v("Start")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
+          _c(
+            "div",
+            { staticClass: "mb-6" },
+            [
+              _c("vue-date-picker", {
+                attrs: {
+                  format: "hh:mm",
+                  formatted: "hh:mm",
+                  label: "Start At",
+                  "no-header": "",
+                  "auto-close": "",
+                  "input-size": "sm",
+                  "only-time": "",
+                  "no-shortcuts": "",
+                  "minute-interval": "5"
+                },
+                model: {
                   value: _vm.form.start_at,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "start_at", $$v)
+                  },
                   expression: "form.start_at"
                 }
-              ],
-              staticClass:
-                "input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300",
-              class: _vm.form.errors.start_at
-                ? "border-red-500"
-                : "border-gray-500",
-              attrs: {
-                type: "time",
-                id: "start_at",
-                name: "start_at",
-                placeholder: _vm.form.start_at
-              },
-              domProps: { value: _vm.form.start_at },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "start_at", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.form.errors.start_at
-              ? _c("span", {
-                  staticClass: "text-xs italic text-red-700",
-                  domProps: { textContent: _vm._s(_vm.form.errors.start_at[0]) }
-                })
-              : _vm._e()
-          ]),
+              }),
+              _vm._v(" "),
+              _vm.form.errors.start_at
+                ? _c("span", {
+                    staticClass: "text-xs italic text-red-700",
+                    domProps: {
+                      textContent: _vm._s(_vm.form.errors.start_at[0])
+                    }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
           _vm._v(" "),
-          _c("div", { staticClass: "mb-6" }, [
-            _c(
-              "label",
-              {
-                staticClass:
-                  "label text-gray-600 font-semibold uppercase text-xs tracking-wider",
-                attrs: { for: "end_at" }
-              },
-              [_vm._v("End")]
-            ),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
+          _c(
+            "div",
+            { staticClass: "mb-6" },
+            [
+              _c("vue-date-picker", {
+                attrs: {
+                  format: "hh:mm",
+                  formatted: "hh:mm",
+                  label: "End At",
+                  "no-header": "",
+                  "auto-close": "",
+                  "input-size": "sm",
+                  "only-time": "",
+                  "no-shortcuts": "",
+                  "minute-interval": "5"
+                },
+                model: {
                   value: _vm.form.end_at,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "end_at", $$v)
+                  },
                   expression: "form.end_at"
                 }
-              ],
-              staticClass:
-                "input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300",
-              class: _vm.form.errors.end_at
-                ? "border-red-500"
-                : "border-gray-500",
-              attrs: {
-                type: "time",
-                id: "end_at",
-                name: "end_at",
-                placeholder: _vm.form.end_at
-              },
-              domProps: { value: _vm.form.end_at },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.$set(_vm.form, "end_at", $event.target.value)
-                }
-              }
-            }),
-            _vm._v(" "),
-            _vm.form.errors.end_at
-              ? _c("span", {
-                  staticClass: "text-xs italic text-red-700",
-                  domProps: { textContent: _vm._s(_vm.form.errors.end_at[0]) }
-                })
-              : _vm._e()
-          ]),
+              }),
+              _vm._v(" "),
+              _vm.form.errors.end_at
+                ? _c("span", {
+                    staticClass: "text-xs italic text-red-700",
+                    domProps: { textContent: _vm._s(_vm.form.errors.end_at[0]) }
+                  })
+                : _vm._e()
+            ],
+            1
+          ),
           _vm._v(" "),
           _c("footer", { staticClass: "flex justify-end" }, [
             _c(

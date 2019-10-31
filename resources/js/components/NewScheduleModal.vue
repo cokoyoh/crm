@@ -1,11 +1,9 @@
 <template>
-    <modal name="new-schedule-modal" height="auto" classes="p-5 card rounded-lg">
-        <p>Add Schedule</p>
+    <modal name="new-schedule-modal" height="auto" classes="px-5 py-16 card rounded-lg">
+        <p class="text-2xl text-center text-gray-700 font-medium">Add Schedule</p>
 
         <form @submit.prevent="submit" class="w-10/12 mx-auto py-5">
             <div class="mb-4">
-<!--                <label for="date" class="label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-1">Date</label>-->
-
                 <vue-date-picker
                     v-model="form.date"
                     format="YYYY-MM-DD"
@@ -18,36 +16,38 @@
                     no-shortcuts
                 ></vue-date-picker>
 
-<!--                <input type="date" id="date" name="date"-->
-<!--                       class="input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300"-->
-<!--                       :class="form.errors.date ? 'border-red-500' : 'border-gray-500'"-->
-<!--                       :placeholder="form.date"-->
-<!--                       v-model="form.date"-->
-<!--                >-->
                 <span class="text-xs italic text-red-700" v-if="form.errors.date" v-text="form.errors.date[0]"></span>
             </div>
 
             <div class="mb-6">
-                <label for="start_at" class="label text-gray-600 font-semibold uppercase text-xs tracking-wider">Start</label>
-
-                <input type="time" id="start_at" name="start_at"
-                       class="input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300"
-                       :class="form.errors.start_at ? 'border-red-500' : 'border-gray-500'"
-                       :placeholder="form.start_at"
-                       v-model="form.start_at"
-                >
+                <vue-date-picker
+                    v-model="form.start_at"
+                    format="hh:mm"
+                    formatted="hh:mm"
+                    label="Start At"
+                    no-header
+                    auto-close
+                    input-size="sm"
+                    only-time
+                    no-shortcuts
+                    minute-interval="5"
+                ></vue-date-picker>
                 <span class="text-xs italic text-red-700" v-if="form.errors.start_at" v-text="form.errors.start_at[0]"></span>
             </div>
 
             <div class="mb-6">
-                <label for="end_at" class="label text-gray-600 font-semibold uppercase text-xs tracking-wider">End</label>
-
-                <input type="time" id="end_at" name="end_at"
-                       class="input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300"
-                       :class="form.errors.end_at ? 'border-red-500' : 'border-gray-500'"
-                       :placeholder="form.end_at"
-                       v-model="form.end_at"
-                >
+                <vue-date-picker
+                    v-model="form.end_at"
+                    format="hh:mm"
+                    formatted="hh:mm"
+                    label="End At"
+                    no-header
+                    auto-close
+                    input-size="sm"
+                    only-time
+                    no-shortcuts
+                    minute-interval="5"
+                ></vue-date-picker>
                 <span class="text-xs italic text-red-700" v-if="form.errors.end_at" v-text="form.errors.end_at[0]"></span>
             </div>
 

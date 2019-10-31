@@ -52,7 +52,14 @@
                </div>
            </div>
 
-
+<!--           <vue-tel-input-->
+<!--               v-model="phone"-->
+<!--               inputClasses="focus:outline-none focus:border-blue-300 py-2 px-4"-->
+<!--               wrapperClasses="focus:outline-none focus:border-blue-300 outline-none"-->
+<!--               defaultCountry="KE"-->
+<!--               mode="international"-->
+<!--               name="phone">-->
+<!--           </vue-tel-input>-->
 
            <footer class="flex justify-end">
                <button type="button" class="btn btn-gray mr-4 text-xs" @click="$modal.hide('new-lead')">Cancel</button>
@@ -83,7 +90,10 @@
         methods: {
             submit() {
                 this.form.submit('/leads')
-                    .then(response => location = response.data.message);
+                    .then(response => {
+                        // location = response.data.message;
+                        Event.$emit('flash-message', response.data.message)
+                    });
             }
         }
     }

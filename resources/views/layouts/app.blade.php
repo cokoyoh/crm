@@ -51,6 +51,8 @@
             @yield('content')
         </main>
 
+        <flash-message></flash-message>
+
     </div>
 
     <!-- Scripts -->

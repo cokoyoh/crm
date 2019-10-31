@@ -23,6 +23,13 @@ class SchedulesController extends Controller
     {
         $this->schedule->create($request->validated());
 
+        if ($request->wantsJson()) {
+            return [
+                'message' => 'Schedule added successfully',
+                'link' => route('dashboard.user', auth()->user())
+            ];
+        }
+
         return redirect(route('dashboard.user', auth()->user()));
     }
 }

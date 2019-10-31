@@ -2021,6 +2021,102 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewScheduleModal.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewScheduleModal.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _CrmForm__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./CrmForm */ "./resources/js/components/CrmForm.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "new-schedule-module",
+  data: function data() {
+    return {
+      form: new _CrmForm__WEBPACK_IMPORTED_MODULE_0__["default"]({
+        date: '2019-10-31',
+        start_at: '20:30',
+        end_at: '21:00',
+        lead_id: 1
+      })
+    };
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.form.submit('/schedules').then(function (response) {
+        _this.flash(response.data.message);
+
+        _this.hideModal();
+      });
+    },
+    flash: function flash(message) {
+      Event.fire('flash-message', message);
+    },
+    hideModal: function hideModal() {
+      this.$modal.hide('new-schedule-modal');
+      this.form.reset();
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tab.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tab.vue?vue&type=script&lang=js& ***!
@@ -2955,6 +3051,226 @@ var render = function() {
                 on: {
                   click: function($event) {
                     return _vm.$modal.hide("new-lead")
+                  }
+                }
+              },
+              [_vm._v("Cancel")]
+            ),
+            _vm._v(" "),
+            _c("button", { staticClass: "btn btn-success text-xs" }, [
+              _vm._v("Submit")
+            ])
+          ])
+        ]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true&":
+/*!*******************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true& ***!
+  \*******************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "modal",
+    {
+      attrs: {
+        name: "new-schedule-modal",
+        height: "auto",
+        classes: "p-5 card rounded-lg"
+      }
+    },
+    [
+      _c("p", [_vm._v("Add Schedule")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        {
+          staticClass: "w-10/12 mx-auto py-5",
+          on: {
+            submit: function($event) {
+              $event.preventDefault()
+              return _vm.submit($event)
+            }
+          }
+        },
+        [
+          _c("div", { staticClass: "mb-4" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-1",
+                attrs: { for: "date" }
+              },
+              [_vm._v("Date")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.date,
+                  expression: "form.date"
+                }
+              ],
+              staticClass:
+                "input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300",
+              class: _vm.form.errors.date
+                ? "border-red-500"
+                : "border-gray-500",
+              attrs: {
+                type: "date",
+                id: "date",
+                name: "date",
+                placeholder: _vm.form.date
+              },
+              domProps: { value: _vm.form.date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "date", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.form.errors.date
+              ? _c("span", {
+                  staticClass: "text-xs italic text-red-700",
+                  domProps: { textContent: _vm._s(_vm.form.errors.date[0]) }
+                })
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-6" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "label text-gray-600 font-semibold uppercase text-xs tracking-wider",
+                attrs: { for: "start_at" }
+              },
+              [_vm._v("Start")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.start_at,
+                  expression: "form.start_at"
+                }
+              ],
+              staticClass:
+                "input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300",
+              class: _vm.form.errors.start_at
+                ? "border-red-500"
+                : "border-gray-500",
+              attrs: {
+                type: "time",
+                id: "start_at",
+                name: "start_at",
+                placeholder: _vm.form.start_at
+              },
+              domProps: { value: _vm.form.start_at },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "start_at", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.form.errors.start_at
+              ? _c("span", {
+                  staticClass: "text-xs italic text-red-700",
+                  domProps: { textContent: _vm._s(_vm.form.errors.start_at[0]) }
+                })
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-6" }, [
+            _c(
+              "label",
+              {
+                staticClass:
+                  "label text-gray-600 font-semibold uppercase text-xs tracking-wider",
+                attrs: { for: "end_at" }
+              },
+              [_vm._v("End")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.end_at,
+                  expression: "form.end_at"
+                }
+              ],
+              staticClass:
+                "input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300",
+              class: _vm.form.errors.end_at
+                ? "border-red-500"
+                : "border-gray-500",
+              attrs: {
+                type: "time",
+                id: "end_at",
+                name: "end_at",
+                placeholder: _vm.form.end_at
+              },
+              domProps: { value: _vm.form.end_at },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "end_at", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _vm.form.errors.end_at
+              ? _c("span", {
+                  staticClass: "text-xs italic text-red-700",
+                  domProps: { textContent: _vm._s(_vm.form.errors.end_at[0]) }
+                })
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("footer", { staticClass: "flex justify-end" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-gray mr-4 text-xs",
+                attrs: { type: "button" },
+                on: {
+                  click: function($event) {
+                    return _vm.$modal.hide("new-schedule-modal")
                   }
                 }
               },
@@ -18845,6 +19161,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/NewScheduleModal.vue":
+/*!******************************************************!*\
+  !*** ./resources/js/components/NewScheduleModal.vue ***!
+  \******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NewScheduleModal_vue_vue_type_template_id_26620001_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true& */ "./resources/js/components/NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true&");
+/* harmony import */ var _NewScheduleModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewScheduleModal.vue?vue&type=script&lang=js& */ "./resources/js/components/NewScheduleModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NewScheduleModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewScheduleModal_vue_vue_type_template_id_26620001_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NewScheduleModal_vue_vue_type_template_id_26620001_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "26620001",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/NewScheduleModal.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/NewScheduleModal.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************!*\
+  !*** ./resources/js/components/NewScheduleModal.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewScheduleModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NewScheduleModal.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewScheduleModal.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewScheduleModal_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true&":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/components/NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true& ***!
+  \*************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewScheduleModal_vue_vue_type_template_id_26620001_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewScheduleModal.vue?vue&type=template&id=26620001&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewScheduleModal_vue_vue_type_template_id_26620001_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewScheduleModal_vue_vue_type_template_id_26620001_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/Tab.vue":
 /*!*****************************************!*\
   !*** ./resources/js/components/Tab.vue ***!
@@ -18996,7 +19381,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Tab */ "./resources/js/components/Tab.vue");
 /* harmony import */ var _components_NewLeadModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/NewLeadModal */ "./resources/js/components/NewLeadModal.vue");
 /* harmony import */ var _components_FlashMessage__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/FlashMessage */ "./resources/js/components/FlashMessage.vue");
+/* harmony import */ var _components_NewScheduleModal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/NewScheduleModal */ "./resources/js/components/NewScheduleModal.vue");
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
+
 
 
 
@@ -19005,6 +19392,7 @@ Vue.component('tabs', _components_Tabs__WEBPACK_IMPORTED_MODULE_0__["default"]);
 Vue.component('tab', _components_Tab__WEBPACK_IMPORTED_MODULE_1__["default"]);
 Vue.component('new-lead-modal', _components_NewLeadModal__WEBPACK_IMPORTED_MODULE_2__["default"]);
 Vue.component('flash-message', _components_FlashMessage__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('new-schedule-modal', _components_NewScheduleModal__WEBPACK_IMPORTED_MODULE_4__["default"]);
 
 /***/ }),
 

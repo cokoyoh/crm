@@ -26,7 +26,7 @@ class LeadRepository implements CreateInterface
 
         $attributes['first_name'] = $names ? $names[0] : $attributes['first_name'];
 
-        $attributes['last_name'] = $names ? $names[0] : $attributes['last_name'];
+        $attributes['last_name'] = $names ? $names[1] : $attributes['last_name'];
 
         $lead = $this->lead->create($attributes);
 

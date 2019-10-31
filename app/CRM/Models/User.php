@@ -132,4 +132,16 @@ class User extends Authenticatable
 
         return $query->whereNull('deactivated_at');
     }
+
+    public function leads()
+    {
+        return Lead::whereHas(
+            'leadAssignee',
+            function ($leadAssignee) {
+                $leadAssignee->where('user_id', $this->id);
+            })
+            ->latest()
+            ->take(5) //temporary statement, should be removed
+            ->get();
+    }
 }

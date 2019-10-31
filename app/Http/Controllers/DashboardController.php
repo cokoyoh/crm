@@ -46,7 +46,8 @@ class DashboardController extends Controller
     public function user(User $user)
     {
         return view('dashboards.user', [
-            'user' => $user
+            'user' => $user,
+            'leads' => $user->leads()
         ]);
     }
 

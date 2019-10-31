@@ -15,7 +15,7 @@
                     </tab>
 
                     <tab title="Leads">
-                        <p>Leads here</p>
+                        @include('.dashboards.user.leads')
                     </tab>
 
                     <tab title="Clients">

@@ -3,6 +3,8 @@
 namespace Tests\Unit;
 
 use CRM\Models\Company;
+use CRM\Models\Lead;
+use CRM\Models\LeadAssignee;
 use CRM\Models\Role;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -115,5 +117,20 @@ class UserTest extends TestCase
         $this->assertTrue($users->contains($activeUser));
 
         $this->assertFalse($users->contains($deactivatedUser));
+    }
+
+    /** @test */
+    public function it_has_leads()
+    {
+        $user = create(User::class);
+
+        $lead = create(Lead::class);
+
+        create(LeadAssignee::class, [
+            'user_id' => $user->id,
+            'lead_id' => $lead->id
+        ]);
+
+        $this->assertCount(1, $user->leads());
     }
 }

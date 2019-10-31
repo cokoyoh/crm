@@ -28,7 +28,8 @@ class CreateLeadAssigneesTable extends Migration
             $table->index('user_id', 'fk_lead_assignees_users1_idx');
 
             $table->foreign('lead_id', 'fk_lead_assignees_leads1')
-                ->references('id')->on('leads')
+                ->references('id')
+                ->on('leads')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
 
@@ -37,6 +38,7 @@ class CreateLeadAssigneesTable extends Migration
                 ->on('users')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
+
         });
     }
 

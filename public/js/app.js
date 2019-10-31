@@ -2001,13 +2001,18 @@ __webpack_require__.r(__webpack_exports__);
       var _this = this;
 
       this.form.submit('/leads').then(function (response) {
-        _this.emit(response.data.message);
+        _this.flash(response.data.message);
+
+        _this.changeActiveTab();
 
         _this.hide();
       });
     },
-    emit: function emit(message) {
+    flash: function flash(message) {
       Event.fire('flash-message', message);
+    },
+    changeActiveTab: function changeActiveTab() {
+      Event.fire('change-active-tab', 'Leads');
     },
     hide: function hide() {
       this.$modal.hide('new-lead');
@@ -2094,6 +2099,15 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.tabs = this.$children;
     this.setInitialActiveTab();
+  },
+  updated: function updated() {
+    var _this = this;
+
+    Event.listen('change-active-tab', function (tabTitle) {
+      return _this.activeTab = _this.tabs.find(function (tab) {
+        return tab.title == tabTitle;
+      });
+    });
   },
   watch: {
     activeTab: function activeTab(_activeTab) {

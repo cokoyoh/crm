@@ -91,14 +91,20 @@
             submit() {
                 this.form.submit('/leads')
                     .then(response => {
-                         this.emit(response.data.message);
+                         this.flash(response.data.message);
+
+                         this.changeActiveTab();
 
                          this.hide();
                     });
             },
 
-            emit(message) {
+            flash(message) {
                 Event.fire('flash-message', message);
+            },
+
+            changeActiveTab() {
+                Event.fire('change-active-tab', 'Leads');
             },
 
             hide() {

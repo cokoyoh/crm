@@ -38,6 +38,10 @@
             this.setInitialActiveTab();
         },
 
+        updated() {
+            Event.listen('change-active-tab', tabTitle => this.activeTab = this.tabs.find(tab => tab.title == tabTitle))
+        },
+
         watch: {
             activeTab(activeTab) {
                 this.tabs.map(tab => (tab.isActive = tab == activeTab));

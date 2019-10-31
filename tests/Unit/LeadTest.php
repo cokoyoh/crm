@@ -50,4 +50,14 @@ class LeadTest extends TestCase
 
         $this->assertEquals($lead->name, 'John Doe');
     }
+
+    /** @test */
+    public function it_has_a_class()
+    {
+        $leadClass = create(LeadClass::class, ['slug' => 'converted']);
+
+        $lead = create(Lead::class, ['lead_class_id' => $leadClass->id]);
+
+        $this->assertEquals('converted', $lead->leadClass->slug);
+    }
 }

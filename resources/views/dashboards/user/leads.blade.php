@@ -40,10 +40,16 @@
             @foreach($leads as $lead)
                 <tr class="border border-gray-300 px-2 h-16 @if($lead->id % 2 == 0) bg-white @endif ">
                     <td class="pl-4">
-                        @if($lead->id % 2 == 0)
-                            <span class="badge-default badge-default-success">completed</span>
-                        @else
-                            <span class="badge-default badge-default-indigo">In Progress</span>
+                        @if($lead->leadClass->slug == 'not_followed_up')
+                            <span class="badge-default lead-not-followed-up">Not Followed Up</span>
+                        @elseif($lead->leadClass->slug == 'followed_up')
+                            <span class="badge-default lead-followed-up">Followed Up</span>
+                        @elseif($lead->leadClass->slug == 'converted')
+                            <span class="badge-default lead-converted">Converted</span>
+                        @elseif($lead->leadClass->slug == 'lost')
+                            <span class="badge-default lead-lost">Lost</span>
+                        @elseif($lead->leadClass->slug == 'not_interested')
+                            <span class="badge-default lead-not-interested">Not Interested</span>
                         @endif
                     </td>
                     <td class="text-sm text-gray-600 font-medium">{!! $lead->created_at->toFormattedDateString() !!}</td>

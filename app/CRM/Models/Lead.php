@@ -31,4 +31,9 @@ class Lead extends Model
     {
         return $this->hasOne(LeadAssignee::class);
     }
+
+    public function leadClass()
+    {
+        return $this->belongsTo(LeadClass::class);
+    }
 }

@@ -4627,6 +4627,36 @@ video {
 @media (min-width: 640px) {
 }
 
+.lead-not-followed-up {
+  color: #fff;
+  border-color: #ecc94b;
+  background-color: #ecc94b;
+}
+
+.lead-followed-up {
+  color: #fff;
+  border-color: #48bb78;
+  background-color: #48bb78;
+}
+
+.lead-converted {
+  color: #fff;
+  border-color: #234e52;
+  background-color: #234e52;
+}
+
+.lead-not-interested {
+  color: #fff;
+  border-color: #fed7d7;
+  background-color: #fed7d7;
+}
+
+.lead-lost {
+  color: #fff;
+  border-color: #f56565;
+  background-color: #f56565;
+}
+
 .container {
   width: 100%;
 }

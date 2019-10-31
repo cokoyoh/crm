@@ -1,0 +1,19 @@
+.lead-not-followed-up {
+    @apply text-white border-yellow-500 bg-yellow-500;
+}
+
+.lead-followed-up {
+    @apply text-white border-green-500 bg-green-500;
+}
+
+.lead-converted {
+    @apply text-white border-teal-900 bg-teal-900;
+}
+
+.lead-not-interested {
+    @apply text-white border-red-200 bg-red-200;
+}
+
+.lead-lost {
+    @apply text-white border-red-500 bg-red-500;
+}

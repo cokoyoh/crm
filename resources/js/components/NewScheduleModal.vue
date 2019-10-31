@@ -4,14 +4,26 @@
 
         <form @submit.prevent="submit" class="w-10/12 mx-auto py-5">
             <div class="mb-4">
-                <label for="date" class="label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-1">Date</label>
+<!--                <label for="date" class="label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-1">Date</label>-->
 
-                <input type="date" id="date" name="date"
-                       class="input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300"
-                       :class="form.errors.date ? 'border-red-500' : 'border-gray-500'"
-                       :placeholder="form.date"
-                       v-model="form.date"
-                >
+                <vue-date-picker
+                    v-model="form.date"
+                    format="YYYY-MM-DD"
+                    formatted="YYYY-MM-DD"
+                    label="Select Date"
+                    no-header
+                    auto-close
+                    input-size="sm"
+                    only-date
+                    no-shortcuts
+                ></vue-date-picker>
+
+<!--                <input type="date" id="date" name="date"-->
+<!--                       class="input bg-white border border-gray-100 rounded py-2 px-4 text-sm text-gray-800 text-xm block w-full focus:outline-none focus:border-blue-300"-->
+<!--                       :class="form.errors.date ? 'border-red-500' : 'border-gray-500'"-->
+<!--                       :placeholder="form.date"-->
+<!--                       v-model="form.date"-->
+<!--                >-->
                 <span class="text-xs italic text-red-700" v-if="form.errors.date" v-text="form.errors.date[0]"></span>
             </div>
 

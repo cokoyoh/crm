@@ -8,6 +8,9 @@ $material-icons-font-path: '~material-icons/iconfont/';
 //Custom style
 @import "crm";
 
+//External difficult to import files
+@import "external";
+
 @tailwind components;
 
 @tailwind utilities;

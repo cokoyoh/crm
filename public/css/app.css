@@ -4633,10 +4633,21 @@ video {
   background-color: #ecc94b;
 }
 
+.lead-not-followed-up:hover {
+  border-color: #d69e2e;
+  background-color: #d69e2e;
+  font-weight: 500;
+}
+
 .lead-followed-up {
   color: #fff;
   border-color: #48bb78;
   background-color: #48bb78;
+}
+
+.lead-followed-up:hover {
+  border-color: #68d391;
+  background-color: #68d391;
 }
 
 .lead-converted {
@@ -4645,14 +4656,29 @@ video {
   background-color: #234e52;
 }
 
+.lead-converted:hover {
+  border-color: #2c7a7b;
+  background-color: #2c7a7b;
+}
+
 .lead-not-interested {
   color: #fff;
   border-color: #fed7d7;
   background-color: #fed7d7;
 }
 
+.lead-not-interested:hover {
+  border-color: #fc8181;
+  background-color: #fc8181;
+}
+
 .lead-lost {
   color: #fff;
+  border-color: #e53e3e;
+  background-color: #e53e3e;
+}
+
+.lead-lost:hover {
   border-color: #f56565;
   background-color: #f56565;
 }

@@ -144,4 +144,9 @@ class User extends Authenticatable
             ->take(5) //temporary statement, should be removed
             ->get();
     }
+
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class);
+    }
 }

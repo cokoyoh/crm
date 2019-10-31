@@ -41,5 +41,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/dashboard/{user}/user', 'DashboardController@user')->name('dashboard.user');
 
     Route::post('/leads', 'LeadsController@store')->name('leads.store');
+
+    Route::post('/schedules', 'SchedulesController@store')->name('schedules.store');
 });
 

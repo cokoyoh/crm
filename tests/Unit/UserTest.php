@@ -6,6 +6,7 @@ use CRM\Models\Company;
 use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
 use CRM\Models\Role;
+use CRM\Models\Schedule;
 use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\UserFactory;
@@ -132,5 +133,15 @@ class UserTest extends TestCase
         ]);
 
         $this->assertCount(1, $user->leads());
+    }
+
+    /** @test */
+    public function it_has_schedules()
+    {
+        $user = create(User::class);
+
+        create(Schedule::class, ['user_id' => $user->id]);
+
+        $this->assertCount(1, $user->schedules);
     }
 }

@@ -98,7 +98,7 @@
             },
 
             emit(message) {
-                Event.$emit('flash-message', message);
+                Event.fire('flash-message', message);
             },
 
             hide() {

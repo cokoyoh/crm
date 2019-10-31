@@ -1879,7 +1879,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     var _this2 = this;
 
-    Event.$on('flash-message', function (message) {
+    Event.listen('flash-message', function (message) {
       return _this2.flash(message);
     });
   }
@@ -1993,7 +1993,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     emit: function emit(message) {
-      Event.$emit('flash-message', message);
+      Event.fire('flash-message', message);
     },
     hide: function hide() {
       this.$modal.hide('new-lead');
@@ -18476,18 +18476,21 @@ module.exports = g;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
-/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue_tel_input__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-tel-input */ "./node_modules/vue-tel-input/dist/vue-tel-input.esm.js");
-/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components */ "./resources/js/components/index.js");
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var _bootstrap__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_bootstrap__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components */ "./resources/js/components/index.js");
+/* harmony import */ var _components_Listener__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Listener */ "./resources/js/components/Listener.js");
+/* harmony import */ var _components_Listener__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_components_Listener__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var vue_tel_input__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-tel-input */ "./node_modules/vue-tel-input/dist/vue-tel-input.esm.js");
 
 
 
-Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_0___default.a);
-Vue.use(vue_tel_input__WEBPACK_IMPORTED_MODULE_1__["default"]);
 
-window.Event = new Vue();
+
+Vue.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_3___default.a);
+Vue.use(vue_tel_input__WEBPACK_IMPORTED_MODULE_4__["default"]);
 var app = new Vue({
   el: '#app'
 });
@@ -18678,6 +18681,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_FlashMessage_vue_vue_type_template_id_3cea7a62_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/components/Listener.js":
+/*!*********************************************!*\
+  !*** ./resources/js/components/Listener.js ***!
+  \*********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+window.Event = new (
+/*#__PURE__*/
+function () {
+  function _class() {
+    _classCallCheck(this, _class);
+
+    this.vue = new Vue();
+  }
+
+  _createClass(_class, [{
+    key: "fire",
+    value: function fire(event) {
+      var data = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+      this.vue.$emit(event, data);
+    }
+  }, {
+    key: "listen",
+    value: function listen(event, callback) {
+      this.vue.$on(event, callback);
+    }
+  }]);
+
+  return _class;
+}())();
 
 /***/ }),
 

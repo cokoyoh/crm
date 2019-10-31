@@ -40,7 +40,7 @@
         },
 
         mounted() {
-            Event.$on('flash-message', message => this.flash(message))
+            Event.listen('flash-message', message => this.flash(message))
         }
     }
 </script>

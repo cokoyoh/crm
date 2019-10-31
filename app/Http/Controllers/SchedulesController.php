@@ -3,12 +3,25 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreScheduleRequest;
+use CRM\Schedules\ScheduleRepository;
 
 class SchedulesController extends Controller
 {
+    protected $schedule;
+
+    /**
+     * SchedulesController constructor.
+     * @param $schedule
+     */
+    public function __construct(ScheduleRepository $schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
+
     public function store(StoreScheduleRequest $request)
     {
-        auth()->user()->schedules()->create($request->validated());
+        $this->schedule->create($request->validated());
 
         return redirect(route('dashboard.user', auth()->user()));
     }

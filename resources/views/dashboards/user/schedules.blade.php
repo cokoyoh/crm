@@ -40,8 +40,6 @@
         <p>Add schedule mofo!!!!</p>
     </modal>
 
-    <new-lead-modal></new-lead-modal>
-
     <div class="mt-8">
         <table class="rounded-b-lg table-auto w-full px-2">
             <tbody>

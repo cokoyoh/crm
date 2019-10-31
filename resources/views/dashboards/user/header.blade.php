@@ -15,4 +15,6 @@
         </svg>
         <span class="ml-1 font-medium">Add Lead</span>
     </button>
+
+    <new-lead-modal></new-lead-modal>
 </div>

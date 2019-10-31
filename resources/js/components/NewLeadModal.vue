@@ -91,11 +91,11 @@
             submit() {
                 this.form.submit('/leads')
                     .then(response => {
-                         this.flash(response.data.message);
+                        this.flash(response.data.message);
 
-                         this.changeActiveTab();
+                        this.hideModal();
 
-                         this.hide();
+                        this.changeActiveTab();
                     });
             },
 
@@ -107,7 +107,7 @@
                 Event.fire('change-active-tab', 'Leads');
             },
 
-            hide() {
+            hideModal() {
                this.$modal.hide('new-lead');
 
                this.form.reset();

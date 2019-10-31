@@ -1873,7 +1873,7 @@ __webpack_require__.r(__webpack_exports__);
 
       setInterval(function () {
         _this.show = false;
-      }, 6000);
+      }, 5000);
     }
   },
   mounted: function mounted() {
@@ -1984,10 +1984,20 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
+      var _this = this;
+
       this.form.submit('/leads').then(function (response) {
-        // location = response.data.message;
-        Event.$emit('flash-message', response.data.message);
+        _this.emit(response.data.message);
+
+        _this.hide();
       });
+    },
+    emit: function emit(message) {
+      Event.$emit('flash-message', message);
+    },
+    hide: function hide() {
+      this.$modal.hide('new-lead');
+      this.form.reset();
     }
   }
 });

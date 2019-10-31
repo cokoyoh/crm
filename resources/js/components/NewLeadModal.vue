@@ -91,9 +91,20 @@
             submit() {
                 this.form.submit('/leads')
                     .then(response => {
-                        // location = response.data.message;
-                        Event.$emit('flash-message', response.data.message)
+                         this.emit(response.data.message);
+
+                         this.hide();
                     });
+            },
+
+            emit(message) {
+                Event.$emit('flash-message', message);
+            },
+
+            hide() {
+               this.$modal.hide('new-lead');
+
+               this.form.reset();
             }
         }
     }

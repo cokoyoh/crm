@@ -35,7 +35,7 @@
             },
 
             hide() {
-                setInterval(() => {this.show = false}, 6000);
+                setInterval(() => {this.show = false}, 5000);
             }
         },
 

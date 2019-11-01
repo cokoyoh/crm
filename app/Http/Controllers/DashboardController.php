@@ -2,11 +2,26 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use CRM\Models\Company;
+use CRM\Models\Schedule;
 use CRM\Models\User;
+use CRM\Schedules\ScheduleRepository;
 
 class DashboardController extends Controller
 {
+    protected $schedule;
+
+    /**
+     * DashboardController constructor.
+     * @param $schedule
+     */
+    public function __construct(ScheduleRepository $schedule)
+    {
+        $this->schedule = $schedule;
+    }
+
+
     public function superAdmin()
     {
         $this->authorize('manageCompany', new Company());
@@ -45,9 +60,25 @@ class DashboardController extends Controller
 
     public function user(User $user)
     {
+        $userSchedules = $this->schedule->userSchedules();
+
+        $schedule = Schedule::find(16);
+
+        $endTime = Carbon::parse($schedule->start_at);
+
+        dd($userSchedules->toArray());
+//
+//        if ($endTime->copy()->isCurrentHour() &&  Carbon::parse($schedule->date)->isToday()) {
+//            dd('in progress');
+//        }
+//
+//        dd($endTime->isCurrentHour(), Carbon::parse($schedule->date)->isToday());
+
+
         return view('dashboards.user', [
             'user' => $user,
-            'leads' => $user->leads()
+            'leads' => $user->leads(),
+            'schedules' => $userSchedules
         ]);
     }
 
@@ -56,6 +87,7 @@ class DashboardController extends Controller
         return $company->users()
             ->where('created_at', '>=', now()->subWeek())
             ->where('created_at', '<=', now())
+            ->latest()
             ->get();
     }
 }

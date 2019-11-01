@@ -4,8 +4,10 @@ import Tabs from '../components/Tabs'
 import Tab from '../components/Tab'
 import NewLeadModal from '../components/NewLeadModal'
 import FlashMessage from '../components/FlashMessage'
+import ErrorMessage from '../components/ErrorMessage'
 import NewScheduleModule from '../components/NewScheduleModal'
 import VueDatePicker from  'vue-ctk-date-time-picker'
+import VueSelect from 'vue-select'
 
 
 
@@ -13,5 +15,7 @@ Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);
 Vue.component('new-lead-modal', NewLeadModal);
 Vue.component('flash-message', FlashMessage);
+Vue.component('error-message', ErrorMessage);
 Vue.component('new-schedule-modal', NewScheduleModule);
 Vue.component('vue-date-picker', VueDatePicker);
+Vue.component('v-select', VueSelect);

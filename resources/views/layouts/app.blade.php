@@ -53,6 +53,8 @@
 
         <flash-message></flash-message>
 
+        <error-message></error-message>
+
     </div>
 
     <!-- Scripts -->

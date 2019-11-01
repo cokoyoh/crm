@@ -39,20 +39,22 @@
     <div class="mt-8">
         <table class="rounded-b-lg table-auto w-full px-2">
             <tbody>
-            @foreach(range(0, 5) as $index)
-                <tr class="border border-gray-300 px-2 h-16 @if($index > 1) bg-white @endif ">
+            @foreach($schedules as $schedule)
+                <tr class="border border-gray-300 px-2 h-16 @if( $schedule % 2 == 0) bg-white @endif ">
                     <td class="pl-4">
-                        @if($index < 2)
-                            <span class="badge-default badge-default-success">completed</span>
-                        @else
-                            <span class="badge-default badge-default-indigo">In Progress</span>
+                        @if($schedule['status'] == 'completed')
+                            <span class="badge-default badge-default-success">Completed</span>
+                        @elseif($schedule['status'] =='in_progress')
+                            <span class="badge-default lead-lost">In Progress</span>
+                        @elseif($schedule['status'] =='up_coming')
+                            <span class="badge-default badge-default-indigo">Up Coming</span>
                         @endif
                     </td>
-                    <td class="text-sm text-gray-600 font-medium">{!! now()->toFormattedDateString() !!}</td>
-                    <td class="text-sm text-gray-600 font-normal">{!! now()->subRealMinutes(4)->format('H:i a')!!} - {!! now()->format('H:i a')!!} </td>
+                    <td class="text-sm text-gray-600 font-medium">{!! $schedule['date'] !!}</td>
+                    <td class="text-sm text-gray-600 font-normal">{!!  $schedule['startAt'] !!} - {!!  $schedule['endAt'] !!} </td>
                     <td class="leading-snug">
                         <p class="uppercase text-xs text-gray-600 font-semibold">Some Title</p>
-                        <p class="text-gray-700 text-sm font-semibold">Some Name</p>
+                        <p class="text-gray-700 text-sm font-semibold">{!! $schedule['leadName'] !!}</p>
                     </td>
                 </tr>
             @endforeach

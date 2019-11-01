@@ -9,4 +9,9 @@ class Schedule extends Model
     protected $table = 'schedules';
 
     protected $guarded = [];
+
+    public function lead()
+    {
+        return $this->belongsTo(Lead::class);
+    }
 }

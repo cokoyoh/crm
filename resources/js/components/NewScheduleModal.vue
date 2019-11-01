@@ -1,5 +1,5 @@
 <template>
-    <modal name="new-schedule-modal" height="auto" classes="px-5 py-16 card rounded-lg">
+    <modal name="new-schedule-modal" height="auto" classes="px-5 pt-10 pb-16 mb-4 card rounded-lg">
         <p class="text-2xl text-center text-gray-700 font-medium">Add Schedule</p>
 
         <form @submit.prevent="submit" class="w-10/12 mx-auto py-5">
@@ -14,6 +14,7 @@
                     input-size="sm"
                     only-date
                     no-shortcuts
+                    button-now-translation
                 ></vue-date-picker>
 
                 <span class="text-xs italic text-red-700" v-if="form.errors.date" v-text="form.errors.date[0]"></span>
@@ -26,7 +27,6 @@
                     formatted="hh:mm"
                     label="Start At"
                     no-header
-                    auto-close
                     input-size="sm"
                     only-time
                     no-shortcuts
@@ -42,7 +42,6 @@
                     formatted="hh:mm"
                     label="End At"
                     no-header
-                    auto-close
                     input-size="sm"
                     only-time
                     no-shortcuts

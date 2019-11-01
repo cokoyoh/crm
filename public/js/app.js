@@ -2093,7 +2093,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "new-schedule-module",
@@ -27942,7 +27941,7 @@ var render = function() {
       attrs: {
         name: "new-schedule-modal",
         height: "auto",
-        classes: "px-5 py-16 card rounded-lg"
+        classes: "px-5 pt-10 pb-16 mb-4 card rounded-lg"
       }
     },
     [
@@ -27977,7 +27976,8 @@ var render = function() {
                   "auto-close": "",
                   "input-size": "sm",
                   "only-date": "",
-                  "no-shortcuts": ""
+                  "no-shortcuts": "",
+                  "button-now-translation": ""
                 },
                 model: {
                   value: _vm.form.date,
@@ -28008,7 +28008,6 @@ var render = function() {
                   formatted: "hh:mm",
                   label: "Start At",
                   "no-header": "",
-                  "auto-close": "",
                   "input-size": "sm",
                   "only-time": "",
                   "no-shortcuts": "",
@@ -28045,7 +28044,6 @@ var render = function() {
                   formatted: "hh:mm",
                   label: "End At",
                   "no-header": "",
-                  "auto-close": "",
                   "input-size": "sm",
                   "only-time": "",
                   "no-shortcuts": "",

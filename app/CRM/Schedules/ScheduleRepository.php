@@ -51,7 +51,7 @@ class ScheduleRepository implements CreateInterface
             });
     }
 
-    public function getScheduleStatus(Schedule $schedule)
+    private function getScheduleStatus(Schedule $schedule)
     {
         $date = $schedule->date . ' ' . $schedule->start_at;
 
@@ -62,7 +62,8 @@ class ScheduleRepository implements CreateInterface
 
             $endTime = Carbon::parse($schedule->end_at);
 
-            if ($startTime->isCurrentHour() && $endTime->isFuture()) {
+            if ($startTime->isCurrentHour() && $endTime->isFuture()
+                || $startTime->isPast() && $endTime->isCurrentHour()) {
                 return 'in_progress';
             } elseif($startTime->isPast()) {
                 return 'completed';

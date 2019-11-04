@@ -51,26 +51,30 @@ class ScheduleRepository implements CreateInterface
             });
     }
 
-    private function getScheduleStatus(Schedule $schedule)
+    public function getScheduleStatus(Schedule $schedule)
     {
-        $date = Carbon::parse($schedule->date);
+        $date = $schedule->date . ' ' . $schedule->start_at;
 
-        if ($date->copy()->isPast()) {
-            return 'completed';
+        $date = Carbon::createFromFormat('Y-m-d H:i:s', $date);
+
+        if ($date->copy()->isToday()) {
+            $startTime = Carbon::parse($schedule->start_at);
+
+            $endTime = Carbon::parse($schedule->end_at);
+
+            if ($startTime->isCurrentHour() && $endTime->isFuture()) {
+                return 'in_progress';
+            } elseif($startTime->isPast()) {
+                return 'completed';
+            } else {
+                return 'upcoming';
+            }
         }
 
-        $startAt = Carbon::parse($schedule->start_at);
-
-        $endAt = Carbon::parse($schedule->end_at);
-
-        if ($startAt->copy()->isCurrentHour() && $endAt < now()->addHours(2)   &&  Carbon::parse($schedule->date)->isToday()) {
-            return 'in_progress';
+        if ($date->copy()->isFuture()) {
+            return 'upcoming';
         }
 
-        if ($date->copy() > today()->endOfDay()) {
-            return 'up_coming';
-        }
-
-        return 'un_known_time';
+        return 'completed';
     }
 }

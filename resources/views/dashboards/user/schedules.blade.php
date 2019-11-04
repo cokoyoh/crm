@@ -46,8 +46,8 @@
                             <span class="badge-default badge-default-success">Completed</span>
                         @elseif($schedule['status'] =='in_progress')
                             <span class="badge-default lead-lost">In Progress</span>
-                        @elseif($schedule['status'] =='up_coming')
-                            <span class="badge-default badge-default-indigo">Up Coming</span>
+                        @elseif($schedule['status'] =='upcoming')
+                            <span class="badge-default badge-default-indigo">Upcoming</span>
                         @endif
                     </td>
                     <td class="text-sm text-gray-600 font-medium">{!! $schedule['date'] !!}</td>

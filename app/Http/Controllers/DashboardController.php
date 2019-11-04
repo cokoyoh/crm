@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use CRM\Models\Company;
-use CRM\Models\Schedule;
 use CRM\Models\User;
 use CRM\Schedules\ScheduleRepository;
 
@@ -61,19 +59,6 @@ class DashboardController extends Controller
     public function user(User $user)
     {
         $userSchedules = $this->schedule->userSchedules();
-
-        $schedule = Schedule::find(16);
-
-        $endTime = Carbon::parse($schedule->start_at);
-
-        dd($userSchedules->toArray());
-//
-//        if ($endTime->copy()->isCurrentHour() &&  Carbon::parse($schedule->date)->isToday()) {
-//            dd('in progress');
-//        }
-//
-//        dd($endTime->isCurrentHour(), Carbon::parse($schedule->date)->isToday());
-
 
         return view('dashboards.user', [
             'user' => $user,

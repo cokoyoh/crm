@@ -29,7 +29,7 @@ class ManageInteractionsTest extends TestCase
         $lead = create(Lead::class);
 
         $this->actingAs($jimMattis)
-            ->post(route('interactions.store', $lead), $input = ['body' => 'Some body'])
+            ->post(route('interactions.store', $lead), $input = [])
             ->assertStatus(403);
     }
 
@@ -63,7 +63,7 @@ class ManageInteractionsTest extends TestCase
     {
         $jimMattis = UserFactory::fromCompany()->create();
 
-        $lead = $lead = LeadFactory::assignTo($jimMattis)->create();
+        $lead = LeadFactory::assignTo($jimMattis)->create();
 
         $this->actingAs($jimMattis)
             ->post(route('interactions.store', $lead), $input = ['body' => 'Some body', 'user_id' => $jimMattis->id])

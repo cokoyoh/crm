@@ -2,20 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreInteractionRequest;
 use CRM\Models\Lead;
 
 class InteractionsController extends Controller
 {
-    public function store(Lead $lead)
+    public function store(StoreInteractionRequest $request, Lead $lead)
     {
-        $this->authorize('addInteraction', $lead);
-
-        $validatedInput = request()->validate([
-            'body' => 'required',
-            'user_id' => 'required'
-        ]);
-
-        $lead->addInteraction($validatedInput);
+        $lead->addInteraction($request->validated());
 
         return redirect()->route('leads.show', $lead);
     }

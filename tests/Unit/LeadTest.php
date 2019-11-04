@@ -2,9 +2,11 @@
 
 namespace Tests\Unit;
 
+use CRM\Models\Interaction;
 use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
 use CRM\Models\LeadClass;
+use CRM\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -59,5 +61,43 @@ class LeadTest extends TestCase
         $lead = create(Lead::class, ['lead_class_id' => $leadClass->id]);
 
         $this->assertEquals('converted', $lead->leadClass->slug);
+    }
+
+    /** @test */
+    public function it_is_an_instance_of_interaction_class()
+    {
+        $lead = create(Lead::class);
+
+        create(Interaction::class, ['lead_id' => $lead->id]);
+
+        $this->assertInstanceOf(Interaction::class, $lead->interactions()->first());
+    }
+
+    /** @test */
+    public function it_can_add_an_interaction()
+    {
+        $lead = create(Lead::class);
+
+        $lead->addInteraction([
+            'user_id' => create(User::class)->id,
+            'lead_id' => $lead->id
+        ]);
+
+        $this->assertCount(1, $lead->interactions);
+    }
+
+    /** @test */
+    public function it_checks_if_a_lead_is_assigned_to_a_given_user()
+    {
+        $lead = create(Lead::class);
+
+        $user = create(User::class);
+
+        create(LeadAssignee::class, [
+            'lead_id' => $lead->id,
+            'user_id' => $user->id
+        ]);
+
+        $this->assertTrue($lead->isAssigned($user));
     }
 }

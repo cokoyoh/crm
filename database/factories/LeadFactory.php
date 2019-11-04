@@ -34,3 +34,10 @@ $factory->define(CRM\Models\LeadAssignee::class, function (Faker $faker) {
         'lead_id' => create(Lead::class)->id
     ];
 });
+
+$factory->define(CRM\Models\Interaction::class, function (Faker $faker) {
+    return [
+        'body' => $faker->paragraph(3, false),
+        'lead_id' => create(Lead::class)->id
+    ];
+});

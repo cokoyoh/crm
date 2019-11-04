@@ -40,9 +40,12 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/dashboard/{user}/admin', 'DashboardController@admin')->name('dashboard.admin');
     Route::get('/dashboard/{user}/user', 'DashboardController@user')->name('dashboard.user');
 
+    Route::get('/leads/{lead}/show', 'LeadsController@show')->name('leads.show');
     Route::post('/leads', 'LeadsController@store')->name('leads.store');
     Route::get('/get-leads', 'LeadsController@getLeads')->name('leads.fetch-leads');
 
     Route::post('/schedules', 'SchedulesController@store')->name('schedules.store');
+
+    Route::post('/interactions/{lead}/store', 'InteractionsController@store')->name('interactions.store');
 });
 

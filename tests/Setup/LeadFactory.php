@@ -6,15 +6,20 @@ namespace Tests\Setup;
 
 use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
+use CRM\Models\LeadClass;
 use CRM\Models\User;
 
 class LeadFactory
 {
     public $user = null;
 
+    public $leadClass = null;
+
     public function create()
     {
-        $lead = create(Lead::class);
+        $leadClassId = $this->leadClass ? LeadClass::first()->id : null;
+
+        $lead = create(Lead::class, ['lead_class_id' => $leadClassId]);
 
         if (is_null($this->user)) return $lead;
 
@@ -26,6 +31,15 @@ class LeadFactory
     public function assignTo(User $user = null)
     {
         $this->user = $user;
+
+        return $this;
+    }
+
+    public function withClass(String $leadClassSlug = null)
+    {
+        $this->leadClass = $leadClassSlug ?? $this->leadClass;
+
+        create(LeadClass::class, ['slug' => $this->leadClass]);
 
         return $this;
     }

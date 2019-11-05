@@ -7,6 +7,7 @@ use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
 use CRM\Models\LeadClass;
 use CRM\Models\User;
+use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
@@ -99,5 +100,13 @@ class LeadTest extends TestCase
         ]);
 
         $this->assertTrue($lead->isAssigned($user));
+    }
+
+    /** @test */
+    public function it_has_status()
+    {
+        $lead = LeadFactory::withClass('not_followed_up')->create();
+
+        $this->assertEquals($lead->status, 'New');
     }
 }

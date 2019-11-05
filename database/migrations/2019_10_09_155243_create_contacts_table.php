@@ -19,22 +19,29 @@ class CreateContactsTable extends Migration
     {
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('lead_id')->nullable();
             $table->integer('contact_status_id')->nullable();
             $table->string('first_name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
-            $table->string('email', 255)->nullable();
+            $table->string('email', 255)->unique()->nullable();
             $table->string('phone', 45)->nullable();
             $table->string('kra_pin', 45)->nullable();
             $table->string('national_id', 45)->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
 
-            $table->unique('email', 'email_UNIQUE');
             $table->index('contact_status_id', 'fk_contacts_contact_statuses1_idx');
+            $table->index('lead_id', 'fk_contacts_leads1_idx');
 
             $table->foreign('contact_status_id', 'fk_contacts_contact_statuses1')
                 ->references('id')
                 ->on('contact_statuses')
+                ->onDelete('NO ACTION')
+                ->onUpdate('NO ACTION');
+
+            $table->foreign('lead_id', 'fk_contacts_leads1')
+                ->references('id')
+                ->on('leads')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
         });

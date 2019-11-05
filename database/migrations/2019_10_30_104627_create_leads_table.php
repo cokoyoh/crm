@@ -24,14 +24,15 @@ class CreateLeadsTable extends Migration
             $table->string('last_name', 45)->nullable();
             $table->string('country_code', 45)->nullable();
             $table->string('phone_number', 45)->nullable();
-            $table->string('email', 100)->unique()->nullable();
+            $table->string('email', 100)->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
 
             $table->index('lead_class_id', 'fk_leads_lead_classes1_idx');
 
             $table->foreign('lead_class_id', 'fk_leads_lead_classes1')
-                ->references('id')->on('lead_classes')
+                ->references('id')
+                ->on('lead_classes')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
         });

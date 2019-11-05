@@ -11,7 +11,8 @@ $factory->define(Lead::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'country_code' => $faker->countryCode,
         'phone_number' => $faker->phoneNumber,
-        'email' => $faker->email
+        'email' => $faker->email,
+        'lead_class_id' => null
     ];
 });
 

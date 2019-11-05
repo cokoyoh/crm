@@ -9,10 +9,13 @@
 
     <div class="flex items-center py-4">
         <h3 class="text-lg text-green-600 font-bold">{!! $lead->name !!}</h3>
-        <span
-            class="badge-default badge-default-success">
-            {!! $lead->status !!} Prospecting
-        </span>
+        @if($lead->status == 'Prospect')
+            <span class="badge-default lead-not-followed-up font-semibold">Prospect</span>
+        @elseif($lead->status == 'Converted')
+            <span class="badge-default lead-converted font-semibold">Converted</span>
+        @elseif($lead->status == 'Lost')
+            <span class="badge-default lead-lost">Lost</span>
+        @endif
     </div>
 
     <div class="flex items-center justify-between border-b border-gray-300 py-4">

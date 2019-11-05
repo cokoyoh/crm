@@ -6,7 +6,6 @@ use App\Http\Requests\StoreLeadRequest;
 use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\Leads\LeadRepository;
 use CRM\Models\Lead;
-use Symfony\Component\Console\Input\Input;
 
 class LeadsController extends Controller
 {
@@ -39,6 +38,8 @@ class LeadsController extends Controller
                 'link' => route('dashboard.user', auth()->id())
             ];
         }
+
+        flash('Lead added successfully.', 'success');
 
         return redirect(route('dashboard.user', auth()->id()));
     }

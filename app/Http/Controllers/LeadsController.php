@@ -29,8 +29,11 @@ class LeadsController extends Controller
     {
         $this->authorize('manageLead', $lead);
 
+        $interactions = $this->lead->getInteractions($lead);
+
         return view('leads.show', [
-            'lead' => $lead
+            'lead' => $lead,
+            'interactions' => $interactions
         ]);
     }
 

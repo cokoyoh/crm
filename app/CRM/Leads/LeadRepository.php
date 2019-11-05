@@ -47,4 +47,14 @@ class LeadRepository implements CreateInterface
 
         return null;
     }
+
+    public function getInteractions(Lead $lead)
+    {
+        $this->lead = $lead;
+
+        return $this->lead
+            ->interactions()
+            ->take(4)
+            ->get();
+    }
 }

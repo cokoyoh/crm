@@ -33,4 +33,9 @@
             <span class="ml-1 font-medium">Interaction</span>
         </button>
     </div>
+
+    @include('leads.partials.interactions')
+
+    @include('leads.partials.notes')
+
 </div>

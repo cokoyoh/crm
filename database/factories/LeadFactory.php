@@ -42,3 +42,10 @@ $factory->define(CRM\Models\Interaction::class, function (Faker $faker) {
         'lead_id' => create(Lead::class)->id
     ];
 });
+
+$factory->define(CRM\Models\LeadNote::class, function (Faker $faker) {
+    return [
+        'lead_id' => create(Lead::class)->id,
+        'body' => $faker->sentence(8, false),
+    ];
+});

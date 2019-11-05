@@ -57,4 +57,18 @@ class Lead extends Model
             ->where('user_id', $user->id)
             ->exists();
     }
+
+    public function notes()
+    {
+        return $this->hasOne(LeadNote::class);
+    }
+
+    public function addNotes(String $body)
+    {
+        if ($this->notes) {
+            return $this->notes()->update(['body' => $body]);
+        }
+
+        return $this->notes()->create(['body' => $body]);
+    }
 }

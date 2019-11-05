@@ -6,6 +6,7 @@ use CRM\Models\Interaction;
 use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
 use CRM\Models\LeadClass;
+use CRM\Models\LeadNote;
 use CRM\Models\User;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -108,5 +109,25 @@ class LeadTest extends TestCase
         $lead = LeadFactory::withClass('not_followed_up')->create();
 
         $this->assertEquals($lead->status, 'New');
+    }
+
+    /** @test */
+    public function it_is_an_instance_of_lead_note()
+    {
+        $lead = create(Lead::class);
+
+        create(LeadNote::class, ['lead_id' => $lead->id]);
+
+        $this->assertInstanceOf(LeadNote::class, $lead->notes);
+    }
+
+    /** @test */
+    public function it_can_add_notes_to_a_lead()
+    {
+        $lead = create(Lead::class);
+
+        $lead->addNotes('Some notes');
+
+        $this->assertInstanceOf(LeadNote::class, $lead->notes);
     }
 }

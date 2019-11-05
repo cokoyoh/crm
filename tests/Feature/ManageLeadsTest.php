@@ -73,7 +73,7 @@ class ManageLeadsTest extends TestCase
 
         $this->actingAs($user)
             ->post(route('leads.store'), $attributes)
-            ->assertRedirect(route('dashboard.user', $user));
+            ->assertStatus(302);
 
         $this->assertEquals(1, Lead::count());
 
@@ -95,8 +95,6 @@ class ManageLeadsTest extends TestCase
     /** @test */
     public function authorised_users_can_see_details_of_their_lead()
     {
-        $this->withoutExceptionHandling();
-
         $user = create(User::class);
 
         $lead = LeadFactory::assignTo($user)->create();

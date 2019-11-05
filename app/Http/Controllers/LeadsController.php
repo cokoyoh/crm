@@ -44,13 +44,13 @@ class LeadsController extends Controller
         if ($request->wantsJson()) {
             return [
                 'message' => 'Lead saved successfully',
-                'link' => route('dashboard.user', auth()->id())
+                'link' => route('leads.show', $lead)
             ];
         }
 
         flash('Lead added successfully.', 'success');
 
-        return redirect(route('dashboard.user', auth()->id()));
+        return redirect()->route('leads.show', $lead);
     }
 
     public function getLeads()

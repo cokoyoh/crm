@@ -8,6 +8,7 @@
             @include('.dashboards.user.user_details')
 
             <div class="w-3/4 px-5 py-5">
+                @include('flash.message')
 
                 <tabs>
                     <tab title="Schedules" active>

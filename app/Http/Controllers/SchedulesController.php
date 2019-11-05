@@ -41,7 +41,7 @@ class SchedulesController extends Controller
 
         $this->schedule->destroy($schedule);
 
-        //flash message here
+        flash()->success('Schedule deleted!');
 
         return redirect()->route('dashboard.user', auth()->id());
     }

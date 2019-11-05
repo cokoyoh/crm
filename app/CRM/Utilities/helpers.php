@@ -46,3 +46,12 @@ function pluralise($string, $count = 1)
 {
     return Str::plural($string, $count);
 }
+
+function getMessageLevel(String $level)
+{
+    $hyphenPosition = strpos($level, '-');
+
+    $level = Str::substr($level, $hyphenPosition + 1, Str::length($level));
+
+    return Str::ucfirst($level);
+}

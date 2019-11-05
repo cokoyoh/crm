@@ -18,4 +18,12 @@ class ScheduleTest extends TestCase
 
         $this->assertInstanceOf(Lead::class, $schedule->lead);
     }
+
+    /** @test */
+    public function it_gets_the_flash_message_level()
+    {
+        $level = 'alert-success';
+
+        $this->assertEquals('Success', getMessageLevel($level));
+    }
 }

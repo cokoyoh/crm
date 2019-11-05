@@ -1,6 +1,6 @@
 <div class="w-full">
     <div class="flex items-center justify-between">
-        <div class="flex items-center justify-between w-1/2">
+        <form class="flex items-center justify-between w-1/2">
             <input
                 class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none"
                 type="date" name="start_date" value="{!! now()->subWeek()->toDateString() !!}">
@@ -23,7 +23,7 @@
                 </svg>
                 <span class="ml-2">Export</span>
             </button>
-        </div>
+        </form>
 
         <button class="flex items-center btn btn-success" @click="$modal.show('new-schedule-modal')">
             <svg class="h-4 w-4 fill-current font-medium" viewBox="0 0 20 20">
@@ -55,6 +55,20 @@
                     <td class="leading-snug">
                         <p class="uppercase text-xs text-gray-600 font-semibold">Some Title</p>
                         <p class="text-gray-700 text-sm font-semibold">{!! $schedule['leadName'] !!}</p>
+                    </td>
+                    <td>
+                        <form action="{!! route('schedules.destroy', $schedule['id']) !!}" method="post">
+                            @csrf
+                            @method('delete')
+                            <button
+                                type="submit"
+                                class="outline-none focus:outline-none">
+                                <svg class="btn-delete"
+                                     viewBox="0 0 20 20">
+                                    <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                                </svg>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

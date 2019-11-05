@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreScheduleRequest;
+use CRM\Models\Schedule;
 use CRM\Schedules\ScheduleRepository;
 
 class SchedulesController extends Controller
@@ -31,5 +32,17 @@ class SchedulesController extends Controller
         }
 
         return redirect(route('dashboard.user', auth()->user()));
+    }
+
+
+    public function destroy(Schedule $schedule)
+    {
+        $this->authorize('destroy', $schedule);
+
+        $this->schedule->destroy($schedule);
+
+        //flash message here
+
+        return redirect()->route('dashboard.user', auth()->id());
     }
 }

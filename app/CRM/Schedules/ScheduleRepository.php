@@ -8,9 +8,10 @@ use Carbon\Carbon;
 use CRM\Models\Schedule;
 use CRM\Models\User;
 use CRM\RepositoryInterfaces\CreateInterface;
+use CRM\RepositoryInterfaces\DestroyInterface;
 use Illuminate\Database\Eloquent\Collection;
 
-class ScheduleRepository implements CreateInterface
+class ScheduleRepository implements CreateInterface, DestroyInterface
 {
     public function create(array $attributes)
     {
@@ -42,6 +43,7 @@ class ScheduleRepository implements CreateInterface
         return $schedules
             ->map(function ($schedule) {
                 return [
+                    'id' => $schedule->id,
                     'status' => $this->getScheduleStatus($schedule),
                     'date' => Carbon::parse($schedule->date)->toDateString(),
                     'startAt' => Carbon::parse($schedule->start_at)->format('g:i a'),
@@ -77,5 +79,10 @@ class ScheduleRepository implements CreateInterface
         }
 
         return 'completed';
+    }
+
+    public function destroy($schedule)
+    {
+        $schedule->delete();
     }
 }

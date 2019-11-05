@@ -4512,6 +4512,25 @@ video {
   background-color: #2f855a;
 }
 
+.btn-delete {
+  height: 1rem;
+  width: 1rem;
+  fill: currentColor;
+  color: #4a5568;
+  border-radius: 0.5rem;
+  padding: 0.25rem;
+  background-color: #e2e8f0;
+  font-weight: 500;
+}
+
+.btn-delete:hover {
+  background-color: #cbd5e0;
+}
+
+.btn-delete:active {
+  background-color: #fff;
+}
+
 .crm-table {
   width: 100%;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);

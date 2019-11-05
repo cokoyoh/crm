@@ -45,6 +45,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/get-leads', 'LeadsController@getLeads')->name('leads.fetch-leads');
 
     Route::post('/schedules', 'SchedulesController@store')->name('schedules.store');
+    Route::delete('/schedules/{schedule}/destroy', 'SchedulesController@destroy')->name('schedules.destroy');
 
     Route::post('/interactions/{lead}/store', 'InteractionsController@store')->name('interactions.store');
 });

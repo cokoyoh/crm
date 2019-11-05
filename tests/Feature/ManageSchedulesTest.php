@@ -14,7 +14,12 @@ class ManageSchedulesTest extends TestCase
     /** @test */
     public function guests_cannot_manage_schedules()
     {
+        $schedule = create(Schedule::class);
+
         $this->post(route('schedules.store'), [])
+            ->assertRedirect('login');
+
+        $this->delete(route('schedules.destroy', $schedule))
             ->assertRedirect('login');
     }
 
@@ -65,5 +70,30 @@ class ManageSchedulesTest extends TestCase
             'date' => $attributes['date'],
             'user_id' => auth()->id()
         ]);
+    }
+
+    /** @test */
+    public function a_user_can_only_delete_a_schedule_which_belong_to_them()
+    {
+        $schedule = create(Schedule::class);
+
+        $this->actingAs(create(User::class))
+            ->delete(route('schedules.destroy', $schedule))
+            ->assertStatus(403);
+    }
+
+
+    /** @test */
+    public function authorised_users_can_delete_a_schedule()
+    {
+        $jamal = create(User::class);
+
+        $schedule = create(Schedule::class, ['user_id' => $jamal->id]);
+
+        $this->actingAs($jamal)
+            ->delete(route('schedules.destroy', $schedule))
+            ->assertRedirect(route('dashboard.user', $jamal));
+
+        $this->assertDatabaseMissing('schedules', $schedule->toArray());
     }
 }

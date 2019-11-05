@@ -91,3 +91,16 @@
 .btn-success:active {
     @apply bg-green-700;
 }
+
+
+.btn-delete {
+    @apply h-4 w-4 fill-current text-gray-700 rounded-lg p-1 bg-gray-300 font-medium;
+}
+
+.btn-delete:hover {
+    @apply bg-gray-400;
+}
+
+.btn-delete:active {
+    @apply bg-white;
+}

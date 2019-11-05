@@ -25,6 +25,15 @@ class LeadsController extends Controller
         $this->leadAssignee = $leadAssignee;
     }
 
+    public function show(Lead $lead)
+    {
+        $this->authorize('manageLead', $lead);
+
+        return view('leads.show', [
+            'lead' => $lead
+        ]);
+    }
+
 
     public function store(StoreLeadRequest $request)
     {

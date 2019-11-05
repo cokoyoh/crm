@@ -22,4 +22,9 @@ class LeadPolicy
     {
         return $lead->isAssigned($user);
     }
+
+    public function manageLead(User $user, Lead $lead)
+    {
+        return $lead->isAssigned($user);
+    }
 }

@@ -1,0 +1,2 @@
+{!! $lead->name !!}
+{!! $lead->email !!}

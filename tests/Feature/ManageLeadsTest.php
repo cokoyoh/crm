@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use CRM\Models\Lead;
 use CRM\Models\LeadClass;
+use CRM\Models\User;
+use Facades\Tests\Setup\LeadFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Session;
@@ -18,8 +20,13 @@ class ManageLeadsTest extends TestCase
     {
         $attributes = rawState(Lead::class);
 
+        $lead = create(Lead::class);
+
         $this->post(route('leads.store'), $attributes)
             ->assertRedirect(route('login'));
+
+        $this->get(route('leads.show', $lead))
+            ->assertRedirect('login');
     }
 
     /** @test */
@@ -73,5 +80,30 @@ class ManageLeadsTest extends TestCase
         $this->assertEquals($user->id, Lead::first()->leadAssignee->user_id);
 
         $this->assertEquals(Lead::first()->lead_class_id, $leadClass->id);
+    }
+
+    /** @test */
+    public function a_user_cannot_see_details_of_a_lead_which_is_not_assigned_to_them()
+    {
+        $lead = create(Lead::class);
+
+        $this->actingAs(create(User::class))
+            ->get(route('leads.show', $lead))
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function authorised_users_can_see_details_of_their_lead()
+    {
+        $this->withoutExceptionHandling();
+
+        $user = create(User::class);
+
+        $lead = LeadFactory::assignTo($user)->create();
+
+        $this->actingAs($user)
+            ->get(route('leads.show', $lead))
+            ->assertSee($lead->name)
+            ->assertSee($lead->email);
     }
 }

@@ -4528,7 +4528,8 @@ video {
 }
 
 .btn-delete:active {
-  background-color: #fff;
+  background-color: #4a5568;
+  color: #fff;
 }
 
 .crm-table {

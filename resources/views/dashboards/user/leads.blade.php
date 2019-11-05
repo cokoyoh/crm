@@ -1,6 +1,6 @@
 <div class="w-full">
     <div class="flex items-center justify-between">
-        <div class="flex items-center justify-between w-1/2">
+        <form class="flex items-center justify-between w-1/2">
             <input
                 class="border border-gray-500 text-sm px-1 py-1 text-gray-700 rounded text-center focus:outline-none"
                 type="date" name="start_date" value="{!! now()->subWeek()->toDateString() !!}">
@@ -23,7 +23,7 @@
                 </svg>
                 <span class="ml-2">Export</span>
             </button>
-        </div>
+        </form>
 
         <button class="flex items-center btn btn-success" @click="$modal.show('add-schedule')">
             <svg class="h-4 w-4 fill-current font-medium" viewBox="0 0 20 20">
@@ -38,7 +38,7 @@
         <table class="rounded-b-lg table-auto w-full px-2">
             <tbody>
             @foreach($leads as $lead)
-                <tr class="border border-gray-300 px-2 h-16 @if($lead->id % 2 == 0) bg-white @endif ">
+                <tr class="border border-gray-300 px-2 h-16 @if($lead->id % 2 == 0) bg-white @endif">
                     <td class="pl-4">
                         @if($lead->leadClass->slug == 'not_followed_up')
                             <span class="badge-default lead-not-followed-up">Not Followed Up</span>
@@ -68,6 +68,18 @@
                     <td class="leading-snug">
                         <p class="uppercase text-xs text-gray-600 font-semibold">Lead Source</p>
                         <p class="text-gray-700 text-sm font-semibold">{!! $lead->name !!}</p>
+                    </td>
+                    <td>
+                        <a href="{!! route('leads.show', $lead) !!}">
+                            <button
+                                type="submit"
+                                class="outline-none focus:outline-none">
+                                <svg class="btn-delete"
+                                     viewBox="0 0 20 20">
+                                    <path d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                                </svg>
+                            </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach

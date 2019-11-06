@@ -80,4 +80,17 @@ class LeadsController extends Controller
             })
             ->toArray();
     }
+
+    public function lost(Lead $lead)
+    {
+        $this->authorize('manageLead', $lead);
+
+        $lead->markAsLost();
+
+        flash('This lead has been marked as lost.', 'success');
+
+        //send mail here to the user, cc the admin and bcc company mail
+
+        return redirect()->route('leads.show', $lead);
+    }
 }

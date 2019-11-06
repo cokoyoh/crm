@@ -59,6 +59,18 @@ class LeadTest extends TestCase
     }
 
     /** @test */
+    public function it_can_mark_a_lead_as_lost()
+    {
+        $lead = create(Lead::class);
+
+        create(LeadClass::class, ['slug' => 'lost']);
+
+        $lead->markAsLost();
+
+        $this->assertEquals($lead->leadClass->slug, 'lost');
+    }
+
+    /** @test */
     public function it_has_a_name()
     {
         $lead = create(Lead::class, [

@@ -18,6 +18,11 @@ trait ChangeLeadClass
         $this->changeClass('followed_up');
     }
 
+    public function markAsLost()
+    {
+        $this->changeClass('lost');
+    }
+
     private function changeClass($slug = 'not_followed_up')
     {
         $leadClass = $this->getLeadClassBySlug($slug);

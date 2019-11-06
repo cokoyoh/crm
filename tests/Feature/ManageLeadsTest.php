@@ -104,4 +104,32 @@ class ManageLeadsTest extends TestCase
             ->assertSee($lead->name)
             ->assertSee($lead->email);
     }
+
+    /** @test */
+    public function a_user_cannot_mark_a_lead_which_they_do_not_own_as_lost()
+    {
+        $user = create(User::class);
+
+        $lead = LeadFactory::assignTo(create(User::class))->create();
+
+        $this->actingAs($user)
+            ->post(route('leads.lost', $lead), [])
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_users_can_mark_a_lead_as_lost()
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::assignTo($johnDoe)->withClass('followed_up')->create();
+
+        create(LeadClass::class, ['slug' => 'lost']);
+
+        $this->actingAs($johnDoe)
+            ->post(route('leads.lost', $lead), [])
+            ->assertRedirect(route('leads.show', $lead));
+
+        $this->assertEquals($lead->fresh()->leadClass->slug, 'lost');
+    }
 }

@@ -1,11 +1,18 @@
 <div class="w-1/4 block bg-white px-4 rounded-b border-r border-gray-300">
-    <div class="flex w-full items-center justify-between p-2">
+    <div class="flex w-full justify-between p-2">
         <svg
             class="h-32 w-32 fill-current text-gray-500 md:ml-12"
             viewBox="0 0 20 20">
             <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zM7 6v2a3 3 0 1 0 6 0V6a3 3 0 1 0-6 0zm-3.65 8.44a8 8 0 0 0 13.3 0 15.94 15.94 0 0 0-13.3 0z"/>
         </svg>
+
+        <svg class="h-8 w-8 mt-2 sm:-mr-5 fill-current text-gray-500 hover:text-gray-700 active:text-green-800"
+             viewBox="0 0 20 20">
+            <path
+                d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+        </svg>
     </div>
+
 
     <div class="flex items-center py-4">
         <h3 class="text-lg text-green-600 font-bold">{!! $lead->name !!}</h3>

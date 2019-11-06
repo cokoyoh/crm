@@ -3,10 +3,12 @@
 namespace App\Providers;
 
 use App\Policies\CompanyPolicy;
+use App\Policies\InteractionPolicy;
 use App\Policies\LeadPolicy;
 use App\Policies\SchedulePolicy;
 use App\Policies\UserPolicy;
 use CRM\Models\Company;
+use CRM\Models\Interaction;
 use CRM\Models\Lead;
 use CRM\Models\Schedule;
 use CRM\Models\User;
@@ -23,7 +25,8 @@ class AuthServiceProvider extends ServiceProvider
         Company::class => CompanyPolicy::class,
         User::class => UserPolicy::class,
         Lead::class => LeadPolicy::class,
-        Schedule::class => SchedulePolicy::class
+        Schedule::class => SchedulePolicy::class,
+        Interaction::class => InteractionPolicy::class
     ];
 
     /**

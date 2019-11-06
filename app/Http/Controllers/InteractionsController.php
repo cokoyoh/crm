@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreInteractionRequest;
+use CRM\Models\Interaction;
 use CRM\Models\Lead;
 
 class InteractionsController extends Controller
@@ -21,5 +22,16 @@ class InteractionsController extends Controller
         }
 
         return redirect()->route('leads.show', $lead);
+    }
+
+    public function destroy(Interaction $interaction)
+    {
+        $this->authorize('manageInteraction', $interaction);
+
+        $interaction->delete();
+
+        flash('Interaction has been deleted!', 'success');
+
+        return redirect()->route('leads.show', $interaction->lead);
     }
 }

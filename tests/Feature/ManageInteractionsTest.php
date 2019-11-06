@@ -4,9 +4,11 @@ namespace Tests\Feature;
 
 use CRM\Models\Lead;
 use CRM\Models\LeadClass;
+use CRM\Models\User;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\LeadFactory;
+use Facades\Tests\Setup\InteractionFactory;
 use Tests\TestCase;
 
 class ManageInteractionsTest extends TestCase
@@ -37,7 +39,6 @@ class ManageInteractionsTest extends TestCase
     /** @test */
     public function the_interaction_body_is_required_when_adding_an_interaction()
     {
-
         $jimMattis = UserFactory::fromCompany()->create();
 
         $lead = LeadFactory::assignTo($jimMattis)->create();
@@ -73,5 +74,31 @@ class ManageInteractionsTest extends TestCase
             ->assertRedirect(route('leads.show', $lead));
 
         $this->assertDatabaseHas('interactions', $input);
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_an_interaction_which_does_not_belong_to_them()
+    {
+        $nancyPelosi = create(User::class);
+
+        $interaction = InteractionFactory::belongingTo(create(User::class))->create();
+
+        $this->actingAs($nancyPelosi)
+            ->delete(route('interactions.destroy', $interaction))
+            ->assertStatus(403);
+    }
+
+    /** @test */
+    public function authorised_users_can_delete_an_interaction()
+    {
+        $nancyPelosi = create(User::class);
+
+        $interaction = InteractionFactory::belongingTo($nancyPelosi)->create();
+
+        $this->actingAs($nancyPelosi)
+            ->delete(route('interactions.destroy', $interaction))
+            ->assertRedirect(route('leads.show', $interaction->lead->id));
+
+        $this->assertNotNull($interaction->fresh()->deleted_at);
     }
 }

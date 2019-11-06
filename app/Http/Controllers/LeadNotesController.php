@@ -8,6 +8,8 @@ class LeadNotesController extends Controller
 {
     public function store(Lead $lead)
     {
+        $this->authorize('manageLead', $lead);
+
         $lead->addNotes(\request('body'));
 
         flash('Notes added successfully.', 'success');

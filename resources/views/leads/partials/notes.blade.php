@@ -1,17 +1,20 @@
 <div class="mt-8">
     <h3 class="text-lg text-gray-700 font-normal mb-3">General Notes</h3>
 
-    <form action="{!! route('leads.notes.store', $lead) !!}" method="post">
-        @csrf
 
-        <textarea
-            class="card w-full mb-4 justify-start form-textarea mt-1 outline-none focus:border focus:border-gray-300 text-gray-800 text-sm leading-relaxed"
-            name="body"
-            cols="30" rows="10"
-            placeholder="- Some hocus pocus notes...">{!! $lead->notes ? $lead->notes->body : '' !!}</textarea>
+    @can('manageLead', $lead)
+        <form action="{!! route('leads.notes.store', $lead) !!}" method="post">
+            @csrf
 
-        <button type="submit" class="btn btn-success">Save</button>
-    </form>
+            <textarea
+                class="card w-full mb-4 justify-start form-textarea mt-1 outline-none focus:border focus:border-gray-300 text-gray-800 text-sm leading-relaxed"
+                name="body"
+                cols="30" rows="10"
+                placeholder="- Some hocus pocus notes...">{!! $lead->notes ? $lead->notes->body : '' !!}</textarea>
+
+            <button type="submit" class="btn btn-success">Save</button>
+        </form>
+    @endcan
 
     @include('errors')
 

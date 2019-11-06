@@ -32,6 +32,10 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\Companies\CompanyProfileUpdated' => [
             'App\Listeners\Companies\WhenCompanyProfileUpdated'
+        ],
+
+         'App\Events\Leads\LeadMarkedAsLost' => [
+            'App\Listeners\Leads\WhenLeadMarkedAsLost'
         ]
     ];
 

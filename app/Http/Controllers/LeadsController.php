@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Leads\LeadMarkedAsLost;
 use App\Http\Requests\StoreLeadRequest;
 use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\LeadNotes\LeadNotesRepository;
@@ -87,9 +88,9 @@ class LeadsController extends Controller
 
         $lead->markAsLost();
 
-        flash('This lead has been marked as lost.', 'success');
+        event(new LeadMarkedAsLost($lead));
 
-        //send mail here to the user, cc the admin and bcc company mail
+        flash('This lead has been marked as lost.', 'success');
 
         return redirect()->route('leads.show', $lead);
     }

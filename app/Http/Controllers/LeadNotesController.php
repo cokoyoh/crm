@@ -8,7 +8,7 @@ class LeadNotesController extends Controller
 {
     public function store(Lead $lead)
     {
-        $this->authorize('manageLead', $lead);
+        $this->authorize('addNotes', $lead);
 
         request()->validate(['user_id' => 'required']);
 

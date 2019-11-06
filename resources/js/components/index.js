@@ -9,6 +9,7 @@ import NewScheduleModule from '../components/NewScheduleModal'
 import NewInteractionModal from './NewInteractionModal'
 import VueDatePicker from  'vue-ctk-date-time-picker'
 import VueSelect from 'vue-select'
+import Dropdown from '../components/Dropdown'
 
 
 
@@ -21,3 +22,4 @@ Vue.component('new-interaction-modal', NewInteractionModal);
 Vue.component('new-lead-modal', NewLeadModal);
 Vue.component('vue-date-picker', VueDatePicker);
 Vue.component('v-select', VueSelect);
+Vue.component('dropdown', Dropdown);

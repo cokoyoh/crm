@@ -6,11 +6,18 @@
             <path d="M10 20a10 10 0 1 1 0-20 10 10 0 0 1 0 20zM7 6v2a3 3 0 1 0 6 0V6a3 3 0 1 0-6 0zm-3.65 8.44a8 8 0 0 0 13.3 0 15.94 15.94 0 0 0-13.3 0z"/>
         </svg>
 
-        <svg class="h-8 w-8 mt-2 sm:-mr-5 fill-current text-gray-500 hover:text-gray-700 active:text-green-800 cursor-pointer"
-             viewBox="0 0 20 20">
-            <path
-                d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
-        </svg>
+        <dropdown>
+            <template v-slot:trigger>
+                <button class="text-lg text-gray-900 outline-none focus:outline-none">
+                    ...
+                </button>
+            </template>
+
+            <li class="dropdown-menu-item"><a href="#">Edit</a></li>
+            <li class="dropdown-menu-item"><a href="#">Delete</a></li>
+            <li class="dropdown-menu-item"><a href="#">Report</a></li>
+        </dropdown>
+
     </div>
 
 

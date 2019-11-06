@@ -1,0 +1,11 @@
+.dropdown-menu {
+    @apply absolute bg-black mt-2 py-2 rounded shadow text-white text-xs z-10;
+}
+
+.dropdown-menu-item {
+    @apply pl-2 pr-8 text-xs block leading-loose;
+}
+
+.dropdown-menu-item:hover {
+    @apply bg-gray-900;
+}

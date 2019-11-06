@@ -15,6 +15,8 @@
             <span class="badge-default lead-converted font-semibold">Converted</span>
         @elseif($lead->status == 'Lost')
             <span class="badge-default lead-lost">Lost</span>
+        @elseif($lead->status == 'New')
+            <span class="badge-default lead-followed-up">New</span>
         @endif
     </div>
 

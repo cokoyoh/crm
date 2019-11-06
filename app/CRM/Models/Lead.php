@@ -73,14 +73,14 @@ class Lead extends Model
         return $this->hasOne(LeadNote::class);
     }
 
-    public function addNotes(String $body)
+    public function addNotes(array $input)
     {
         if ($this->notes) {
-            $this->notes()->update(['body' => $body]);
+            $this->notes()->update($input);
 
             return $this->notes->fresh();
         }
 
-        return $this->notes()->create(['body' => $body]);
+        return $this->notes()->create($input);
     }
 }

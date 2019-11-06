@@ -10,7 +10,9 @@
                 class="card w-full mb-4 justify-start form-textarea mt-1 outline-none focus:border focus:border-gray-300 text-gray-800 text-sm leading-relaxed"
                 name="body"
                 cols="30" rows="10"
-                placeholder="- Some hocus pocus notes...">{!! $lead->notes ? $lead->notes->body : '' !!}</textarea>
+                placeholder="- Some hocus pocus notes...">{!! $notes ? $notes->body : '' !!}</textarea>
+
+            <input type="hidden" name="user_id" value="{!! auth()->id() !!}">
 
             <button type="submit" class="btn btn-success">Save</button>
         </form>

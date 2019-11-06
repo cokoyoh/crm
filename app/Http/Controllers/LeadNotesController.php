@@ -10,7 +10,9 @@ class LeadNotesController extends Controller
     {
         $this->authorize('manageLead', $lead);
 
-        $lead->addNotes(\request('body'));
+        request()->validate(['user_id' => 'required']);
+
+        $lead->addNotes(request()->except('_token'));
 
         flash('Notes added successfully.', 'success');
 

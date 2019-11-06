@@ -33,6 +33,18 @@ class ManageLeadNotesTest extends TestCase
     }
 
     /** @test */
+    public function user_id_is_required_when_adding_a_note_to_a_lead()
+    {
+        $ritaSkeeta = create(User::class);
+
+        $lead = LeadFactory::assignTo($ritaSkeeta)->create();
+
+        $this->actingAs($ritaSkeeta)
+            ->post(route('leads.notes.store', $lead), $input = ['user_id' => ''])
+            ->assertSessionHasErrors('user_id');
+    }
+
+    /** @test */
     public function authorised_users_can_add_notes_to_a_lead_they_own()
     {
         $ritaSkeeta = create(User::class);
@@ -40,7 +52,7 @@ class ManageLeadNotesTest extends TestCase
         $lead = LeadFactory::assignTo($ritaSkeeta)->create();
 
         $this->actingAs($ritaSkeeta)
-            ->post(route('leads.notes.store', $lead), $input = ['body' => 'Some hocus pocus notes'])
+            ->post(route('leads.notes.store', $lead), $input = ['body' => 'Some hocus pocus notes', 'user_id' => auth()->id()])
             ->assertRedirect(route('leads.show', $lead));
 
         $this->assertDatabaseHas('lead_notes', $input);

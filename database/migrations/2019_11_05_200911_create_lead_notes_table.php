@@ -20,14 +20,22 @@ class CreateLeadNotesTable extends Migration
         Schema::create('lead_notes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lead_id')->nullable();
+            $table->integer('user_id')->nullable();
             $table->longText('body')->nullable();
             $table->nullableTimestamps();
 
             $table->index('lead_id', 'fk_lead_notes_leads1_idx');
+            $table->index('user_id', 'fk_lead_notes_users1_idx');
 
             $table->foreign('lead_id', 'fk_lead_notes_leads1')
                 ->references('id')
                 ->on('leads')
+                ->onDelete('NO ACTION')
+                ->onUpdate('NO ACTION');
+
+            $table->foreign('user_id', 'fk_lead_notes_users1')
+                ->references('id')
+                ->on('users')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
         });

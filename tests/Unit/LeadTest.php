@@ -130,4 +130,20 @@ class LeadTest extends TestCase
 
         $this->assertInstanceOf(LeadNote::class, $notes);
     }
+
+    /** @test */
+    public function it_capitalizes_the_first_letter_of_the_first_name()
+    {
+        $lead = create(Lead::class, ['first_name' => 'emmy']);
+
+        $this->assertEquals('Emmy', $lead->first_name);
+    }
+
+    /** @test */
+    public function it_capitalizes_the_first_letter_of_the_last_name()
+    {
+        $lead = create(Lead::class, ['last_name' => 'adede']);
+
+        $this->assertEquals('Adede', $lead->last_name);
+    }
 }

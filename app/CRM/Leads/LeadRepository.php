@@ -55,6 +55,7 @@ class LeadRepository implements CreateInterface
         return $this->lead
             ->interactions()
             ->take(4)
+            ->latest()
             ->get();
     }
 }

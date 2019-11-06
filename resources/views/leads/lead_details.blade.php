@@ -16,7 +16,7 @@
         @elseif($lead->status == 'Lost')
             <span class="badge-default lead-lost">Lost</span>
         @elseif($lead->status == 'New')
-            <span class="badge-default lead-followed-up">New</span>
+            <span class="badge-default lead-followed-up font-semibold">New</span>
         @endif
     </div>
 

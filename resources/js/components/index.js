@@ -6,6 +6,7 @@ import NewLeadModal from '../components/NewLeadModal'
 import FlashMessage from '../components/FlashMessage'
 import ErrorMessage from '../components/ErrorMessage'
 import NewScheduleModule from '../components/NewScheduleModal'
+import NewInteractionModal from './NewInteractionModal'
 import VueDatePicker from  'vue-ctk-date-time-picker'
 import VueSelect from 'vue-select'
 
@@ -13,9 +14,10 @@ import VueSelect from 'vue-select'
 
 Vue.component('tabs', Tabs);
 Vue.component('tab', Tab);
-Vue.component('new-lead-modal', NewLeadModal);
 Vue.component('flash-message', FlashMessage);
 Vue.component('error-message', ErrorMessage);
 Vue.component('new-schedule-modal', NewScheduleModule);
+Vue.component('new-interaction-modal', NewInteractionModal);
+Vue.component('new-lead-modal', NewLeadModal);
 Vue.component('vue-date-picker', VueDatePicker);
 Vue.component('v-select', VueSelect);

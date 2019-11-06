@@ -11,6 +11,13 @@ class InteractionsController extends Controller
     {
         $lead->addInteraction($request->validated());
 
+        if ($request->wantsJson()) {
+            return [
+                'message' => 'Interaction added successfully',
+                'link' => route('leads.show', $lead)
+            ];
+        }
+
         return redirect()->route('leads.show', $lead);
     }
 }

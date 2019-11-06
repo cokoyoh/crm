@@ -126,8 +126,8 @@ class LeadTest extends TestCase
     {
         $lead = create(Lead::class);
 
-        $lead->addNotes('Some notes');
+        $notes = $lead->addNotes('Some notes');
 
-        $this->assertInstanceOf(LeadNote::class, $lead->notes);
+        $this->assertInstanceOf(LeadNote::class, $notes);
     }
 }

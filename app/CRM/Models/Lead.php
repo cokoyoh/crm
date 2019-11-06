@@ -66,7 +66,9 @@ class Lead extends Model
     public function addNotes(String $body)
     {
         if ($this->notes) {
-            return $this->notes()->update(['body' => $body]);
+            $this->notes()->update(['body' => $body]);
+
+            return $this->notes->fresh();
         }
 
         return $this->notes()->create(['body' => $body]);

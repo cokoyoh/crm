@@ -10,14 +10,24 @@ trait ChangeLeadClass
 {
     public function markAsNotFollowedUp()
     {
-        $leadClass = $this->getLeadClassBySlug('not_followed_up');
+        $this->changeClass();
+    }
+
+    public function markAsFollowedUp()
+    {
+        $this->changeClass('followed_up');
+    }
+
+    private function changeClass($slug = 'not_followed_up')
+    {
+        $leadClass = $this->getLeadClassBySlug($slug);
 
         $this->lead_class_id = $leadClass->id;
 
         $this->save();
     }
 
-    private function getLeadClassBySlug($slug = 'not_followed_up')
+    private function getLeadClassBySlug($slug)
     {
         return LeadClass::whereSlug($slug)->first();
     }

@@ -31,7 +31,7 @@ class LeadTest extends TestCase
     }
 
     /** @test */
-    public function it_changes_a_lead_class_id()
+    public function it_marks_a_lead_as_not_followed_up()
     {
         $lead = create(Lead::class, ['lead_class_id' => null]);
 
@@ -42,6 +42,20 @@ class LeadTest extends TestCase
         $lead->markAsNotFollowedUp();
 
         $this->assertEquals($lead->lead_class_id, $leadClass->id);
+    }
+
+    /** @test */
+    public function it_marks_a_lead_as_followed_up()
+    {
+        $taylorSwift = create(User::class);
+
+        $lead = LeadFactory::assignTo($taylorSwift)->withClass('not_followed_up')->create();
+
+        create(LeadClass::class, ['slug' => 'followed_up']);
+
+        $lead->markAsFollowedUp();
+
+        $this->assertEquals($lead->fresh()->lead_class_id, 2);
     }
 
     /** @test */

@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Lead;
+use CRM\Models\LeadClass;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\LeadFactory;
@@ -64,6 +65,8 @@ class ManageInteractionsTest extends TestCase
         $jimMattis = UserFactory::fromCompany()->create();
 
         $lead = LeadFactory::assignTo($jimMattis)->create();
+
+        create(LeadClass::class, ['slug' => 'followed_up']);
 
         $this->actingAs($jimMattis)
             ->post(route('interactions.store', $lead), $input = ['body' => 'Some body', 'user_id' => $jimMattis->id])

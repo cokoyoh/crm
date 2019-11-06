@@ -11,6 +11,8 @@ class InteractionsController extends Controller
     {
         $lead->addInteraction($request->validated());
 
+        $lead->markAsFollowedUp();
+
         if ($request->wantsJson()) {
             return [
                 'message' => 'Interaction added successfully',

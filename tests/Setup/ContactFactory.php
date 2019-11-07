@@ -5,13 +5,14 @@ namespace Tests\Setup;
 
 
 use CRM\Models\Contact;
+use CRM\Models\ContactStatus;
 use CRM\Models\ContactUser;
 
 class ContactFactory
 {
     public $lead = null;
-
     public $user = null;
+    public $status = 'prospect';
 
     public function create()
     {
@@ -26,7 +27,16 @@ class ContactFactory
             ]);
         }
 
+        create(ContactStatus::class, ['slug' => $this->status]);
+
         return $contact;
+    }
+
+    public function withStatus($status = null)
+    {
+        $this->status = $status ?? $this->status;
+
+        return $this;
     }
 
     public function associatedWith($lead)

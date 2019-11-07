@@ -120,6 +120,20 @@ class ManageLeadsTest extends TestCase
     }
 
     /** @test */
+    public function a_lead_that_has_been_converted_cannot_be_marked_as_lost()
+    {
+        $user = create(User::class);
+
+        $lead = LeadFactory::assignTo($user)->withClass('followed_up')->create();
+
+        ContactFactory::associatedWith($lead)->create();
+
+        $this->actingAs($user)
+            ->get(route('leads.lost', $lead))
+            ->assertForbidden();
+    }
+
+    /** @test */
     public function authorised_users_can_mark_a_lead_as_lost()
     {
         $johnDoe = UserFactory::fromCompany(create(Company::class))->create();
@@ -167,6 +181,8 @@ class ManageLeadsTest extends TestCase
         $johnDoe = create(User::class);
 
         $lead = LeadFactory::withClass('followed_up')->assignTo($johnDoe)->create();
+
+        create(LeadClass::class, ['slug' => 'converted']);
 
         $this->actingAs($johnDoe)
             ->get(route('leads.convert', $lead))

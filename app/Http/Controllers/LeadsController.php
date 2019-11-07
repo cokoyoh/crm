@@ -107,6 +107,8 @@ class LeadsController extends Controller
         DB::transaction(function () use ($lead){
             $lead->convert();
 
+            $lead->markAsConverted();
+
             flash('Lead converted successfully', 'success');
         });
 

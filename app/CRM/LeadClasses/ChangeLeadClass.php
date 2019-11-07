@@ -23,6 +23,11 @@ trait ChangeLeadClass
         $this->changeClass('lost');
     }
 
+    public function markAsConverted()
+    {
+        $this->changeClass('converted');
+    }
+
     private function changeClass($slug = 'not_followed_up')
     {
         $leadClass = $this->getLeadClassBySlug($slug);

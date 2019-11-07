@@ -49,7 +49,9 @@ class LeadPolicy
 
     public function markAsLost(User $user, Lead $lead)
     {
-        return $lead->isAssigned($user) && ($lead->leadClass->slug != 'lost');
+        return $lead->isAssigned($user)
+            && ($lead->leadClass->slug != 'lost')
+            && is_null($lead->contact);
     }
 
     public function convertLead(User $user, Lead $lead)

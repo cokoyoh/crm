@@ -73,6 +73,18 @@ class LeadTest extends TestCase
     }
 
     /** @test */
+    public function it_can_mark_a_lead_as_converted()
+    {
+        $lead = create(Lead::class);
+
+        create(LeadClass::class, ['slug' => 'converted']);
+
+        $lead->markAsConverted();
+
+        $this->assertEquals($lead->leadClass->slug, 'converted');
+    }
+
+    /** @test */
     public function it_has_a_name()
     {
         $lead = create(Lead::class, [
@@ -188,6 +200,8 @@ class LeadTest extends TestCase
     /** @test */
     public function it_converts_a_lead_to_a_contact()
     {
+        create(LeadClass::class, ['slug' => 'converted']);
+
         $lead = create(Lead::class);
 
         $lead->convert();

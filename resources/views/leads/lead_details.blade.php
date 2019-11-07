@@ -9,13 +9,13 @@
         <dropdown>
             <template v-slot:trigger>
                 <button class="text-lg text-gray-900 outline-none focus:outline-none">
-                    ...
+                    <svg class="h-4 w-4 fill-current text-gray-600"  viewBox="0 0 20 20"><path d="M4 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm6 0a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/></svg>
                 </button>
             </template>
 
             <li class="dropdown-menu-item"><a href="#">Edit</a></li>
             <li class="dropdown-menu-item"><a href="#">Delete</a></li>
-            <li class="dropdown-menu-item"><a href="#">Report</a></li>
+            <li class="dropdown-menu-item"><a href="#">Lost</a></li>
         </dropdown>
 
     </div>

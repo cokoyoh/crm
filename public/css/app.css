@@ -4703,15 +4703,26 @@ video {
   background-color: #f56565;
 }
 
+.dropdown-trigger {
+  background-color: #f7fafc;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  border-radius: 9999px;
+}
+
+.dropdown-trigger:active {
+  background-color: #cbd5e0;
+}
+
 .dropdown-menu {
   position: absolute;
-  background-color: #000;
+  background-color: #f7fafc;
   margin-top: 0.5rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   border-radius: 0.25rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  color: #fff;
+  color: #1a202c;
   font-size: 0.75rem;
   z-index: 10;
 }
@@ -4725,7 +4736,11 @@ video {
 }
 
 .dropdown-menu-item:hover {
-  background-color: #1a202c;
+  background-color: #edf2f7;
+}
+
+.dropdown-menu-item:active {
+  background-color: #e2e8f0;
 }
 
 .custom-button[data-v-651b7c9a] {

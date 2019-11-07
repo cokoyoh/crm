@@ -1,5 +1,13 @@
+.dropdown-trigger {
+    @apply bg-gray-100 px-1 rounded-full;
+}
+
+.dropdown-trigger:active {
+    @apply bg-gray-400;
+}
+
 .dropdown-menu {
-    @apply absolute bg-black mt-2 py-2 rounded shadow text-white text-xs z-10;
+    @apply absolute bg-gray-100 mt-2 py-2 rounded shadow text-gray-900 text-xs z-10;
 }
 
 .dropdown-menu-item {
@@ -7,5 +15,9 @@
 }
 
 .dropdown-menu-item:hover {
-    @apply bg-gray-900;
+    @apply bg-gray-200;
+}
+
+.dropdown-menu-item:active {
+    @apply bg-gray-300;
 }

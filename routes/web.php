@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::get('/leads/{lead}/lost', 'LeadsController@lost')->name('leads.lost');
     Route::get('/leads/{lead}/convert', 'LeadsController@convert')->name('leads.convert');
+    Route::delete('/leads/{lead}/destroy', 'LeadsController@destroy')->name('leads.destroy');
 
     Route::post('/leads/{lead}/notes', 'LeadNotesController@store')->name('leads.notes.store');
 

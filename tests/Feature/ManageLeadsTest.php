@@ -192,4 +192,30 @@ class ManageLeadsTest extends TestCase
 
         $this->assertEquals($lead->contact->contactUser->user_id, $johnDoe->id);
     }
+
+    /** @test */
+    public function a_user_cannot_delete_a_lead_which_they_do_not_own()
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::withClass('followed_up')->assignTo(create(User::class))->create();
+
+        $this->actingAs($johnDoe)
+            ->delete(route('leads.destroy', $lead))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_user_cannot_delete_a_lead_that_has_been_converted()  
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::withClass('followed_up')->assignTo($johnDoe)->create();
+
+        ContactFactory::associatedWith($lead)->create();
+
+        $this->actingAs($johnDoe)
+            ->delete(route('leads.destroy', $lead))
+            ->assertForbidden();
+    }
 }

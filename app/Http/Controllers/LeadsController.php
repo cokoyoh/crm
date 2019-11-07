@@ -114,4 +114,9 @@ class LeadsController extends Controller
 
         return redirect()->route('leads.show', $lead);
     }
+
+    public function destroy(Lead $lead)
+    {
+        $this->authorize('destroy', $lead);
+    }
 }

@@ -32,7 +32,7 @@
         @if($lead->status == 'Prospect')
             <span class="badge-default lead-not-followed-up font-semibold">Prospect</span>
         @elseif($lead->status == 'Converted')
-            <span class="badge-default lead-converted font-semibold">Converted</span>
+            <span class="badge-default lead-converted text-xs">Converted</span>
         @elseif($lead->status == 'Lost')
             <span class="badge-default lead-lost">Lost</span>
         @elseif($lead->status == 'New')

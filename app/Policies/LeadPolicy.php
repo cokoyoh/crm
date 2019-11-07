@@ -49,13 +49,26 @@ class LeadPolicy
 
     public function markAsLost(User $user, Lead $lead)
     {
-        return $lead->isAssigned($user)
-            && ($lead->leadClass->slug != 'lost')
-            && is_null($lead->contact);
+        return $this->isAssignedButNotConverted($user, $lead) && $this->isNotLost($lead);
     }
 
     public function convertLead(User $user, Lead $lead)
     {
+        return $this->isAssignedButNotConverted($user, $lead);
+    }
+
+    public function destroy(User $user, Lead $lead)
+    {
+        return $this->isAssignedButNotConverted($user, $lead);
+    }
+
+    private function isAssignedButNotConverted(User $user, Lead $lead)
+    {
         return $lead->isAssigned($user) && is_null($lead->contact);
+    }
+
+    private function isNotLost(Lead $lead, $slug = 'lost')
+    {
+        return $lead->leadClass->slug != $slug;
     }
 }

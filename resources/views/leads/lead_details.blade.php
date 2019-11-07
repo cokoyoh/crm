@@ -13,7 +13,9 @@
                 </button>
             </template>
 
-            <li class="dropdown-menu-item"><a href="#">Convert</a></li>
+            @can('convertLead', $lead)
+                <li class="dropdown-menu-item"><a href="{!! route('leads.convert', $lead) !!}">Convert</a></li>
+            @endcan
             <li class="dropdown-menu-item"><a href="#">Edit</a></li>
             @can('markAsLost', $lead)
                 <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>

@@ -3,12 +3,15 @@
 namespace CRM\Models;
 
 use CRM\LeadClasses\ChangeLeadClass;
+use CRM\Leads\LeadConversion;
 use CRM\Leads\LeadStatus;
 use Illuminate\Database\Eloquent\Model;
 
 class Lead extends Model
 {
-    use ChangeLeadClass, LeadStatus;
+    use ChangeLeadClass,
+        LeadStatus,
+        LeadConversion;
 
     protected $table = 'leads';
 

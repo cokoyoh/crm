@@ -184,4 +184,14 @@ class LeadTest extends TestCase
 
         $this->assertInstanceOf(Contact::class, $lead->contact);
     }
+
+    /** @test */
+    public function it_converts_a_lead_to_a_contact()
+    {
+        $lead = create(Lead::class);
+
+        $lead->convert();
+
+        $this->assertCount(1, Contact::all());
+    }
 }

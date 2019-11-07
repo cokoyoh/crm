@@ -103,5 +103,13 @@ class LeadsController extends Controller
     public function convert(Lead $lead)
     {
         $this->authorize('convertLead', $lead);
+
+        DB::transaction(function () use ($lead){
+            $lead->convert();
+
+            flash('Lead converted successfully', 'success');
+        });
+
+        return redirect()->route('leads.show', $lead);
     }
 }

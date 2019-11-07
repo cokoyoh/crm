@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\Contact;
 use CRM\Models\Lead;
 use CRM\Models\LeadClass;
 use CRM\Models\User;
@@ -158,5 +159,21 @@ class ManageLeadsTest extends TestCase
         $this->actingAs($johnDoe)
             ->get(route('leads.convert', $lead))
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_user_can_convert_a_lead_to_contact()
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::withClass('followed_up')->assignTo($johnDoe)->create();
+
+        $this->actingAs($johnDoe)
+            ->get(route('leads.convert', $lead))
+            ->assertRedirect(route('leads.show', $lead));
+
+        $this->assertEquals($lead->id, Contact::first()->lead_id);
+
+        $this->assertEquals($lead->contact->contactUser->user_id, $johnDoe->id);
     }
 }

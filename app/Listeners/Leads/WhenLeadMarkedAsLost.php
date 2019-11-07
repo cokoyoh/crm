@@ -33,7 +33,7 @@ class WhenLeadMarkedAsLost
 
         $company = $user->company;
 
-        if ($company) {
+        if ($company->admin) {
             sendMail([
                 'to' => $company->admin->email,
                 'firstname' => $company->admin->first_name,

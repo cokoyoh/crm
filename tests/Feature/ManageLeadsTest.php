@@ -2,6 +2,7 @@
 
 namespace Tests\Feature;
 
+use CRM\Models\Company;
 use CRM\Models\Lead;
 use CRM\Models\LeadClass;
 use CRM\Models\User;
@@ -120,7 +121,7 @@ class ManageLeadsTest extends TestCase
     /** @test */
     public function authorised_users_can_mark_a_lead_as_lost()
     {
-        $johnDoe = create(User::class);
+        $johnDoe = UserFactory::fromCompany(create(Company::class))->create();
 
         $lead = LeadFactory::assignTo($johnDoe)->withClass('followed_up')->create();
 

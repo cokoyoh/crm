@@ -55,3 +55,8 @@ function getMessageLevel(String $level)
 
     return Str::ucfirst($level);
 }
+
+function inProduction()
+{
+    return env('APP_ENV') === 'production';
+}

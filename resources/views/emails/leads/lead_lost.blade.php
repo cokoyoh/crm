@@ -21,8 +21,8 @@
                 <td>{!! $assignee->email !!}</td>
             </tr>
             <tr>
-                <td>Lead Stage</td>
-                <td colspan="2">{!! $lead->leadClass->name !!}</td>
+                <td>Immediate Lead Stage</td>
+                <td colspan="2">{!! $stage !!}</td>
             </tr>
             </tbody>
         </table>

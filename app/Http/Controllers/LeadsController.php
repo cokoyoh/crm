@@ -88,9 +88,11 @@ class LeadsController extends Controller
         $this->authorize('markAsLost', $lead);
 
         DB::transaction(function () use ($lead){
+            $previousLeadStage = $lead->leadClass->name;
+
             $lead->markAsLost();
 
-            event(new LeadMarkedAsLost($lead));
+            event(new LeadMarkedAsLost($lead, $previousLeadStage));
 
             flash('This lead has been marked as lost.', 'success');
         });

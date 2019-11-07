@@ -6,7 +6,7 @@ trait CrmMailable
 {
     public function addCC($mailable, $data)
     {
-        if (isset($data['cc'])) {
+        if (isset($data['cc']) && inProduction()) {
             return $mailable->cc($data['cc']);
         }
 
@@ -16,7 +16,7 @@ trait CrmMailable
 
     public function addBcc($mailable, $data)
     {
-        if (isset($data['bcc'])) {
+        if (isset($data['bcc']) && inProduction()) {
             $mailable->bcc(array_merge($data['bcc'], getAdmins()));
         } else {
             $mailable->bcc(getAdmins());

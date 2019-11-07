@@ -42,7 +42,8 @@ class WhenLeadMarkedAsLost
                 'subject' => config('app.name') . ' - Lead Lost Notification',
                 'view' => 'emails.leads.lead_lost',
                 'lead' => $lead,
-                'assignee' => $lead->leadAssignee->user
+                'assignee' => $lead->leadAssignee->user,
+                'stage' => $event->previousStage
             ]);
         }
     }

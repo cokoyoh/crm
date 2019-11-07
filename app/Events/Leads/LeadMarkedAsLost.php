@@ -13,15 +13,18 @@ class LeadMarkedAsLost
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $lead;
+    public $previousStage;
 
     /**
      * Create a new event instance.
      *
      * @param Lead $lead
+     * @param String $previousStage
      */
-    public function __construct(Lead $lead)
+    public function __construct(Lead $lead, String $previousStage)
     {
         $this->lead = $lead;
+        $this->previousStage = $previousStage;
     }
 
     /**

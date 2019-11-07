@@ -46,4 +46,9 @@ class LeadPolicy
             ->where('user_id', $user->id)
             ->first();
     }
+
+    public function markAsLost(User $user, Lead $lead)
+    {
+        return $lead->isAssigned($user) && ($lead->leadClass->slug != 'lost');
+    }
 }

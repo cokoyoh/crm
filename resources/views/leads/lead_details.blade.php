@@ -13,9 +13,13 @@
                 </button>
             </template>
 
+            <li class="dropdown-menu-item"><a href="#">Convert</a></li>
             <li class="dropdown-menu-item"><a href="#">Edit</a></li>
+            @can('markAsLost', $lead)
+                <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>
+            @endcan
             <li class="dropdown-menu-item"><a href="#">Delete</a></li>
-            <li class="dropdown-menu-item"><a href="#">Lost</a></li>
+
         </dropdown>
 
     </div>

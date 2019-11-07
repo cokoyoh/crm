@@ -38,9 +38,9 @@ class WhenLeadMarkedAsLost
                 'to' => $company->admin->email,
                 'firstname' => $company->admin->first_name,
                 'cc' => $user->email,
-                'bcc' => $company->email,
+                'bcc' => [$company->email],
                 'subject' => config('app.name') . ' - Lead Lost Notification',
-                'view' => 'email.leads.lead_lost',
+                'view' => 'emails.leads.lead_lost',
                 'lead' => $lead,
                 'assignee' => $lead->leadAssignee->user
             ]);

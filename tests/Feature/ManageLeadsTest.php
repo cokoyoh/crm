@@ -97,7 +97,7 @@ class ManageLeadsTest extends TestCase
     {
         $user = create(User::class);
 
-        $lead = LeadFactory::assignTo($user)->create();
+        $lead = LeadFactory::assignTo($user)->withClass('lost')->create();
 
         $this->actingAs($user)
             ->get(route('leads.show', $lead))
@@ -113,7 +113,7 @@ class ManageLeadsTest extends TestCase
         $lead = LeadFactory::assignTo(create(User::class))->create();
 
         $this->actingAs($user)
-            ->post(route('leads.lost', $lead), [])
+            ->get(route('leads.lost', $lead))
             ->assertForbidden();
     }
 
@@ -127,7 +127,7 @@ class ManageLeadsTest extends TestCase
         create(LeadClass::class, ['slug' => 'lost']);
 
         $this->actingAs($johnDoe)
-            ->post(route('leads.lost', $lead), [])
+            ->get(route('leads.lost', $lead))
             ->assertRedirect(route('leads.show', $lead));
 
         $this->assertEquals($lead->fresh()->leadClass->slug, 'lost');

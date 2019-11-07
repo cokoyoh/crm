@@ -8,6 +8,7 @@ use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\LeadNotes\LeadNotesRepository;
 use CRM\Leads\LeadRepository;
 use CRM\Models\Lead;
+use Illuminate\Support\Facades\DB;
 
 class LeadsController extends Controller
 {
@@ -84,13 +85,15 @@ class LeadsController extends Controller
 
     public function lost(Lead $lead)
     {
-        $this->authorize('manageLead', $lead);
+        $this->authorize('markAsLost', $lead);
 
-        $lead->markAsLost();
+        DB::transaction(function () use ($lead){
+            $lead->markAsLost();
 
-        event(new LeadMarkedAsLost($lead));
+            event(new LeadMarkedAsLost($lead));
 
-        flash('This lead has been marked as lost.', 'success');
+            flash('This lead has been marked as lost.', 'success');
+        });
 
         return redirect()->route('leads.show', $lead);
     }

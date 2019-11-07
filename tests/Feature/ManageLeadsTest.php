@@ -206,7 +206,7 @@ class ManageLeadsTest extends TestCase
     }
 
     /** @test */
-    public function authorised_user_cannot_delete_a_lead_that_has_been_converted()  
+    public function authorised_user_cannot_delete_a_lead_that_has_been_converted()
     {
         $johnDoe = create(User::class);
 
@@ -217,5 +217,19 @@ class ManageLeadsTest extends TestCase
         $this->actingAs($johnDoe)
             ->delete(route('leads.destroy', $lead))
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_users_can_delete_leads()
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::withClass('followed_up')->assignTo($johnDoe)->create();
+
+        $this->actingAs($johnDoe)
+            ->delete(route('leads.destroy', $lead))
+            ->assertRedirect(route('dashboard.user', $johnDoe));
+
+        $this->assertNotNull($lead->fresh()->deleted_at);
     }
 }

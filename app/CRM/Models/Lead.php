@@ -3,13 +3,17 @@
 namespace CRM\Models;
 
 use CRM\LeadClasses\ChangeLeadClass;
+use CRM\Leads\ExpungesLead;
 use CRM\Leads\LeadConversion;
 use CRM\Leads\LeadStatus;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lead extends Model
 {
-    use ChangeLeadClass,
+    use SoftDeletes,
+        ExpungesLead,
+        ChangeLeadClass,
         LeadStatus,
         LeadConversion;
 

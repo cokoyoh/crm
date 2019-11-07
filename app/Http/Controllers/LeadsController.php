@@ -118,5 +118,13 @@ class LeadsController extends Controller
     public function destroy(Lead $lead)
     {
         $this->authorize('destroy', $lead);
+
+        DB::transaction(function () use ($lead) {
+            $lead->expunge();
+
+            flash('Lead deleted successfully', 'success');
+        });
+
+        return redirect()->route('dashboard.user', auth()->id());
     }
 }

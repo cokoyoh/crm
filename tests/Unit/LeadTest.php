@@ -10,6 +10,7 @@ use CRM\Models\LeadClass;
 use CRM\Models\LeadNote;
 use CRM\Models\User;
 use Facades\Tests\Setup\ContactFactory;
+use Facades\Tests\Setup\InteractionFactory;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -207,5 +208,25 @@ class LeadTest extends TestCase
         $lead->convert();
 
         $this->assertCount(1, Contact::all());
+    }
+
+    /** @test */
+    public function it_expunges_a_lead_and_associated_records()
+    {
+        $user = create(User::class);
+
+        $lead = LeadFactory::assignTo($user)->create();
+
+        InteractionFactory::fromLead($lead)->belongingTo($user)->create();
+
+        $this->assertEquals(1, LeadAssignee::count());
+
+        $this->assertCount(1, $lead->interactions);
+
+        $lead->expunge();
+
+        $this->assertEquals(0, LeadAssignee::count());
+
+        $this->assertEquals(0, Interaction::count());
     }
 }

@@ -11,10 +11,11 @@ use CRM\Models\User;
 class InteractionFactory
 {
     public $user = null;
+    public $lead = null;
 
     public function create()
     {
-        $lead = create(Lead::class);
+        $lead = $this->lead ?? create(Lead::class);
 
         return create(Interaction::class, [
             'lead_id' => $lead->id,
@@ -25,6 +26,13 @@ class InteractionFactory
     public function belongingTo($user)
     {
         $this->user = $user ?? create(User::class);
+
+        return $this;
+    }
+
+    public function fromLead($lead)
+    {
+        $this->lead = $lead;
 
         return $this;
     }

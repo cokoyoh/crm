@@ -20,7 +20,16 @@
             @can('markAsLost', $lead)
                 <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>
             @endcan
-            <li class="dropdown-menu-item"><a href="#">Delete</a></li>
+            @can('destroy', $lead)
+                <form action="{!! route('leads.destroy', $lead) !!}" method="post">
+                    @csrf
+                    @method('delete')
+                    <li class="dropdown-menu-item">
+                        <button class="outline-none focus:outline-none">Delete</button>
+                    </li>
+                </form>
+
+            @endcan
 
         </dropdown>
 

@@ -20,6 +20,7 @@ class CreateContactStatusesTable extends Migration
         Schema::create('contact_statuses', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 45)->nullable();
+            $table->string('slug', 100)->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();
         });

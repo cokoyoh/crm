@@ -2,12 +2,14 @@
 
 namespace Tests\Unit;
 
+use CRM\Models\Contact;
 use CRM\Models\Interaction;
 use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
 use CRM\Models\LeadClass;
 use CRM\Models\LeadNote;
 use CRM\Models\User;
+use Facades\Tests\Setup\ContactFactory;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -171,5 +173,15 @@ class LeadTest extends TestCase
         $lead = create(Lead::class, ['last_name' => 'adede']);
 
         $this->assertEquals('Adede', $lead->last_name);
+    }
+
+    /** @test */
+    public function it_has_a_contact()
+    {
+        $lead = create(Lead::class);
+
+        ContactFactory::associatedWith($lead)->create();
+
+        $this->assertInstanceOf(Contact::class, $lead->contact);
     }
 }

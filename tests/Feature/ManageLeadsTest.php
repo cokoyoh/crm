@@ -9,7 +9,7 @@ use CRM\Models\User;
 use Facades\Tests\Setup\LeadFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Support\Facades\Session;
+use Facades\Tests\Setup\ContactFactory;
 use Tests\TestCase;
 
 class ManageLeadsTest extends TestCase
@@ -132,5 +132,31 @@ class ManageLeadsTest extends TestCase
             ->assertRedirect(route('leads.show', $lead));
 
         $this->assertEquals($lead->fresh()->leadClass->slug, 'lost');
+    }
+
+    /** @test */
+    public function a_user_cannot_convert_a_lead_which_does_not_belong_to_them()
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::withClass('followed_up')->assignTo(create(User::class))->create();
+
+        $this->actingAs($johnDoe)
+            ->get(route('leads.convert', $lead))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_convert_a_lead_that_has_already_been_converted()
+    {
+        $johnDoe = create(User::class);
+
+        $lead = LeadFactory::withClass('followed_up')->assignTo($johnDoe)->create();
+
+        ContactFactory::associatedWith($lead)->create();
+
+        $this->actingAs($johnDoe)
+            ->get(route('leads.convert', $lead))
+            ->assertForbidden();
     }
 }

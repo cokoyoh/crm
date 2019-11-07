@@ -12,13 +12,13 @@ class ContactStatusesTableSeeder extends Seeder
     public function run()
     {
         $statuses = [
-            'Prospecting',
-            'Converted',
-            'Lost'
+            ['name' => 'Prospect', 'slug' => 'prospect'],
+            ['name' => 'Converted', 'slug' => 'converted'],
+            ['name' => 'Lost', 'slug' => 'lost'],
         ];
 
-//        foreach ($statuses as $status) {
-//            CRM\Models\ContactStatus::updateOrCreate($status);
-//        }
+        foreach ($statuses as $status) {
+            CRM\Models\ContactStatus::updateOrCreate($status);
+        }
     }
 }

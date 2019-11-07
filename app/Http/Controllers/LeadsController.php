@@ -99,4 +99,9 @@ class LeadsController extends Controller
 
         return redirect()->route('leads.show', $lead);
     }
+
+    public function convert(Lead $lead)
+    {
+        $this->authorize('convertLead', $lead);
+    }
 }

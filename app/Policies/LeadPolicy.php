@@ -51,4 +51,9 @@ class LeadPolicy
     {
         return $lead->isAssigned($user) && ($lead->leadClass->slug != 'lost');
     }
+
+    public function convertLead(User $user, Lead $lead)
+    {
+        return $lead->isAssigned($user) && is_null($lead->contact);
+    }
 }

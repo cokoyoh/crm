@@ -83,4 +83,9 @@ class Lead extends Model
 
         return $this->notes()->create($input);
     }
+
+    public function contact()
+    {
+        return $this->hasOne(Contact::class);
+    }
 }

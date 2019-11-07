@@ -13,10 +13,12 @@
                 </button>
             </template>
 
+            @can('manageLead', $lead)
+                <li class="dropdown-menu-item"><a href="#">Edit</a></li>
+            @endcan
             @can('convertLead', $lead)
                 <li class="dropdown-menu-item"><a href="{!! route('leads.convert', $lead) !!}">Convert</a></li>
             @endcan
-            <li class="dropdown-menu-item"><a href="#">Edit</a></li>
             @can('markAsLost', $lead)
                 <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>
             @endcan
@@ -25,7 +27,7 @@
                     @csrf
                     @method('delete')
                     <li class="dropdown-menu-item">
-                        <button class="outline-none focus:outline-none">Delete</button>
+                        <button class="outline-none focus:outline-none" type="submit">Delete</button>
                     </li>
                 </form>
 

@@ -8,6 +8,7 @@ use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\LeadNotes\LeadNotesRepository;
 use CRM\Leads\LeadRepository;
 use CRM\Models\Lead;
+use CRM\Transformers\LeadsTransformer;
 use Illuminate\Support\Facades\DB;
 
 class LeadsController extends Controller
@@ -15,21 +16,25 @@ class LeadsController extends Controller
     protected $lead;
     protected $leadAssignee;
     protected $leadNotes;
+    protected $leadsTransformer;
 
     /**
      * LeadsController constructor.
      * @param LeadRepository $lead
      * @param LeadAssigneeRepository $leadAssignee
      * @param LeadNotesRepository $leadNotes
+     * @param LeadsTransformer $leadsTransformer
      */
     public function __construct(
         LeadRepository $lead,
         LeadAssigneeRepository $leadAssignee,
-        LeadNotesRepository $leadNotes
+        LeadNotesRepository $leadNotes,
+        LeadsTransformer $leadsTransformer
     ) {
         $this->lead = $lead;
         $this->leadAssignee = $leadAssignee;
         $this->leadNotes = $leadNotes;
+        $this->leadsTransformer = $leadsTransformer;
     }
 
     public function show(Lead $lead)
@@ -70,17 +75,12 @@ class LeadsController extends Controller
     {
         $searchString = request('query');
 
-        return Lead::query()
+        $leads = Lead::query()
             ->where('first_name', 'like', "%{$searchString}%")
             ->orWhere('last_name', 'like', "%{$searchString}%")
-            ->get()
-            ->map(function ($lead) use($searchString){
-                return [
-                    'id' => $lead->id,
-                    'name' => $lead->name,
-                ];
-            })
-            ->toArray();
+            ->get();
+
+        return $this->leadsTransformer->transformCollection($leads);
     }
 
     public function lost(Lead $lead)

@@ -24,6 +24,9 @@ class ManageLeadsTest extends TestCase
 
         $lead = create(Lead::class);
 
+        $this->get(route('leads.create'))
+            ->assertRedirect('login');
+
         $this->post(route('leads.store'), $attributes)
             ->assertRedirect(route('login'));
 

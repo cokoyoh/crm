@@ -37,6 +37,16 @@ class LeadsController extends ApiController
         $this->leadsTransformer = $leadsTransformer;
     }
 
+    public function create(Lead $lead = null)
+    {
+        if ($lead)
+            $this->authorize('manageLead', $lead);
+
+        return view('leads.create', [
+            'lead' => $lead
+        ]);
+    }
+
     public function show(Lead $lead)
     {
         $this->authorize('manageLead', $lead);

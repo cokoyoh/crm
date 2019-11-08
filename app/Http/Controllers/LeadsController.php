@@ -11,7 +11,7 @@ use CRM\Models\Lead;
 use CRM\Transformers\LeadsTransformer;
 use Illuminate\Support\Facades\DB;
 
-class LeadsController extends Controller
+class LeadsController extends ApiController
 {
     protected $lead;
     protected $leadAssignee;
@@ -60,10 +60,10 @@ class LeadsController extends Controller
         $this->leadAssignee->store(auth()->user(), $lead);
 
         if ($request->wantsJson()) {
-            return [
+            return $this->respondSuccess([
                 'message' => 'Lead saved successfully',
                 'link' => route('leads.show', $lead)
-            ];
+            ]);
         }
 
         flash('Lead added successfully.', 'success');

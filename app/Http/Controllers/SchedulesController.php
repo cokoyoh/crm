@@ -6,7 +6,7 @@ use App\Http\Requests\StoreScheduleRequest;
 use CRM\Models\Schedule;
 use CRM\Schedules\ScheduleRepository;
 
-class SchedulesController extends Controller
+class SchedulesController extends ApiController
 {
     protected $schedule;
 
@@ -25,10 +25,10 @@ class SchedulesController extends Controller
         $this->schedule->create($request->validated());
 
         if ($request->wantsJson()) {
-            return [
-                'message' => 'Schedule added successfully',
-                'link' => route('dashboard.user', auth()->user())
-            ];
+            return $this->respondSuccess([
+                    'message' => 'Schedule added successfully',
+                    'link' => route('dashboard.user', auth()->user())
+                ]);
         }
 
         return redirect(route('dashboard.user', auth()->user()));

@@ -29,6 +29,21 @@ class UserFactory
         return $user;
     }
 
+    public function superAdmin()
+    {
+        return $this->withRole('super_admin');
+    }
+
+    public function admin()
+    {
+        return $this->withRole('admin');
+    }
+
+    public function regularUser()
+    {
+        return $this->withRole('user');
+    }
+
     public function withRole($roleSlug)
     {
         $this->roleSlug = $roleSlug;

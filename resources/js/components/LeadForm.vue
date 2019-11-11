@@ -1,6 +1,9 @@
 <template>
-    <div>
-        <form @submit.prevent="submit" class="w-8/12 mx-auto py-5">
+    <div class="-mt-16">
+        <form @submit.prevent="submit" class="w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow-md overflow-hidden">
+            <div class="text-3xl mx-auto text-center">
+               <p class="text-lg text-gray-700 uppercase font-semibold">New Lead</p>
+            </div>
             <div class="mb-6">
                 <label for="name"
                        class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Name</label>
@@ -127,9 +130,9 @@
                 </div>
             </div>
             <div class="mt-5 mb-5">
-                <button type="submit" class="price-button w-1/4 text-gray-700">Save Lead</button>
+                <button type="submit" class="active:bg-green-700 bg-green-600 focus:outline-none focus:shadow-outline outline-none px-3 py-2 rounded-lg shadow text-white text-lg font-medium">Save Lead</button>
                 <a href="#">
-                    <button class="ml-2 price-button w-1/4 text-gray-700">Cancel</button>
+                    <button class="ml-2 bg-gray-200 text-lg text-gray-700 active:bg-gray-400 active:text-white focus:outline-none focus:shadow-outline outline-none shadow px-3 py-2 rounded-lg text-lg font-medium">Cancel</button>
                 </a>
             </div>
         </form>

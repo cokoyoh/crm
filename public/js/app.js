@@ -2169,6 +2169,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "lead-form",
@@ -28854,11 +28857,12 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", { staticClass: "-mt-16" }, [
     _c(
       "form",
       {
-        staticClass: "w-8/12 mx-auto py-5",
+        staticClass:
+          "w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow-md overflow-hidden",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -28867,6 +28871,8 @@ var render = function() {
         }
       },
       [
+        _vm._m(0),
+        _vm._v(" "),
         _c("div", { staticClass: "mb-6" }, [
           _c(
             "label",
@@ -29051,7 +29057,7 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(0),
+        _vm._m(1),
         _vm._v(" "),
         _c("div", { staticClass: "inline-block relative w-full mb-6" }, [
           _c(
@@ -29065,7 +29071,7 @@ var render = function() {
           ),
           _vm._v(" "),
           _c("div", { staticClass: "relative" }, [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c(
               "div",
@@ -29107,7 +29113,7 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
-          _vm._m(2),
+          _vm._m(3),
           _vm._v(" "),
           _c("div", { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" }, [
             _c(
@@ -29125,7 +29131,7 @@ var render = function() {
             ),
             _vm._v(" "),
             _c("div", { staticClass: "relative" }, [
-              _vm._m(3),
+              _vm._m(4),
               _vm._v(" "),
               _c(
                 "div",
@@ -29157,15 +29163,27 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(4)
+          _vm._m(5)
         ]),
         _vm._v(" "),
-        _vm._m(5)
+        _vm._m(6)
       ]
     )
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "text-3xl mx-auto text-center" }, [
+      _c(
+        "p",
+        { staticClass: "text-lg text-gray-700 uppercase font-semibold" },
+        [_vm._v("New Lead")]
+      )
+    ])
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -29281,16 +29299,22 @@ var staticRenderFns = [
       _c(
         "button",
         {
-          staticClass: "price-button w-1/4 text-gray-700",
+          staticClass:
+            "active:bg-green-700 bg-green-600 focus:outline-none focus:shadow-outline outline-none px-3 py-2 rounded-lg shadow text-white text-lg font-medium",
           attrs: { type: "submit" }
         },
         [_vm._v("Save Lead")]
       ),
       _vm._v(" "),
       _c("a", { attrs: { href: "#" } }, [
-        _c("button", { staticClass: "ml-2 price-button w-1/4 text-gray-700" }, [
-          _vm._v("Cancel")
-        ])
+        _c(
+          "button",
+          {
+            staticClass:
+              "ml-2 bg-gray-200 text-lg text-gray-700 active:bg-gray-400 active:text-white focus:outline-none focus:shadow-outline outline-none shadow px-3 py-2 rounded-lg text-lg font-medium"
+          },
+          [_vm._v("Cancel")]
+        )
       ])
     ])
   }

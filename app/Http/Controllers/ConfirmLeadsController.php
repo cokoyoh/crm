@@ -10,17 +10,16 @@ class ConfirmLeadsController extends ApiController
 
     public function email()
     {
-        $lead = $this->getAssociatedLeadFromEmail(
-            \request()->query('email')
+        $email = request()->query('email');
+
+        $lead = $this->getAssociatedLeadFromEmail($email);
+
+        $contact = $this->getAssociatedContactFromEmail($email);
+
+        $message = $this->getPreparedMessage(
+            $this->getContactAssignee($contact),
+            $this->getLeadAssignee($lead)
         );
-
-        //find if there is a contact here which matches this
-
-        $leadAssignee = $this->getLeadAssignee($lead);
-
-        $message = $leadAssignee
-            ? 'A lead under the same email exists in the system and is currently assigned to '. $leadAssignee
-            : null;
 
         return $this->respondSuccess([
             'message' => $message

@@ -11,22 +11,24 @@ trait LeadConfirmation
 {
     private function getAssociatedLeadFromEmail(String $email)
     {
-        return Lead::whereHas('leadAssignee', function ($leadAssignee) {
-            $leadAssignee->whereHas('user', function ($user) {
-                $user->where('company_id', auth()->user()->company->id);
-            });
-        })
+        $company = auth()->user()->company;
+
+        if (is_null($company)) return null;
+
+        return Lead::where('company_id', $company->id)
             ->where('email', $email)
             ->first();
     }
 
     private function getAssociatedContactFromEmail(String $email)
     {
-        $query = Contact::query();
+        $company = auth()->user()->company;
 
-        //contact might have been assigned or not
+        if (is_null($company)) return null;
 
-        //if assigned
+        return Contact::where('company_id', $company->id)
+            ->where('email', $email)
+            ->first();
     }
 
     private function getLeadAssignee(Lead $lead = null)
@@ -37,8 +39,32 @@ trait LeadConfirmation
 
         $leadAssignee = $lead->leadAssignee;
 
+        $user = $leadAssignee ? $leadAssignee->user : null;
+
+        return $user ? $user->name : null;
+    }
+
+    private function getContactAssignee(Contact $contact = null)
+    {
+        if (is_null($contact)) {
+            return null;
+        };
+
+        $contactUser = $contact->contactUser;
+
+        $user = $contactUser ? $contactUser->user : null;
+
+        return $user ? $user->name : '';
+    }
+
+    private function getPreparedMessage($contactAssignee = null, $leadAssignee = null)
+    {
+        if ($contactAssignee) {
+            return 'A contact under the same email exists in the system and is currently assigned to ' . $contactAssignee;
+        }
+
         if ($leadAssignee) {
-            return optional($leadAssignee->user)->name;
+            return 'A lead under the same email exists in the system and is currently assigned to ' . $leadAssignee;
         }
 
         return null;

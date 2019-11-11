@@ -40,9 +40,9 @@ class ManageUsersTest extends TestCase
     {
         $andela = create(Company::class);
 
-        $janeDoe = UserFactory::fromCompany($andela)->withRole('user')->create();
+        $janeDoe = UserFactory::fromCompany($andela)->regularUser()->create();
 
-        $johnDoe = UserFactory::fromCompany($andela)->withRole('user')->create();
+        $johnDoe = UserFactory::fromCompany($andela)->regularUser()->create();
 
         $this->actingAs($janeDoe)
             ->delete(route('users.destroy', $johnDoe))
@@ -52,9 +52,9 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function a_company_admin_can_only_delete_user_accounts_from_the_same_company()
     {
-        $admin = UserFactory::fromCompany(create(Company::class))->withRole('admin')->create();
+        $admin = UserFactory::fromCompany(create(Company::class))->admin()->create();
 
-        $johnDoe = UserFactory::fromCompany(create(Company::class))->withRole('user')->create();
+        $johnDoe = UserFactory::fromCompany(create(Company::class))->regularUser()->create();
 
         $this->actingAs($admin)
             ->delete(route('users.destroy', $johnDoe))
@@ -65,7 +65,7 @@ class ManageUsersTest extends TestCase
     /** @test */
     public function a_company_admin_cannot_delete_their_own_account()
     {
-        $admin = UserFactory::fromCompany(create(Company::class))->withRole('admin')->create();
+        $admin = UserFactory::fromCompany(create(Company::class))->admin()->create();
 
         $this->actingAs($admin)
             ->delete(route('users.destroy', $admin))
@@ -77,9 +77,9 @@ class ManageUsersTest extends TestCase
     {
         $andela = create(Company::class);
 
-        $admin = UserFactory::fromCompany($andela)->withRole('admin')->create();
+        $admin = UserFactory::fromCompany($andela)->admin()->create();
 
-        $johnDoe = UserFactory::fromCompany($andela)->withRole('user')->create();
+        $johnDoe = UserFactory::fromCompany($andela)->regularUser()->create();
 
         $this->actingAs($admin)
             ->delete(route('users.destroy', $johnDoe))

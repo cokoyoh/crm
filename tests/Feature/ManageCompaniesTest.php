@@ -27,9 +27,9 @@ class ManageCompaniesTest extends TestCase
     {
         $company = create(Company::class);
 
-        $superAdmin = UserFactory::withRole('super_admin')->create();
+        $superAdmin = UserFactory::superAdmin()->create();
 
-        $john = UserFactory::fromCompany($company)->withRole('admin')->create();
+        $john = UserFactory::fromCompany($company)->admin()->create();
 
         $jane = UserFactory::withRole('user')->create();
 
@@ -43,7 +43,7 @@ class ManageCompaniesTest extends TestCase
     /** @test */
     public function only_super_admins_can_send_company_invites()
     {
-        $superAdmin = UserFactory::withRole('super_admin')->create();
+        $superAdmin = UserFactory::superAdmin()->create();
 
         $this->actingAs($superAdmin)->get(route('companies.create'))->assertStatus(200);
 

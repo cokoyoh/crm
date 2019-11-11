@@ -70,7 +70,7 @@ class ManageLeadsTest extends TestCase
     /** @test */
     public function authorised_users_can_add_leads()
     {
-        $user = UserFactory::withRole('user')->create();
+        $user = UserFactory::regularUser()->create();
 
         $attributes = rawState(Lead::class);
 

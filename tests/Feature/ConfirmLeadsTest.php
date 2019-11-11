@@ -20,7 +20,7 @@ class ConfirmLeadsTest extends TestCase
 
         $harryPotter = UserFactory::fromCompany($safaricom)->create();
 
-        $lead = LeadFactory::assignTo($harryPotter)->create();
+        $lead = LeadFactory::fromCompany($safaricom)->assignTo($harryPotter)->create();
 
         $response = $this->actingAs($harryPotter)->get("/leads/check-email?email=$lead->email");
 

@@ -19,6 +19,7 @@ class CreateLeadsTable extends Migration
     {
         Schema::create('leads', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('company_id')->nullable();
             $table->integer('lead_class_id')->nullable();
             $table->string('first_name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
@@ -29,10 +30,17 @@ class CreateLeadsTable extends Migration
             $table->softDeletes();
 
             $table->index('lead_class_id', 'fk_leads_lead_classes1_idx');
+            $table->index('company_id', 'fk_leads_companies1_idx');
 
             $table->foreign('lead_class_id', 'fk_leads_lead_classes1')
                 ->references('id')
                 ->on('lead_classes')
+                ->onDelete('NO ACTION')
+                ->onUpdate('NO ACTION');
+
+            $table->foreign('company_id', 'fk_leads_companies1')
+                ->references('id')
+                ->on('companies')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
         });

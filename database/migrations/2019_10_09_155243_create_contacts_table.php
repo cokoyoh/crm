@@ -20,6 +20,7 @@ class CreateContactsTable extends Migration
         Schema::create('contacts', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lead_id')->nullable();
+            $table->integer('company_id')->nullable();
             $table->integer('contact_status_id')->nullable();
             $table->string('first_name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
@@ -32,6 +33,13 @@ class CreateContactsTable extends Migration
 
             $table->index('contact_status_id', 'fk_contacts_contact_statuses1_idx');
             $table->index('lead_id', 'fk_contacts_leads1_idx');
+            $table->index('company_id', 'fk_contacts_companies1_idx');
+
+            $table->foreign('company_id', 'fk_contacts_companies1')
+                ->references('id')
+                ->on('companies')
+                ->onDelete('NO ACTION')
+                ->onUpdate('NO ACTION');
 
             $table->foreign('contact_status_id', 'fk_contacts_contact_statuses1')
                 ->references('id')

@@ -4,6 +4,7 @@
 namespace CRM\Leads;
 
 
+use CRM\Models\Contact;
 use CRM\Models\Lead;
 
 trait LeadConfirmation
@@ -17,6 +18,15 @@ trait LeadConfirmation
         })
             ->where('email', $email)
             ->first();
+    }
+
+    private function getAssociatedContactFromEmail(String $email)
+    {
+        $query = Contact::query();
+
+        //contact might have been assigned or not
+
+        //if assigned
     }
 
     private function getLeadAssignee(Lead $lead = null)

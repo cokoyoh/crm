@@ -7,6 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Lead::class, function (Faker $faker) {
     return [
+        'company_id' => null,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'country_code' => $faker->countryCode,

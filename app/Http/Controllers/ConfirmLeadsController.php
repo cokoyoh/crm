@@ -14,6 +14,8 @@ class ConfirmLeadsController extends ApiController
             \request()->query('email')
         );
 
+        //find if there is a contact here which matches this
+
         $leadAssignee = $this->getLeadAssignee($lead);
 
         $message = $leadAssignee

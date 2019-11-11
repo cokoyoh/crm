@@ -10,6 +10,8 @@ class LeadSourcesController extends Controller
     {
         $this->authorize('manageLeadSource', new LeadSource());
 
+        request()->validate(['name' => 'required|min:8']);
+
         LeadSource::create(request()->all());
 
         return redirect()->route('dashboard.user', auth()->user());

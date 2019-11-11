@@ -28,6 +28,17 @@ class ManageLeadSourcesTest extends TestCase
     }
 
     /** @test */
+    public function lead_source_name_is_required_when_adding_a_lead_source()
+    {
+        $user = UserFactory::withRole('admin')->create();
+
+        $this->actingAs($user)
+            ->post(route('lead-sources.store'), $attributes = ['name' => ''])
+            ->assertSessionHasErrors('name');
+    }
+
+
+    /** @test */
     public function authorised_users_can_add_lead_sources()
     {
         $user = UserFactory::withRole('admin')->create();

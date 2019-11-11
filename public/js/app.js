@@ -2188,6 +2188,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "lead-form",
@@ -2199,7 +2203,8 @@ __webpack_require__.r(__webpack_exports__);
         lead_source_id: '',
         country_code: '',
         phone_number: ''
-      })
+      }),
+      emailExists: null
     };
   },
   methods: {
@@ -2207,6 +2212,18 @@ __webpack_require__.r(__webpack_exports__);
       this.form.submit('/leads').then(function (response) {
         return console.log(response);
       });
+    },
+    checkDuplicateEmails: function checkDuplicateEmails(email) {
+      var _this = this;
+
+      axios.get('/leads/check-email?email=' + email).then(function (response) {
+        _this.emailExists = response.data.message;
+      })["catch"](function (error) {
+        return _this.flash(error);
+      });
+    },
+    flash: function flash(errorMessage) {
+      Event.fire('flash-error', errorMessage);
     }
   }
 });
@@ -28966,6 +28983,12 @@ var render = function() {
             },
             domProps: { value: _vm.form.email },
             on: {
+              blur: function($event) {
+                return _vm.checkDuplicateEmails(_vm.form.email)
+              },
+              keydown: function($event) {
+                _vm.emailExists = null
+              },
               input: function($event) {
                 if ($event.target.composing) {
                   return
@@ -28982,11 +29005,18 @@ var render = function() {
               })
             : _vm._e(),
           _vm._v(" "),
-          _c("span", { staticClass: "text-xs italic text-red-700 px-2" }, [
-            _vm._v(
-              "\n                A lead under a similar email exists in the system and is assigned to John Doe\n            "
-            )
-          ])
+          _c("span", {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.emailExists !== null,
+                expression: "emailExists !== null"
+              }
+            ],
+            staticClass: "text-xs italic text-red-700 px-2",
+            domProps: { textContent: _vm._s(_vm.emailExists) }
+          })
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "mb-6 flex items-center justify-between" }, [
@@ -29147,7 +29177,7 @@ var render = function() {
               },
               [
                 _vm._v(
-                  "\n                    City/State/Province\n                "
+                  "\n                        City/State/Province\n                    "
                 )
               ]
             ),
@@ -29295,7 +29325,7 @@ var staticRenderFns = [
             "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
           attrs: { for: "address" }
         },
-        [_vm._v("\n                    Address\n                ")]
+        [_vm._v("\n                        Address\n                    ")]
       ),
       _vm._v(" "),
       _c("input", {
@@ -29337,7 +29367,7 @@ var staticRenderFns = [
             "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
           attrs: { for: "zip_code" }
         },
-        [_vm._v("\n                    Zip Code\n                ")]
+        [_vm._v("\n                        Zip Code\n                    ")]
       ),
       _vm._v(" "),
       _c("input", {

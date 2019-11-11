@@ -22,13 +22,14 @@
 
                 <input type="email" id="email" name="email"
                        v-model="form.email"
+                       @blur="checkDuplicateEmails(form.email)"
+                       @keydown="emailExists = null"
                        class="appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                        placeholder="John Doe">
-                <span class="text-xs italic text-red-700" v-if="form.errors.email"
+                <span class="text-xs italic text-red-700"
+                      v-if="form.errors.email"
                       v-text="form.errors.email[0]"></span>
-                <span class="text-xs italic text-red-700 px-2">
-                    A lead under a similar email exists in the system and is assigned to John Doe
-                </span>
+                <span class="text-xs italic text-red-700 px-2" v-show="emailExists !== null" v-text="emailExists"></span>
             </div>
 
 
@@ -43,6 +44,9 @@
                     >
                     <span class="text-xs italic text-red-700" v-if="form.errors.country_code"
                           v-text="form.errors.country_code[0]"></span>
+<!--                    <span class="text-xs italic text-red-700 px-2">-->
+<!--                    A lead under a similar phone number exists in the system and is currently assigned to John Doe-->
+<!--                </span>-->
                 </div>
 
                 <div class="flex-1 ml-4">
@@ -170,6 +174,7 @@
                     country_code: '',
                     phone_number: '',
                 }),
+                emailExists: null
             }
         },
 
@@ -177,7 +182,19 @@
             submit() {
                 this.form.submit('/leads')
                     .then(response => console.log(response))
-            }
+            },
+
+            checkDuplicateEmails(email) {
+                axios.get('/leads/check-email?email='+ email)
+                    .then(response => {
+                        this.emailExists = response.data.message;
+                    })
+                    .catch(error => this.flash(error))
+            },
+
+            flash(errorMessage) {
+                Event.fire('flash-error', errorMessage);
+            },
         }
     }
 </script>

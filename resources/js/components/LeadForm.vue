@@ -1,6 +1,6 @@
 <template>
     <div class="-mt-16">
-        <form @submit.prevent="submit" class="w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow-md overflow-hidden">
+        <form @submit.prevent="submit" class="w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow overflow-hidden">
             <div class="text-3xl mx-auto text-center">
                <p class="text-lg text-gray-700 uppercase font-semibold">New Lead</p>
             </div>
@@ -26,6 +26,9 @@
                        placeholder="John Doe">
                 <span class="text-xs italic text-red-700" v-if="form.errors.email"
                       v-text="form.errors.email[0]"></span>
+                <span class="text-xs italic text-red-700 px-2">
+                    A lead under a similar email exists in the system and is assigned to John Doe
+                </span>
             </div>
 
 
@@ -53,14 +56,27 @@
                 </div>
             </div>
 
-
-            <div class="mb-6">
-                <label for="name"
-                       class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Gender</label>
-
-                <div class="flex items-center">
-                    <input type="radio" class="mr-5"> Male
-                    <input type="radio"> Female
+            <div class="block mb-6">
+                <span class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2">Gender</span>
+                <div class="mt-2 flex align-center justify-between">
+                    <div>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="radio" value="male" checked>
+                            <span class="ml-2 text-gray-700">Male</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="radio" value="female">
+                            <span class="ml-2 text-gray-700">Female</span>
+                        </label>
+                    </div>
+                    <div>
+                        <label class="inline-flex items-center">
+                            <input type="radio" class="form-radio" name="radio" value="other">
+                            <span class="ml-2 text-gray-700">Other</span>
+                        </label>
+                    </div>
                 </div>
             </div>
 

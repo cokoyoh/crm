@@ -2172,6 +2172,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "lead-form",
@@ -28862,7 +28878,7 @@ var render = function() {
       "form",
       {
         staticClass:
-          "w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow-md overflow-hidden",
+          "w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow overflow-hidden",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -28964,7 +28980,13 @@ var render = function() {
                 staticClass: "text-xs italic text-red-700",
                 domProps: { textContent: _vm._s(_vm.form.errors.email[0]) }
               })
-            : _vm._e()
+            : _vm._e(),
+          _vm._v(" "),
+          _c("span", { staticClass: "text-xs italic text-red-700 px-2" }, [
+            _vm._v(
+              "\n                A lead under a similar email exists in the system and is assigned to John Doe\n            "
+            )
+          ])
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "mb-6 flex items-center justify-between" }, [
@@ -29188,22 +29210,56 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "mb-6" }, [
+    return _c("div", { staticClass: "block mb-6" }, [
       _c(
-        "label",
+        "span",
         {
           staticClass:
-            "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
-          attrs: { for: "name" }
+            "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
         },
         [_vm._v("Gender")]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "flex items-center" }, [
-        _c("input", { staticClass: "mr-5", attrs: { type: "radio" } }),
-        _vm._v(" Male\n                "),
-        _c("input", { attrs: { type: "radio" } }),
-        _vm._v(" Female\n            ")
+      _c("div", { staticClass: "mt-2 flex align-center justify-between" }, [
+        _c("div", [
+          _c("label", { staticClass: "inline-flex items-center" }, [
+            _c("input", {
+              staticClass: "form-radio",
+              attrs: {
+                type: "radio",
+                name: "radio",
+                value: "male",
+                checked: ""
+              }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "ml-2 text-gray-700" }, [_vm._v("Male")])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("label", { staticClass: "inline-flex items-center" }, [
+            _c("input", {
+              staticClass: "form-radio",
+              attrs: { type: "radio", name: "radio", value: "female" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "ml-2 text-gray-700" }, [
+              _vm._v("Female")
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", [
+          _c("label", { staticClass: "inline-flex items-center" }, [
+            _c("input", {
+              staticClass: "form-radio",
+              attrs: { type: "radio", name: "radio", value: "other" }
+            }),
+            _vm._v(" "),
+            _c("span", { staticClass: "ml-2 text-gray-700" }, [_vm._v("Other")])
+          ])
+        ])
       ])
     ])
   },

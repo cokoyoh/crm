@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use CRM\Models\Company;
+use CRM\Models\User;
 use CRM\Schedules\ScheduleRepository;
 
 class HomeController extends Controller
@@ -26,10 +28,22 @@ class HomeController extends Controller
     {
         $userSchedules = $this->schedule->userSchedules();
 
+        $companies = Company::all();
+
+        $latestCompanies = Company::latest()->take(2)->get();
+
+        $latestUsers = User::latest()->take(5)->get();
+
         return view('home', [
             'leads' => auth()->user()->leads(),
             'schedules' => $userSchedules,
-            'greeting' => $this->greeting()
+            'greeting' => $this->greeting(),
+            'companies' => $companies,
+            'companiesCount' => $companies->count(),
+            'usersCount' => User::count(),
+            'dealsCount' => 0,
+            'latestCompanies' => $latestCompanies,
+            'latestUsers' => $latestUsers
         ]);
     }
 

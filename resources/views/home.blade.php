@@ -43,6 +43,7 @@
                     </button>
 
                     <form action="{!! route('logout') !!}" method="post">
+                        @csrf
                         <button
                             class="ml-3 text-sm font-medium text-gray-700 bg-gray-200 px-2 py-1 rounded hover:bg-gray-100 focus:outline-none active:bg-gray-300 active:text-gray-900"
                             type="submit"
@@ -97,6 +98,7 @@
         </div>
 
         <div class="h-screen mx-auto px-24 pt-5">
+            @include('flash.message')
              <div class="flex items-center justify-between">
                  <h3 class="text-sm text-gray-900 font-medium">Overview</h3>
                  <button
@@ -113,120 +115,16 @@
                  </button>
              </div>
 
-            <div class="flex items-center justify-between mt-3">
-                <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
-                    <h4 class="text-gray-600 text-sm font-medium">Total deals</h4>
-                    <h2 class="text-gray-700 text-xl font-light">KES 2.89M</h2>
-                    <div class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-                        <a href="#">
-                            <button class="inline-flex items-center text-sm focus:outline-none">
-                                View all deals
-                                <span>
-                                    <svg class="h-4 v-4 fill-current"
-                                         viewBox="0 0 20 20">
-                                        <path
-                                            d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
-                                    </svg>
-                                </span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
+            @if(auth()->user()->isSuperAdmin())
+                @include('.home.admin_overview')
 
-                <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
-                    <h4 class="text-gray-600 text-sm font-medium">Verified deals</h4>
-                    <h2 class="text-gray-700 text-xl font-light">KES 1.24M</h2>
-                    <div class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-                        <a href="#">
-                            <button class="inline-flex items-center text-sm focus:outline-none">
-                                View all deals
-                                <span>
-                                    <svg class="h-4 v-4 fill-current"
-                                         viewBox="0 0 20 20">
-                                        <path
-                                            d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
-                                    </svg>
-                                </span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
+                @include('.home.companies')
 
-                <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
-                    <h4 class="text-gray-600 text-sm font-medium">Total Leads</h4>
-                    <h2 class="text-gray-700 text-xl font-light"> <span class="bg-teal-200 rounded-full font-medium text-xs p-1 text-teal-900">New</span> 21</h2>
-                    <div class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-                        <a href="#">
-                            <button class="inline-flex items-center text-sm focus:outline-none">
-                                View all leads
-                                <span>
-                                    <svg class="h-4 v-4 fill-current"
-                                         viewBox="0 0 20 20">
-                                        <path
-                                            d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
-                                    </svg>
-                                </span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            @else
+                @include('.home.users_overview')
 
-            <div class="mt-8 flex items-center justify-between">
-                <h3 class="text-sm text-gray-900 font-medium">Recent Schedules</h3>
-                <button
-                    class="mt-1 flex items-center text-xs text-gray-700 bg-gray-300 hover:bg-gray-200 active:bg-gray-400 rounded px-2 py-1 focus:outline-none">
-                    <span>
-                        View all schedules
-                    </span>
-                    <span>
-                        <svg class="h-4 v-4 fill-current"
-                             viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                   </span>
-                </button>
-            </div>
-
-            <div class="mt-5">
-                <table class="rounded-b-lg table-auto w-full px-2 bg-gray-100">
-                    <tbody>
-                    @foreach($schedules as $schedule)
-                        <tr class="border border-gray-300 px-2 h-16 @if( $schedule['id'] % 2 == 0) bg-white @endif ">
-                            <td class="pl-4">
-                                @if($schedule['status'] == 'completed')
-                                    <span class="badge-default badge-default-success">Completed</span>
-                                @elseif($schedule['status'] =='in_progress')
-                                    <span class="badge-default lead-lost">In Progress</span>
-                                @elseif($schedule['status'] =='upcoming')
-                                    <span class="badge-default badge-default-indigo">Upcoming</span>
-                                @endif
-                            </td>
-                            <td class="text-sm text-gray-600 font-medium">{!! $schedule['date'] !!}</td>
-                            <td class="text-sm text-gray-600 font-normal">{!!  $schedule['startAt'] !!} - {!!  $schedule['endAt'] !!} </td>
-                            <td class="leading-snug">
-                                <p class="uppercase text-xs text-gray-600 font-semibold">Some Title</p>
-                                <p class="text-gray-700 text-sm font-semibold">{!! $schedule['leadName'] !!}</p>
-                            </td>
-                            <td>
-                                <form action="{!! route('schedules.destroy', $schedule['id']) !!}" method="post">
-                                    @csrf
-                                    @method('delete')
-                                    <button
-                                        type="submit"
-                                        class="outline-none focus:outline-none">
-                                        <svg class="btn-delete"
-                                             viewBox="0 0 20 20">
-                                            <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
-                                        </svg>
-                                    </button>
-                                </form>
-                            </td>
-                        </tr>
-                    @endforeach
-                    </tbody>
-                </table>
-            </div>
+                @include('.home.schedules')
+            @endif
         </div>
     </div>
 @endsection

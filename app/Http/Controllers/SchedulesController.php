@@ -43,6 +43,6 @@ class SchedulesController extends ApiController
 
         flash()->success('Schedule deleted!');
 
-        return redirect()->route('dashboard.user', auth()->id());
+        return back();
     }
 }

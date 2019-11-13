@@ -159,6 +159,9 @@
                 @yield('content')
             </main>
 
+            <flash-message></flash-message>
+            <error-message></error-message>
+
         </div>
     </div>
 </div>

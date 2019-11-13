@@ -43,4 +43,12 @@ class CompanyTest extends TestCase
     {
         $this->assertEquals('Companies', pluralise('Company', 2));
     }
+
+    /** @test */
+    public function it_has_a_status()
+    {
+        $company = create(Company::class);
+
+        $this->assertEquals($company->status, 'Unverified');
+    }
 }

@@ -20,22 +20,22 @@
             @foreach($companies as $company)
                 <tr class="border border-gray-300 px-2 h-16 @if( $company['id'] % 2 == 0) bg-white @endif ">
                     <td class="pl-4">
-                        @if($company['status'] == 'active')
+                        @if($company['status'] == 'Active')
                             <span class="badge-default badge-default-success">Active</span>
-                        @elseif($company['status'] =='inactive')
+                        @elseif($company['status'] =='Inactive')
                             <span class="badge-default lead-lost">Inactive</span>
-                        @elseif($company['status'] =='unverified')
+                        @elseif($company['status'] =='Unverified')
                             <span class="badge-default badge-default-indigo">Unverified</span>
                         @endif
                     </td>
-                    <td class="text-sm text-gray-600 font-medium">{!! $company['date'] !!}</td>
+                    <td class="text-sm text-gray-600 font-normal">{!! $company['date'] !!}</td>
                     <td class="leading-snug">
                         <p class="uppercase text-xs text-gray-600 font-semibold">{!! $company['name'] !!}</p>
                         <p class="text-gray-700 text-sm font-semibold">{!! $company['email'] !!}</p>
                     </td>
                     <td class="leading-snug">
-                        <p class="uppercase text-xs text-gray-600 font-semibold">{!! $company['admin_name'] !!}</p>
-                        <p class="text-gray-700 text-sm font-semibold">{!! $company['admin_email'] !!}</p>
+                        <p class="uppercase text-xs text-gray-600 font-normal">{!! $company['admin_name'] !!}</p>
+                        <p class="text-gray-700 text-sm font-normal">{!! $company['admin_email'] !!}</p>
                     </td>
 
                     <td>

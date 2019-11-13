@@ -5,18 +5,25 @@ namespace App\Http\Controllers;
 use CRM\Models\Company;
 use CRM\Models\User;
 use CRM\Schedules\ScheduleRepository;
+use CRM\Transformers\CompanyTransformer;
 
 class HomeController extends Controller
 {
     protected $schedule;
+    protected $companyTransformer;
 
     /**
      * DashboardController constructor.
-     * @param $schedule
+     * @param ScheduleRepository $schedule
+     * @param CompanyTransformer $companyTransformer
      */
-    public function __construct(ScheduleRepository $schedule)
+    public function __construct(
+        ScheduleRepository $schedule,
+        CompanyTransformer $companyTransformer
+    )
     {
         $this->schedule = $schedule;
+        $this->companyTransformer = $companyTransformer;
     }
 
     /**
@@ -28,7 +35,7 @@ class HomeController extends Controller
     {
         $userSchedules = $this->schedule->userSchedules();
 
-        $companies = Company::all();
+        $companies = $this->companyTransformer->transformCollection(Company::all());
 
         $latestCompanies = Company::latest()->take(2)->get();
 

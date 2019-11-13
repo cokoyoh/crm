@@ -4703,13 +4703,6 @@ video {
   background-color: #f56565;
 }
 
-.dropdown-trigger {
-  background-color: #f7fafc;
-  padding-left: 0.25rem;
-  padding-right: 0.25rem;
-  border-radius: 9999px;
-}
-
 .dropdown-trigger:active {
   background-color: #cbd5e0;
 }

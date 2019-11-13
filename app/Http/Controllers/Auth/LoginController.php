@@ -39,16 +39,16 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    public function authenticated(Request $request, User $user)
-    {
-        if ($user->isSuperAdmin()) {
-            return redirect(route('dashboard.superadmin'));
-        }
-
-        if ($user->isAdmin()) {
-            return redirect(route('dashboard.admin', $user));
-        }
-
-        return redirect(route('dashboard.user', $user));
-    }
+//    public function authenticated(Request $request, User $user)
+//    {
+//        if ($user->isSuperAdmin()) {
+//            return redirect(route('dashboard.superadmin'));
+//        }
+//
+//        if ($user->isAdmin()) {
+//            return redirect(route('dashboard.admin', $user));
+//        }
+//
+//        return redirect(route('dashboard.user', $user));
+//    }
 }

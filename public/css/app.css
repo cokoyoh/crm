@@ -4703,8 +4703,12 @@ video {
   background-color: #f56565;
 }
 
+.dropdown-trigger {
+  background-color: transparent;
+}
+
 .dropdown-trigger:active {
-  background-color: #cbd5e0;
+  background-color: transparent;
 }
 
 .dropdown-menu {

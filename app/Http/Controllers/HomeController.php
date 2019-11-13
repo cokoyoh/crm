@@ -2,18 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use CRM\Schedules\ScheduleRepository;
 
 class HomeController extends Controller
 {
+    protected $schedule;
+
     /**
-     * Create a new controller instance.
-     *
-     * @return void
+     * DashboardController constructor.
+     * @param $schedule
      */
-    public function __construct()
+    public function __construct(ScheduleRepository $schedule)
     {
-        $this->middleware('auth');
+        $this->schedule = $schedule;
     }
 
     /**
@@ -23,6 +24,23 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $userSchedules = $this->schedule->userSchedules();
+
+        return view('home', [
+            'leads' => auth()->user()->leads(),
+            'schedules' => $userSchedules,
+            'greeting' => $this->greeting()
+        ]);
+    }
+
+    private function greeting()
+    {
+        $time = (int) now()->format('H');
+
+        if ($time < 12) return 'Good Morning';
+
+        if ($time > 12 && $time < 16) return 'Good Afternoon';
+
+        return 'Good Evening';
     }
 }

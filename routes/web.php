@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/companies/{company}/profiles', 'CompanyProfilesController@complete')->name('companies.profiles.complete');
 Route::get('/users/{user}/profile', 'UsersController@profile')->name('users.profile');
 Route::post('/users/{user}/update', 'UsersController@update')->name('users.update');
@@ -26,6 +25,8 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+
     Route::get('/companies', 'CompaniesController@index')->name('companies.index');
     Route::get('/companies/create', 'CompaniesController@create')->name('companies.create');
     Route::get('/companies/{company}/show', 'CompaniesController@show')->name('companies.show');

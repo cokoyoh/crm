@@ -51,8 +51,8 @@
             @yield('content')
         </main>
 
+        {{--   Flash Messages     --}}
         <flash-message></flash-message>
-
         <error-message></error-message>
 
     </div>

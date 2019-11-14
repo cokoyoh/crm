@@ -14,6 +14,20 @@
                 </svg>
             </span>
         </button>
+    @else
+        <div class="block">
+            <button
+                class="focus:outline-none rounded-full bg-transparent border border-gray-400 ml-8 hover:bg-gray-100 active:bg-gray-200"
+                @click="$modal.show('new-schedule-modal')"
+            >
+                <svg class="h-6 w-6 fill-current text-gray-600"
+                     viewBox="0 0 24 24">
+                    <path class="heroicon-ui" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
+                </svg>
+            </button>
+
+            <h4 class="mt-1 text-gray-700 text-sm">Add Schedule</h4>
+        </div>
     @endif
 </div>
 
@@ -60,4 +74,5 @@
         </tbody>
     </table>
 
+    <new-schedule-modal></new-schedule-modal>
 </div>

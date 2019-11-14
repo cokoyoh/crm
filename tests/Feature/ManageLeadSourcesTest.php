@@ -2,6 +2,8 @@
 
 namespace Tests\Feature;
 
+use CRM\Models\Company;
+use Facades\Tests\Setup\LeadSourceFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
@@ -44,9 +46,49 @@ class ManageLeadSourcesTest extends TestCase
         $user = UserFactory::admin()->create();
 
         $this->actingAs($user)
-            ->post(route('lead-sources.store'), $attributes = ['name' => 'Uhuru Park', 'slug' => 'uhuru_park'])
+            ->post(route('lead-sources.store'), $attributes = ['name' => 'Uhuru Park', 'slug' => 'uhuru-park'])
             ->assertRedirect(route('dashboard.user', $user));
 
         $this->assertDatabaseHas('lead_sources', $attributes);
+    }
+
+    /** @test */
+    public function only_company_admins_can_view_lead_sources()
+    {
+        $company = create(Company::class);
+
+        $user = UserFactory::fromCompany($company)->regularUser()->create();
+
+        $this->actingAs($user)
+            ->get(route('lead-sources.index'))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_see_lead_sources_for_other_companies()
+    {
+        $company = create(Company::class);
+
+        $user =  $user = UserFactory::fromCompany()->admin()->create();
+
+        $leadSource = LeadSourceFactory::forCompany($company)->create();
+
+        $this->actingAs($user)
+            ->get(route('lead-sources.index'))
+            ->assertDontSee($leadSource->name);
+    }
+
+    /** @test */
+    public function authorised_users_can_view_lead_sources()
+    {
+        $company = create(Company::class);
+
+        $user = UserFactory::fromCompany($company)->admin()->create();
+
+        $leadSource = LeadSourceFactory::forCompany($company)->create();
+
+        $this->actingAs($user)
+            ->get(route('lead-sources.index'))
+            ->assertSee($leadSource->name);
     }
 }

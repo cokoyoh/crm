@@ -54,7 +54,7 @@ $factory->define(CRM\Models\LeadNote::class, function (Faker $faker) {
 $factory->define(CRM\Models\LeadSource::class, function (Faker $faker) {
     return [
         'company_id' => create(\CRM\Models\Company::class)->id,
-        'slug' => $faker->slug(6, false),
+//        'slug' => $faker->slug(6, false),
         'name' => $faker->sentence(5, false)
     ];
 });

@@ -2255,6 +2255,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "lead-form",
@@ -2281,6 +2291,7 @@ __webpack_require__.r(__webpack_exports__);
 
       axios.get('/leads/check-email?email=' + email).then(function (response) {
         _this.emailExists = response.data.message;
+        console.log(response, email);
       })["catch"](function (error) {
         return _this.flash(error);
       });
@@ -46680,12 +46691,10 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "-mt-16" }, [
+  return _c("div", { staticClass: "bg-gray-100 px-24 py-10" }, [
     _c(
       "form",
       {
-        staticClass:
-          "w-8/12 mx-auto py-5 bg-gray-100 py-4 px-5 rounded shadow overflow-hidden",
         on: {
           submit: function($event) {
             $event.preventDefault()
@@ -46694,14 +46703,12 @@ var render = function() {
         }
       },
       [
-        _vm._m(0),
-        _vm._v(" "),
         _c("div", { staticClass: "mb-6" }, [
           _c(
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
               attrs: { for: "name" }
             },
             [_vm._v("Name")]
@@ -46717,12 +46724,13 @@ var render = function() {
               }
             ],
             staticClass:
-              "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+              "appearance-none block w-full bg-white text-gray-900 placeholder-gray-600  border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
             attrs: {
               type: "text",
               id: "name",
               name: "name",
-              placeholder: "John Doe"
+              placeholder: "John Doe",
+              autocomplete: "no"
             },
             domProps: { value: _vm.form.name },
             on: {
@@ -46748,7 +46756,7 @@ var render = function() {
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
               attrs: { for: "email" }
             },
             [_vm._v("Email")]
@@ -46764,12 +46772,13 @@ var render = function() {
               }
             ],
             staticClass:
-              "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+              "appearance-none block w-full bg-white text-gray-900 placeholder-gray-600  border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
             attrs: {
               type: "email",
               id: "email",
               name: "email",
-              placeholder: "John Doe"
+              placeholder: "john@example.com",
+              autocomplete: "no"
             },
             domProps: { value: _vm.form.email },
             on: {
@@ -46815,7 +46824,7 @@ var render = function() {
               "label",
               {
                 staticClass:
-                  "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                  "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
                 attrs: { for: "country_code" }
               },
               [_vm._v("Phone")]
@@ -46831,12 +46840,13 @@ var render = function() {
                 }
               ],
               staticClass:
-                "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                "appearance-none block w-full bg-white text-gray-900  placeholder-gray-600 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
               attrs: {
                 type: "text",
                 id: "country_code",
                 name: "country_code",
-                placeholder: "+254"
+                placeholder: "+254",
+                autocomplete: "no"
               },
               domProps: { value: _vm.form.country_code },
               on: {
@@ -46870,12 +46880,13 @@ var render = function() {
                 }
               ],
               staticClass:
-                "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+                "appearance-none block w-full white text-gray-900 placeholder-gray-600 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
               attrs: {
                 type: "text",
                 id: "phone_number",
                 name: "phone_number",
-                placeholder: "712 345 678"
+                placeholder: "712 345 678",
+                autocomplete: "no"
               },
               domProps: { value: _vm.form.phone_number },
               on: {
@@ -46899,21 +46910,21 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _vm._m(0),
         _vm._v(" "),
         _c("div", { staticClass: "inline-block relative w-full mb-6" }, [
           _c(
             "label",
             {
               staticClass:
-                "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
               attrs: { for: "email" }
             },
             [_vm._v("Lead Source")]
           ),
           _vm._v(" "),
           _c("div", { staticClass: "relative" }, [
-            _vm._m(2),
+            _vm._m(1),
             _vm._v(" "),
             _c(
               "div",
@@ -46955,25 +46966,25 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "flex flex-wrap -mx-3 mb-2" }, [
-          _vm._m(3),
+          _vm._m(2),
           _vm._v(" "),
           _c("div", { staticClass: "w-full md:w-1/3 px-3 mb-6 md:mb-0" }, [
             _c(
               "label",
               {
                 staticClass:
-                  "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+                  "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
                 attrs: { for: "state" }
               },
               [
                 _vm._v(
-                  "\n                        City/State/Province\n                    "
+                  "\n                    City/State/Province\n                "
                 )
               ]
             ),
             _vm._v(" "),
             _c("div", { staticClass: "relative" }, [
-              _vm._m(4),
+              _vm._m(3),
               _vm._v(" "),
               _c(
                 "div",
@@ -47005,10 +47016,10 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(5)
+          _vm._m(4)
         ]),
         _vm._v(" "),
-        _vm._m(6)
+        _vm._m(5)
       ]
     )
   ])
@@ -47018,24 +47029,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "text-3xl mx-auto text-center" }, [
-      _c(
-        "p",
-        { staticClass: "text-lg text-gray-700 uppercase font-semibold" },
-        [_vm._v("New Lead")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
     return _c("div", { staticClass: "block mb-6" }, [
       _c(
         "span",
         {
           staticClass:
-            "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
+            "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
         },
         [_vm._v("Gender")]
       ),
@@ -47053,7 +47052,7 @@ var staticRenderFns = [
               }
             }),
             _vm._v(" "),
-            _c("span", { staticClass: "ml-2 text-gray-700" }, [_vm._v("Male")])
+            _c("span", { staticClass: "ml-2 text-gray-900" }, [_vm._v("Male")])
           ])
         ]),
         _vm._v(" "),
@@ -47064,7 +47063,7 @@ var staticRenderFns = [
               attrs: { type: "radio", name: "radio", value: "female" }
             }),
             _vm._v(" "),
-            _c("span", { staticClass: "ml-2 text-gray-700" }, [
+            _c("span", { staticClass: "ml-2 text-gray-900" }, [
               _vm._v("Female")
             ])
           ])
@@ -47077,7 +47076,7 @@ var staticRenderFns = [
               attrs: { type: "radio", name: "radio", value: "other" }
             }),
             _vm._v(" "),
-            _c("span", { staticClass: "ml-2 text-gray-700" }, [_vm._v("Other")])
+            _c("span", { staticClass: "ml-2 text-gray-900" }, [_vm._v("Other")])
           ])
         ])
       ])
@@ -47091,7 +47090,7 @@ var staticRenderFns = [
       "select",
       {
         staticClass:
-          "block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+          "block appearance-none w-full bg-white border border-gray-200 text-gray-900 placeholder-gray-600 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
         attrs: { id: "lead_source_id" }
       },
       [
@@ -47112,16 +47111,21 @@ var staticRenderFns = [
         "label",
         {
           staticClass:
-            "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+            "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
           attrs: { for: "address" }
         },
-        [_vm._v("\n                        Address\n                    ")]
+        [_vm._v("\n                    Address\n                ")]
       ),
       _vm._v(" "),
       _c("input", {
         staticClass:
-          "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-        attrs: { id: "address", type: "text", placeholder: "Albuquerque" }
+          "appearance-none block w-full bg-white text-gray-900 placeholder-gray-600 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+        attrs: {
+          id: "address",
+          type: "text",
+          placeholder: "Albuquerque",
+          autocomplete: "no"
+        }
       })
     ])
   },
@@ -47133,8 +47137,8 @@ var staticRenderFns = [
       "select",
       {
         staticClass:
-          "block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-        attrs: { id: "state" }
+          "block appearance-none w-full bg-white border border-gray-200 text-gray-600 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+        attrs: { id: "state", autocomplete: "no" }
       },
       [
         _c("option", [_vm._v("New Mexico")]),
@@ -47154,16 +47158,21 @@ var staticRenderFns = [
         "label",
         {
           staticClass:
-            "block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2",
+            "block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2",
           attrs: { for: "zip_code" }
         },
-        [_vm._v("\n                        Zip Code\n                    ")]
+        [_vm._v("\n                    Zip Code\n                ")]
       ),
       _vm._v(" "),
       _c("input", {
         staticClass:
-          "appearance-none block w-full bg-gray-200 text-gray-700 border border-gray-200 rounded py-3 px-4 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
-        attrs: { id: "zip_code", type: "text", placeholder: "90210" }
+          "appearance-none block w-full bg-white text-gray-900 placeholder-gray-500 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500",
+        attrs: {
+          id: "zip_code",
+          type: "text",
+          placeholder: "90210",
+          autocomplete: "no"
+        }
       })
     ])
   },
@@ -47176,22 +47185,10 @@ var staticRenderFns = [
         "button",
         {
           staticClass:
-            "active:bg-green-700 bg-green-600 focus:outline-none focus:shadow-outline outline-none px-3 py-2 rounded-lg shadow text-white text-lg font-medium",
-          attrs: { type: "submit" }
+            "flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none"
         },
-        [_vm._v("Save Lead")]
-      ),
-      _vm._v(" "),
-      _c("a", { attrs: { href: "#" } }, [
-        _c(
-          "button",
-          {
-            staticClass:
-              "ml-2 bg-gray-200 text-lg text-gray-700 active:bg-gray-400 active:text-white focus:outline-none focus:shadow-outline outline-none shadow px-3 py-2 rounded-lg text-lg font-medium"
-          },
-          [_vm._v("Cancel")]
-        )
-      ])
+        [_c("span", [_vm._v("Save Lead")])]
+      )
     ])
   }
 ]

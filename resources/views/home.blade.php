@@ -85,12 +85,14 @@
                 </div>
 
                 <div class="block">
-                    <button class="focus:outline-none rounded-full bg-transparent border border-gray-400 ml-3 hover:bg-gray-100 active:bg-gray-200">
-                        <svg class="h-8 w-8 fill-current text-gray-600"
-                            viewBox="0 0 24 24">
-                            <path class="heroicon-ui" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
-                        </svg>
-                    </button>
+                    <a href="{!! route('leads.create') !!}">
+                        <button class="focus:outline-none rounded-full bg-transparent border border-gray-400 ml-3 hover:bg-gray-100 active:bg-gray-200">
+                            <svg class="h-8 w-8 fill-current text-gray-600"
+                                viewBox="0 0 24 24">
+                                <path class="heroicon-ui" d="M17 11a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4V7a1 1 0 0 1 2 0v4h4z"/>
+                            </svg>
+                        </button>
+                    </a>
 
                     <h4 class="mt-2 text-gray-700 text-sm">Add Lead</h4>
                 </div>

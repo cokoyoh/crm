@@ -24,7 +24,9 @@
             <nav class="mt-8">
                     @if(auth()->user()->isSuperAdmin())
                         <fieldset>
-                            <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">Super Admin</h3>
+                            <a href="{!! route('home') !!}">
+                                <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wide active:text-gray-700">Super Admin</h3>
+                            </a>
 
                             <div class="mt-2 -mx-3">
                                 <a href="#"
@@ -45,7 +47,9 @@
 
                     @if(auth()->user()->isAdmin())
                         <fieldset class="mt-8">
-                            <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">Admin</h3>
+                            <a href="{!! route('home') !!}">
+                                <h3 class="text-xs font-semibold text-gray-600 active:text-gray-700 uppercase tracking-wide">Admin</h3>
+                            </a>
 
                             <div class="mt-2 -mx-3">
                                 <a href="#"

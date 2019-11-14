@@ -38,13 +38,18 @@
 
 <script>
     export default {
-        props: ['message', 'date'],
+        props: ['message'],
         name: "empty",
 
         data() {
             return {
-                isVisible: true
+                isVisible: true,
+                date: ''
             }
+        },
+
+        mounted() {
+            this.date = moment().format('MMM Do, YYYY [at] h:mm a');
         }
     }
 </script>

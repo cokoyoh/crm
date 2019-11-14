@@ -24,3 +24,8 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     encrypted: true
 // });
+
+/**
+ * Install moments js for dates
+ */
+window.moment = require('moment');

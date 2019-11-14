@@ -55,7 +55,6 @@
         @empty
             <empty
                 message = 'There are no schedules yet'
-                date="{!! now()->toDateString() !!} at {!! now()->format('g:i a') !!}"
             ></empty>
         @endforelse
         </tbody>

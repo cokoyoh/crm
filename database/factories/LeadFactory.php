@@ -10,8 +10,7 @@ $factory->define(Lead::class, function (Faker $faker) {
         'company_id' => null,
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'country_code' => $faker->countryCode,
-        'phone_number' => $faker->phoneNumber,
+        'phone' => $faker->phoneNumber,
         'email' => $faker->email,
         'lead_class_id' => null
     ];
@@ -48,5 +47,14 @@ $factory->define(CRM\Models\LeadNote::class, function (Faker $faker) {
     return [
         'lead_id' => create(Lead::class)->id,
         'body' => $faker->sentence(8, false),
+    ];
+});
+
+
+$factory->define(CRM\Models\LeadSource::class, function (Faker $faker) {
+    return [
+        'company_id' => create(\CRM\Models\Company::class)->id,
+        'slug' => $faker->slug(6, false),
+        'name' => $faker->sentence(5, false)
     ];
 });

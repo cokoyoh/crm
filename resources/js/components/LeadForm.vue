@@ -35,76 +35,61 @@
 
 
             <div class="mb-6 flex items-center justify-between">
+                <div class="w-5/12">
+                    <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Phone</label>
 
-                <div class="flex items-center justify-between">
-                    <label for="country_code" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Phone</label>
-                    <input type="text" id="country_code" name="country_code"
-                           class="appearance-none block w-full bg-white text-gray-900  placeholder-gray-600 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                           placeholder="+254"
-                           v-model="form.country_code"
-                           autocomplete="no"
-                    >
-                    <span class="text-xs italic text-red-700" v-if="form.errors.country_code"
-                          v-text="form.errors.country_code[0]"></span>
+                    <vue-tel-input
+                        inputClasses="relative"
+                        wrapperClasses=""
+                        defaultCountry="KE"
+                        v-model="form.phone"
+                        :dynamicPlaceholder="true"
+                        :enabledCountryCode="true"
+                        mode="international"
+                        @blur="checkDuplicatePhone(form.phone)"
+                    ></vue-tel-input>
+
+                    <span class="text-xs italic text-red-700" v-if="form.errors.phone"
+                          v-text="form.errors.phone[0]"></span>
+                    <span class="text-xs italic text-red-700 px-2" v-show="phoneExists !== null" v-text="phoneExists"></span>
                 </div>
 
-                <div class="flex-1 ml-4">
-                    <input type="text" id="phone_number" name="phone_number"
-                           class="appearance-none block w-full white text-gray-900 placeholder-gray-600 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                           placeholder="712 345 678"
-                           v-model="form.phone_number"
-                           autocomplete="no"
-                    >
-                    <span class="text-xs italic text-red-700" v-if="form.errors.phone_number"
-                          v-text="form.errors.phone_number[0]"></span>
+                <div class="w-5/12">
+                    <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Lead Source</label>
+                    <div class="relative">
+                        <select
+                            class="block appearance-none w-full bg-white border border-gray-200 text-gray-900 placeholder-gray-600 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                            id="lead_source_id">
+                            <option>Select Lead Source</option>
+                            <option
+                                v-for="leadSource in sources"
+                                v-text="leadSource.name"
+                                :value="leadSource.id"
+                            ></option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+                            </svg>
+                        </div>
+                    </div>
+                    <span class="text-xs italic text-red-700" v-if="form.errors.lead_source_id"
+                          v-text="form.errors.lead_source_id[0]"></span>
                 </div>
             </div>
 
             <div class="block mb-6">
                 <span class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Gender</span>
                 <div class="mt-2 flex align-center justify-between">
-                    <div>
+                    <div v-for="gender in genders">
                         <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="radio" value="male" checked>
-                            <span class="ml-2 text-gray-900">Male</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="radio" value="female">
-                            <span class="ml-2 text-gray-900">Female</span>
-                        </label>
-                    </div>
-                    <div>
-                        <label class="inline-flex items-center">
-                            <input type="radio" class="form-radio" name="radio" value="other">
-                            <span class="ml-2 text-gray-900">Other</span>
+                            <input type="radio" class="form-radio" name="radio" :value="gender.id" v-model="form.gender_id">
+                            <span class="ml-2 text-gray-900">{{gender.name}}</span>
                         </label>
                     </div>
                 </div>
             </div>
-
-            <div class="inline-block relative w-full mb-6">
-                <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Lead Source</label>
-                <div class="relative">
-                    <select
-                        class="block appearance-none w-full bg-white border border-gray-200 text-gray-900 placeholder-gray-600 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                        id="lead_source_id">
-                        <option>New Mexico</option>
-                        <option>Missouri</option>
-                        <option>Texas</option>
-                    </select>
-                    <div
-                        class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                        <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                            <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                        </svg>
-                    </div>
-                </div>
-                <span class="text-xs italic text-red-700" v-if="form.errors.lead_source_id"
-                      v-text="form.errors.lead_source_id[0]"></span>
-            </div>
-
 
             <div class="flex flex-wrap -mx-3 mb-2">
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -113,36 +98,28 @@
                         Address
                     </label>
                     <input
-                        class="appearance-none block w-full bg-white text-gray-900 placeholder-gray-600 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                        class="appearance-none block w-full bg-white  text-gray-900 placeholder-gray-500 border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                         id="address"
                         type="text"
-                        placeholder="Albuquerque"
+                        placeholder="221B Baker Street"
                         autocomplete="no"
+                        v-model="form.address"
                     >
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
                     <label class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2"
-                           for="state">
+                           for="city">
                         City/State/Province
                     </label>
                     <div class="relative">
-                        <select
-                            class="block appearance-none w-full bg-white border border-gray-200 text-gray-600 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="state"
-                            autocomplete="no"
+                        <input type="text" id="city" name="city"
+                               v-model="form.city"
+                               class="appearance-none block w-full bg-white  text-gray-900 placeholder-gray-500  border border-gray-200 rounded py-2 px-3 leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+                               placeholder="Macchu Picchu"
+                               autocomplete="no"
                         >
-                            <option>New Mexico</option>
-                            <option>Missouri</option>
-                            <option>Texas</option>
-                        </select>
-                        <div
-                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
-                                 viewBox="0 0 20 20">
-                                <path
-                                    d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                            </svg>
-                        </div>
+                        <span class="text-xs italic text-red-700" v-if="form.errors.city"
+                              v-text="form.errors.city[0]"></span>
                     </div>
                 </div>
                 <div class="w-full md:w-1/3 px-3 mb-6 md:mb-0">
@@ -156,12 +133,17 @@
                         type="text"
                         placeholder="90210"
                         autocomplete="no"
+                        v-model="form.zip_code"
                     >
+                    <span class="text-xs italic text-red-700" v-if="form.errors.zip_code"
+                          v-text="form.errors.zip_code[0]"></span>
                 </div>
             </div>
             <div class="mt-5 mb-5">
                 <button
-                    class="flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none">
+                    class="flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none"
+                    v-show="enableButton(phoneExists, emailExists)"
+                >
                     <span>Save Lead</span>
                 </button>
             </div>
@@ -175,17 +157,42 @@
     export default {
         name: "lead-form",
 
+        props: {
+            company: {
+                type: String,
+                default: ''
+            },
+            sources: {
+                type: Array,
+                default: () => []
+            },
+            genders: {
+                type: Array,
+                default: () => []
+            }
+        },
+
         data() {
             return {
                 form: new CrmForm({
                     name: '',
                     email: '',
                     lead_source_id: '',
-                    country_code: '',
-                    phone_number: '',
+                    phone: '',
+                    company_id: '',
+                    gender_id: 1,
+                    city: '',
+                    zip_code: '',
+                    address: ''
                 }),
-                emailExists: null
+                emailExists: null,
+                phoneExists: null
             }
+        },
+
+        mounted() {
+            this.form.company_id = this.company;
+            console.log(this.genders)
         },
 
         methods: {
@@ -198,14 +205,31 @@
                 axios.get('/leads/check-email?email='+ email)
                     .then(response => {
                         this.emailExists = response.data.message;
-                        console.log(response, email)
                     })
                     .catch(error => this.flash(error))
+            },
+
+            checkDuplicatePhone(phone) {
+                if (phone != null && phone.length > 3) {
+                    axios.get('/leads/check-phone?phone=' + phone)
+                        .then(response => {
+                            this.phoneExists = response.data.message;
+                        })
+                        .catch(error => this.flash(error))
+                }
             },
 
             flash(errorMessage) {
                 Event.fire('flash-error', errorMessage);
             },
+
+            enableButton(hasPhoneError = null, hasEmailError = null) {
+                if (hasEmailError != null || hasEmailError != null) {
+                    return false;
+                }
+
+                return  true;
+            }
         }
     }
 </script>

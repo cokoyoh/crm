@@ -7,7 +7,10 @@ use App\Http\Requests\StoreLeadRequest;
 use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\LeadNotes\LeadNotesRepository;
 use CRM\Leads\LeadRepository;
+use CRM\Models\Gender;
 use CRM\Models\Lead;
+use CRM\Transformers\GenderTransformer;
+use CRM\Transformers\LeadSourceTransformer;
 use CRM\Transformers\LeadsTransformer;
 use Illuminate\Support\Facades\DB;
 
@@ -17,6 +20,8 @@ class LeadsController extends ApiController
     protected $leadAssignee;
     protected $leadNotes;
     protected $leadsTransformer;
+    protected $leadSourceTransformer;
+    protected $genderTransformer;
 
     /**
      * LeadsController constructor.
@@ -24,26 +29,41 @@ class LeadsController extends ApiController
      * @param LeadAssigneeRepository $leadAssignee
      * @param LeadNotesRepository $leadNotes
      * @param LeadsTransformer $leadsTransformer
+     * @param LeadSourceTransformer $leadSourceTransformer
+     * @param GenderTransformer $genderTransformer
      */
     public function __construct(
         LeadRepository $lead,
         LeadAssigneeRepository $leadAssignee,
         LeadNotesRepository $leadNotes,
-        LeadsTransformer $leadsTransformer
+        LeadsTransformer $leadsTransformer,
+        LeadSourceTransformer $leadSourceTransformer,
+        GenderTransformer $genderTransformer
     ) {
         $this->lead = $lead;
         $this->leadAssignee = $leadAssignee;
         $this->leadNotes = $leadNotes;
         $this->leadsTransformer = $leadsTransformer;
+        $this->leadSourceTransformer = $leadSourceTransformer;
+        $this->genderTransformer = $genderTransformer;
     }
 
     public function create(Lead $lead = null)
     {
-        if ($lead)
+        if ($lead) {
             $this->authorize('manageLead', $lead);
+        }
+
+        $leadSources = $this->leadSourceTransformer->transformCollection(
+            auth()->user()->company->leadSources
+        );
+
+        $genders = $this->genderTransformer->transformCollection(Gender::all());
 
         return view('leads.create', [
-            'lead' => $lead
+            'lead' => $lead,
+            'leadSources' => $leadSources,
+            'genders' => $genders
         ]);
     }
 

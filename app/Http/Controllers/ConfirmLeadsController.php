@@ -17,6 +17,26 @@ class ConfirmLeadsController extends ApiController
         $contact = $this->getAssociatedContactFromEmail($email);
 
         $message = $this->getPreparedMessage(
+            'email',
+            $this->getContactAssignee($contact),
+            $this->getLeadAssignee($lead)
+        );
+
+        return $this->respondSuccess([
+            'message' => $message
+        ]);
+    }
+
+    public function phone()
+    {
+        $phone = request()->query('phone');
+
+        $lead = $this->getAssociatedLeadFromPhone($phone);
+
+        $contact = $this->getAssociatedContactFromPhone($phone);
+
+        $message = $this->getPreparedMessage(
+            'phone',
             $this->getContactAssignee($contact),
             $this->getLeadAssignee($lead)
         );

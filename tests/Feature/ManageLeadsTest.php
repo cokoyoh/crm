@@ -39,21 +39,10 @@ class ManageLeadsTest extends TestCase
     {
         $this->signIn();
 
-        $attributes = rawState(Lead::class, ['email' => '', 'phone_number' => '']);
+        $attributes = rawState(Lead::class, ['email' => '', 'phone' => '']);
 
         $this->post(route('leads.store'), $attributes)
             ->assertSessionHasErrors('email');
-    }
-
-    /** @test */
-    public function country_code_is_required_if_email_is_empty_when_adding_a_lead()
-    {
-        $this->signIn();
-
-        $attributes = rawState(Lead::class, ['country_code' => '', 'email' => '']);
-
-        $this->post(route('leads.store'), $attributes)
-            ->assertSessionHasErrors('country_code');
     }
 
     /** @test */

@@ -40,4 +40,9 @@ class Company extends Model
 
         return 'Inactive';
     }
+
+    public function leadSources()
+    {
+        return $this->hasMany(LeadSource::class);
+    }
 }

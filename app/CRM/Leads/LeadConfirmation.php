@@ -20,6 +20,17 @@ trait LeadConfirmation
             ->first();
     }
 
+    private function getAssociatedLeadFromPhone(String $phone)
+    {
+        $company = auth()->user()->company;
+
+        if (is_null($company)) return null;
+
+        return Lead::where('company_id', $company->id)
+            ->where('phone', $phone)
+            ->first();
+    }
+
     private function getAssociatedContactFromEmail(String $email)
     {
         $company = auth()->user()->company;
@@ -28,6 +39,17 @@ trait LeadConfirmation
 
         return Contact::where('company_id', $company->id)
             ->where('email', $email)
+            ->first();
+    }
+
+    private function getAssociatedContactFromPhone(String $phone)
+    {
+        $company = auth()->user()->company;
+
+        if (is_null($company)) return null;
+
+        return Contact::where('company_id', $company->id)
+            ->where('phone', $phone)
             ->first();
     }
 
@@ -57,14 +79,16 @@ trait LeadConfirmation
         return $user ? $user->name : '';
     }
 
-    private function getPreparedMessage($contactAssignee = null, $leadAssignee = null)
+    private function getPreparedMessage(String $check = 'email', $contactAssignee = null, $leadAssignee = null)
     {
         if ($contactAssignee) {
-            return 'A contact under the same email exists in the system and is currently assigned to ' . $contactAssignee;
+            return "A contact under the same "
+                . $check . " exists in the system and is currently assigned to " . $contactAssignee;
         }
 
         if ($leadAssignee) {
-            return 'A lead under the same email exists in the system and is currently assigned to ' . $leadAssignee;
+            return "A lead under the same "
+                . $check . " exists in the system and is currently assigned to " . $leadAssignee;
         }
 
         return null;

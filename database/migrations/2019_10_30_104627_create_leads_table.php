@@ -23,8 +23,7 @@ class CreateLeadsTable extends Migration
             $table->integer('lead_class_id')->nullable();
             $table->string('first_name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
-            $table->string('country_code', 45)->nullable();
-            $table->string('phone_number', 45)->nullable();
+            $table->string('phone', 45)->nullable();
             $table->string('email', 100)->nullable();
             $table->nullableTimestamps();
             $table->softDeletes();

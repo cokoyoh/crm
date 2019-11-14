@@ -22,8 +22,13 @@
         <a href="/" class="text-4xl font-weight-light text-white font-semibold tracking-widest ">CRM</a>
 
         <nav class="flex items-center">
-            <a href="{!! route('login') !!}"
-               class="hidden md:inline-block text-gray-400 hover:text-gray-100 ml-5">Login</a>
+            @guest
+                <a href="{!! route('login') !!}"
+                   class="hidden md:inline-block text-gray-400 hover:text-gray-100 ml-5">Login</a>
+            @else
+                <a href="{!! route('home') !!}"
+                   class="hidden md:inline-block text-gray-400 hover:text-gray-100 ml-5">Home</a>
+            @endguest
             <a href="#"
                class="inline-block text-white hover:text-gray-100 text-lg md:text-xl font-medium md:ml-8 mr-5 md:mr-0 px-3 md:px-4 py-2 md:py-3 rounded-lg border border-gray-800 hover:border-gray-500 whitespace-no-wrap">Begin
                 Trial</a>

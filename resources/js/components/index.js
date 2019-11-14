@@ -11,6 +11,7 @@ import NewInteractionModal from './NewInteractionModal'
 import VueDatePicker from  'vue-ctk-date-time-picker'
 import VueSelect from 'vue-select'
 import Dropdown from '../components/Dropdown'
+import Empty from '../components/Empty'
 
 
 
@@ -25,3 +26,4 @@ Vue.component('vue-date-picker', VueDatePicker);
 Vue.component('v-select', VueSelect);
 Vue.component('dropdown', Dropdown);
 Vue.component('lead-form', LeadForm);
+Vue.component('empty', Empty);

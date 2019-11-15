@@ -11,7 +11,8 @@ class LeadSourceTransformer extends Transformer
     {
         return [
             'id' => $leadSource->id,
-            'name' => $leadSource->name
+            'name' => $leadSource->name,
+            'date' => $leadSource->created_at->toDateString()
         ];
     }
 }

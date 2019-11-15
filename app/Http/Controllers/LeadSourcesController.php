@@ -26,7 +26,9 @@ class LeadSourcesController extends Controller
 
         $this->authorize('manageCompany', $company);
 
-        $leadSources = $this->leadSourcesTransformer->transformCollection($company->leadSources);
+//        $leadSources = $this->leadSourcesTransformer->transformCollection($company->leadSources);
+
+        $leadSources = $company->leadSources()->paginate(8);
 
         return view('leadsources.index', [
             'leadSources' => $leadSources

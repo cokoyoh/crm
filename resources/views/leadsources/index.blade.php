@@ -57,13 +57,39 @@
         </header>
     </div>
 
-    <div class="-mx-3 bg-gray-200 overflow-auto px-24 p-0 h-screen">
-        @forelse($leadSources as $leadSource)
-            <li>{!! $leadSource['name'] !!}</li>
-        @empty
-            <empty
-                message="There are no lead sources recorded yet"
-            ></empty>
-        @endforelse
+    <div class="h-screen my-auto bg-gray-200 -mx-3 px-24">
+        <div class="pt-4 mt-2 rounded">
+            <table class="rounded-b-lg table-auto w-full bg-gray-100">
+                <tbody>
+                    @forelse($leadSources as $leadSource)
+                        <tr class="border border-gray-300 px-2 h-16 @if( $leadSource->id % 2 == 0) bg-white @endif ">
+                            <td class="pl-5 text-sm text-gray-600 font-medium">{!! $leadSource->created_at->toFormattedDateString() !!}</td>
+                            <td class="text-md text-gray-700 font-normal">{!!  $leadSource->name !!}
+                            <td>
+                                <form action="#" method="post">
+                                    @csrf
+                                    @method('delete')
+                                    <button
+                                        type="submit"
+                                        class="outline-none focus:outline-none">
+                                        <svg class="btn-delete"
+                                             viewBox="0 0 20 20">
+                                            <path d="M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"/>
+                                        </svg>
+                                    </button>
+                                </form>
+                            </td>
+                        </tr>
+                    @empty
+                        <empty
+                            message="There are no lead sources recorded yet"
+                        ></empty>
+                    @endforelse
+                </tbody>
+            </table>
+
+            {{-- links will be here for previous and next pages will be here --}}
+
+        </div>
     </div>
 @endsection

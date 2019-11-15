@@ -1842,11 +1842,24 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "crm-table",
   data: function data() {
-    return {//code here
+    return {
+      items: [],
+      endpoint: location.pathname
     };
+  },
+  created: function created() {
+    this.fetch();
+  },
+  methods: {
+    fetch: function fetch() {
+      axios.get(this.url).then(this.refresh);
+    },
+    refresh: function refresh(response) {}
   }
 });
 
@@ -46399,7 +46412,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("div", [_vm._t("default")], 2)
 }
 var staticRenderFns = []
 render._withStripped = true

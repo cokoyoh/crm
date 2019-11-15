@@ -26,12 +26,13 @@ class LeadSourcesController extends Controller
 
         $this->authorize('manageCompany', $company);
 
-//        $leadSources = $this->leadSourcesTransformer->transformCollection($company->leadSources);
-
-        $leadSources = $company->leadSources()->paginate(8);
+        $leadSources = $this->leadSourcesTransformer->transformCollection(
+            $company->leadSources()->paginate(5)
+        );
 
         return view('leadsources.index', [
-            'leadSources' => $leadSources
+            'leadSources' => $leadSources,
+            'company' => $company
         ]);
     }
 

@@ -35,7 +35,7 @@ class HomeController extends Controller
     {
         $userSchedules = $this->schedule->userSchedules();
 
-        $companies = $this->companyTransformer->transformCollection(Company::all());
+        $companies = $this->companyTransformer->mapCollection(Company::all());
 
         $latestCompanies = Company::latest()->take(2)->get();
 

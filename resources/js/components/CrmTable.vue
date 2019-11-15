@@ -1,5 +1,7 @@
 <template>
-
+     <div>
+         <slot></slot>
+     </div>
 </template>
 
 <script>
@@ -8,7 +10,23 @@
 
         data() {
             return {
-                //code here
+                items: [],
+                endpoint: location.pathname
+            }
+        },
+
+        created() {
+            this.fetch();
+        },
+
+        methods: {
+            fetch(){
+                axios.get(this.url)
+                    .then(this.refresh)
+            },
+
+            refresh(response) {
+
             }
         }
     }

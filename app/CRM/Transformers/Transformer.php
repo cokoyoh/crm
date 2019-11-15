@@ -4,16 +4,24 @@
 namespace CRM\Transformers;
 
 
-use Illuminate\Database\Eloquent\Collection;
-
 abstract class Transformer
 {
-    public function transformCollection(Collection $items)
+    public function transformCollection($items)
+    {
+        return tap($items, function ($items) {
+            return $items->getCollection()
+                ->transform(function ($item) {
+                    return $this->transform($item);
+                });
+        });
+    }
+
+    public function mapCollection($items)
     {
         return $items
             ->map(function ($item) {
-               return $this->transform($item);
-            });
+                return $this->transform($item);
+        });
     }
 
     public abstract function transform($item);

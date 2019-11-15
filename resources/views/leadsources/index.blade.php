@@ -62,9 +62,9 @@
             <table class="rounded-b-lg table-auto w-full bg-gray-100">
                 <tbody>
                     @forelse($leadSources as $leadSource)
-                        <tr class="border border-gray-300 px-2 h-16 @if( $leadSource->id % 2 == 0) bg-white @endif ">
-                            <td class="pl-5 text-sm text-gray-600 font-medium">{!! $leadSource->created_at->toFormattedDateString() !!}</td>
-                            <td class="text-md text-gray-700 font-normal">{!!  $leadSource->name !!}
+                        <tr class="border border-gray-300 px-2 h-16 @if( $leadSource['id'] % 2 == 0) bg-white @endif ">
+                            <td class="pl-5 text-sm text-gray-600 font-medium">{!! $leadSource['date'] !!}</td>
+                            <td class="text-md text-gray-700 font-normal">{!!  $leadSource['name'] !!}
                             <td>
                                 <form action="#" method="post">
                                     @csrf
@@ -88,6 +88,7 @@
                 </tbody>
             </table>
 
+            {!! $leadSources->links() !!}
             {{-- links will be here for previous and next pages will be here --}}
 
         </div>

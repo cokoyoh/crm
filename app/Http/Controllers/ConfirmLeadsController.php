@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Apis\ApiController;
 use CRM\Leads\LeadConfirmation;
 
 class ConfirmLeadsController extends ApiController

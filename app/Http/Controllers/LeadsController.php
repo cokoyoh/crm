@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Leads\LeadMarkedAsLost;
+use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreLeadRequest;
 use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\LeadNotes\LeadNotesRepository;
@@ -54,11 +55,11 @@ class LeadsController extends ApiController
             $this->authorize('manageLead', $lead);
         }
 
-        $leadSources = $this->leadSourceTransformer->transformCollection(
+        $leadSources = $this->leadSourceTransformer->mapCollection(
             auth()->user()->company->leadSources
         );
 
-        $genders = $this->genderTransformer->transformCollection(Gender::all());
+        $genders = $this->genderTransformer->mapCollection(Gender::all());
 
         return view('leads.create', [
             'lead' => $lead,
@@ -110,7 +111,7 @@ class LeadsController extends ApiController
             ->orWhere('last_name', 'like', "%{$searchString}%")
             ->get();
 
-        return $this->leadsTransformer->transformCollection($leads);
+        return $this->leadsTransformer->mapCollection($leads);
     }
 
     public function lost(Lead $lead)

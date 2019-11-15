@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreInteractionRequest;
 use CRM\Models\Interaction;
 use CRM\Models\Lead;

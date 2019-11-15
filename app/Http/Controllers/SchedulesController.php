@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreScheduleRequest;
 use CRM\Models\Schedule;
 use CRM\Schedules\ScheduleRepository;

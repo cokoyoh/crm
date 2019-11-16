@@ -44,6 +44,11 @@ class ApiController extends Controller
             ->respond($data);
     }
 
+    public function respondWithJson($data)
+    {
+        return $data;
+    }
+
     /**
      * @param $message
      * @return \Illuminate\Http\JsonResponse

@@ -10,10 +10,10 @@ class LeadsController extends ApiController
 {
     public function companyLeadSources(Company $company)
     {
-        $paginatedLeadSources = $company->leadSources()->paginate();
+        $paginatedLeadSources = $company->leadSources()->paginate(2);
 
         $data = (new LeadSourceTransformer())->transformCollection($paginatedLeadSources);
 
-        return $this->respondSuccess(['data' => $data]);
+        return $this->respondWithJson($data);
     }
 }

@@ -3,35 +3,16 @@
 namespace App\Http\Controllers;
 
 use CRM\Models\LeadSource;
-use CRM\Transformers\LeadSourceTransformer;
 
 class LeadSourcesController extends Controller
 {
-    protected $leadSourcesTransformer;
-
-    /**
-     * LeadSourcesController constructor.
-     * @param $leadSourcesTransformer
-     */
-    public function __construct(
-        LeadSourceTransformer $leadSourcesTransformer
-    ) {
-        $this->leadSourcesTransformer = $leadSourcesTransformer;
-    }
-
-
     public function index()
     {
         $company = auth()->user()->company;
 
         $this->authorize('manageCompany', $company);
 
-        $leadSources = $this->leadSourcesTransformer->transformCollection(
-            $company->leadSources()->paginate(5)
-        );
-
         return view('leadsources.index', [
-            'leadSources' => $leadSources,
             'company' => $company
         ]);
     }

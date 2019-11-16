@@ -1844,10 +1844,39 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "crm-table",
+  props: {
+    company: Number
+  },
   data: function data() {
     return {
+      dataSet: false,
       items: [],
       endpoint: location.pathname
     };
@@ -1857,9 +1886,18 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     fetch: function fetch() {
-      axios.get(this.url).then(this.refresh);
+      axios.get(this.url()).then(this.refresh);
     },
-    refresh: function refresh(response) {}
+    url: function url() {
+      return 'api' + location.pathname + "/" + this.company;
+    },
+    refresh: function refresh(_ref) {
+      var data = _ref.data;
+      this.dataSet = data;
+      this.items = data.data;
+      console.log(this.dataSet);
+      console.log(this.items);
+    }
   }
 });
 
@@ -46412,7 +46450,82 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._t("default")], 2)
+  return _c(
+    "div",
+    [
+      _c(
+        "table",
+        { staticClass: "rounded-b-lg table-auto w-full bg-gray-100" },
+        [
+          _c(
+            "tbody",
+            _vm._l(_vm.items, function(leadSource) {
+              return _c(
+                "tr",
+                {
+                  staticClass: "border border-gray-300 px-2 h-16",
+                  class: { "bg-white": leadSource.id % 2 == 0 }
+                },
+                [
+                  _c(
+                    "td",
+                    { staticClass: "pl-5 text-sm text-gray-600 font-medium" },
+                    [_vm._v(" " + _vm._s(leadSource.date))]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "td",
+                    { staticClass: "text-md text-gray-700 font-normal" },
+                    [_vm._v(_vm._s(leadSource.name) + "\n            ")]
+                  ),
+                  _c("td", [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "outline-none focus:outline-none",
+                        attrs: { type: "submit" }
+                      },
+                      [
+                        _c(
+                          "svg",
+                          {
+                            staticClass: "btn-delete",
+                            attrs: { viewBox: "0 0 20 20" }
+                          },
+                          [
+                            _c("path", {
+                              attrs: {
+                                d:
+                                  "M6 2l2-2h4l2 2h4v2H2V2h4zM3 6h14l-1 14H4L3 6zm5 2v10h1V8H8zm3 0v10h1V8h-1z"
+                              }
+                            })
+                          ]
+                        )
+                      ]
+                    )
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("empty", {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.items.length < 1,
+            expression: "items.length < 1"
+          }
+        ],
+        attrs: { message: "There are no lead sources recorded yet" }
+      })
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true

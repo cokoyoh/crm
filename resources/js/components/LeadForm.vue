@@ -192,7 +192,6 @@
 
         mounted() {
             this.form.company_id = this.company;
-            console.log(this.genders)
         },
 
         methods: {

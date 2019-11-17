@@ -21,7 +21,9 @@
              </tr>
              </tbody>
          </table>
-         
+
+         <paginator :dataSet="dataSet"></paginator>
+
          <empty
              v-show="items.length < 1"
              message="There are no lead sources recorded yet"
@@ -62,10 +64,6 @@
                 this.dataSet = data;
 
                 this.items = data.data;
-
-                console.log(this.dataSet);
-
-                console.log(this.items);
             }
         }
     }

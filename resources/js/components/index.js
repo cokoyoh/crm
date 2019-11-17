@@ -13,6 +13,7 @@ import VueSelect from 'vue-select'
 import Dropdown from '../components/Dropdown'
 import Empty from '../components/Empty'
 import CrmTable from '../components/CrmTable'
+import Paginator from '../components/Paginator'
 
 
 
@@ -29,3 +30,4 @@ Vue.component('dropdown', Dropdown);
 Vue.component('lead-form', LeadForm);
 Vue.component('empty', Empty);
 Vue.component('crm-table', CrmTable);
+Vue.component('paginator', Paginator);

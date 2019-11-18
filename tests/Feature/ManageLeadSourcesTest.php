@@ -46,7 +46,7 @@ class ManageLeadSourcesTest extends TestCase
         $user = UserFactory::admin()->create();
 
         $this->actingAs($user)
-            ->post(route('lead-sources.store'), $attributes = ['name' => 'Uhuru Park', 'slug' => 'uhuru-park'])
+            ->post(route('lead-sources.store'), $attributes = ['name' => 'Uhuru Park'])
             ->assertRedirect(route('dashboard.user', $user));
 
         $this->assertDatabaseHas('lead_sources', $attributes);
@@ -76,19 +76,5 @@ class ManageLeadSourcesTest extends TestCase
         $this->actingAs($user)
             ->get(route('lead-sources.index'))
             ->assertDontSee($leadSource->name);
-    }
-
-    /** @test */
-    public function authorised_users_can_view_lead_sources()
-    {
-        $company = create(Company::class);
-
-        $user = UserFactory::fromCompany($company)->admin()->create();
-
-        $leadSource = LeadSourceFactory::forCompany($company)->create();
-
-        $this->actingAs($user)
-            ->get(route('lead-sources.index'))
-            ->assertSee($leadSource->name);
     }
 }

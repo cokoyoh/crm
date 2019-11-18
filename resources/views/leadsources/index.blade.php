@@ -43,7 +43,8 @@
             </span>
 
                     <button
-                        class="ml-5 flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none">
+                        @click="$modal.show('new-lead-source-modal')"
+                        class="ml-5 flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none active:bg-gray-700">
                         <svg
                             class="fill-current h-4 w-4"
                             viewBox="0 0 20 20">
@@ -60,9 +61,13 @@
     <div class="h-screen my-auto bg-gray-200 -mx-3 px-24 overflow-auto">
         <div class="pt-4 mt-2 rounded">
 
-            <crm-table
+            <lead-sources
                 :company="{!! auth()->user()->company_id !!}"
-            ></crm-table>
+            ></lead-sources>
+
+            <new-lead-source
+                :company="{!! auth()->user()->company_id !!}"
+            ></new-lead-source>
 
         </div>
     </div>

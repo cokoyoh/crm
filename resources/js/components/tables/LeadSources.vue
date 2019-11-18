@@ -32,15 +32,19 @@
 </template>
 
 <script>
-    import ItemsRetrieval from '../mixins/ItemsRetrieval'
+    import ItemsRetrieval from '../../mixins/ItemsRetrieval'
 
     export default {
-        name: "crm-table",
+        name: "lead-sources",
 
         mixins: [ItemsRetrieval],
 
         props: {
           company: Number
+        },
+
+        created() {
+            // this.addItem();
         },
 
         data() {
@@ -51,6 +55,10 @@
             url(page = 1) {
                 return 'api' + location.pathname + "/" + this.company + "?page=" + page;
             },
+
+            addItem() {
+                Event.listen('leadSourceAdded', leadSource => this.items.unshift(leadSource))
+            }
         }
     }
 </script>

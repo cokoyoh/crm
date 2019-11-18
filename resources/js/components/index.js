@@ -12,8 +12,10 @@ import VueDatePicker from  'vue-ctk-date-time-picker'
 import VueSelect from 'vue-select'
 import Dropdown from '../components/Dropdown'
 import Empty from '../components/Empty'
-import CrmTable from '../components/CrmTable'
 import Paginator from '../components/Paginator'
+
+import tables from '../components/tables'
+import forms from '../components/forms'
 
 
 
@@ -29,5 +31,4 @@ Vue.component('v-select', VueSelect);
 Vue.component('dropdown', Dropdown);
 Vue.component('lead-form', LeadForm);
 Vue.component('empty', Empty);
-Vue.component('crm-table', CrmTable);
 Vue.component('paginator', Paginator);

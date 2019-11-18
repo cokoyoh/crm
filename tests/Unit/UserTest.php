@@ -8,6 +8,7 @@ use CRM\Models\LeadAssignee;
 use CRM\Models\Role;
 use CRM\Models\Schedule;
 use CRM\Models\User;
+use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\UserFactory;
 use Tests\TestCase;
@@ -143,5 +144,15 @@ class UserTest extends TestCase
         create(Schedule::class, ['user_id' => $user->id]);
 
         $this->assertCount(1, $user->schedules);
+    }
+
+    /** @test */
+    public function it_can_get_the_count_for_leads_for_a_particular_user()
+    {
+        $user = create(User::class);
+
+        LeadFactory::assignTo($user)->create();
+
+        $this->assertEquals(1, $user->leadsCount);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace CRM\Models;
 
+use CRM\Users\UserLeadsCount;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -9,7 +10,7 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable, SoftDeletes, UserLeadsCount;
 
     protected $appends = [
         'name', 'status'
@@ -141,7 +142,6 @@ class User extends Authenticatable
                 $leadAssignee->where('user_id', $this->id);
             })
             ->latest()
-            ->take(5) //temporary statement, should be removed
             ->get();
     }
 

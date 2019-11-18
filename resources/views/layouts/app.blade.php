@@ -78,12 +78,14 @@
                         <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">Leads</h3>
 
                         <div class="mt-2 -mx-3">
-                            <a href="#"
-                               class="flex align-center justify-between px-3 py-1 bg-gray-200 rounded-lg"
-                            >
-                                <span class="text-sm font-medium text-gray-900">All</span>
-                                <span class="text-xs font-semibold text-gray-700">36</span>
-                            </a>
+                            @if(auth()->user()->isAdmin())
+                                <a href="{!! route('leads.index') !!}"
+                                   class="flex align-center justify-between px-3 py-1 bg-gray-200 rounded-lg"
+                                >
+                                    <span class="text-sm font-medium text-gray-900">All</span>
+                                    <span class="text-xs font-semibold text-gray-700">{!! auth()->user()->leadsCount !!}</span>
+                                </a>
+                            @endif
                             <a href="#"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >

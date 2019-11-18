@@ -41,6 +41,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/dashboard/{user}/admin', 'DashboardController@admin')->name('dashboard.admin');
     Route::get('/dashboard/{user}/user', 'DashboardController@user')->name('dashboard.user');
 
+    Route::get('/leads', 'LeadsController@index')->name('leads.index');
     Route::get('/leads/create/{lead?}', 'LeadsController@create')->name('leads.create');
     Route::get('/leads/{lead}/show', 'LeadsController@show')->name('leads.show');
     Route::post('/leads', 'LeadsController@store')->name('leads.store');

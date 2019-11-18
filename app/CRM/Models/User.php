@@ -134,15 +134,19 @@ class User extends Authenticatable
         return $query->whereNull('deactivated_at');
     }
 
-    public function leads()
+    public function assignedLeads()
     {
         return Lead::whereHas(
             'leadAssignee',
             function ($leadAssignee) {
                 $leadAssignee->where('user_id', $this->id);
             })
-            ->latest()
-            ->get();
+            ->latest();
+    }
+
+    public function leads()
+    {
+        return $this->assignedLeads()->get();
     }
 
     public function schedules()

@@ -11,7 +11,12 @@ class LeadsTransformer extends Transformer
     {
         return [
             'id' => $lead->id,
-            'name' => $lead->name
+            'name' => $lead->name,
+            'phone' => $lead->phone,
+            'email' => $lead->email,
+            'date' => $lead->created_at->toFormattedDateString(),
+            'class_slug' => optional($lead->leadClass)->slug,
+            'source' => optional($lead->leadSource)->name,
         ];
     }
 }

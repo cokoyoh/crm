@@ -5,6 +5,7 @@ namespace CRM\Leads;
 
 
 use CRM\Models\Lead;
+use CRM\Models\User;
 use CRM\RepositoryInterfaces\CreateInterface;
 
 class LeadRepository implements CreateInterface
@@ -57,5 +58,18 @@ class LeadRepository implements CreateInterface
             ->take(4)
             ->latest()
             ->get();
+    }
+
+    public function getUserLeads(User $user)
+    {
+        if ($user->isSuperAdmin()) {
+            return Lead::latest()->paginate(8);
+        }
+
+        if ($user->isAdmin()) {
+            return $user->company->leads()->paginate(8);
+        }
+
+        return $user->assignedLeads()->paginate(8);
     }
 }

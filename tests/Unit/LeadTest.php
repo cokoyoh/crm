@@ -8,6 +8,7 @@ use CRM\Models\Lead;
 use CRM\Models\LeadAssignee;
 use CRM\Models\LeadClass;
 use CRM\Models\LeadNote;
+use CRM\Models\LeadSource;
 use CRM\Models\User;
 use Facades\Tests\Setup\ContactFactory;
 use Facades\Tests\Setup\InteractionFactory;
@@ -228,5 +229,15 @@ class LeadTest extends TestCase
         $this->assertEquals(0, LeadAssignee::count());
 
         $this->assertEquals(0, Interaction::count());
+    }
+
+    /** @test */
+    public function it_has_a_source()
+    {
+        $source = create(LeadSource::class)->create();
+
+        $lead = LeadFactory::source($source)->create();
+
+        $this->assertInstanceOf(LeadSource::class, $lead->leadSource);
     }
 }

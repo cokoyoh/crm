@@ -78,7 +78,7 @@
                         <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">Leads</h3>
 
                         <div class="mt-2 -mx-3">
-                            @if(auth()->user()->isAdmin())
+                            @if(auth()->user()->isAdmin() || auth()->user()->isSuperAdmin())
                                 <a href="{!! route('leads.index') !!}"
                                    class="flex align-center justify-between px-3 py-1 bg-gray-200 rounded-lg"
                                 >

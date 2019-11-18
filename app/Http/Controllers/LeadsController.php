@@ -49,6 +49,11 @@ class LeadsController extends ApiController
         $this->genderTransformer = $genderTransformer;
     }
 
+    public function index()
+    {
+        return view('leads.index');
+    }
+
     public function create(Lead $lead = null)
     {
         if ($lead) {

@@ -21,6 +21,7 @@ class CreateLeadsTable extends Migration
             $table->increments('id');
             $table->integer('company_id')->nullable();
             $table->integer('lead_class_id')->nullable();
+            $table->integer('lead_source_id')->nullable();
             $table->string('first_name', 45)->nullable();
             $table->string('last_name', 45)->nullable();
             $table->string('phone', 45)->nullable();
@@ -34,6 +35,12 @@ class CreateLeadsTable extends Migration
             $table->foreign('lead_class_id', 'fk_leads_lead_classes1')
                 ->references('id')
                 ->on('lead_classes')
+                ->onDelete('NO ACTION')
+                ->onUpdate('NO ACTION');
+
+            $table->foreign('lead_source_id')
+                ->references('id')
+                ->on('lead_sources')
                 ->onDelete('NO ACTION')
                 ->onUpdate('NO ACTION');
 

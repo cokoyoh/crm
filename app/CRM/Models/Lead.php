@@ -95,4 +95,9 @@ class Lead extends Model
     {
         return $this->hasOne(Contact::class);
     }
+
+    public function leadSource()
+    {
+        return $this->belongsTo(LeadSource::class);
+    }
 }

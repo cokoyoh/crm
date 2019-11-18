@@ -10,7 +10,7 @@ class LeadsController extends ApiController
 {
     public function companyLeadSources(Company $company)
     {
-        $paginatedLeadSources = $company->leadSources()->paginate(2);
+        $paginatedLeadSources = $company->leadSources()->paginate(8);
 
         $data = (new LeadSourceTransformer())->transformCollection($paginatedLeadSources);
 

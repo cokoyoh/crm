@@ -48,23 +48,25 @@
 
         created() {
             this.fetch();
+            Event.listen('nextPageRequested', page => this.fetch(page));
         },
 
+
         methods: {
-            fetch(){
-                axios.get(this.url())
+            fetch(page = 1){
+                axios.get(this.url(page))
                     .then(this.refresh)
             },
 
-            url() {
-                return 'api' + location.pathname + "/" + this.company;
+            url(page = 1) {
+                return 'api' + location.pathname + "/" + this.company + "?page=" + page;
             },
 
             refresh({data}) {
                 this.dataSet = data;
 
                 this.items = data.data;
-            }
+            },
         }
     }
 </script>

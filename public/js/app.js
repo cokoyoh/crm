@@ -1884,14 +1884,21 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
+    var _this = this;
+
     this.fetch();
+    Event.listen('nextPageRequested', function (page) {
+      return _this.fetch(page);
+    });
   },
   methods: {
     fetch: function fetch() {
-      axios.get(this.url()).then(this.refresh);
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get(this.url(page)).then(this.refresh);
     },
     url: function url() {
-      return 'api' + location.pathname + "/" + this.company;
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      return 'api' + location.pathname + "/" + this.company + "?page=" + page;
     },
     refresh: function refresh(_ref) {
       var data = _ref.data;
@@ -2787,31 +2794,45 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "paginator",
-  prop: ['dataSet'],
+  props: ['dataSet'],
   data: function data() {
     return {
-      prevUrl: false,
+      previousUrl: false,
       nextUrl: false,
-      page: 2
+      page: 1,
+      totalPages: 1
     };
   },
   computed: {
     shouldPaginate: function shouldPaginate() {
-      return this.prevUrl || this.nextUrl;
+      return !!this.previousUrl || !!this.nextUrl;
     }
   },
   watch: {
     dataSet: function dataSet() {
       this.updateDataSet();
+    },
+    page: function page() {
+      this.broadcast();
     }
   },
   methods: {
     updateDataSet: function updateDataSet() {
       this.page = this.dataSet.current_page;
-      this.prevUrl = this.dataSet.prev_page_url;
+      this.previousUrl = this.dataSet.prev_page_url;
       this.nextUrl = this.dataSet.next_page_url;
+      this.totalPages = this.dataSet.last_page;
+    },
+    broadcast: function broadcast() {
+      Event.fire('nextPageRequested', this.page);
     }
   }
 });
@@ -48085,7 +48106,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c(
-    "ul",
+    "div",
     {
       directives: [
         {
@@ -48095,82 +48116,113 @@ var render = function() {
           expression: "shouldPaginate"
         }
       ],
-      staticClass: "mt-2 flex items-center text-sm text-gray-700 font-medium"
+      staticClass: "flex items-center justify-between"
     },
     [
-      _c(
-        "li",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.prevUrl,
-              expression: "prevUrl"
-            }
-          ],
-          staticClass:
-            "flex items-center border border-gray-400 rounded py-1 px-2 hover:bg-gray-300 active:bg-gray-400 active:text-gray-900"
-        },
-        [
-          _c("span", [
-            _c(
-              "svg",
-              {
-                staticClass: "h-4 w-4 fill-current",
-                attrs: { viewBox: "0 0 20 20" }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z"
-                  }
-                })
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("a", { attrs: { href: "#", rel: "previous" } }, [
-            _vm._v("Previous")
-          ])
-        ]
-      ),
+      _c("h3", { staticClass: "text-sm text-gray-700 ml-1" }, [
+        _vm._v(
+          "Displaying page " +
+            _vm._s(_vm.page) +
+            " of " +
+            _vm._s(_vm.totalPages)
+        )
+      ]),
       _vm._v(" "),
       _c(
-        "li",
+        "ul",
         {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.nextUrl,
-              expression: "nextUrl"
-            }
-          ],
           staticClass:
-            "ml-2 flex items-center border border-gray-400 rounded py-1 px-2 hover:bg-gray-300 active:bg-gray-400 active:text-gray-900"
+            "mt-2 flex items-center text-sm text-gray-700 font-medium"
         },
         [
-          _c("a", { attrs: { href: "#", rel: "next" } }, [_vm._v("Next")]),
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.previousUrl,
+                  expression: "previousUrl"
+                }
+              ],
+              staticClass:
+                "flex items-center border border-gray-400 rounded py-1 px-2 hover:bg-gray-300 active:bg-gray-400 active:text-gray-900",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.page--
+                }
+              }
+            },
+            [
+              _c("span", [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-4 w-4 fill-current",
+                    attrs: { viewBox: "0 0 20 20" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M7.05 9.293L6.343 10 12 15.657l1.414-1.414L9.172 10l4.242-4.243L12 4.343z"
+                      }
+                    })
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c("a", { attrs: { href: "#", rel: "previous" } }, [
+                _vm._v("Previous")
+              ])
+            ]
+          ),
           _vm._v(" "),
-          _c("span", [
-            _c(
-              "svg",
-              {
-                staticClass: "h-4 w-4 fill-current",
-                attrs: { viewBox: "0 0 20 20" }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"
-                  }
-                })
-              ]
-            )
-          ])
+          _c(
+            "li",
+            {
+              directives: [
+                {
+                  name: "show",
+                  rawName: "v-show",
+                  value: _vm.nextUrl,
+                  expression: "nextUrl"
+                }
+              ],
+              staticClass:
+                "flex items-center border border-gray-400 rounded py-1 px-2 hover:bg-gray-300 active:bg-gray-400 active:text-gray-900",
+              class: !_vm.previousUrl ? "ml-1" : "ml-2",
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.page++
+                }
+              }
+            },
+            [
+              _c("a", { attrs: { href: "#", rel: "next" } }, [_vm._v("Next")]),
+              _vm._v(" "),
+              _c("span", [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-4 w-4 fill-current",
+                    attrs: { viewBox: "0 0 20 20" }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"
+                      }
+                    })
+                  ]
+                )
+              ])
+            ]
+          )
         ]
       )
     ]

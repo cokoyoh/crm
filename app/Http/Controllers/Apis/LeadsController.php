@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Apis;
 
 use CRM\Leads\LeadRepository;
 use CRM\Models\Company;
+use CRM\Models\Lead;
 use CRM\Models\User;
+use CRM\Transformers\InteractionTransformer;
 use CRM\Transformers\LeadSourceTransformer;
 use CRM\Transformers\LeadsTransformer;
 
@@ -25,7 +27,7 @@ class LeadsController extends ApiController
 
     public function companyLeadSources(Company $company)
     {
-        $paginatedLeadSources = $company->leadSources()->paginate(8);
+        $paginatedLeadSources = $company->leadSources()->latest()->paginate(8);
 
         $data = (new LeadSourceTransformer())->transformCollection($paginatedLeadSources);
 
@@ -38,6 +40,15 @@ class LeadsController extends ApiController
 
         return $this->respondWithJson(
             (new LeadsTransformer())->transformCollection($paginatedLeads)
+        );
+    }
+
+    public function interactions(Lead $lead)
+    {
+        $paginatedLeadInteractions = $this->leadRepository->getInteractions($lead);
+
+        return $this->respondWithJson(
+            (new InteractionTransformer())->transformCollection($paginatedLeadInteractions)
         );
     }
 }

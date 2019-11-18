@@ -55,9 +55,8 @@ class LeadRepository implements CreateInterface
 
         return $this->lead
             ->interactions()
-            ->take(4)
             ->latest()
-            ->get();
+            ->paginate(4);
     }
 
     public function getUserLeads(User $user)
@@ -67,7 +66,7 @@ class LeadRepository implements CreateInterface
         }
 
         if ($user->isAdmin()) {
-            return $user->company->leads()->paginate(8);
+            return $user->company->leads()->latest()->paginate(8);
         }
 
         return $user->assignedLeads()->paginate(8);

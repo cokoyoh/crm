@@ -31,6 +31,12 @@ class InteractionsController extends ApiController
 
         $interaction->delete();
 
+        if (request()->wantsJson()) {
+            return $this->respondSuccess([
+                'message' => 'Interaction has been deleted!'
+            ]);
+        }
+
         flash('Interaction has been deleted!', 'success');
 
         return redirect()->route('leads.show', $interaction->lead);

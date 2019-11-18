@@ -77,13 +77,10 @@ class LeadsController extends ApiController
     {
         $this->authorize('manageLead', $lead);
 
-        $interactions = $this->lead->getInteractions($lead);
-
         $notes = $this->leadNotes->getNotes($lead);
 
-        return view('leads.show', [
+        return view('leads.details', [
             'lead' => $lead,
-            'interactions' => $interactions,
             'notes' => $notes
         ]);
     }

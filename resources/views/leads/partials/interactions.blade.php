@@ -1,4 +1,3 @@
-
 @forelse($interactions as $interaction)
     <div class="py-2 px-3 rounded-lg bg-white mt-3 text-gray-700 border border-gray-200">
         <div class="-ml-3 border-l-4 border-green-400 pl-4 flex items-center">

@@ -57,15 +57,12 @@
         </header>
     </div>
 
-    <div class="h-screen my-auto bg-gray-200 -mx-3 px-24">
+    <div class="h-screen my-auto bg-gray-200 -mx-3 px-24 overflow-auto">
         <div class="pt-4 mt-2 rounded">
 
             <crm-table
                 :company="{!! auth()->user()->company_id !!}"
             ></crm-table>
-
-{{--            {!! $leadSources->links() !!}--}}
-            {{-- links will be here for previous and next pages will be here --}}
 
         </div>
     </div>

@@ -1838,6 +1838,7 @@ module.exports = {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mixins/ItemsRetrieval */ "./resources/js/mixins/ItemsRetrieval.js");
 //
 //
 //
@@ -1871,39 +1872,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "crm-table",
+  mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"]],
   props: {
     company: Number
   },
   data: function data() {
-    return {
-      dataSet: false,
-      items: [],
-      endpoint: location.pathname
-    };
-  },
-  created: function created() {
-    var _this = this;
-
-    this.fetch();
-    Event.listen('nextPageRequested', function (page) {
-      return _this.fetch(page);
-    });
+    return {};
   },
   methods: {
-    fetch: function fetch() {
-      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
-      axios.get(this.url(page)).then(this.refresh);
-    },
     url: function url() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       return 'api' + location.pathname + "/" + this.company + "?page=" + page;
-    },
-    refresh: function refresh(_ref) {
-      var data = _ref.data;
-      this.dataSet = data;
-      this.items = data.data;
     }
   }
 });
@@ -64916,6 +64898,46 @@ Vue.component('lead-form', _components_LeadForm__WEBPACK_IMPORTED_MODULE_3__["de
 Vue.component('empty', _components_Empty__WEBPACK_IMPORTED_MODULE_11__["default"]);
 Vue.component('crm-table', _components_CrmTable__WEBPACK_IMPORTED_MODULE_12__["default"]);
 Vue.component('paginator', _components_Paginator__WEBPACK_IMPORTED_MODULE_13__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/mixins/ItemsRetrieval.js":
+/*!***********************************************!*\
+  !*** ./resources/js/mixins/ItemsRetrieval.js ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      dataSet: false,
+      items: [],
+      endpoint: location.pathname
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    this.fetch();
+    Event.listen('nextPageRequested', function (page) {
+      return _this.fetch(page);
+    });
+  },
+  methods: {
+    fetch: function fetch() {
+      var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+      axios.get(this.url(page)).then(this.refresh);
+    },
+    refresh: function refresh(_ref) {
+      var data = _ref.data;
+      this.dataSet = data;
+      this.items = data.data;
+    }
+  }
+});
 
 /***/ }),
 

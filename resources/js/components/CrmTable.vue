@@ -32,40 +32,24 @@
 </template>
 
 <script>
+    import ItemsRetrieval from '../mixins/ItemsRetrieval'
+
     export default {
         name: "crm-table",
+
+        mixins: [ItemsRetrieval],
+
         props: {
           company: Number
         },
 
         data() {
-            return {
-                dataSet: false,
-                items: [],
-                endpoint: location.pathname,
-            }
+            return {}
         },
-
-        created() {
-            this.fetch();
-            Event.listen('nextPageRequested', page => this.fetch(page));
-        },
-
 
         methods: {
-            fetch(page = 1){
-                axios.get(this.url(page))
-                    .then(this.refresh)
-            },
-
             url(page = 1) {
                 return 'api' + location.pathname + "/" + this.company + "?page=" + page;
-            },
-
-            refresh({data}) {
-                this.dataSet = data;
-
-                this.items = data.data;
             },
         }
     }

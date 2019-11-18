@@ -31,4 +31,18 @@ class Company extends Model
             ->active()
             ->first();
     }
+
+    public function getStatusAttribute()
+    {
+        if (is_null($this->register_token)) return 'Unverified';
+
+        if ($this->register_token) return 'Active';
+
+        return 'Inactive';
+    }
+
+    public function leadSources()
+    {
+        return $this->hasMany(LeadSource::class);
+    }
 }

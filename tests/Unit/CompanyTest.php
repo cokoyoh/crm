@@ -3,6 +3,7 @@
 namespace Tests\Unit;
 
 use CRM\Models\Company;
+use CRM\Models\LeadSource;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\UserFactory;
@@ -42,5 +43,23 @@ class CompanyTest extends TestCase
     public function it_gets_the_plural()
     {
         $this->assertEquals('Companies', pluralise('Company', 2));
+    }
+
+    /** @test */
+    public function it_has_a_status()
+    {
+        $company = create(Company::class);
+
+        $this->assertEquals($company->status, 'Unverified');
+    }
+
+    /** @test */
+    public function it_has_lead_sources()
+    {
+        $company = create(Company::class);
+
+        $leadSource = create(LeadSource::class, ['company_id' => $company->id]);
+
+        $this->assertTrue($company->leadSources->contains($leadSource));
     }
 }

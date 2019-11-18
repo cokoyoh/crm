@@ -16,7 +16,6 @@ Route::get('/', function () {
 });
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/companies/{company}/profiles', 'CompanyProfilesController@complete')->name('companies.profiles.complete');
 Route::get('/users/{user}/profile', 'UsersController@profile')->name('users.profile');
 Route::post('/users/{user}/update', 'UsersController@update')->name('users.update');
@@ -26,6 +25,8 @@ Route::group(['middleware' => ['guest']], function () {
 });
 
 Route::group(['middleware' => ['auth']], function (){
+    Route::get('/home', 'HomeController@index')->name('home');
+
     Route::get('/companies', 'CompaniesController@index')->name('companies.index');
     Route::get('/companies/create', 'CompaniesController@create')->name('companies.create');
     Route::get('/companies/{company}/show', 'CompaniesController@show')->name('companies.show');
@@ -40,15 +41,22 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/dashboard/{user}/admin', 'DashboardController@admin')->name('dashboard.admin');
     Route::get('/dashboard/{user}/user', 'DashboardController@user')->name('dashboard.user');
 
+    Route::get('/leads/create/{lead?}', 'LeadsController@create')->name('leads.create');
     Route::get('/leads/{lead}/show', 'LeadsController@show')->name('leads.show');
     Route::post('/leads', 'LeadsController@store')->name('leads.store');
     Route::get('/get-leads', 'LeadsController@getLeads')->name('leads.fetch-leads');
+
+    Route::get('/leads/check-email', 'ConfirmLeadsController@email')->name('leads.confirm-email');
+    Route::get('/leads/check-phone', 'ConfirmLeadsController@phone')->name('leads.confirm-phone');
 
     Route::get('/leads/{lead}/lost', 'LeadsController@lost')->name('leads.lost');
     Route::get('/leads/{lead}/convert', 'LeadsController@convert')->name('leads.convert');
     Route::delete('/leads/{lead}/destroy', 'LeadsController@destroy')->name('leads.destroy');
 
     Route::post('/leads/{lead}/notes', 'LeadNotesController@store')->name('leads.notes.store');
+
+    Route::get('/lead-sources', 'LeadSourcesController@index')->name('lead-sources.index');
+    Route::post('/lead-sources', 'LeadSourcesController@store')->name('lead-sources.store');
 
     Route::post('/schedules', 'SchedulesController@store')->name('schedules.store');
     Route::delete('/schedules/{schedule}/destroy', 'SchedulesController@destroy')->name('schedules.destroy');

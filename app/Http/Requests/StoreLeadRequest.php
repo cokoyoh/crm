@@ -25,8 +25,7 @@ class StoreLeadRequest extends FormRequest
     {
         return [
             'email' => "required_if:phone_number,''|email|unique:leads",
-            'country_code' => "required_with:phone_number",
-            'phone_number' => "required_if:email,''"
+            'phone' => "required_if:email,''"
         ];
     }
 }

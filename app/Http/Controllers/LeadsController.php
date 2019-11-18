@@ -3,33 +3,69 @@
 namespace App\Http\Controllers;
 
 use App\Events\Leads\LeadMarkedAsLost;
+use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreLeadRequest;
 use CRM\LeadAssignees\LeadAssigneeRepository;
 use CRM\LeadNotes\LeadNotesRepository;
 use CRM\Leads\LeadRepository;
+use CRM\Models\Gender;
 use CRM\Models\Lead;
+use CRM\Transformers\GenderTransformer;
+use CRM\Transformers\LeadSourceTransformer;
+use CRM\Transformers\LeadsTransformer;
 use Illuminate\Support\Facades\DB;
 
-class LeadsController extends Controller
+class LeadsController extends ApiController
 {
     protected $lead;
     protected $leadAssignee;
     protected $leadNotes;
+    protected $leadsTransformer;
+    protected $leadSourceTransformer;
+    protected $genderTransformer;
 
     /**
      * LeadsController constructor.
      * @param LeadRepository $lead
      * @param LeadAssigneeRepository $leadAssignee
      * @param LeadNotesRepository $leadNotes
+     * @param LeadsTransformer $leadsTransformer
+     * @param LeadSourceTransformer $leadSourceTransformer
+     * @param GenderTransformer $genderTransformer
      */
     public function __construct(
         LeadRepository $lead,
         LeadAssigneeRepository $leadAssignee,
-        LeadNotesRepository $leadNotes
+        LeadNotesRepository $leadNotes,
+        LeadsTransformer $leadsTransformer,
+        LeadSourceTransformer $leadSourceTransformer,
+        GenderTransformer $genderTransformer
     ) {
         $this->lead = $lead;
         $this->leadAssignee = $leadAssignee;
         $this->leadNotes = $leadNotes;
+        $this->leadsTransformer = $leadsTransformer;
+        $this->leadSourceTransformer = $leadSourceTransformer;
+        $this->genderTransformer = $genderTransformer;
+    }
+
+    public function create(Lead $lead = null)
+    {
+        if ($lead) {
+            $this->authorize('manageLead', $lead);
+        }
+
+        $leadSources = $this->leadSourceTransformer->mapCollection(
+            auth()->user()->company->leadSources
+        );
+
+        $genders = $this->genderTransformer->mapCollection(Gender::all());
+
+        return view('leads.create', [
+            'lead' => $lead,
+            'leadSources' => $leadSources,
+            'genders' => $genders
+        ]);
     }
 
     public function show(Lead $lead)
@@ -55,10 +91,10 @@ class LeadsController extends Controller
         $this->leadAssignee->store(auth()->user(), $lead);
 
         if ($request->wantsJson()) {
-            return [
+            return $this->respondSuccess([
                 'message' => 'Lead saved successfully',
                 'link' => route('leads.show', $lead)
-            ];
+            ]);
         }
 
         flash('Lead added successfully.', 'success');
@@ -70,17 +106,12 @@ class LeadsController extends Controller
     {
         $searchString = request('query');
 
-        return Lead::query()
+        $leads = Lead::query()
             ->where('first_name', 'like', "%{$searchString}%")
             ->orWhere('last_name', 'like', "%{$searchString}%")
-            ->get()
-            ->map(function ($lead) use($searchString){
-                return [
-                    'id' => $lead->id,
-                    'name' => $lead->name,
-                ];
-            })
-            ->toArray();
+            ->get();
+
+        return $this->leadsTransformer->mapCollection($leads);
     }
 
     public function lost(Lead $lead)

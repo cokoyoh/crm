@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreInteractionRequest;
 use CRM\Models\Interaction;
 use CRM\Models\Lead;
 
-class InteractionsController extends Controller
+class InteractionsController extends ApiController
 {
     public function store(StoreInteractionRequest $request, Lead $lead)
     {
@@ -15,10 +16,10 @@ class InteractionsController extends Controller
         $lead->markAsFollowedUp();
 
         if ($request->wantsJson()) {
-            return [
+            return $this->respondSuccess([
                 'message' => 'Interaction added successfully',
                 'link' => route('leads.show', $lead)
-            ];
+            ]);
         }
 
         return redirect()->route('leads.show', $lead);

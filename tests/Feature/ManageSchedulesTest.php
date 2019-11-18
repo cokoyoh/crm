@@ -91,8 +91,7 @@ class ManageSchedulesTest extends TestCase
         $schedule = create(Schedule::class, ['user_id' => $jamal->id]);
 
         $this->actingAs($jamal)
-            ->delete(route('schedules.destroy', $schedule))
-            ->assertRedirect(route('dashboard.user', $jamal));
+            ->delete(route('schedules.destroy', $schedule));
 
         $this->assertDatabaseMissing('schedules', $schedule->toArray());
     }

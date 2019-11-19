@@ -85,6 +85,9 @@
                         @can('markAsLost', $lead)
                             <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>
                         @endcan
+                        @can('reassign', $lead)
+                            <li class="dropdown-menu-item">Reassign</li>
+                        @endcan
                         @can('destroy', $lead)
                             <form action="{!! route('leads.destroy', $lead) !!}" method="post">
                                 @csrf
@@ -93,7 +96,6 @@
                                     <button class="outline-none focus:outline-none" type="submit">Delete</button>
                                 </li>
                             </form>
-
                         @endcan
                     </dropdown>
                 </div>

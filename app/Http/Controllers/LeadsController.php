@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Leads\LeadMarkedAsLost;
+use App\Events\Leads\LeadReassigned;
 use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreLeadRequest;
 use CRM\LeadAssignees\LeadAssigneeRepository;
@@ -158,14 +159,15 @@ class LeadsController extends ApiController
         $this->authorize('reassign', $lead);
 
         DB::transaction(function () use ($lead) {
+            $previousLeadAssignee = optional($lead->leadAssignee)->user;
+
             $user = $this->user->findById(request('user_id'));
 
             $lead->assign($user);
 
             flash('Lead reassigned successfully', 'success');
 
-            //send mailer to the user who has been assigned to the lead
-            //send another notification to the previous lead owner
+            event(new LeadReassigned($lead, $user, $previousLeadAssignee));
         });
 
         return redirect()->route('leads.show', $lead);

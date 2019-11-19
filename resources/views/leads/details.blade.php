@@ -86,7 +86,7 @@
                             <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>
                         @endcan
                         @can('reassign', $lead)
-                            <li class="dropdown-menu-item">Reassign</li>
+                            <li class="dropdown-menu-item" @click="$modal.hide('reassign-lead-modal')">Reassign</li>
                         @endcan
                         @can('destroy', $lead)
                             <form action="{!! route('leads.destroy', $lead) !!}" method="post">

@@ -158,19 +158,21 @@ class LeadsController extends ApiController
     {
         $this->authorize('reassign', $lead);
 
-        DB::transaction(function () use ($lead) {
-            $previousLeadAssignee = optional($lead->leadAssignee)->user;
+        $previousLeadAssignee = optional($lead->leadAssignee)->user;
 
-            $user = $this->user->findById(request('user_id'));
+        $user = $this->user->findById(request('user_id'));
 
-            $lead->assign($user);
+        $lead->assign($user);
 
-            flash('Lead reassigned successfully', 'success');
+        if (request()->wantsJson()) {
+            return $this->respondSuccess(['message' => 'Lead reassigned successfully']);
+        }
 
-            event(new LeadReassigned($lead, $user, $previousLeadAssignee));
-        });
+        flash('Lead reassigned successfully', 'success');
 
-        return redirect()->route('leads.show', $lead);
+        event(new LeadReassigned($lead, $user, $previousLeadAssignee));
+
+        return redirect()->back();
     }
 
     public function destroy(Lead $lead)

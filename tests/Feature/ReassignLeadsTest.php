@@ -71,8 +71,7 @@ class ReassignLeadsTest extends TestCase
         $lead = LeadFactory::fromCompany($company)->assignTo($oliverWood)->create();
 
         $this->actingAs($admin)
-            ->post(route('leads.reassign', $lead), ['user_id' => $aliciaSpinet->id])
-            ->assertRedirect(route('leads.show', $lead));
+            ->post(route('leads.reassign', $lead), ['user_id' => $aliciaSpinet->id]);
 
         $this->assertTrue($lead->isAssigned($aliciaSpinet));
     }

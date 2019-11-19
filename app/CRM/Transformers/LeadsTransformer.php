@@ -17,6 +17,12 @@ class LeadsTransformer extends Transformer
             'date' => $lead->created_at->toFormattedDateString(),
             'class_slug' => optional($lead->leadClass)->slug,
             'source' => optional($lead->leadSource)->name,
+            'assignable' => $this->assignable($lead),
         ];
+    }
+
+    private function assignable($lead)
+    {
+        return is_null($lead->contact) ? true : false;
     }
 }

@@ -32,16 +32,26 @@
                     <p class="text-gray-700 text-sm font-semibold">{{lead.name}}</p>
                 </td>
                 <td class="pr-4">
-                    <a :href="'/leads/' + lead.id + '/show'">
-                        <button
-                            type="submit"
-                            class="outline-none focus:outline-none ">
-                            <svg class="btn-delete"
-                                 viewBox="0 0 20 20">
-                                <path d="M.2 10a11 11 0 0 1 19.6 0A11 11 0 0 1 .2 10zm9.8 4a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm0-2a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
-                            </svg>
-                        </button>
-                    </a>
+                    <dropdown>
+                        <template v-slot:trigger>
+                            <button
+                                class="focus:outline-none rounded-full bg-transparent  ml-3 hover:bg-gray-100 active:bg-gray-200"
+                            >
+                                <svg class="h-5 w-5 fill-current text-gray-500"
+                                     viewBox="0 0 24 24">
+                                    <path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
+                                </svg>
+                            </button>
+                        </template>
+
+                        <li class="dropdown-menu-item"
+                            v-if="lead.assignable"
+                            @click="reassign(lead.id)">
+                            <a href="#">Reassign</a>
+                        </li>
+                        <li class="dropdown-menu-item"><a :href="'/leads/' + lead.id + '/show'">View</a></li>
+                    </dropdown>
+
                 </td>
             </tr>
             </tbody>
@@ -53,6 +63,8 @@
             v-show="items.length < 1"
             message="There are no leads recorded yet"
         ></empty>
+
+        <reassign-lead></reassign-lead>
     </div>
 </template>
 
@@ -78,6 +90,12 @@
             url(page = 1) {
                 return 'api' + location.pathname + "/" + this.user + "?page=" + page;
             },
+
+            reassign(leadId) {
+                Event.fire('reassign-lead', leadId);
+
+                this.$modal.show('reassign-lead-modal')
+            }
         }
     }
 </script>

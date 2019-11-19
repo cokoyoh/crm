@@ -36,6 +36,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/companies/{company}/users/invites', 'UsersController@storeInvitedUser')->name('users.invite.store');
 
     Route::get('/users', 'UsersController@index')->name('users.index');
+    Route::get('/get-company-users', 'UsersController@getCompanyUsers');
     Route::delete('/users/{user}/destroy', 'UsersController@destroy')->name('users.destroy');
 
     Route::get('/dashboard', 'DashboardController@superAdmin')->name('dashboard.superadmin');

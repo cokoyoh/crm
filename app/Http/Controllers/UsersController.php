@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Events\Users\UserInvited;
+use App\Http\Controllers\Apis\ApiController;
 use CRM\Models\Company;
 use CRM\Models\User;
+use CRM\Transformers\UserTransformer;
 use CRM\Users\UserRepository;
 
-class UsersController extends Controller
+class UsersController extends ApiController
 {
     public $user;
 
@@ -80,5 +82,20 @@ class UsersController extends Controller
         $this->user->destroy($user);
 
         return redirect(route('companies.show', $company));
+    }
+
+    public function getCompanyUsers()
+    {
+        $searchString = request('query');
+
+        $users = User::query()
+            ->where('company_id', auth()->user()->company_id)
+            ->where('first_name', 'like', "%{$searchString}%")
+            ->orWhere('last_name', 'like', "%{$searchString}%")
+            ->get();
+
+        return $this->respondWithJson(
+            (new UserTransformer())->mapCollection($users)
+        );
     }
 }

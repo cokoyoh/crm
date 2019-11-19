@@ -1,3 +1,5 @@
+import SessionFlash from "./SessionFlash";
+
 window.Vue = require('vue');
 
 import Tabs from '../components/Tabs'
@@ -13,6 +15,7 @@ import VueSelect from 'vue-select'
 import Dropdown from '../components/Dropdown'
 import Empty from '../components/Empty'
 import Paginator from '../components/Paginator'
+import CustomFlash from '../components/SessionFlash'
 
 import tables from '../components/tables'
 import forms from '../components/forms'
@@ -32,3 +35,4 @@ Vue.component('dropdown', Dropdown);
 Vue.component('lead-form', LeadForm);
 Vue.component('empty', Empty);
 Vue.component('paginator', Paginator);
+Vue.component('custom-flash', CustomFlash);

@@ -2758,6 +2758,31 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SessionFlash.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/SessionFlash.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "session-flash",
+  data: function data() {
+    return {
+      show: true
+    };
+  },
+  methods: {
+    close: function close() {
+      this.show = false;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/Tab.vue?vue&type=script&lang=js&":
 /*!**************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/Tab.vue?vue&type=script&lang=js& ***!
@@ -66198,6 +66223,56 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/SessionFlash.vue":
+/*!**************************************************!*\
+  !*** ./resources/js/components/SessionFlash.vue ***!
+  \**************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _SessionFlash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SessionFlash.vue?vue&type=script&lang=js& */ "./resources/js/components/SessionFlash.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+var render, staticRenderFns
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
+  _SessionFlash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"],
+  render,
+  staticRenderFns,
+  false,
+  null,
+  "9ff3dc36",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/SessionFlash.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/SessionFlash.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/SessionFlash.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SessionFlash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./SessionFlash.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/SessionFlash.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_SessionFlash_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/Tab.vue":
 /*!*****************************************!*\
   !*** ./resources/js/components/Tab.vue ***!
@@ -66502,23 +66577,25 @@ Vue.component('reassign-lead', _ReassignLead__WEBPACK_IMPORTED_MODULE_1__["defau
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _components_Tabs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/Tabs */ "./resources/js/components/Tabs.vue");
-/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Tab */ "./resources/js/components/Tab.vue");
-/* harmony import */ var _components_NewLeadModal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/NewLeadModal */ "./resources/js/components/NewLeadModal.vue");
-/* harmony import */ var _components_LeadForm__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/LeadForm */ "./resources/js/components/LeadForm.vue");
-/* harmony import */ var _components_FlashMessage__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/FlashMessage */ "./resources/js/components/FlashMessage.vue");
-/* harmony import */ var _components_ErrorMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/ErrorMessage */ "./resources/js/components/ErrorMessage.vue");
-/* harmony import */ var _components_NewScheduleModal__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/NewScheduleModal */ "./resources/js/components/NewScheduleModal.vue");
-/* harmony import */ var _NewInteractionModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./NewInteractionModal */ "./resources/js/components/NewInteractionModal.vue");
-/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-ctk-date-time-picker */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.common.js");
-/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_8__);
-/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
-/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_9__);
-/* harmony import */ var _components_Dropdown__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../components/Dropdown */ "./resources/js/components/Dropdown.vue");
-/* harmony import */ var _components_Empty__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Empty */ "./resources/js/components/Empty.vue");
-/* harmony import */ var _components_Paginator__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/Paginator */ "./resources/js/components/Paginator.vue");
-/* harmony import */ var _components_tables__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/tables */ "./resources/js/components/tables/index.js");
-/* harmony import */ var _components_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/forms */ "./resources/js/components/forms/index.js");
+/* harmony import */ var _SessionFlash__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SessionFlash */ "./resources/js/components/SessionFlash.vue");
+/* harmony import */ var _components_Tabs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../components/Tabs */ "./resources/js/components/Tabs.vue");
+/* harmony import */ var _components_Tab__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/Tab */ "./resources/js/components/Tab.vue");
+/* harmony import */ var _components_NewLeadModal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/NewLeadModal */ "./resources/js/components/NewLeadModal.vue");
+/* harmony import */ var _components_LeadForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/LeadForm */ "./resources/js/components/LeadForm.vue");
+/* harmony import */ var _components_FlashMessage__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/FlashMessage */ "./resources/js/components/FlashMessage.vue");
+/* harmony import */ var _components_ErrorMessage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../components/ErrorMessage */ "./resources/js/components/ErrorMessage.vue");
+/* harmony import */ var _components_NewScheduleModal__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../components/NewScheduleModal */ "./resources/js/components/NewScheduleModal.vue");
+/* harmony import */ var _NewInteractionModal__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./NewInteractionModal */ "./resources/js/components/NewInteractionModal.vue");
+/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! vue-ctk-date-time-picker */ "./node_modules/vue-ctk-date-time-picker/dist/vue-ctk-date-time-picker.common.js");
+/* harmony import */ var vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_9__);
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! vue-select */ "./node_modules/vue-select/dist/vue-select.js");
+/* harmony import */ var vue_select__WEBPACK_IMPORTED_MODULE_10___default = /*#__PURE__*/__webpack_require__.n(vue_select__WEBPACK_IMPORTED_MODULE_10__);
+/* harmony import */ var _components_Dropdown__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../components/Dropdown */ "./resources/js/components/Dropdown.vue");
+/* harmony import */ var _components_Empty__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../components/Empty */ "./resources/js/components/Empty.vue");
+/* harmony import */ var _components_Paginator__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../components/Paginator */ "./resources/js/components/Paginator.vue");
+/* harmony import */ var _components_tables__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../components/tables */ "./resources/js/components/tables/index.js");
+/* harmony import */ var _components_forms__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../components/forms */ "./resources/js/components/forms/index.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
 
@@ -66535,19 +66612,21 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 
 
 
-Vue.component('tabs', _components_Tabs__WEBPACK_IMPORTED_MODULE_0__["default"]);
-Vue.component('tab', _components_Tab__WEBPACK_IMPORTED_MODULE_1__["default"]);
-Vue.component('flash-message', _components_FlashMessage__WEBPACK_IMPORTED_MODULE_4__["default"]);
-Vue.component('error-message', _components_ErrorMessage__WEBPACK_IMPORTED_MODULE_5__["default"]);
-Vue.component('new-schedule-modal', _components_NewScheduleModal__WEBPACK_IMPORTED_MODULE_6__["default"]);
-Vue.component('new-interaction-modal', _NewInteractionModal__WEBPACK_IMPORTED_MODULE_7__["default"]);
-Vue.component('new-lead-modal', _components_NewLeadModal__WEBPACK_IMPORTED_MODULE_2__["default"]);
-Vue.component('vue-date-picker', vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_8___default.a);
-Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_9___default.a);
-Vue.component('dropdown', _components_Dropdown__WEBPACK_IMPORTED_MODULE_10__["default"]);
-Vue.component('lead-form', _components_LeadForm__WEBPACK_IMPORTED_MODULE_3__["default"]);
-Vue.component('empty', _components_Empty__WEBPACK_IMPORTED_MODULE_11__["default"]);
-Vue.component('paginator', _components_Paginator__WEBPACK_IMPORTED_MODULE_12__["default"]);
+
+Vue.component('tabs', _components_Tabs__WEBPACK_IMPORTED_MODULE_1__["default"]);
+Vue.component('tab', _components_Tab__WEBPACK_IMPORTED_MODULE_2__["default"]);
+Vue.component('flash-message', _components_FlashMessage__WEBPACK_IMPORTED_MODULE_5__["default"]);
+Vue.component('error-message', _components_ErrorMessage__WEBPACK_IMPORTED_MODULE_6__["default"]);
+Vue.component('new-schedule-modal', _components_NewScheduleModal__WEBPACK_IMPORTED_MODULE_7__["default"]);
+Vue.component('new-interaction-modal', _NewInteractionModal__WEBPACK_IMPORTED_MODULE_8__["default"]);
+Vue.component('new-lead-modal', _components_NewLeadModal__WEBPACK_IMPORTED_MODULE_3__["default"]);
+Vue.component('vue-date-picker', vue_ctk_date_time_picker__WEBPACK_IMPORTED_MODULE_9___default.a);
+Vue.component('v-select', vue_select__WEBPACK_IMPORTED_MODULE_10___default.a);
+Vue.component('dropdown', _components_Dropdown__WEBPACK_IMPORTED_MODULE_11__["default"]);
+Vue.component('lead-form', _components_LeadForm__WEBPACK_IMPORTED_MODULE_4__["default"]);
+Vue.component('empty', _components_Empty__WEBPACK_IMPORTED_MODULE_12__["default"]);
+Vue.component('paginator', _components_Paginator__WEBPACK_IMPORTED_MODULE_13__["default"]);
+Vue.component('custom-flash', _SessionFlash__WEBPACK_IMPORTED_MODULE_0__["default"]);
 
 /***/ }),
 

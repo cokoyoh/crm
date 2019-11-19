@@ -25,7 +25,9 @@ class CompaniesController extends Controller
 
     public function index()
     {
-        //code here
+        $this->authorize('inviteCompany', Company::class);
+
+        return view('companies.index');
     }
 
     public function create()

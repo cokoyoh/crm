@@ -35,7 +35,7 @@
                                     <span class="text-sm font-medium text-gray-700">Roles</span>
                                     <span class="text-xs font-semibold text-gray-700"></span>
                                 </a>
-                                <a href="#"
+                                <a href="{!! route('companies.index') !!}"
                                    class="flex align-center justify-between px-3 py-1 rounded-lg"
                                 >
                                     <span class="text-sm font-medium text-gray-700">Companies</span>

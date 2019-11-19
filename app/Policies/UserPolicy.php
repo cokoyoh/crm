@@ -21,6 +21,11 @@ class UserPolicy
         return ! $user->hasVerifiedEmail();
     }
 
+    public function view(User $authenticatedUser, User $user)
+    {
+        return ($authenticatedUser->isAdmin() || $authenticatedUser->isSuperAdmin());
+    }
+
 
     public function manageUsers(User $authenticatedUser)
     {

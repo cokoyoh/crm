@@ -36,6 +36,12 @@ class UsersController extends Controller
         return view('companies.users.invite', compact('company'));
     }
 
+    public function index()
+    {
+        $this->authorize('view', new User());
+
+        return view('users.index');
+    }
 
     public function storeInvitedUser(Company $company)
     {

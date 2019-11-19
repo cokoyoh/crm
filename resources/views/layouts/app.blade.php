@@ -58,7 +58,7 @@
                                     <span class="text-sm font-medium text-gray-900">Approvals</span>
                                     <span class="text-xs font-semibold text-gray-700"></span>
                                 </a>
-                                <a href="#"
+                                <a href="{!! route('users.index') !!}"
                                    class="flex align-center justify-between px-3 py-1 rounded-lg"
                                 >
                                     <span class="text-sm font-medium text-gray-700">Users</span>

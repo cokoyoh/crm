@@ -8,6 +8,7 @@ use App\Events\Users\UserAccountDeleted;
 use CRM\Models\User;
 use CRM\RepositoryInterfaces\CreateInterface;
 use CRM\RepositoryInterfaces\UpdateInterface;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements CreateInterface, UpdateInterface
@@ -21,6 +22,22 @@ class UserRepository implements CreateInterface, UpdateInterface
     public function __construct(User $user)
     {
         $this->user = $user;
+    }
+
+    public function getUsers(User $authenticatedUser)
+    {
+        $query = User::query();
+
+        if ($authenticatedUser->isSuperAdmin()) {
+            return $query->paginate(8);
+        }
+
+        if ($authenticatedUser->isAdmin()) {
+            return $query->where('company_id', $authenticatedUser->company_id)
+                ->paginate(8);
+        }
+
+        return new Collection();
     }
 
 

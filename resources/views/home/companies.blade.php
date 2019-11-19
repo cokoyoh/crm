@@ -15,34 +15,5 @@
 </div>
 
 <div class="mt-5">
-    <table class="rounded-b-lg table-auto w-full px-2 bg-gray-100">
-        <tbody>
-            @foreach($companies as $company)
-                <tr class="border border-gray-300 px-2 h-16 @if( $company['id'] % 2 == 0) bg-white @endif ">
-                    <td class="pl-4">
-                        @if($company['status'] == 'Active')
-                            <span class="badge-default badge-default-success">Active</span>
-                        @elseif($company['status'] =='Inactive')
-                            <span class="badge-default lead-lost">Inactive</span>
-                        @elseif($company['status'] =='Unverified')
-                            <span class="badge-default badge-default-indigo">Unverified</span>
-                        @endif
-                    </td>
-                    <td class="text-sm text-gray-600 font-normal">{!! $company['date'] !!}</td>
-                    <td class="leading-snug">
-                        <p class="uppercase text-xs text-gray-600 font-semibold">{!! $company['name'] !!}</p>
-                        <p class="text-gray-700 text-sm font-semibold">{!! $company['email'] !!}</p>
-                    </td>
-                    <td class="leading-snug">
-                        <p class="uppercase text-xs text-gray-600 font-normal">{!! $company['admin_name'] !!}</p>
-                        <p class="text-gray-700 text-sm font-normal">{!! $company['admin_email'] !!}</p>
-                    </td>
-
-                    <td>
-                        <span class="bg-gray-300 rounded-full py-1 px-2 text-xs text-gray-700 font-medium">{!! $company['users_count'] !!} {!! pluralise('User', $company['users_count']) !!}</span>
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <companies></companies>
 </div>

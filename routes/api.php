@@ -23,4 +23,6 @@ Route::group(['middleware' => ['guest']], function(){
     Route::get('/leads/{lead}/interactions', 'Apis\LeadsController@interactions');
 
     Route::get('/users/{user}', 'Apis\UserController@users');
+
+    Route::get('/companies', 'Apis\CompanyController@index');
 });

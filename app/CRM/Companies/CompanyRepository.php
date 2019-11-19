@@ -28,6 +28,11 @@ class CompanyRepository implements CreateInterface, FindInterface, UpdateInterfa
         return Company::findOrFail($companyId);
     }
 
+    public function all()
+    {
+        return Company::latest()->paginate(8);
+    }
+
 
     public function create(array $attributes)
     {

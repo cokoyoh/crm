@@ -13,6 +13,7 @@ use CRM\Models\Lead;
 use CRM\Transformers\GenderTransformer;
 use CRM\Transformers\LeadSourceTransformer;
 use CRM\Transformers\LeadsTransformer;
+use CRM\Users\UserRepository;
 use Illuminate\Support\Facades\DB;
 
 class LeadsController extends ApiController
@@ -23,12 +24,14 @@ class LeadsController extends ApiController
     protected $leadsTransformer;
     protected $leadSourceTransformer;
     protected $genderTransformer;
+    protected $user;
 
     /**
      * LeadsController constructor.
      * @param LeadRepository $lead
      * @param LeadAssigneeRepository $leadAssignee
      * @param LeadNotesRepository $leadNotes
+     * @param UserRepository $user
      * @param LeadsTransformer $leadsTransformer
      * @param LeadSourceTransformer $leadSourceTransformer
      * @param GenderTransformer $genderTransformer
@@ -37,6 +40,7 @@ class LeadsController extends ApiController
         LeadRepository $lead,
         LeadAssigneeRepository $leadAssignee,
         LeadNotesRepository $leadNotes,
+        UserRepository $user,
         LeadsTransformer $leadsTransformer,
         LeadSourceTransformer $leadSourceTransformer,
         GenderTransformer $genderTransformer
@@ -44,6 +48,7 @@ class LeadsController extends ApiController
         $this->lead = $lead;
         $this->leadAssignee = $leadAssignee;
         $this->leadNotes = $leadNotes;
+        $this->user = $user;
         $this->leadsTransformer = $leadsTransformer;
         $this->leadSourceTransformer = $leadSourceTransformer;
         $this->genderTransformer = $genderTransformer;
@@ -143,6 +148,24 @@ class LeadsController extends ApiController
             $lead->markAsConverted();
 
             flash('Lead converted successfully', 'success');
+        });
+
+        return redirect()->route('leads.show', $lead);
+    }
+
+    public function reassign(Lead $lead)
+    {
+        $this->authorize('reassign', $lead);
+
+        DB::transaction(function () use ($lead) {
+            $user = $this->user->findById(request('user_id'));
+
+            $lead->assign($user);
+
+            flash('Lead reassigned successfully', 'success');
+
+            //send mailer to the user who has been assigned to the lead
+            //send another notification to the previous lead owner
         });
 
         return redirect()->route('leads.show', $lead);

@@ -57,6 +57,13 @@ class LeadPolicy
         return $this->isAssignedButNotConverted($user, $lead);
     }
 
+    public function reassign(User $user, Lead $lead)
+    {
+        return $user->isAdmin()
+            && ($lead->company_id == $user->company_id)
+            && $this->doesntHaveContact($lead);
+    }
+
     public function destroy(User $user, Lead $lead)
     {
         return $this->isAssignedButNotConverted($user, $lead);
@@ -64,11 +71,16 @@ class LeadPolicy
 
     private function isAssignedButNotConverted(User $user, Lead $lead)
     {
-        return $lead->isAssigned($user) && is_null($lead->contact);
+        return $lead->isAssigned($user) && $this->doesntHaveContact($lead);
     }
 
     private function isNotLost(Lead $lead, $slug = 'lost')
     {
         return $lead->leadClass->slug != $slug;
+    }
+
+    private function doesntHaveContact(Lead $lead)
+    {
+        return is_null($lead->contact);
     }
 }

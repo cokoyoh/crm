@@ -65,6 +65,13 @@ class Lead extends Model
         return $this->interactions()->create($attributes);
     }
 
+    public function assign(User $user)
+    {
+        $this->leadAssignee()->delete();
+
+        return $this->leadAssignee()->create(['user_id' => $user->id]);
+    }
+
     public function isAssigned(User $user = null)
     {
         $user = $user ?? auth()->user();

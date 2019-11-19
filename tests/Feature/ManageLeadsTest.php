@@ -95,8 +95,7 @@ class ManageLeadsTest extends TestCase
 
         $this->actingAs($user)
             ->get(route('leads.show', $lead))
-            ->assertSee($lead->name)
-            ->assertSee($lead->email);
+            ->assertSee($lead->name);
     }
 
     /** @test */

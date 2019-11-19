@@ -14,6 +14,7 @@ use Facades\Tests\Setup\ContactFactory;
 use Facades\Tests\Setup\InteractionFactory;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\Setup\UserFactory;
 use Tests\TestCase;
 
 class LeadTest extends TestCase
@@ -84,6 +85,22 @@ class LeadTest extends TestCase
         $lead->markAsConverted();
 
         $this->assertEquals($lead->leadClass->slug, 'converted');
+    }
+
+    /** @test */
+    public function it_can_reassign_a_lead()
+    {
+        $drecoMalfoy = create(User::class);
+
+        $nevilleLongbottom = create(User::class);
+
+        $lead = LeadFactory::assignTo($drecoMalfoy)->create();
+
+        $lead->assign($nevilleLongbottom);
+
+        $this->assertTrue($lead->isAssigned($nevilleLongbottom));
+
+        $this->assertFalse($lead->isAssigned($drecoMalfoy));
     }
 
     /** @test */

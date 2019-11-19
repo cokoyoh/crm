@@ -24,6 +24,11 @@ class UserRepository implements CreateInterface, UpdateInterface
         $this->user = $user;
     }
 
+    public function findById($userId)
+    {
+        return User::findOrFail($userId);
+    }
+
     public function getUsers(User $authenticatedUser)
     {
         $query = User::query();

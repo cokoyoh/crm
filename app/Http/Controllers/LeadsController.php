@@ -177,6 +177,11 @@ class LeadsController extends ApiController
         return view('leads.assigned');
     }
 
+    public function converted()
+    {
+        return view('leads.converted');
+    }
+
     public function destroy(Lead $lead)
     {
         $this->authorize('destroy', $lead);

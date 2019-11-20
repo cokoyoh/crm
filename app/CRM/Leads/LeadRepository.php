@@ -69,16 +69,23 @@ class LeadRepository implements CreateInterface
             return $user->company->leads()->latest()->paginate(8);
         }
 
-        return $user->assignedLeads()->paginate(8);
+        return $this->userLeads($user)->paginate(8);
     }
 
     public function assigned()
     {
-        return Lead::whereHas(
-            'leadAssignee',
-            function ($leadAssignee) {
-                $leadAssignee->where('user_id', auth()->id());
-            })
-            ->paginate(8);
+        return  $this->userLeads()->paginate(8);
+    }
+
+    public function converted()
+    {
+        return $this->userLeads()->converted()->paginate(8);
+    }
+
+    private function userLeads(User $user = null)
+    {
+        $user = $user ?? auth()->user();
+
+        return $user->assignedLeads()->latest();
     }
 }

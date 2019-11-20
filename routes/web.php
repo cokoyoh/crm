@@ -49,7 +49,9 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/leads', 'LeadsController@store')->name('leads.store');
 
     Route::get('/leads/assigned', 'LeadsController@assigned')->name('leads.assigned');
+    Route::get('/leads/converted', 'LeadsController@converted')->name('leads.converted');
     Route::get('/apis/leads/assigned', 'Apis\LeadsController@assigned');
+    Route::get('/apis/leads/converted', 'Apis\LeadsController@converted');
 
     Route::post('/leads/{lead}/reassign', 'LeadsController@reassign')->name('leads.reassign');
     Route::get('/get-leads', 'LeadsController@getLeads')->name('leads.fetch-leads');

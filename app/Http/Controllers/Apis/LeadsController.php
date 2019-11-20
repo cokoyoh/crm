@@ -52,6 +52,15 @@ class LeadsController extends ApiController
         );
     }
 
+    public function converted()
+    {
+        $assignedLeads = $this->leadRepository->converted();
+
+        return $this->respondWithJson(
+            (new LeadsTransformer())->transformCollection($assignedLeads)
+        );
+    }
+
     public function interactions(Lead $lead)
     {
         $paginatedLeadInteractions = $this->leadRepository->getInteractions($lead);

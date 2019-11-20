@@ -257,4 +257,24 @@ class ManageLeadsTest extends TestCase
 
         $jsonResponse->assertJsonMissing(['name' => $leadB->name]);
     }
+
+    /** @test */
+    public function authorised_user_can_view_their_converted_leads()
+    {
+        $goldmanSachs = create(Company::class);
+
+        $deanThomas = UserFactory::fromCompany($goldmanSachs)->regularUser()->create();
+
+        $leadA = LeadFactory::fromCompany($goldmanSachs)->assignTo($deanThomas)->create();
+
+        $leadB = LeadFactory::fromCompany($goldmanSachs)->assignTo($deanThomas)->create();
+
+        ContactFactory::associatedWith($leadA)->create(); //leadA is a converted lead
+
+        $jsonResponse = $this->actingAs($deanThomas)->get('/apis/leads/converted');
+
+        $jsonResponse->assertJsonFragment(['name' => $leadA->name]);
+
+        $jsonResponse->assertJsonMissing(['name' => $leadB->name]);
+    }
 }

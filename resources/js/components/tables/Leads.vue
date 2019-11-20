@@ -4,8 +4,9 @@
             <tbody>
                 <tr
                     v-for="lead in items"
-                    class="border border-gray-300 px-2 h-16"
-                    :class="{'bg-white' : lead.id % 2 == 0 }"
+                    class="border border-gray-300 px-2 h-16 cursor-default"
+                    :class="{'bg-white' : lead.id % 2 == 0, 'hover:bg-gray-200 cursor-pointer' : lead.viewable }"
+                    @click="view(lead)"
                 >
                 <td class="pl-4">
                     <span v-if="lead.class_slug == 'not_followed_up'" class="badge-default lead-not-followed-up">Not Followed Up</span>
@@ -50,7 +51,7 @@
                             @click="reassign(lead.id)">
                             <a href="#">Reassign</a>
                         </li>
-                        <li v-if="lead.viewable" class="dropdown-menu-item"><a :href="'/leads/' + lead.id + '/show'">View</a></li>
+<!--                        <li v-if="lead.viewable" class="dropdown-menu-item"><a :href="'/leads/' + lead.id + '/show'">View</a></li>-->
                     </dropdown>
 
                 </td>
@@ -77,7 +78,7 @@
 
         mixins: [ItemsRetrieval],
 
-        props: ['user', 'api'],
+        props: ['api'],
 
         created() {
             //component mounted
@@ -93,7 +94,7 @@
                     return  this.api + "?page=" + page;
                 }
 
-                return 'api' + location.pathname + "/" + this.user + "?page=" + page;
+                return 'apis' + location.pathname + "?page=" + page;
             },
 
             reassign(leadId) {
@@ -104,6 +105,12 @@
 
             actionable(lead) {
                 return lead.assignable || lead.viewable;
+            },
+
+            view(lead) {
+                if (lead.viewable) {
+                    location.href = '/leads/' + lead.id + '/show';
+                }
             }
         }
     }

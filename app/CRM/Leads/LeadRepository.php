@@ -59,8 +59,10 @@ class LeadRepository implements CreateInterface
             ->paginate(4);
     }
 
-    public function getUserLeads(User $user)
+    public function getUserLeads(User $user = null)
     {
+        $user = $user ?? auth()->user();
+
         if ($user->isSuperAdmin()) {
             return Lead::latest()->paginate(8);
         }

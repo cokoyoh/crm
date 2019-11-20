@@ -62,9 +62,7 @@
 
     <div class="h-screen my-auto bg-gray-200 -mx-3 px-24 overflow-auto">
         <div class="mt-2 rounded">
-            <leads
-                api="/apis/leads/converted"
-                user={!! auth()->id() !!}></leads>
+            <leads api="/apis/leads/converted"></leads>
         </div>
     </div>
 @endsection

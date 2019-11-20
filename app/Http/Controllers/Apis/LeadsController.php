@@ -34,9 +34,9 @@ class LeadsController extends ApiController
         return $this->respondWithJson($data);
     }
 
-    public function leads(User $user)
+    public function leads()
     {
-        $paginatedLeads = $this->leadRepository->getUserLeads($user);
+        $paginatedLeads = $this->leadRepository->getUserLeads();
 
         return $this->respondWithJson(
             (new LeadsTransformer())->transformCollection($paginatedLeads)

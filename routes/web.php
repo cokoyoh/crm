@@ -50,6 +50,7 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::get('/leads/assigned', 'LeadsController@assigned')->name('leads.assigned');
     Route::get('/leads/converted', 'LeadsController@converted')->name('leads.converted');
+    Route::get('/apis/leads', 'Apis\LeadsController@leads');
     Route::get('/apis/leads/assigned', 'Apis\LeadsController@assigned');
     Route::get('/apis/leads/converted', 'Apis\LeadsController@converted');
 

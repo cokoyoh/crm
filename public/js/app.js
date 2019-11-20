@@ -3405,11 +3405,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "leads",
   mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  props: ['user', 'api'],
+  props: ['api'],
   created: function created() {//component mounted
   },
   data: function data() {
@@ -3423,7 +3424,7 @@ __webpack_require__.r(__webpack_exports__);
         return this.api + "?page=" + page;
       }
 
-      return 'api' + location.pathname + "/" + this.user + "?page=" + page;
+      return 'apis' + location.pathname + "?page=" + page;
     },
     reassign: function reassign(leadId) {
       Event.fire('reassign-lead', leadId);
@@ -3431,6 +3432,11 @@ __webpack_require__.r(__webpack_exports__);
     },
     actionable: function actionable(lead) {
       return lead.assignable || lead.viewable;
+    },
+    view: function view(lead) {
+      if (lead.viewable) {
+        location.href = '/leads/' + lead.id + '/show';
+      }
     }
   }
 });
@@ -49492,8 +49498,17 @@ var render = function() {
               return _c(
                 "tr",
                 {
-                  staticClass: "border border-gray-300 px-2 h-16",
-                  class: { "bg-white": lead.id % 2 == 0 }
+                  staticClass:
+                    "border border-gray-300 px-2 h-16 cursor-default",
+                  class: {
+                    "bg-white": lead.id % 2 == 0,
+                    "hover:bg-gray-200 cursor-pointer": lead.viewable
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.view(lead)
+                    }
+                  }
                 },
                 [
                   _c("td", { staticClass: "pl-4" }, [
@@ -49569,9 +49584,9 @@ var render = function() {
                             ]
                           ),
                           _vm._v(
-                            "\n                    " +
+                            "\n                        " +
                               _vm._s(lead.phone) +
-                              "\n                "
+                              "\n                    "
                           )
                         ]
                       )
@@ -49583,9 +49598,9 @@ var render = function() {
                     { staticClass: "text-sm text-gray-600 font-normal" },
                     [
                       _vm._v(
-                        "\n                " +
+                        "\n                    " +
                           _vm._s(lead.email) +
-                          "\n            "
+                          "\n                "
                       )
                     ]
                   ),
@@ -49678,20 +49693,6 @@ var render = function() {
                                   ])
                                 ]
                               )
-                            : _vm._e(),
-                          _vm._v(" "),
-                          lead.viewable
-                            ? _c("li", { staticClass: "dropdown-menu-item" }, [
-                                _c(
-                                  "a",
-                                  {
-                                    attrs: {
-                                      href: "/leads/" + lead.id + "/show"
-                                    }
-                                  },
-                                  [_vm._v("View")]
-                                )
-                              ])
                             : _vm._e()
                         ]
                       )

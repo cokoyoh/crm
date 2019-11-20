@@ -3395,6 +3395,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "leads",
@@ -3413,6 +3414,9 @@ __webpack_require__.r(__webpack_exports__);
     reassign: function reassign(leadId) {
       Event.fire('reassign-lead', leadId);
       this.$modal.show('reassign-lead-modal');
+    },
+    actionable: function actionable(lead) {
+      return lead.assignable || lead.viewable;
     }
   }
 });
@@ -49629,7 +49633,12 @@ var render = function() {
                                           "svg",
                                           {
                                             staticClass:
-                                              "h-5 w-5 fill-current text-gray-500",
+                                              "h-5 w-5 fill-current text-gray-200",
+                                            class: {
+                                              "text-gray-500": _vm.actionable(
+                                                lead
+                                              )
+                                            },
                                             attrs: { viewBox: "0 0 24 24" }
                                           },
                                           [
@@ -49673,15 +49682,19 @@ var render = function() {
                               )
                             : _vm._e(),
                           _vm._v(" "),
-                          _c("li", { staticClass: "dropdown-menu-item" }, [
-                            _c(
-                              "a",
-                              {
-                                attrs: { href: "/leads/" + lead.id + "/show" }
-                              },
-                              [_vm._v("View")]
-                            )
-                          ])
+                          lead.viewable
+                            ? _c("li", { staticClass: "dropdown-menu-item" }, [
+                                _c(
+                                  "a",
+                                  {
+                                    attrs: {
+                                      href: "/leads/" + lead.id + "/show"
+                                    }
+                                  },
+                                  [_vm._v("View")]
+                                )
+                              ])
+                            : _vm._e()
                         ]
                       )
                     ],

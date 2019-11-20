@@ -37,7 +37,8 @@
                             <button
                                 class="focus:outline-none rounded-full bg-transparent  ml-3 hover:bg-gray-100 active:bg-gray-200"
                             >
-                                <svg class="h-5 w-5 fill-current text-gray-500"
+                                <svg class="h-5 w-5 fill-current text-gray-200"
+                                     :class="{'text-gray-500' : actionable(lead)}"
                                      viewBox="0 0 24 24">
                                     <path d="M10 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0-6a2 2 0 1 1 0-4 2 2 0 0 1 0 4zm0 12a2 2 0 1 1 0-4 2 2 0 0 1 0 4z"/>
                                 </svg>
@@ -49,7 +50,7 @@
                             @click="reassign(lead.id)">
                             <a href="#">Reassign</a>
                         </li>
-                        <li class="dropdown-menu-item"><a :href="'/leads/' + lead.id + '/show'">View</a></li>
+                        <li v-if="lead.viewable" class="dropdown-menu-item"><a :href="'/leads/' + lead.id + '/show'">View</a></li>
                     </dropdown>
 
                 </td>
@@ -95,6 +96,10 @@
                 Event.fire('reassign-lead', leadId);
 
                 this.$modal.show('reassign-lead-modal')
+            },
+
+            actionable(lead) {
+                return lead.assignable || lead.viewable;
             }
         }
     }

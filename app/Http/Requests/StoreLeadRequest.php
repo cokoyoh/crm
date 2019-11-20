@@ -25,7 +25,15 @@ class StoreLeadRequest extends FormRequest
     {
         return [
             'email' => "required_if:phone_number,''|email|unique:leads",
-            'phone' => "required_if:email,''"
+            'phone' => "required_if:email,''",
+            'lead_source_id' => 'required'
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'lead_source_id.required' => 'Please select a lead source'
         ];
     }
 }

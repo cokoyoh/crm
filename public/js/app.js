@@ -2798,6 +2798,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "lead-form",
@@ -2817,7 +2819,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new _CrmForm__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: '',
-        email: '',
+        email: null,
         lead_source_id: '',
         phone: '',
         company_id: '',
@@ -48464,7 +48466,13 @@ var render = function() {
         _c("div", { staticClass: "mb-6 flex items-center justify-between" }, [
           _c(
             "div",
-            { staticClass: "w-3/4" },
+            {
+              staticClass: "w-3/4 mb",
+              class:
+                _vm.form.errors.lead_source_id && !_vm.form.errors.phone
+                  ? "mb-6"
+                  : ""
+            },
             [
               _c(
                 "label",

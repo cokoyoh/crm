@@ -12,7 +12,8 @@ $factory->define(Lead::class, function (Faker $faker) {
         'last_name' => $faker->lastName,
         'phone' => $faker->phoneNumber,
         'email' => $faker->email,
-        'lead_class_id' => null
+        'lead_class_id' => null,
+        'lead_source_id' => create(\CRM\Models\LeadSource::class)->id
     ];
 });
 

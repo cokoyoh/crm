@@ -6,6 +6,7 @@ use CRM\Models\Company;
 use CRM\Models\Contact;
 use CRM\Models\Lead;
 use CRM\Models\LeadClass;
+use CRM\Models\LeadSource;
 use CRM\Models\User;
 use Facades\Tests\Setup\LeadFactory;
 use Facades\Tests\Setup\LeadSourceFactory;
@@ -58,9 +59,21 @@ class ManageLeadsTest extends TestCase
     }
 
     /** @test */
+    public function a_lead_must_have_a_source()
+    {
+        $luddoBagman = UserFactory::regularUser()->create();
+
+        $this->actingAs($luddoBagman)
+            ->post(route('leads.store'), ['lead_source_id' => ''])
+            ->assertSessionHasErrors('lead_source_id');
+    }
+
+    /** @test */
     public function authorised_users_can_add_leads()
     {
         $user = UserFactory::regularUser()->create();
+
+        $leadSource = create(LeadSource::class);
 
         $attributes = rawState(Lead::class);
 

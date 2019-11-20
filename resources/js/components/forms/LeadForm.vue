@@ -35,7 +35,8 @@
 
 
             <div class="mb-6 flex items-center justify-between">
-                <div class="w-3/4">
+                <div class="w-3/4 mb"
+                     :class="(form.errors.lead_source_id && !form.errors.phone) ? 'mb-6' : ''">
                     <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Phone</label>
 
                     <vue-tel-input
@@ -51,6 +52,7 @@
 
                     <span class="text-xs italic text-red-700" v-if="form.errors.phone"
                           v-text="form.errors.phone[0]"></span>
+
                     <span class="text-xs italic text-red-700 px-2" v-show="phoneExists !== null" v-text="phoneExists"></span>
                 </div>
 
@@ -168,7 +170,7 @@
             return {
                 form: new CrmForm({
                     name: '',
-                    email: '',
+                    email: null,
                     lead_source_id: '',
                     phone: '',
                     company_id: '',

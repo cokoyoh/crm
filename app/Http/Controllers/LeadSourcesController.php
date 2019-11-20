@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Apis\ApiController;
 use CRM\Models\LeadSource;
+use CRM\Transformers\LeadSourceTransformer;
 
 class LeadSourcesController extends ApiController
 {
@@ -34,5 +35,19 @@ class LeadSourcesController extends ApiController
         }
 
         return redirect()->route('dashboard.user', auth()->user());
+    }
+
+    public function sources()
+    {
+        $searchString = request('query');
+
+        $sources = LeadSource::query()
+            ->where('company_id', auth()->user()->company_id)
+            ->where('name', 'like', "%{$searchString}%")
+            ->get();
+
+        return $this->respondWithJson(
+            (new LeadSourceTransformer())->mapCollection($sources)
+        );
     }
 }

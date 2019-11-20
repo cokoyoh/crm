@@ -62,6 +62,7 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::get('/lead-sources', 'LeadSourcesController@index')->name('lead-sources.index');
     Route::post('/lead-sources', 'LeadSourcesController@store')->name('lead-sources.store');
+    Route::get('/get-company-sources', 'LeadSourcesController@sources');
 
     Route::post('/schedules', 'SchedulesController@store')->name('schedules.store');
     Route::delete('/schedules/{schedule}/destroy', 'SchedulesController@destroy')->name('schedules.destroy');

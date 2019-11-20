@@ -99,10 +99,7 @@ class LeadsController extends ApiController
         $this->leadAssignee->store(auth()->user(), $lead);
 
         if ($request->wantsJson()) {
-            return $this->respondSuccess([
-                'message' => 'Lead saved successfully',
-                'link' => route('leads.show', $lead)
-            ]);
+            return $this->respondSuccess(['message' => 'Lead added successfully']);
         }
 
         flash('Lead added successfully.', 'success');

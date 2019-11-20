@@ -35,11 +35,11 @@
 
 
             <div class="mb-6 flex items-center justify-between">
-                <div class="w-5/12">
+                <div class="w-3/4">
                     <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Phone</label>
 
                     <vue-tel-input
-                        inputClasses="relative"
+                        inputClasses=""
                         wrapperClasses=""
                         defaultCountry="KE"
                         v-model="form.phone"
@@ -54,28 +54,24 @@
                     <span class="text-xs italic text-red-700 px-2" v-show="phoneExists !== null" v-text="phoneExists"></span>
                 </div>
 
-                <div class="w-5/12">
+                <div class="w-full ml-2">
                     <label for="email" class="block uppercase tracking-wide text-gray-800 text-xs font-bold mb-2">Lead Source</label>
-                    <div class="relative">
-                        <select
-                            class="block appearance-none w-full bg-white border border-gray-200 text-gray-900 placeholder-gray-600 py-2 px-3 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
-                            id="lead_source_id">
-                            <option>Select Lead Source</option>
-                            <option
-                                v-for="leadSource in sources"
-                                v-text="leadSource.name"
-                                :value="leadSource.id"
-                            ></option>
-                        </select>
-                        <div
-                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
-                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
-                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
-                            </svg>
-                        </div>
-                    </div>
-                    <span class="text-xs italic text-red-700" v-if="form.errors.lead_source_id"
-                          v-text="form.errors.lead_source_id[0]"></span>
+
+                    <v-select
+                        class="text-gray-700 focus:border-gray-300"
+                        :class="form.errors.lead_source_id ? 'border-red-500' : 'border-gray-500'"
+                        :reduce="source => source.id"
+                        v-model="form.lead_source_id"
+                        @search="fetchSources"
+                        :options="options"
+                        :filterable="false"
+                        label="name"
+                        value="id"
+                        placeholder="Select user"
+                    >
+                    </v-select>
+
+                    <span class="text-xs italic text-red-700" v-if="form.errors.lead_source_id" v-text="form.errors.lead_source_id[0]"></span>
                 </div>
             </div>
 
@@ -152,7 +148,7 @@
 </template>
 
 <script>
-    import CrmForm from './CrmForm'
+    import CrmForm from '../CrmForm'
 
     export default {
         name: "lead-form",
@@ -161,10 +157,6 @@
             company: {
                 type: String,
                 default: ''
-            },
-            sources: {
-                type: Array,
-                default: () => []
             },
             genders: {
                 type: Array,
@@ -186,7 +178,8 @@
                     address: ''
                 }),
                 emailExists: null,
-                phoneExists: null
+                phoneExists: null,
+                options: []
             }
         },
 
@@ -197,7 +190,15 @@
         methods: {
             submit() {
                 this.form.submit('/leads')
-                    .then(response => console.log(response))
+                    .then(response => {
+                        this.flash(response.data.message);
+
+                        this.form.reset();
+                    })
+            },
+
+            flash(message) {
+                Event.fire('flash-message', message);
             },
 
             checkDuplicateEmails(email) {
@@ -218,17 +219,26 @@
                 }
             },
 
-            flash(errorMessage) {
-                Event.fire('flash-error', errorMessage);
-            },
-
             enableButton(hasPhoneError = null, hasEmailError = null) {
                 if (hasEmailError != null || hasEmailError != null) {
                     return false;
                 }
 
                 return  true;
-            }
+            },
+
+            fetchSources(searchString) {
+                if (searchString.length >= 3) {
+                    this.search(searchString);
+                }
+            },
+
+            search(searchString) {
+                axios.get(`/get-company-sources?query=${escape(searchString)}`)
+                    .then(response => {
+                        this.options = response.data;
+                    })
+            },
         }
     }
 </script>

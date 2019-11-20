@@ -119,7 +119,7 @@ class LeadsController extends ApiController
         return $this->leadsTransformer->mapCollection($leads);
     }
 
-    public function lost(Lead $lead)
+    public function markAsLost(Lead $lead)
     {
         $this->authorize('markAsLost', $lead);
 
@@ -180,6 +180,11 @@ class LeadsController extends ApiController
     public function converted()
     {
         return view('leads.converted');
+    }
+
+    public function lost()
+    {
+        return view('leads.lost');
     }
 
     public function destroy(Lead $lead)

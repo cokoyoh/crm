@@ -10,6 +10,7 @@ use CRM\Models\LeadAssignee;
 use CRM\Models\LeadClass;
 use CRM\Models\LeadSource;
 use CRM\Models\User;
+use Illuminate\Support\Facades\Log;
 
 class LeadFactory
 {
@@ -20,7 +21,7 @@ class LeadFactory
 
     public function create()
     {
-        $leadClassId = $this->leadClass ? LeadClass::first()->id : null;
+        $leadClassId = $this->leadClass ? create(LeadClass::class, ['slug' => $this->leadClass])->id : null;
 
         $companyId = $this->company ? $this->company->id : null;
 
@@ -49,8 +50,6 @@ class LeadFactory
     public function withClass(String $leadClassSlug = null)
     {
         $this->leadClass = $leadClassSlug ?? $this->leadClass;
-
-        create(LeadClass::class, ['slug' => $this->leadClass]);
 
         return $this;
     }

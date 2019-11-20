@@ -54,10 +54,19 @@ class LeadsController extends ApiController
 
     public function converted()
     {
-        $assignedLeads = $this->leadRepository->converted();
+        $convertedLeads = $this->leadRepository->converted();
 
         return $this->respondWithJson(
-            (new LeadsTransformer())->transformCollection($assignedLeads)
+            (new LeadsTransformer())->transformCollection($convertedLeads)
+        );
+    }
+
+    public function lost()
+    {
+        $lostLeads = $this->leadRepository->lost();
+
+        return $this->respondWithJson(
+            (new LeadsTransformer())->transformCollection($lostLeads)
         );
     }
 

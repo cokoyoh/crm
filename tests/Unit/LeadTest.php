@@ -273,4 +273,18 @@ class LeadTest extends TestCase
 
         $this->assertFalse($convertedLeads->contains($unconvertedLead));
     }
+
+    /** @test */
+    public function it_gets_lost_leads_only()
+    {
+        $lostLead = LeadFactory::withClass('lost')->create();
+
+        $convertedLead = LeadFactory::withClass('converted')->create();
+
+        $lostLeadsCollection = Lead::lost()->get();
+
+        $this->assertTrue($lostLeadsCollection->contains($lostLead));
+
+        $this->assertFalse($lostLeadsCollection->contains($convertedLead));
+    }
 }

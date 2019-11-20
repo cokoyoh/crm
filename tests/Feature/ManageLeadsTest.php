@@ -120,7 +120,7 @@ class ManageLeadsTest extends TestCase
         $lead = LeadFactory::assignTo(create(User::class))->create();
 
         $this->actingAs($user)
-            ->get(route('leads.lost', $lead))
+            ->get(route('leads.mark-as-lost', $lead))
             ->assertForbidden();
     }
 
@@ -134,7 +134,7 @@ class ManageLeadsTest extends TestCase
         ContactFactory::associatedWith($lead)->create();
 
         $this->actingAs($user)
-            ->get(route('leads.lost', $lead))
+            ->get(route('leads.mark-as-lost', $lead))
             ->assertForbidden();
     }
 
@@ -148,7 +148,7 @@ class ManageLeadsTest extends TestCase
         create(LeadClass::class, ['slug' => 'lost']);
 
         $this->actingAs($johnDoe)
-            ->get(route('leads.lost', $lead))
+            ->get(route('leads.mark-as-lost', $lead))
             ->assertRedirect(route('leads.show', $lead));
 
         $this->assertEquals($lead->fresh()->leadClass->slug, 'lost');
@@ -272,6 +272,24 @@ class ManageLeadsTest extends TestCase
         ContactFactory::associatedWith($leadA)->create(); //leadA is a converted lead
 
         $jsonResponse = $this->actingAs($deanThomas)->get('/apis/leads/converted');
+
+        $jsonResponse->assertJsonFragment(['name' => $leadA->name]);
+
+        $jsonResponse->assertJsonMissing(['name' => $leadB->name]);
+    }
+
+    /** @test */
+    public function authorised_users_can_view_details_of_lost_leads()
+    {
+        $goldmanSachs = create(Company::class);
+
+        $deanThomas = UserFactory::fromCompany($goldmanSachs)->regularUser()->create();
+
+        $leadA = LeadFactory::fromCompany($goldmanSachs)->withClass('lost')->assignTo($deanThomas)->create();
+
+        $leadB = LeadFactory::fromCompany($goldmanSachs)->withClass('followed_up')->assignTo($deanThomas)->create();
+
+        $jsonResponse = $this->actingAs($deanThomas)->get('/apis/leads/lost');
 
         $jsonResponse->assertJsonFragment(['name' => $leadA->name]);
 

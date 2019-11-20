@@ -98,11 +98,11 @@
                                 <span class="text-sm font-medium text-gray-700">Converted</span>
                                 <span class="text-xs font-semibold text-gray-700">{!! auth()->user()->convertedLeads()->count() !!}</span>
                             </a>
-                            <a href="#"
+                            <a href="{!! route('leads.lost') !!}"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Lost</span>
-                                <span class="text-xs font-semibold text-gray-700"></span>
+                                <span class="text-xs font-semibold text-gray-700">{!! auth()->user()->lostLeads()->count() !!}</span>
                             </a>
                         </div>
                     </fieldset>

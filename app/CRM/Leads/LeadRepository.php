@@ -84,6 +84,11 @@ class LeadRepository implements CreateInterface
         return $this->userLeads()->converted()->paginate(8);
     }
 
+    public function lost()
+    {
+        return $this->userLeads()->lost()->paginate(8);
+    }
+
     private function userLeads(User $user = null)
     {
         $user = $user ?? auth()->user();

@@ -151,6 +151,14 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function lostLeads()
+    {
+        return $this->assignedLeads()
+            ->lost()
+            ->latest()
+            ->get();
+    }
+
     public function leads()
     {
         return $this->assignedLeads()->latest()->get();

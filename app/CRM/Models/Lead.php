@@ -118,4 +118,16 @@ class Lead extends Model
                     $leadClass->where('slug', 'converted');
                 });
     }
+
+    public function scopeLost($query)
+    {
+        return $query->whereHas('leadClass', function ($leadClass) {
+            $leadClass->where('slug', 'lost');
+        });
+//        return $query->whereHas(
+//                'leadClass',
+//            function ($leadClass) {
+//                $leadClass->where('slug', 'lost');
+//            });
+    }
 }

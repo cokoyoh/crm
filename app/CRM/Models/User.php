@@ -140,13 +140,20 @@ class User extends Authenticatable
             'leadAssignee',
             function ($leadAssignee) {
                 $leadAssignee->where('user_id', $this->id);
-            })
-            ->latest();
+            });
+    }
+
+    public function convertedLeads()
+    {
+        return $this->assignedLeads()
+            ->converted()
+            ->latest()
+            ->get();
     }
 
     public function leads()
     {
-        return $this->assignedLeads()->get();
+        return $this->assignedLeads()->latest()->get();
     }
 
     public function schedules()

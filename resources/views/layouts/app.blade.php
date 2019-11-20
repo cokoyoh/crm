@@ -96,7 +96,7 @@
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Converted</span>
-                                <span class="text-xs font-semibold text-gray-700">1</span>
+                                <span class="text-xs font-semibold text-gray-700">{!! auth()->user()->convertedLeads()->count() !!}</span>
                             </a>
                             <a href="#"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"

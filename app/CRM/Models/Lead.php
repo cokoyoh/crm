@@ -107,4 +107,15 @@ class Lead extends Model
     {
         return $this->belongsTo(LeadSource::class);
     }
+
+    public function scopeConverted($query)
+    {
+        return $query
+            ->has('contact')
+            ->orwhereHas(
+                'leadClass',
+                function ($leadClass) {
+                    $leadClass->where('slug', 'converted');
+                });
+    }
 }

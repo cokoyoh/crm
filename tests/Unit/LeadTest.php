@@ -257,4 +257,20 @@ class LeadTest extends TestCase
 
         $this->assertInstanceOf(LeadSource::class, $lead->leadSource);
     }
+
+    /** @test */
+    public function it_gets_converted_leads_only()
+    {
+        $unconvertedLead = LeadFactory::create();
+
+        $convertedLead = LeadFactory::withClass('converted')->create();
+
+        ContactFactory::associatedWith($convertedLead)->create();
+
+        $convertedLeads = Lead::converted()->get();
+
+        $this->assertTrue($convertedLeads->contains($convertedLead));
+
+        $this->assertFalse($convertedLeads->contains($unconvertedLead));
+    }
 }

@@ -42,7 +42,7 @@ class HomeController extends Controller
         $latestUsers = User::latest()->take(5)->get();
 
         return view('home', [
-            'leads' => auth()->user()->leads(),
+            'assignedLeadsCount' => auth()->user()->leads()->count(),
             'schedules' => $userSchedules,
             'greeting' => $this->greeting(),
             'companies' => $companies,

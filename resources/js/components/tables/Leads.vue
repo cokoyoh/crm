@@ -77,7 +77,7 @@
 
         mixins: [ItemsRetrieval],
 
-        props: ['user'],
+        props: ['user', 'api'],
 
         created() {
             //component mounted
@@ -89,6 +89,10 @@
 
         methods: {
             url(page = 1) {
+                if (this.api) {
+                    return  this.api + "?page=" + page;
+                }
+
                 return 'api' + location.pathname + "/" + this.user + "?page=" + page;
             },
 

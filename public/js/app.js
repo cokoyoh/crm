@@ -3407,7 +3407,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "leads",
   mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  props: ['user'],
+  props: ['user', 'api'],
   created: function created() {//component mounted
   },
   data: function data() {
@@ -3416,6 +3416,11 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     url: function url() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+      if (this.api) {
+        return this.api + "?page=" + page;
+      }
+
       return 'api' + location.pathname + "/" + this.user + "?page=" + page;
     },
     reassign: function reassign(leadId) {

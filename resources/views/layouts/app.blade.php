@@ -86,11 +86,11 @@
                                     <span class="text-xs font-semibold text-gray-700">{!! auth()->user()->leadsCount !!}</span>
                                 </a>
                             @endif
-                            <a href="#"
+                            <a href="{!! route('leads.assigned') !!}"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Assigned to me</span>
-                                <span class="text-xs font-semibold text-gray-700">3</span>
+                                <span class="text-xs font-semibold text-gray-700">{!! auth()->user()->leads()->count() !!}</span>
                             </a>
                             <a href="#"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"

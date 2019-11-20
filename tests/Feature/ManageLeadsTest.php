@@ -8,6 +8,7 @@ use CRM\Models\Lead;
 use CRM\Models\LeadClass;
 use CRM\Models\User;
 use Facades\Tests\Setup\LeadFactory;
+use Facades\Tests\Setup\LeadSourceFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\ContactFactory;
@@ -222,5 +223,25 @@ class ManageLeadsTest extends TestCase
             ->assertRedirect(route('dashboard.user', $johnDoe));
 
         $this->assertNotNull($lead->fresh()->deleted_at);
+    }
+
+    /** @test */
+    public function authorised_users_can_view_details_of_leads_assigned_to_them()
+    {
+        $goldmanSachs = create(Company::class);
+
+        $deanThomas = UserFactory::fromCompany($goldmanSachs)->regularUser()->create();
+
+        $seamusFinnigan = UserFactory::fromCompany($goldmanSachs)->regularUser()->create();
+
+        $leadA = LeadFactory::fromCompany($goldmanSachs)->assignTo($deanThomas)->create();
+
+        $leadB = LeadFactory::fromCompany($goldmanSachs)->assignTo($seamusFinnigan)->create();
+
+        $jsonResponse = $this->actingAs($deanThomas)->get('/apis/leads/assigned');
+
+        $jsonResponse->assertJsonFragment(['name' => $leadA->name]);
+
+        $jsonResponse->assertJsonMissing(['name' => $leadB->name]);
     }
 }

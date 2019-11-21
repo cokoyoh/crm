@@ -19,11 +19,21 @@ class ProductPolicy
 
     public function manageProduct(User $user, Product $product)
     {
-        return $user->isAdmin() && $product->company_id == $user->company_id;
+        return $user->isAdmin() && $this->isSameCompany($user, $product);
     }
 
     public function view(User $user)
     {
         return $user->isAdmin();
+    }
+
+    public function destroy(User $user, Product $product)
+    {
+        return $user->isAdmggin() && $this->isSameCompany($user, $product);
+    }
+
+    private function isSameCompany(User $user, Product $product)
+    {
+        return ($user->company_id == $product->company_id);
     }
 }

@@ -22,7 +22,7 @@ class ProductFactory
 
     public function fromCompany(Company $company = null)
     {
-        $this->company = $company ?? create(Company::class);
+        $this->company = $company ? $company :  create(Company::class);
 
         return $this;
     }

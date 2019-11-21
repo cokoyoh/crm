@@ -44,4 +44,9 @@ class ProductsController extends ApiController
 
         return redirect()->back();
     }
+
+    public function destroy(Product $product)
+    {
+        $this->authorize('destroy', $product);
+    }
 }

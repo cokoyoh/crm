@@ -80,6 +80,7 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::get('/products', 'ProductsController@index')->name('products.index');
     Route::post('/products', 'ProductsController@store')->name('products.store');
+    Route::delete('/products/{product}/destroy', 'ProductsController@destroy')->name('products.destroy');
     Route::get('/apis/products', 'Apis\ProductsController@index');
 });
 

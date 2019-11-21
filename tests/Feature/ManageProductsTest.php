@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\Product;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\ProductFactory;
@@ -13,9 +14,14 @@ class ManageProductsTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
-    public function guests_cannot_add_products()
+    public function guests_cannot_manage_products()
     {
+        $product = create(Product::class);
+
         $this->post(route('products.store'), [])
+            ->assertRedirect('login');
+
+        $this->delete(route('products.destroy', $product->id))
             ->assertRedirect('login');
     }
 
@@ -73,5 +79,33 @@ class ManageProductsTest extends TestCase
         $jsonResponse->assertJsonFragment(['name' => $productA->name]);
 
         $jsonResponse->assertJsonMissing(['name' => $productB->name]);
+    }
+
+    /** @test */
+    public function only_admins_can_delete_company_products()
+    {
+        $alphabet = create(Company::class);
+
+        $product = ProductFactory::fromCompany($alphabet)->create();
+
+        $user = UserFactory::fromCompany($alphabet)->regularUser()->create();
+
+        $this->actingAs($user)
+            ->delete(route('products.destroy', $product->id))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_company_admin_cannot_delete_a_product_from_another_company()
+    {
+        $alphabet = create(Company::class);
+
+        $product = ProductFactory::fromCompany($alphabet)->create();
+
+        $user = UserFactory::fromCompany(create(Company::class))->admin()->create();
+
+        $this->actingAs($user)
+            ->delete(route('products.destroy', $product->id))
+            ->assertForbidden();
     }
 }

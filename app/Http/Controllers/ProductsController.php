@@ -19,6 +19,13 @@ class ProductsController extends ApiController
         $this->product = $product;
     }
 
+    public function index()
+    {
+        $this->authorize('view', Product::class);
+
+        return view('products.index');
+    }
+
 
     public function store()
     {

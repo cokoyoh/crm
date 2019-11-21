@@ -78,6 +78,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/interactions/{lead}/store', 'InteractionsController@store')->name('interactions.store');
     Route::delete('/interactions/{interaction}/destroy', 'InteractionsController@destroy')->name('interactions.destroy');
 
+    Route::get('/products', 'ProductsController@index')->name('products.index');
     Route::post('/products', 'ProductsController@store')->name('products.store');
 });
 

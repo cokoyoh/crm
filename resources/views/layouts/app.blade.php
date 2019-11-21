@@ -70,6 +70,12 @@
                                     <span class="text-sm font-medium text-gray-700">Sources</span>
                                     <span class="text-xs font-semibold text-gray-700"></span>
                                 </a>
+                                <a href="{!! route('products.index') !!}"
+                                   class="flex align-center justify-between px-3 py-1 rounded-lg"
+                                >
+                                    <span class="text-sm font-medium text-gray-700">Products</span>
+                                    <span class="text-xs font-semibold text-gray-700"></span>
+                                </a>
                             </div>
                         </fieldset>
                     @endif

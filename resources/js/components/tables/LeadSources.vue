@@ -44,7 +44,7 @@
         },
 
         created() {
-            // this.addItem();
+            this.addItem();
         },
 
         data() {

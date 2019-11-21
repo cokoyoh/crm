@@ -21,4 +21,9 @@ class ProductPolicy
     {
         return $user->isAdmin() && $product->company_id == $user->company_id;
     }
+
+    public function view(User $user)
+    {
+        return $user->isAdmin();
+    }
 }

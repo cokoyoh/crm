@@ -17,4 +17,14 @@ class ProductRepository implements CreateInterface
              ->products()
              ->create($attributes);
     }
+
+    public function getCompanyProducts()
+    {
+        return auth()
+            ->user()
+            ->company
+            ->products()
+            ->latest()
+            ->paginate(8);
+    }
 }

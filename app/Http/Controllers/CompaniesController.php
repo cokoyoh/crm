@@ -57,6 +57,8 @@ class CompaniesController extends Controller
 
         event(new CompanyInvited($company));
 
-        return redirect(route('companies.show', $company->id));
+        flash('Company invited and email sent successfully', 'success');
+
+        return redirect(route('companies.show', $company));
     }
 }

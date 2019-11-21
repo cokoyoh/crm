@@ -26,9 +26,10 @@
 </div>
 
 <div class="field mb-6">
-    <button type="submit" class="btn btn-blue mr-5">{!! $buttonText !!}</button>
-    <button class="btn btn-gray">
-        <a href="{!! route('companies.index') !!}">Cancel</a>
+    <button
+        class="flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none"
+    >
+        <span>{!! $buttonText !!}</span>
     </button>
 </div>
 

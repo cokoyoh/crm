@@ -39,6 +39,7 @@
                 form: new CrmForm({
                     name: '',
                 }),
+                productId: null
             }
         },
 
@@ -47,9 +48,9 @@
                 this.form.submit('/products')
                     .then(response => {
                         this.flash(response.data.message);
-                    });
 
-                this.addProduct();
+                        this.addProduct(response.data.id);
+                    });
 
                 this.hideModal();
             },
@@ -64,10 +65,11 @@
                 this.$modal.hide('product-form-modal');
             },
 
-            addProduct() {
+            addProduct(id) {
                 Event.fire('productAdded', {
                     date: moment().format('MMM D, YYYY'),
-                    name: this.form.name
+                    name: this.form.name,
+                    id: id
                 })
             }
         }

@@ -2,7 +2,7 @@
     <div>
         <table class="rounded-b-lg table-auto w-full bg-gray-100">
             <tbody>
-            <tr v-for="product in items"
+            <tr v-for="(product, index) in items"
                 class="border border-gray-300 px-2 h-16"
                 :class="{'bg-white' : product.id % 2 == 0 }"
             >
@@ -10,6 +10,7 @@
                 <td class="text-md text-gray-700 font-normal">{{  product.name }}
                 <td>
                     <button
+                        @click="removeItem(index, product.id)"
                         type="submit"
                         class="outline-none focus:outline-none">
                         <svg class="btn-delete"
@@ -54,7 +55,22 @@
 
             addItem() {
                 Event.listen('productAdded', product => this.items.unshift(product))
-            }
+            },
+
+            removeItem(index, id) {
+                let endpoint = '/products/' + id + '/destroy';
+
+                axios.delete(endpoint)
+                    .then(response => {
+                        this.items.splice(index, 1);
+
+                        this.flash(response.data.message);
+                    });
+            },
+
+            flash(message) {
+                Event.fire('flash-message', message);
+            },
         }
     }
 </script>

@@ -31,10 +31,13 @@ class ProductsController extends ApiController
     {
         $this->authorize('manageProduct', new Product());
 
-        $this->product->create(request()->validate(['name' => 'required']));
+        $product = $this->product->create(request()->validate(['name' => 'required']));
 
         if (request()->wantsJson()) {
-            return $this->respondSuccess(['message' => 'Product added successfully']);
+            return $this->respondSuccess([
+                'id' => $product->id,
+                'message' => 'Product added successfully'
+            ]);
         }
 
         flash('Product added successfully', 'success');

@@ -3020,7 +3020,8 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: new _CrmForm__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: ''
-      })
+      }),
+      productId: null
     };
   },
   methods: {
@@ -3029,8 +3030,9 @@ __webpack_require__.r(__webpack_exports__);
 
       this.form.submit('/products').then(function (response) {
         _this.flash(response.data.message);
+
+        _this.addProduct(response.data.id);
       });
-      this.addProduct();
       this.hideModal();
     },
     flash: function flash(message) {
@@ -3040,10 +3042,11 @@ __webpack_require__.r(__webpack_exports__);
       this.form.reset();
       this.$modal.hide('product-form-modal');
     },
-    addProduct: function addProduct() {
+    addProduct: function addProduct(id) {
       Event.fire('productAdded', {
         date: moment().format('MMM D, YYYY'),
-        name: this.form.name
+        name: this.form.name,
+        id: id
       });
     }
   }
@@ -3568,6 +3571,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "products",
@@ -3589,6 +3593,19 @@ __webpack_require__.r(__webpack_exports__);
       Event.listen('productAdded', function (product) {
         return _this.items.unshift(product);
       });
+    },
+    removeItem: function removeItem(index, id) {
+      var _this2 = this;
+
+      var endpoint = '/products/' + id + '/destroy';
+      axios["delete"](endpoint).then(function (response) {
+        _this2.items.splice(index, 1);
+
+        _this2.flash(response.data.message);
+      });
+    },
+    flash: function flash(message) {
+      Event.fire('flash-message', message);
     }
   }
 });
@@ -50039,7 +50056,7 @@ var render = function() {
         [
           _c(
             "tbody",
-            _vm._l(_vm.items, function(product) {
+            _vm._l(_vm.items, function(product, index) {
               return _c(
                 "tr",
                 {
@@ -50063,7 +50080,12 @@ var render = function() {
                       "button",
                       {
                         staticClass: "outline-none focus:outline-none",
-                        attrs: { type: "submit" }
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.removeItem(index, product.id)
+                          }
+                        }
                       },
                       [
                         _c(

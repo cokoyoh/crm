@@ -101,4 +101,19 @@ class ManageInteractionsTest extends TestCase
 
         $this->assertNotNull($interaction->fresh()->deleted_at);
     }
+
+    /** @test */
+    public function authorised_users_can_add_an_interaction_to_a_lost_lead_to_change_the_lead_class_to_followed_up()
+    {
+        $severusSnape = create(User::class);
+
+        $lead = LeadFactory::withClass('lost')->assignTo($severusSnape)->create();
+
+        create(LeadClass::class, ['slug' => 'followed_up']);
+
+        $this->actingAs($severusSnape)
+            ->post(route('interactions.store', $lead), ['body' => 'Some body', 'user_id' => $severusSnape->id]);
+
+        $this->assertEquals($lead->fresh()->leadClass->slug, 'followed_up');
+    }
 }

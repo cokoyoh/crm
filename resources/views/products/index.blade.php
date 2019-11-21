@@ -43,7 +43,7 @@
             </span>
 
                     <button
-                        @click="$modal.show('new-lead-source-modal')"
+                        @click="$modal.show('product-form-modal')"
                         class="ml-5 flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none active:bg-gray-700">
                         <svg
                             class="fill-current h-4 w-4"
@@ -63,4 +63,8 @@
             <products></products>
         </div>
     </div>
+
+    <product-form
+        :company={!! auth()->user()->company->id !!}
+    ></product-form>
 @endsection

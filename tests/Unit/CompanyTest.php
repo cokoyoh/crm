@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use CRM\Models\Company;
 use CRM\Models\LeadSource;
+use CRM\Models\Product;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -72,5 +73,15 @@ class CompanyTest extends TestCase
         $lead = LeadFactory::fromCompany($company)->create();
 
         $this->assertTrue($company->leads->contains($lead));
+    }
+
+    /** @test */
+    public function it_has_products()
+    {
+        $company = create(Company::class);
+
+        $product = create(Product::class, ['company_id' => $company->id]);
+
+        $this->assertTrue($company->products->contains($product));
     }
 }

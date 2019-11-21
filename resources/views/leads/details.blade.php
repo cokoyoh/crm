@@ -5,10 +5,11 @@
         <div class="mx-auto px-24 pt-1 pb-6 bg-white shadow-sm">
             <div class="flex items-center justify-between border-b pb-6">
                 <div class="flex items-center">
-                <span>
-                    <img class="h-12 w-12 rounded-full border-2 border-gray-200"
-                         src="/images/default-company.png" alt="Your image here">
-                </span>
+                    <span>
+                        <img class="h-12 w-12 rounded-full border-2 border-gray-200"
+                             src="/images/default-company.png" alt="Your image here">
+                    </span>
+
                     <div class="ml-4 block leading-relaxed -mt-1">
                         <h3 class="text-md font-medium text-gray-900">{!! $lead->name !!}</h3>
                         <div class="flex items-start justify-between text-gray-600 text-xs">
@@ -22,17 +23,21 @@
                                     {!! optional($lead->leadSource)->name !!}
                                 </span>
                             </span>
-                            @if($lead->status == 'Prospect')
-                                <span class="ml-3 text-yellow-900 bg-yellow-300 rounded-full px-2 text-xs">Prospect</span>
-                            @elseif($lead->status == 'Converted')
-                                <span class="ml-3 text-teal-900 bg-teal-300 rounded-full px-2 text-xs">Converted</span>
-                            @elseif($lead->status == 'Lost')
-                                <span class="ml-3 text-red-900 bg-red-300 rounded-full px-2 text-xs">Lost</span>
-                            @elseif($lead->status == 'New')
-                                <span class="ml-3 text-green-900 bg-green-300 rounded-full px-2 text-xs">New</span>
-                            @endif
                         </div>
                     </div>
+
+                    <div class="flex items-center ml-4">
+                        @if($lead->status == 'Prospect')
+                            <span class="ml-3 text-yellow-900 bg-yellow-300 rounded-full px-2 text-xs">Prospect</span>
+                        @elseif($lead->status == 'Converted')
+                            <span class="ml-3 text-teal-900 bg-teal-300 rounded-full px-2 text-xs">Converted</span>
+                        @elseif($lead->status == 'Lost')
+                            <span class="ml-3 text-white bg-red-600 rounded-full px-2 text-xs">Lost</span>
+                        @elseif($lead->status == 'New')
+                            <span class="ml-3 text-green-900 bg-green-300 rounded-full px-2 text-xs">New</span>
+                        @endif
+                    </div>
+
                 </div>
 
                 @include('.home.partials.actions')
@@ -83,7 +88,7 @@
                             <li class="dropdown-menu-item"><a href="{!! route('leads.convert', $lead) !!}">Convert</a></li>
                         @endcan
                         @can('markAsLost', $lead)
-                            <li class="dropdown-menu-item"><a href="{!! route('leads.lost', $lead) !!}">Lost</a></li>
+                            <li class="dropdown-menu-item"><a href="{!! route('leads.mark-as-lost', $lead) !!}">Lost</a></li>
                         @endcan
                         @can('reassign', $lead)
                             <li class="dropdown-menu-item" @click="$modal.hide('reassign-lead-modal')">Reassign</li>

@@ -3,9 +3,9 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
-use CRM\Models\Product;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Facades\Tests\Setup\ProductFactory;
 use Tests\TestCase;
 
 class ManageProductsTest extends TestCase
@@ -55,5 +55,23 @@ class ManageProductsTest extends TestCase
             ->assertRedirect();
 
         $this->assertDatabaseHas('products', $attributes);
+    }
+
+    /** @test */
+    public function admins_can_view_products_from_the_company_in_which_they_are_members()
+    {
+        $wayneEnterprises = create(Company::class);
+
+        $mrFox = UserFactory::fromCompany($wayneEnterprises)->admin()->create();
+
+        $productA = ProductFactory::fromCompany($wayneEnterprises)->create();
+
+        $productB = ProductFactory::fromCompany(create(Company::class))->create();
+
+        $jsonResponse = $this->actingAs($mrFox)->get('/apis/products');
+
+        $jsonResponse->assertJsonFragment(['name' => $productA->name]);
+
+        $jsonResponse->assertJsonMissing(['name' => $productB->name]);
     }
 }

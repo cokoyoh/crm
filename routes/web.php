@@ -80,5 +80,6 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::get('/products', 'ProductsController@index')->name('products.index');
     Route::post('/products', 'ProductsController@store')->name('products.store');
+    Route::get('/apis/products', 'Apis\ProductsController@index');
 });
 

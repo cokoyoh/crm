@@ -9,6 +9,9 @@
                name="name"
                required
                placeholder="Million Dollar LLC">
+        @if ($errors->has('name'))
+            <p class="text-red-500 text-xs italic mt-1 mb-1">{{ $errors->first('name') }}</p>
+        @endif
     </div>
 </div>
 
@@ -22,6 +25,9 @@
                name="email"
                required
                placeholder="company@domain.com">
+        @if ($errors->has('email'))
+            <p class="text-red-500 text-xs italic mt-1 mb-1">{{ $errors->first('email') }}</p>
+        @endif
     </div>
 </div>
 

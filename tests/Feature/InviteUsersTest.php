@@ -51,7 +51,7 @@ class InviteUsersTest extends TestCase
 
         $this->actingAs($companyAdmin)
             ->post(route('users.invite', $company), $attributes)
-            ->assertRedirect(route('companies.show', $company->id));
+            ->assertRedirect();
 
         $this->assertDatabaseHas('users', ['email' => $attributes['email']]);
 

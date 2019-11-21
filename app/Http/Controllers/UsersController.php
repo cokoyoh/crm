@@ -55,7 +55,9 @@ class UsersController extends ApiController
 
         event(new UserInvited($user));
 
-        return redirect(route('companies.show', $company));
+        flash('User invite sent successfully', 'success');
+
+        return redirect()->back();
     }
 
 

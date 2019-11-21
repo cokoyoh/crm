@@ -4,8 +4,9 @@
             <tbody>
             <tr
                 v-for="company in items"
-                class="border border-gray-300 px-2 h-16"
+                class="border border-gray-300 px-2 h-16 hover:bg-gray-200 cursor-pointer"
                 :class="{'bg-white' : company.id % 2 == 0 }"
+                @click="view(company)"
             >
                 <td class="pl-4">
                     <span v-if="company.status == 'Active'" class="badge-default badge-default-success">Active</span>
@@ -60,6 +61,10 @@
             url(page = 1) {
                 return 'api/companies' + '?page=' + page;
             },
+
+            view(company) {
+                location.href = '/companies/' + company.id + '/show'
+            }
         }
     }
 </script>

@@ -197,6 +197,6 @@ class LeadsController extends ApiController
             flash('Lead deleted successfully', 'success');
         });
 
-        return redirect()->route('leads.index', $lead);
+        return redirect()->route('leads.index');
     }
 }

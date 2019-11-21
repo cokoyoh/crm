@@ -41,9 +41,14 @@ class CompaniesController extends Controller
     {
         $this->authorize('manageCompany', $company);
 
+        $usersCount = 0;
+
+        $leadsCount = 0;
+
         return view('companies.show', [
             'company' => $company,
-            'users' => $company->users
+            'usersCount' => $usersCount,
+            'leadsCount' => $company->leads()->count()
         ]);
     }
 

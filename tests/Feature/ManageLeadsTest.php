@@ -233,7 +233,7 @@ class ManageLeadsTest extends TestCase
 
         $this->actingAs($johnDoe)
             ->delete(route('leads.destroy', $lead))
-            ->assertRedirect(route('dashboard.user', $johnDoe));
+            ->assertRedirect(route('leads.index'));
 
         $this->assertNotNull($lead->fresh()->deleted_at);
     }

@@ -61,6 +61,10 @@
     </div>
 
     <div class="h-screen my-auto bg-gray-200 -mx-3 px-24 overflow-auto">
+        <div class="mt-2">
+            @include('flash.message')
+        </div>
+
         <div class="mt-2 rounded">
             <leads></leads>
         </div>

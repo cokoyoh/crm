@@ -28,7 +28,7 @@
 
                     <div class="flex items-center ml-4">
                         @if($company->status == 'Unverified')
-                            <span class="ml-3 text-indigo-900 bg-indigo-300 rounded-full px-2 text-xs">Unverified</span>
+                            <span class="ml-3 text-white bg-indigo-500 rounded-full px-2 text-xs">Unverified</span>
                         @elseif($company->status == 'Active')
                             <span class="ml-3 text-teal-900 bg-teal-300 rounded-full px-2 text-xs">Active</span>
                         @elseif($company->status == 'Inactive')
@@ -91,6 +91,78 @@
             <div class="mt-2">
                 @include('flash.message')
             </div>
+
+            <div class="flex items-center justify-between">
+                <h3 class="text-sm text-gray-900 font-medium">Overview</h3>
+            </div>
+
+            <div class="mt-5 flex items-center justify-between">
+                <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
+                    <h4 class="text-gray-600 text-sm font-medium">Total Leads</h4>
+                    <h2 class="text-gray-700 text-xl font-light">{!! $leadsCount !!} {!!  pluralise('Lead', $leadsCount) !!}</h2>
+                    <div
+                        class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
+                        <a href="#">
+                            <button class="inline-flex items-center text-sm focus:outline-none">
+                                View all leads
+                                <span>
+                        <svg class="h-4 v-4 fill-current"
+                             viewBox="0 0 20 20">
+                            <path
+                                d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
+                        </svg>
+                    </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
+                    <h4 class="text-gray-600 text-sm font-medium">Total Users</h4>
+                    <h2 class="text-gray-700 text-xl font-light">{!! $usersCount !!} {!!  pluralise('User', $usersCount) !!}</h2>
+                    <div
+                        class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
+                        <a href="#">
+                            <button class="inline-flex items-center text-sm focus:outline-none">
+                                View all users
+                                <span>
+                        <svg class="h-4 v-4 fill-current"
+                             viewBox="0 0 20 20">
+                            <path
+                                d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
+                        </svg>
+                    </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
+                    <h4 class="text-gray-600 text-sm font-medium">Total Deals</h4>
+                    <h2 class="text-gray-700 text-xl font-light">$ 2.334M</h2>
+                    <div
+                        class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
+                        <a href="#">
+                            <button class="inline-flex items-center text-sm focus:outline-none">
+                                View all deals
+                                <span>
+                        <svg class="h-4 v-4 fill-current"
+                             viewBox="0 0 20 20">
+                            <path
+                                d="M12.95 10.707l.707-.707L8 4.343 6.586 5.757 10.828 10l-4.242 4.243L8 15.657l4.95-4.95z"/>
+                        </svg>
+                    </span>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 block">
+                <h3 class="text-sm text-gray-900 font-medium pb-0">Deals</h3>
+                <empty message="There are no deals recorded for this company yet."></empty>
+            </div>
         </div>
+
     </div>
 @endsection

@@ -3128,6 +3128,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "companies",
@@ -3141,6 +3142,9 @@ __webpack_require__.r(__webpack_exports__);
     url: function url() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       return 'api/companies' + '?page=' + page;
+    },
+    view: function view(company) {
+      location.href = '/companies/' + company.id + '/show';
     }
   }
 });
@@ -49096,8 +49100,14 @@ var render = function() {
               return _c(
                 "tr",
                 {
-                  staticClass: "border border-gray-300 px-2 h-16",
-                  class: { "bg-white": company.id % 2 == 0 }
+                  staticClass:
+                    "border border-gray-300 px-2 h-16 hover:bg-gray-200 cursor-pointer",
+                  class: { "bg-white": company.id % 2 == 0 },
+                  on: {
+                    click: function($event) {
+                      return _vm.view(company)
+                    }
+                  }
                 },
                 [
                   _c("td", { staticClass: "pl-4" }, [

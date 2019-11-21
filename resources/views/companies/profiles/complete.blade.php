@@ -78,7 +78,11 @@
             </div>
 
             <div class="control mt-4 px-3 py-4">
-                <button class="btn btn-blue px-3 py-3 font-semibold">Submit Profile</button>
+                <button
+                    class="flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none"
+                >
+                    <span>Submit</span>
+                </button>
             </div>
 
         </form>

@@ -3515,6 +3515,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "leads",
@@ -49788,6 +49789,14 @@ var render = function() {
                       ? _c("span", { staticClass: "badge-default lead-lost" }, [
                           _vm._v("Inactive")
                         ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    user.status == "Unverified"
+                      ? _c(
+                          "span",
+                          { staticClass: "badge-default lead-not-interested" },
+                          [_vm._v("Unverified")]
+                        )
                       : _vm._e()
                   ]),
                   _vm._v(" "),

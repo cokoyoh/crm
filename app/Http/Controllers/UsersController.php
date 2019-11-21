@@ -71,6 +71,8 @@ class UsersController extends ApiController
 
         $this->user->update($user, request()->except('_token'));
 
+        flash('User updated successfully', 'success');
+
         return redirect(route('login'));
     }
 
@@ -82,6 +84,8 @@ class UsersController extends ApiController
         $company = $user->company;
 
         $this->user->destroy($user);
+
+        flash('User account deleted!', 'success');
 
         return redirect(route('companies.show', $company));
     }

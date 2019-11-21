@@ -55,6 +55,10 @@ class User extends Authenticatable
 
     public function getStatusAttribute()
     {
+        if (!$this->hasVerifiedEmail()) {
+            return 'Unverified';
+        }
+
         return $this->deactivated_at ? 'Inactive' : 'Active';
     }
 

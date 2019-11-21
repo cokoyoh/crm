@@ -13,7 +13,7 @@
                        class=" label text-gray-600 font-semibold uppercase text-xs tracking-wider mb-2">Name</label>
                 <input type="text" name="name"
                        placeholder="John Doe"
-                       value="{!! $user->fullname !!}"
+                       value="{!! $user->name !!}"
                        required
                        class=" w-full focus:outline-none focus:bg-white py-3 px-4  appearance-none border focus:border-blue-300 border-gray-200 text-sm text-gray-800 rounded mt-2">
                 @if ($errors->has('name'))
@@ -60,7 +60,11 @@
             </div>
 
             <div class="control mt-2 px-3 py-4">
-                <button class="btn btn-blue px-3 py-3">Submit</button>
+                <button
+                    class="flex items-center pr-4 pl-2 py-2 text-sm font-medium text-white bg-gray-800 hover:bg-gray-700 rounded focus:outline-none"
+                >
+                    <span>Submit</span>
+                </button>
             </div>
 
         </form>

@@ -10,6 +10,7 @@
                 <td class="pl-4">
                     <span v-if="user.status == 'Active'" class="badge-default lead-followed-up">Active</span>
                     <span v-if="user.status == 'Inactive'" class="badge-default lead-lost">Inactive</span>
+                    <span v-if="user.status == 'Unverified'" class="badge-default lead-not-interested">Unverified</span>
                 </td>
                 <td class="text-sm text-gray-600 font-medium">{{user.date}}</td>
                 <td class="text-sm text-gray-600 font-normal">

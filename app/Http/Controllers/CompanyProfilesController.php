@@ -32,6 +32,8 @@ class CompanyProfilesController extends Controller
     {
         DB::transaction(function () use ($company) {
             $this->company->updateProfile($company, request()->except('_token'));
+
+            flash('Company profile complete. Please login', 'success');
         });
 
         return redirect(route('login'));

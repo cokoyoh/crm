@@ -50037,7 +50037,7 @@ var render = function() {
                   }
                 },
                 [
-                  _c("td", { staticClass: "pl-4" }, [
+                  _c("td", { staticClass: "pl-0" }, [
                     lead.class_slug == "not_followed_up"
                       ? _c(
                           "span",
@@ -50134,10 +50134,7 @@ var render = function() {
                   _c("td", { staticClass: "leading-snug" }, [
                     _c(
                       "p",
-                      {
-                        staticClass:
-                          "uppercase text-xs text-gray-600 font-semibold"
-                      },
+                      { staticClass: "text-xs text-gray-600 font-semibold" },
                       [_vm._v(_vm._s(lead.source))]
                     ),
                     _vm._v(" "),
@@ -50150,7 +50147,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "td",
-                    { staticClass: "pr-4" },
+                    { staticClass: "pr-2" },
                     [
                       _c(
                         "dropdown",

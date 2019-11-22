@@ -8,7 +8,7 @@
                     :class="{'bg-white' : lead.id % 2 == 0, 'hover:bg-gray-200 cursor-pointer' : lead.viewable }"
                     @click="view(lead)"
                 >
-                <td class="pl-4">
+                <td class="pl-0">
                     <span v-if="lead.class_slug == 'not_followed_up'" class="badge-default lead-not-followed-up">Not Followed Up</span>
                     <span v-if="lead.class_slug == 'followed_up'" class="badge-default lead-followed-up">Followed Up</span>
                     <span v-if="lead.class_slug == 'converted'" class="badge-default lead-converted font-semibold">Converted</span>
@@ -29,10 +29,10 @@
                     {{lead.email}}
                 </td>
                 <td class="leading-snug">
-                    <p class="uppercase text-xs text-gray-600 font-semibold">{{lead.source}}</p>
+                    <p class="text-xs text-gray-600 font-semibold">{{lead.source}}</p>
                     <p class="text-gray-700 text-sm font-semibold">{{lead.name}}</p>
                 </td>
-                <td class="pr-4">
+                <td class="pr-2">
                     <dropdown>
                         <template v-slot:trigger>
                             <button

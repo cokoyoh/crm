@@ -22,7 +22,7 @@ class LeadSourcesController extends ApiController
 
     public function store()
     {
-        $this->authorize('manageLeadSource', new LeadSource());
+        $this->authorize('create', LeadSource::class);
 
         request()->validate(['name' => 'required|min:8']);
 
@@ -50,5 +50,20 @@ class LeadSourcesController extends ApiController
         return $this->respondWithJson(
             (new LeadSourceTransformer())->mapCollection($sources)
         );
+    }
+
+    public function destroy(LeadSource $leadSource)
+    {
+        $this->authorize('destroy', $leadSource);
+
+        $leadSource->delete();
+
+        if (request()->wantsJson()) {
+            return $this->respondSuccess(['message' => 'Lead source deleted!']);
+        }
+
+        flash('Lead source deleted!', 'success');
+
+        return redirect()->back();
     }
 }

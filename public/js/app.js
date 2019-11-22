@@ -3392,6 +3392,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -49676,7 +49677,7 @@ var render = function() {
         [
           _c(
             "tbody",
-            _vm._l(_vm.items, function(leadSource) {
+            _vm._l(_vm.items, function(leadSource, index) {
               return _c(
                 "tr",
                 {
@@ -49700,7 +49701,12 @@ var render = function() {
                       "button",
                       {
                         staticClass: "outline-none focus:outline-none",
-                        attrs: { type: "submit" }
+                        attrs: { type: "submit" },
+                        on: {
+                          click: function($event) {
+                            return _vm.removeItem(index, leadSource.id)
+                          }
+                        }
                       },
                       [
                         _c(

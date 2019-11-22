@@ -2,7 +2,7 @@
      <div>
          <table class="rounded-b-lg table-auto w-full bg-gray-100">
              <tbody>
-             <tr v-for="leadSource in items"
+             <tr v-for="(leadSource, index) in items"
                  class="border border-gray-300 px-2 h-16"
                  :class="{'bg-white' : leadSource.id % 2 == 0 }"
              >
@@ -10,6 +10,7 @@
                  <td class="text-md text-gray-700 font-normal">{{  leadSource.name }}
                  <td>
                      <button
+                         @click="removeItem(index, leadSource.id)"
                          type="submit"
                          class="outline-none focus:outline-none">
                          <svg class="btn-delete"

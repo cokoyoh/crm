@@ -27,4 +27,40 @@ class DealsController extends ApiController
             (new DealTransformer())->transformCollection($deals)
         );
     }
+
+    public function pending()
+    {
+        $deals = $this->dealsRepository->pending();
+
+        return $this->respondWithJson(
+            (new DealTransformer())->transformCollection($deals)
+        );
+    }
+
+    public function lost()
+    {
+        $deals = $this->dealsRepository->lost();
+
+        return $this->respondWithJson(
+            (new DealTransformer())->transformCollection($deals)
+        );
+    }
+
+    public function won()
+    {
+        $deals = $this->dealsRepository->won();
+
+        return $this->respondWithJson(
+            (new DealTransformer())->transformCollection($deals)
+        );
+    }
+
+    public function verified()
+    {
+        $deals = $this->dealsRepository->verified();
+
+        return $this->respondWithJson(
+            (new DealTransformer())->transformCollection($deals)
+        );
+    }
 }

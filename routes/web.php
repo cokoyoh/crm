@@ -85,6 +85,12 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/apis/products', 'Apis\ProductsController@index');
 
     Route::get('/deals', 'DealsController@index')->name('deals.index');
+    Route::get('/deals/pending', 'DealsController@pending')->name('deals.pending');
+    Route::get('/deals/won', 'DealsController@won')->name('deals.won');
+    Route::get('/deals/verified', 'DealsController@verified')->name('deals.verified');
     Route::get('/apis/deals', 'Apis\DealsController@index');
+    Route::get('/apis/deals/pending', 'Apis\DealsController@pending');
+    Route::get('/apis/deals/won', 'Apis\DealsController@won');
+    Route::get('/apis/deals/verified', 'Apis\DealsController@verified');
 });
 

@@ -39,4 +39,16 @@ class DealTest extends TestCase
 
         $this->assertInstanceOf(DealStage::class, $deal->stage);
     }
+
+    /** @test */
+    public function it_fetches_only_pending_deals()
+    {
+        $pendingDeal = DealFactory::pending()->create();
+
+        $wonDeal = DealFactory::won()->create();
+
+        $this->assertTrue(Deal::pending()->get()->contains($pendingDeal));
+
+        $this->assertFalse(Deal::pending()->get()->contains($wonDeal));
+    }
 }

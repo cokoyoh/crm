@@ -123,19 +123,19 @@
                                 <span class="text-sm font-medium text-gray-700">All</span>
                                 <span class="text-xs font-semibold text-gray-700"></span>
                             </a>
-                            <a href="#"
+                            <a href="{!! route('deals.pending') !!}"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Pending</span>
                                 <span class="text-xs font-semibold text-gray-700"></span>
                             </a>
-                            <a href="#"
+                            <a href="{!! route('deals.won') !!}"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Won</span>
                                 <span class="text-xs font-semibold text-gray-700"></span>
                             </a>
-                            <a href="#"
+                            <a href="{!! route('deals.verified') !!}"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Verified</span>

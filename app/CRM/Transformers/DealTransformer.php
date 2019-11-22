@@ -17,7 +17,7 @@ class DealTransformer extends Transformer
             'amount' => number_format($deal->amount),
             'product' => optional($deal->product)->name,
             'user' => $user ? $user->name : '',
-            'stage' => optional($deal->stage)->name,
+            'stage' => optional($deal->stage)->slug,
             'company' => $user ? optional($user->company)->name : '',
             'date' => $deal->created_at->toFormattedDateString(),
             'viewable' => $this->viewable($deal)

@@ -51,7 +51,6 @@
                             @click="reassign(lead.id)">
                             <a href="#">Reassign</a>
                         </li>
-<!--                        <li v-if="lead.viewable" class="dropdown-menu-item"><a :href="'/leads/' + lead.id + '/show'">View</a></li>-->
                     </dropdown>
 
                 </td>

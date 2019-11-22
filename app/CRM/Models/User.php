@@ -172,4 +172,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Schedule::class);
     }
+
+    public function deals()
+    {
+        return $this->hasMany(Deal::class)->latest();
+    }
 }

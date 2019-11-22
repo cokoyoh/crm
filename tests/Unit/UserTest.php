@@ -8,6 +8,7 @@ use CRM\Models\LeadAssignee;
 use CRM\Models\Role;
 use CRM\Models\Schedule;
 use CRM\Models\User;
+use Facades\Tests\Setup\DealFactory;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\UserFactory;
@@ -154,5 +155,15 @@ class UserTest extends TestCase
         LeadFactory::assignTo($user)->create();
 
         $this->assertEquals(1, $user->leadsCount);
+    }
+
+    /** @test */
+    public function user_has_deals()
+    {
+        $user = create(User::class);
+
+        $deal = DealFactory::belongingTo($user)->create();
+
+        $this->assertTrue($user->deals->contains($deal));
     }
 }

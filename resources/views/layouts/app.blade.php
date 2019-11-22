@@ -117,7 +117,7 @@
                         <h3 class="text-xs font-semibold text-gray-600 uppercase tracking-wide">Deals</h3>
 
                         <div class="mt-2 -mx-3">
-                            <a href="#"
+                            <a href="{!! route('deals.index') !!}"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">All</span>
@@ -126,19 +126,19 @@
                             <a href="#"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
-                                <span class="text-sm font-medium text-gray-700">Closed</span>
+                                <span class="text-sm font-medium text-gray-700">Pending</span>
+                                <span class="text-xs font-semibold text-gray-700"></span>
+                            </a>
+                            <a href="#"
+                               class="flex align-center justify-between px-3 py-1 rounded-lg"
+                            >
+                                <span class="text-sm font-medium text-gray-700">Won</span>
                                 <span class="text-xs font-semibold text-gray-700"></span>
                             </a>
                             <a href="#"
                                class="flex align-center justify-between px-3 py-1 rounded-lg"
                             >
                                 <span class="text-sm font-medium text-gray-700">Verified</span>
-                                <span class="text-xs font-semibold text-gray-700"></span>
-                            </a>
-                            <a href="#"
-                               class="flex align-center justify-between px-3 py-1 rounded-lg"
-                            >
-                                <span class="text-sm font-medium text-gray-700">Pending</span>
                                 <span class="text-xs font-semibold text-gray-700"></span>
                             </a>
                         </div>

@@ -5,6 +5,7 @@ namespace Tests\Unit;
 use CRM\Models\Company;
 use CRM\Models\LeadSource;
 use CRM\Models\Product;
+use Facades\Tests\Setup\DealFactory;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -83,5 +84,17 @@ class CompanyTest extends TestCase
         $product = create(Product::class, ['company_id' => $company->id]);
 
         $this->assertTrue($company->products->contains($product));
+    }
+
+    /** @test */
+    public function it_has_deals()
+    {
+        $company = create(Company::class);
+
+        $user = UserFactory::fromCompany($company)->create();
+
+        $deal = DealFactory::belongingTo($user)->create();
+
+        $this->assertTrue($company->deals()->get()->contains($deal));
     }
 }

@@ -18,7 +18,7 @@ $factory->define(\CRM\Models\Client::class, function (Faker $faker) {
     ];
 });
 
-$factory->define(\CRM\Models\DealStage::class, function (Faker $faker) {
+$factory->define(\CRM\Models\Deal::class, function (Faker $faker) {
     return [
         'name' => $faker->sentence(3, false),
         'deal_stage_id' => create(\CRM\Models\DealStage::class)->id,

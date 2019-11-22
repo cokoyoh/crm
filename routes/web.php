@@ -83,5 +83,8 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/products', 'ProductsController@store')->name('products.store');
     Route::delete('/products/{product}', 'ProductsController@destroy')->name('products.destroy');
     Route::get('/apis/products', 'Apis\ProductsController@index');
+
+    Route::get('/deals', 'DealsController@index')->name('deals.index');
+    Route::get('/apis/deals', 'Apis\DealsController@index');
 });
 

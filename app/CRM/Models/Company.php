@@ -55,4 +55,12 @@ class Company extends Model
     {
         return $this->hasMany(Product::class);
     }
+
+    public function deals()
+    {
+        return Deal::whereHas('user', function ($user) {
+            $user->where('company_id', $this->id);
+        })
+            ->latest();
+    }
 }

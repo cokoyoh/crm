@@ -10,16 +10,14 @@ class ProductPolicy
 {
     use HandlesAuthorization;
 
-    public function before($user, $ability)
-    {
-        if ($user->isAdmin()) {
-            return true;
-        }
-    }
-
     public function manageProduct(User $user, Product $product)
     {
         return $user->isAdmin() && $this->isSameCompany($user, $product);
+    }
+
+    public function create(User $user)
+    {
+        return $user->isAdmin();
     }
 
     public function view(User $user)
@@ -29,11 +27,11 @@ class ProductPolicy
 
     public function destroy(User $user, Product $product)
     {
-        return $user->isAdmggin() && $this->isSameCompany($user, $product);
+        return $user->isAdmin() && $this->isSameCompany($user, $product);
     }
 
     private function isSameCompany(User $user, Product $product)
     {
-        return ($user->company_id == $product->company_id);
+        return $user->company_id == $product->company_id;
     }
 }

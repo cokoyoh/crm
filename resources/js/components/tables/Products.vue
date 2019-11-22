@@ -58,7 +58,7 @@
             },
 
             removeItem(index, id) {
-                let endpoint = '/products/' + id + '/destroy';
+                let endpoint = '/products/' + id;
 
                 axios.delete(endpoint)
                     .then(response => {

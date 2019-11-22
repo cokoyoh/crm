@@ -29,7 +29,7 @@ class ProductsController extends ApiController
 
     public function store()
     {
-        $this->authorize('manageProduct', new Product());
+        $this->authorize('create', Product::class);
 
         $product = $this->product->create(request()->validate(['name' => 'required']));
 
@@ -48,5 +48,13 @@ class ProductsController extends ApiController
     public function destroy(Product $product)
     {
         $this->authorize('destroy', $product);
+
+        $product->delete();
+
+        if (request()->wantsJson()) {
+            return $this->respondSuccess(['message' => 'Product deleted!']);
+        }
+
+        return redirect()->back();
     }
 }

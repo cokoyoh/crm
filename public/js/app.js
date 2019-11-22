@@ -3597,7 +3597,7 @@ __webpack_require__.r(__webpack_exports__);
     removeItem: function removeItem(index, id) {
       var _this2 = this;
 
-      var endpoint = '/products/' + id + '/destroy';
+      var endpoint = '/products/' + id;
       axios["delete"](endpoint).then(function (response) {
         _this2.items.splice(index, 1);
 

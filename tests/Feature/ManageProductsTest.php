@@ -108,4 +108,20 @@ class ManageProductsTest extends TestCase
             ->delete(route('products.destroy', $product->id))
             ->assertForbidden();
     }
+
+    /** @test */
+    public function authorised_users_can_delete_company_products()
+    {
+        $alphabet = create(Company::class);
+
+        $product = ProductFactory::fromCompany($alphabet)->create();
+
+        $user = UserFactory::fromCompany($alphabet)->admin()->create();
+
+        $this->actingAs($user)
+            ->delete(route('products.destroy', $product->id))
+            ->assertRedirect();
+
+        $this->assertNotNull($product->fresh()->deleted_at);
+    }
 }

@@ -26,10 +26,11 @@ class LeadSourcesController extends ApiController
 
         request()->validate(['name' => 'required|min:8']);
 
-        LeadSource::create(request()->all());
+        $leadSource = LeadSource::create(request()->all());
 
         if (request()->wantsJson()) {
             return $this->respondSuccess([
+                'id' => $leadSource->id,
                 'message' => 'Lead source added successfully.'
             ]);
         }

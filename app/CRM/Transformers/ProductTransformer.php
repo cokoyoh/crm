@@ -15,11 +15,11 @@ class ProductTransformer extends Transformer
             'id' => $product->id,
             'name' => $product->name,
             'date' => $product->created_at->toFormattedDateString(),
-            'deletable' => $this->deletable($product)
+            'editable' => $this->editable($product)
         ];
     }
 
-    private function deletable(Product $product)
+    private function editable(Product $product)
     {
         $user = auth()->user();
 

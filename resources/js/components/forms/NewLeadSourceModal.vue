@@ -40,17 +40,23 @@
                     name: '',
                     company_id: 1
                 }),
+                leadSourceId: null,
+                name: ''
             }
         },
 
         methods: {
             submit() {
+                this.name = this.form.name;
+
                 this.form.submit('/lead-sources')
                     .then(response => {
                         this.flash(response.data.message);
-                    });
 
-                this.addLeadSource();
+                        this.leadSourceId = response.data.id;
+
+                        this.addLeadSource();
+                    });
 
                 this.hideModal();
             },
@@ -66,9 +72,10 @@
             },
 
             addLeadSource() {
-                Event.fire('leadSourceAdded', {
+                Event.fire('itemAdded', {
                     date: moment().format('MMM D, YYYY'),
-                    name: this.form.name
+                    name: this.name,
+                    id: this.leadSourceId
                 })
             }
         }

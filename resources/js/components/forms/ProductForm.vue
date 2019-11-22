@@ -75,7 +75,7 @@
                     date: moment().format('MMM D, YYYY'),
                     name: this.name,
                     id: this.productId,
-                    deletable: true
+                    editable: true
                 })
             }
         }

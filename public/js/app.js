@@ -2943,17 +2943,23 @@ __webpack_require__.r(__webpack_exports__);
       form: new _CrmForm__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: '',
         company_id: 1
-      })
+      }),
+      leadSourceId: null,
+      name: ''
     };
   },
   methods: {
     submit: function submit() {
       var _this = this;
 
+      this.name = this.form.name;
       this.form.submit('/lead-sources').then(function (response) {
         _this.flash(response.data.message);
+
+        _this.leadSourceId = response.data.id;
+
+        _this.addLeadSource();
       });
-      this.addLeadSource();
       this.hideModal();
     },
     flash: function flash(message) {
@@ -2964,9 +2970,10 @@ __webpack_require__.r(__webpack_exports__);
       this.form.reset();
     },
     addLeadSource: function addLeadSource() {
-      Event.fire('leadSourceAdded', {
+      Event.fire('itemAdded', {
         date: moment().format('MMM D, YYYY'),
-        name: this.form.name
+        name: this.name,
+        id: this.leadSourceId
       });
     }
   }
@@ -3051,7 +3058,7 @@ __webpack_require__.r(__webpack_exports__);
         date: moment().format('MMM D, YYYY'),
         name: this.name,
         id: this.productId,
-        deletable: true
+        editable: true
       });
     }
   }
@@ -3351,6 +3358,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/ItemsRetrieval */ "./resources/js/mixins/ItemsRetrieval.js");
+/* harmony import */ var _mixins_Collection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/Collection */ "./resources/js/mixins/Collection.js");
 //
 //
 //
@@ -3385,14 +3393,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "lead-sources",
-  mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_Collection__WEBPACK_IMPORTED_MODULE_1__["default"]],
   props: {
     company: Number
-  },
-  created: function created() {
-    this.addItem();
   },
   data: function data() {
     return {};
@@ -3401,13 +3407,6 @@ __webpack_require__.r(__webpack_exports__);
     url: function url() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       return 'api' + location.pathname + "/" + this.company + "?page=" + page;
-    },
-    addItem: function addItem() {
-      var _this = this;
-
-      Event.listen('leadSourceAdded', function (leadSource) {
-        return _this.items.unshift(leadSource);
-      });
     }
   }
 });
@@ -50068,8 +50067,8 @@ var render = function() {
                           {
                             name: "show",
                             rawName: "v-show",
-                            value: product.deletable,
-                            expression: "product.deletable"
+                            value: product.editable,
+                            expression: "product.editable"
                           }
                         ],
                         staticClass: "outline-none focus:outline-none",

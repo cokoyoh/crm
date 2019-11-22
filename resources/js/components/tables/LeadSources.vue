@@ -33,18 +33,15 @@
 
 <script>
     import ItemsRetrieval from '../../mixins/ItemsRetrieval'
+    import Collection from "../../mixins/Collection";
 
     export default {
         name: "lead-sources",
 
-        mixins: [ItemsRetrieval],
+        mixins: [ItemsRetrieval, Collection],
 
         props: {
           company: Number
-        },
-
-        created() {
-            this.addItem();
         },
 
         data() {
@@ -55,10 +52,6 @@
             url(page = 1) {
                 return 'api' + location.pathname + "/" + this.company + "?page=" + page;
             },
-
-            addItem() {
-                Event.listen('leadSourceAdded', leadSource => this.items.unshift(leadSource))
-            }
         }
     }
 </script>

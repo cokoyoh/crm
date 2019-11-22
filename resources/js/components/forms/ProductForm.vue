@@ -39,12 +39,15 @@
                 form: new CrmForm({
                     name: '',
                 }),
-                productId: null
+                productId: null,
+                name: ''
             }
         },
 
         methods: {
             submit() {
+                this.name = this.form.name;
+
                 this.form.submit('/products')
                     .then(response => {
                         this.flash(response.data.message);
@@ -68,7 +71,7 @@
             addProduct(id) {
                 Event.fire('productAdded', {
                     date: moment().format('MMM D, YYYY'),
-                    name: this.form.name,
+                    name: this.name,
                     id: id
                 })
             }

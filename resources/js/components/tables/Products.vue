@@ -10,6 +10,7 @@
                 <td class="text-md text-gray-700 font-normal">{{  product.name }}
                 <td>
                     <button
+                        v-show="product.deletable"
                         @click="removeItem(index, product.id)"
                         type="submit"
                         class="outline-none focus:outline-none">

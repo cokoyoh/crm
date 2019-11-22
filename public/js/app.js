@@ -3021,13 +3021,15 @@ __webpack_require__.r(__webpack_exports__);
       form: new _CrmForm__WEBPACK_IMPORTED_MODULE_0__["default"]({
         name: ''
       }),
-      productId: null
+      productId: null,
+      name: ''
     };
   },
   methods: {
     submit: function submit() {
       var _this = this;
 
+      this.name = this.form.name;
       this.form.submit('/products').then(function (response) {
         _this.flash(response.data.message);
 
@@ -3045,7 +3047,7 @@ __webpack_require__.r(__webpack_exports__);
     addProduct: function addProduct(id) {
       Event.fire('productAdded', {
         date: moment().format('MMM D, YYYY'),
-        name: this.form.name,
+        name: this.name,
         id: id
       });
     }
@@ -3538,6 +3540,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/ItemsRetrieval */ "./resources/js/mixins/ItemsRetrieval.js");
+//
 //
 //
 //
@@ -50079,6 +50082,14 @@ var render = function() {
                     _c(
                       "button",
                       {
+                        directives: [
+                          {
+                            name: "show",
+                            rawName: "v-show",
+                            value: product.deletable,
+                            expression: "product.deletable"
+                          }
+                        ],
                         staticClass: "outline-none focus:outline-none",
                         attrs: { type: "submit" },
                         on: {

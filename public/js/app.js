@@ -3033,7 +3033,9 @@ __webpack_require__.r(__webpack_exports__);
       this.form.submit('/products').then(function (response) {
         _this.flash(response.data.message);
 
-        _this.addProduct(response.data.id);
+        _this.productId = response.data.id;
+
+        _this.addProduct();
       });
       this.hideModal();
     },
@@ -3044,11 +3046,12 @@ __webpack_require__.r(__webpack_exports__);
       this.form.reset();
       this.$modal.hide('product-form-modal');
     },
-    addProduct: function addProduct(id) {
-      Event.fire('productAdded', {
+    addProduct: function addProduct() {
+      Event.fire('itemAdded', {
         date: moment().format('MMM D, YYYY'),
         name: this.name,
-        id: id
+        id: this.productId,
+        deletable: true
       });
     }
   }
@@ -3540,6 +3543,7 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/ItemsRetrieval */ "./resources/js/mixins/ItemsRetrieval.js");
+/* harmony import */ var _mixins_Collection__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../mixins/Collection */ "./resources/js/mixins/Collection.js");
 //
 //
 //
@@ -3576,12 +3580,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "products",
-  mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"]],
-  created: function created() {
-    this.addItem();
-  },
+  mixins: [_mixins_ItemsRetrieval__WEBPACK_IMPORTED_MODULE_0__["default"], _mixins_Collection__WEBPACK_IMPORTED_MODULE_1__["default"]],
   data: function data() {
     return {};
   },
@@ -3589,26 +3591,6 @@ __webpack_require__.r(__webpack_exports__);
     url: function url() {
       var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
       return 'apis' + location.pathname + "?page=" + page;
-    },
-    addItem: function addItem() {
-      var _this = this;
-
-      Event.listen('productAdded', function (product) {
-        return _this.items.unshift(product);
-      });
-    },
-    removeItem: function removeItem(index, id) {
-      var _this2 = this;
-
-      var endpoint = '/products/' + id;
-      axios["delete"](endpoint).then(function (response) {
-        _this2.items.splice(index, 1);
-
-        _this2.flash(response.data.message);
-      });
-    },
-    flash: function flash(message) {
-      Event.fire('flash-message', message);
     }
   }
 });
@@ -67580,6 +67562,50 @@ Vue.component('interactions', _Interactions__WEBPACK_IMPORTED_MODULE_2__["defaul
 Vue.component('users', _Users__WEBPACK_IMPORTED_MODULE_3__["default"]);
 Vue.component('companies', _Companies__WEBPACK_IMPORTED_MODULE_4__["default"]);
 Vue.component('products', _Products__WEBPACK_IMPORTED_MODULE_5__["default"]);
+
+/***/ }),
+
+/***/ "./resources/js/mixins/Collection.js":
+/*!*******************************************!*\
+  !*** ./resources/js/mixins/Collection.js ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      items: []
+    };
+  },
+  created: function created() {
+    this.addItem();
+  },
+  methods: {
+    removeItem: function removeItem(index, id) {
+      var _this = this;
+
+      var endpoint = location.pathname + "/" + id;
+      axios["delete"](endpoint).then(function (response) {
+        _this.items.splice(index, 1);
+
+        _this.flash(response.data.message);
+      });
+    },
+    flash: function flash(message) {
+      Event.fire('flash-message', message);
+    },
+    addItem: function addItem() {
+      var _this2 = this;
+
+      Event.listen('itemAdded', function (item) {
+        return _this2.items.unshift(item);
+      });
+    }
+  }
+});
 
 /***/ }),
 

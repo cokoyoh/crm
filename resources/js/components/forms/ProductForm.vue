@@ -52,7 +52,9 @@
                     .then(response => {
                         this.flash(response.data.message);
 
-                        this.addProduct(response.data.id);
+                        this.productId = response.data.id;
+
+                        this.addProduct();
                     });
 
                 this.hideModal();
@@ -68,11 +70,12 @@
                 this.$modal.hide('product-form-modal');
             },
 
-            addProduct(id) {
-                Event.fire('productAdded', {
+            addProduct() {
+                Event.fire('itemAdded', {
                     date: moment().format('MMM D, YYYY'),
                     name: this.name,
-                    id: id
+                    id: this.productId,
+                    deletable: true
                 })
             }
         }

@@ -35,15 +35,12 @@
 
 <script>
     import ItemsRetrieval from '../../mixins/ItemsRetrieval'
+    import Collection from "../../mixins/Collection";
 
     export default {
         name: "products",
 
-        mixins: [ItemsRetrieval],
-
-        created() {
-            this.addItem();
-        },
+        mixins: [ItemsRetrieval, Collection],
 
         data() {
             return {}
@@ -52,25 +49,6 @@
         methods: {
             url(page = 1) {
                 return 'apis' + location.pathname + "?page=" + page;
-            },
-
-            addItem() {
-                Event.listen('productAdded', product => this.items.unshift(product))
-            },
-
-            removeItem(index, id) {
-                let endpoint = '/products/' + id;
-
-                axios.delete(endpoint)
-                    .then(response => {
-                        this.items.splice(index, 1);
-
-                        this.flash(response.data.message);
-                    });
-            },
-
-            flash(message) {
-                Event.fire('flash-message', message);
             },
         }
     }

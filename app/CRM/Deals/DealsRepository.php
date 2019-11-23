@@ -11,7 +11,11 @@ class DealsRepository implements CreateInterface
 {
     public function create(array $input)
     {
-        return auth()->user()->deals()->create($input);
+        $deal = auth()->user()->deals()->create($input);
+
+        $deal->markAsPending();
+
+        return $deal->fresh();
     }
 
     public function userDeals()

@@ -51,4 +51,16 @@ class DealTest extends TestCase
 
         $this->assertFalse(Deal::pending()->get()->contains($wonDeal));
     }
+
+    /** @test */
+    public function it_marks_a_deal_as_pending()
+    {
+        create(DealStage::class, ['slug' => 'pending']);
+
+        $deal = create(Deal::class);
+
+        $deal->markAsPending();
+
+        $this->assertEquals($deal->stage->slug, 'pending');
+    }
 }

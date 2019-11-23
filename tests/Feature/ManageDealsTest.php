@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\DealStage;
 use CRM\Models\User;
 use Facades\Tests\Setup\ContactFactory;
 use Facades\Tests\Setup\ProductFactory;
@@ -70,7 +71,7 @@ class ManageDealsTest extends TestCase
             ->post(route('deals.store'), ['contact_id' => ''])
             ->assertSessionHasErrors('contact_id');
     }
-    
+
 
     /** @test */
     public function authorised_users_can_add_deals()
@@ -82,6 +83,8 @@ class ManageDealsTest extends TestCase
         $contact = ContactFactory::assignTo($company)->create();
 
         $product = ProductFactory::fromCompany($company)->create();
+
+        $dealStage = create(DealStage::class, ['slug' => 'pending']);
 
         $input = [
             'contact_id' => $contact->id,
@@ -96,6 +99,10 @@ class ManageDealsTest extends TestCase
 
         $this->assertDatabaseHas('clients', ['contact_id' => $contact->id]);
 
-        $this->assertDatabaseHas('deals', ['name' => $input['name'], 'amount' => $input['amount']]);
+        $this->assertDatabaseHas('deals', [
+            'name' => $input['name'],
+            'amount' => $input['amount'],
+            'deal_stage_id' => $dealStage->id
+        ]);
     }
 }

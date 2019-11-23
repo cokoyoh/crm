@@ -4,6 +4,8 @@
 namespace CRM\Deals;
 
 
+use CRM\Models\DealStage;
+
 trait DealStages
 {
     public function scopePending($query)
@@ -33,5 +35,19 @@ trait DealStages
             function ($stage) use ($stageSlug) {
                 $stage->where('slug', $stageSlug);
             });
+    }
+
+    public function markAsPending()
+    {
+        $this->changeDealStageTo('pending');
+    }
+
+    private function changeDealStageTo(String $dealStageSlug)
+    {
+        $dealStage = DealStage::where('slug', $dealStageSlug)->first();
+
+        $this->deal_stage_id = $dealStage->id;
+
+        $this->save();
     }
 }

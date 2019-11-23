@@ -2,8 +2,36 @@
 
 namespace App\Http\Controllers;
 
-class DealsController extends Controller
+use App\Http\Controllers\Apis\ApiController;
+use App\Http\Requests\StoreDealRequest;
+use CRM\Clients\ClientsRepository;
+use CRM\Deals\DealsRepository;
+use CRM\Models\Client;
+use CRM\Transformers\DealTransformer;
+
+class DealsController extends ApiController
 {
+    private $dealTransformer;
+    private $clientsRepository;
+    private $dealsRepository;
+
+    /**
+     * DealsController constructor.
+     * @param DealTransformer $dealTransformer
+     * @param ClientsRepository $clientsRepository
+     * @param DealsRepository $dealsRepository
+     */
+    public function __construct(
+        DealTransformer $dealTransformer,
+        ClientsRepository $clientsRepository,
+        DealsRepository $dealsRepository
+    ) {
+        $this->dealTransformer = $dealTransformer;
+        $this->clientsRepository = $clientsRepository;
+        $this->dealsRepository = $dealsRepository;
+    }
+
+
     public function index()
     {
         return view('deals.index');
@@ -22,5 +50,27 @@ class DealsController extends Controller
     public function verified()
     {
         return view('deals.verified');
+    }
+
+    public function store(StoreDealRequest $request)
+    {
+        $contactId = request('contact_id');
+
+        $client = $this->clientsRepository->findOrCreateClientByContactId($contactId);
+
+        $input = request()->except('contact_id') + ['client_id' => $client->id];
+
+        $deal = $this->dealsRepository->create($input);
+
+        if (request()->wantsJson()) {
+            return $this->respondSuccess([
+                'deal' => $this->dealTransformer->transform($deal),
+                'message' => 'Deal saved successfully'
+            ]);
+        }
+
+        flash('Deal saved successfully', 'success');
+
+        return redirect()->back();
     }
 }

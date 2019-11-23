@@ -5,9 +5,15 @@ namespace CRM\Deals;
 
 
 use CRM\Models\Deal;
+use CRM\RepositoryInterfaces\CreateInterface;
 
-class DealsRepository
+class DealsRepository implements CreateInterface
 {
+    public function create(array $input)
+    {
+        return auth()->user()->deals()->create($input);
+    }
+
     public function userDeals()
     {
         $user = auth()->user();

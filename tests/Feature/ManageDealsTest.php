@@ -4,6 +4,8 @@ namespace Tests\Feature;
 
 use CRM\Models\Company;
 use CRM\Models\User;
+use Facades\Tests\Setup\ContactFactory;
+use Facades\Tests\Setup\ProductFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Facades\Tests\Setup\DealFactory;
@@ -17,6 +19,9 @@ class ManageDealsTest extends TestCase
     public function guests_cannot_manage_deals()
     {
         $this->get(route('deals.index'))
+            ->assertRedirect('login');
+
+        $this->post(route('deals.store'), [])
             ->assertRedirect('login');
     }
 
@@ -34,5 +39,63 @@ class ManageDealsTest extends TestCase
         $jsonResponse->assertJsonFragment(['name' => $dealA->name]);
 
         $jsonResponse->assertJsonMissing(['name' => $dealB->name]);
+    }
+
+    /** @test */
+    public function deal_amount_is_required_when_adding_a_deal()
+    {
+        $user = create(User::class);
+
+        $this->actingAs($user)
+            ->post(route('deals.store'), ['amount' => ''])
+            ->assertSessionHasErrors('amount');
+    }
+
+    /** @test */
+    public function product_id_is_required_when_adding_a_deal()
+    {
+        $user = create(User::class);
+
+        $this->actingAs($user)
+            ->post(route('deals.store'), ['product_id' => ''])
+            ->assertSessionHasErrors('product_id');
+    }
+
+    /** @test */
+    public function contact_id_is_required_when_adding_a_deal()
+    {
+        $user = create(User::class);
+
+        $this->actingAs($user)
+            ->post(route('deals.store'), ['contact_id' => ''])
+            ->assertSessionHasErrors('contact_id');
+    }
+    
+
+    /** @test */
+    public function authorised_users_can_add_deals()
+    {
+        $company = create(Company::class);
+
+        $dumbledore = UserFactory::fromCompany($company)->regularUser()->create();
+
+        $contact = ContactFactory::assignTo($company)->create();
+
+        $product = ProductFactory::fromCompany($company)->create();
+
+        $input = [
+            'contact_id' => $contact->id,
+            'product_id' => $product->id,
+            'name' => 'Some deal name or description',
+            'amount' => '34500'
+        ];
+
+        $this->actingAs($dumbledore)
+            ->post(route('deals.store'), $input)
+            ->assertRedirect();
+
+        $this->assertDatabaseHas('clients', ['contact_id' => $contact->id]);
+
+        $this->assertDatabaseHas('deals', ['name' => $input['name'], 'amount' => $input['amount']]);
     }
 }

@@ -34,4 +34,20 @@ class Deal extends Model
     {
         return $this->belongsTo(Client::class);
     }
+
+    public function notes()
+    {
+        return $this->hasOne(DealNote::class);
+    }
+
+    public function addNotes(array $input)
+    {
+        if ($this->notes) {
+            $this->notes()->update($input);
+
+            return $this->notes->fresh();
+        }
+
+        return $this->notes()->create($input);
+    }
 }

@@ -61,7 +61,8 @@ class DealsController extends ApiController
 
         return view('deals.show', [
             'deal' => $deal,
-            'dealArray' => $dealArray
+            'dealArray' => $dealArray,
+            'notes' => $deal->notes,
         ]);
     }
 

@@ -4,6 +4,7 @@ namespace Tests\Unit;
 
 use CRM\Models\Client;
 use CRM\Models\Deal;
+use CRM\Models\DealNote;
 use CRM\Models\DealStage;
 use CRM\Models\Product;
 use CRM\Models\User;
@@ -66,6 +67,18 @@ class DealTest extends TestCase
     }
 
     /** @test */
+    public function it_marks_a_deal_as_lost()
+    {
+        create(DealStage::class, ['slug' => 'lost']);
+
+        $deal = create(Deal::class);
+
+        $deal->markAsLost();
+
+        $this->assertEquals($deal->stage->slug, 'lost');
+    }
+
+    /** @test */
     public function a_deal_has_a_client()
     {
         $client = create(Client::class);
@@ -73,5 +86,27 @@ class DealTest extends TestCase
         $deal = DealFactory::associatedWith($client)->create();
 
         $this->assertInstanceOf(Client::class, $deal->client);
+    }
+
+    /** @test */
+    public function a_deal_has_notes()
+    {
+        $deal = create(Deal::class);
+
+        create(DealNote::class, ['deal_id' => $deal->id]);
+
+        $this->assertInstanceOf(DealNote::class, $deal->notes);
+    }
+
+    /** @test */
+    public function it_can_add_notes_to_a_deal()
+    {
+        $user = create(User::class);
+
+        $deal = DealFactory::belongingTo($user)->create();
+
+        $deal->addNotes(['user_id' => $user->id, 'body' => 'some notes']);
+
+        $this->assertInstanceOf(DealNote::class, $deal->fresh()->notes);
     }
 }

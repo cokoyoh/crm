@@ -23,11 +23,4 @@
         </tr>
         </tbody>
     </table>
-
-    <p>Thank you.</p>
-
-    Regards,<br/>
-
-    {!! config('app.name') !!}<br/>
-    -------------------------------------------
 @endsection

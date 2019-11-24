@@ -28,3 +28,11 @@ $factory->define(\CRM\Models\Deal::class, function (Faker $faker) {
         'amount' => $faker->randomNumber(5, false)
     ];
 });
+
+$factory->define(\CRM\Models\DealNote::class, function (Faker $faker) {
+    return [
+        'user_id' => create(\CRM\Models\User::class)->id,
+        'deal_id' => create(\CRM\Models\Deal::class)->id,
+        'body' => $faker->paragraph(3, false)
+    ];
+});

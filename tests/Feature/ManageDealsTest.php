@@ -30,6 +30,9 @@ class ManageDealsTest extends TestCase
 
         $this->get(route('deals.show', $deal))
             ->assertRedirect('login');
+
+        $this->get(route('deals.mark-as-lost', $deal))
+            ->assertRedirect('login');
     }
 
     /** @test */
@@ -124,5 +127,47 @@ class ManageDealsTest extends TestCase
         $this->actingAs($user)
             ->get(route('deals.show', $deal))
             ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_mark_a_deal_as_lost_if_the_deal_does_not_belong_to_them()
+    {
+        $jeffBezos = UserFactory::regularUser()->create();
+
+        $elonMusk = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($elonMusk)->pending()->create();
+
+        $this->actingAs($jeffBezos)
+            ->get(route('deals.mark-as-lost', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_deal_in_stage_lost_cannot_be_marked_as_lost()
+    {
+        $elonMusk = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($elonMusk)->lost()->create();
+
+        $this->actingAs($elonMusk)
+            ->get(route('deals.mark-as-lost', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_user_can_mark_a_deal_as_lost()
+    {
+        $elonMusk = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($elonMusk)->pending()->create();
+
+        create(DealStage::class, ['slug' => 'lost']);
+
+        $this->actingAs($elonMusk)
+            ->get(route('deals.mark-as-lost', $deal))
+            ->assertRedirect(route('deals.show', $deal));
+
+        $this->assertEquals($deal->fresh()->stage->slug, 'lost');
     }
 }

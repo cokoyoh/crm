@@ -40,12 +40,5 @@
                 href="{{ URL::to(route('users.profile', $id)) }}"> link </a>to
             complete your profile and begin using the platform. Please note, that this link can only be used once.
         </p>
-
-        <p>Thank you.</p>
-
-        Regards,<br/>
-
-        {!! config('app.name') !!}<br/>
-        -------------------------------------------
     </div>
 @endsection

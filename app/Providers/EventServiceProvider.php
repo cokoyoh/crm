@@ -40,6 +40,10 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\Leads\LeadReassigned' => [
             'App\Listeners\Leads\WhenLeadReassigned'
+        ],
+
+        'App\Events\Deals\DealMarkedAsLost' => [
+            'App\Listeners\Deals\WhenDealMarkedAsLost'
         ]
     ];
 

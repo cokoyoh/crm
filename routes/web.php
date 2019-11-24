@@ -96,6 +96,10 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/apis/deals/won', 'Apis\DealsController@won');
     Route::get('/apis/deals/verified', 'Apis\DealsController@verified');
 
+    Route::post('/deals/{deal}/notes', 'DealNotesController@store')->name('deals.notes.store');
+
+    Route::get('/deals/{deal}/lost', 'DealsController@markAsLost')->name('deals.mark-as-lost');
+
     Route::get('/get-user-contacts', 'ContactsController@userContacts');
 });
 

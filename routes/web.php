@@ -86,6 +86,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/get-company-products', 'ProductsController@products');
 
     Route::get('/deals', 'DealsController@index')->name('deals.index');
+    Route::get('/deals/{deal}/show', 'DealsController@show')->name('deals.show');
     Route::post('/deals', 'DealsController@store')->name('deals.store');
     Route::get('/deals/pending', 'DealsController@pending')->name('deals.pending');
     Route::get('/deals/won', 'DealsController@won')->name('deals.won');

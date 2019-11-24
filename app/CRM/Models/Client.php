@@ -9,4 +9,9 @@ class Client extends Model
     protected $table = 'clients';
 
     protected $guarded = [];
+
+    public function contact()
+    {
+        return $this->belongsTo(Contact::class);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use CRM\Models\Client;
 use CRM\Models\Deal;
 use CRM\Models\DealStage;
 use CRM\Models\Product;
@@ -62,5 +63,15 @@ class DealTest extends TestCase
         $deal->markAsPending();
 
         $this->assertEquals($deal->stage->slug, 'pending');
+    }
+
+    /** @test */
+    public function a_deal_has_a_client()
+    {
+        $client = create(Client::class);
+
+        $deal = DealFactory::associatedWith($client)->create();
+
+        $this->assertInstanceOf(Client::class, $deal->client);
     }
 }

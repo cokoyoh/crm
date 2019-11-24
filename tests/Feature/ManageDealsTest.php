@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use CRM\Models\Company;
+use CRM\Models\Deal;
 use CRM\Models\DealStage;
 use CRM\Models\User;
 use Facades\Tests\Setup\ContactFactory;
@@ -19,10 +20,15 @@ class ManageDealsTest extends TestCase
     /** @test */
     public function guests_cannot_manage_deals()
     {
+        $deal = create(Deal::class);
+
         $this->get(route('deals.index'))
             ->assertRedirect('login');
 
         $this->post(route('deals.store'), [])
+            ->assertRedirect('login');
+
+        $this->get(route('deals.show', $deal))
             ->assertRedirect('login');
     }
 
@@ -104,5 +110,19 @@ class ManageDealsTest extends TestCase
             'amount' => $input['amount'],
             'deal_stage_id' => $dealStage->id
         ]);
+    }
+
+    /** @test */
+    public function unauthorised_users_cannot_view_deal_details()
+    {
+        $company = create(Company::class);
+
+        $user = UserFactory::fromCompany($company)->create();
+
+        $deal = DealFactory::belongingTo(create(User::class))->create();
+
+        $this->actingAs($user)
+            ->get(route('deals.show', $deal))
+            ->assertForbidden();
     }
 }

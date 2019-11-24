@@ -7,6 +7,7 @@ use App\Http\Requests\StoreDealRequest;
 use CRM\Clients\ClientsRepository;
 use CRM\Deals\DealsRepository;
 use CRM\Models\Client;
+use CRM\Models\Deal;
 use CRM\Transformers\DealTransformer;
 
 class DealsController extends ApiController
@@ -50,6 +51,18 @@ class DealsController extends ApiController
     public function verified()
     {
         return view('deals.verified');
+    }
+
+    public function show(Deal $deal)
+    {
+        $this->authorize('manageDeal', $deal);
+
+        $dealArray = $this->dealTransformer->transform($deal);
+
+        return view('deals.show', [
+            'deal' => $deal,
+            'dealArray' => $dealArray
+        ]);
     }
 
     public function store(StoreDealRequest $request)

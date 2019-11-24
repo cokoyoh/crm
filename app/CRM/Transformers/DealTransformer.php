@@ -11,6 +11,8 @@ class DealTransformer extends Transformer
     {
         $user = $deal->user;
 
+        $client = $deal->client;
+
         return [
             'id' => $deal->id,
             'name' => $deal->name,
@@ -20,6 +22,7 @@ class DealTransformer extends Transformer
             'stage' => optional($deal->stage)->slug,
             'company' => $user ? optional($user->company)->name : '',
             'date' => $deal->created_at->toFormattedDateString(),
+            'client' => $client ? optional($client->contact)->name : '',
             'viewable' => $this->viewable($deal)
         ];
     }

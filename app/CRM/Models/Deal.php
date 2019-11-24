@@ -29,4 +29,9 @@ class Deal extends Model
     {
         return $this->belongsTo(DealStage::class, 'deal_stage_id');
     }
+
+    public function client()
+    {
+        return $this->belongsTo(Client::class);
+    }
 }

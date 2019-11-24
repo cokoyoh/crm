@@ -98,6 +98,8 @@ Route::group(['middleware' => ['auth']], function (){
 
     Route::post('/deals/{deal}/notes', 'DealNotesController@store')->name('deals.notes.store');
 
+    Route::get('/deals/{deal}/lost', 'DealsController@markAsLost')->name('deals.mark-as-lost');
+
     Route::get('/get-user-contacts', 'ContactsController@userContacts');
 });
 

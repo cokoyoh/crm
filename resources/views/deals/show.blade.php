@@ -81,7 +81,9 @@
                             </button>
                         </template>
 
-                            <li class="dropdown-menu-item"><a href="#">Edit</a></li>
+                            @can('markAsLost', $deal)
+                                <li class="dropdown-menu-item"><a href="{!! route('deals.mark-as-lost', $deal) !!}">Lost</a></li>
+                            @endif
                     </dropdown>
                 </div>
             </div>

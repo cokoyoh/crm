@@ -67,6 +67,18 @@ class DealTest extends TestCase
     }
 
     /** @test */
+    public function it_marks_a_deal_as_lost()
+    {
+        create(DealStage::class, ['slug' => 'lost']);
+
+        $deal = create(Deal::class);
+
+        $deal->markAsLost();
+
+        $this->assertEquals($deal->stage->slug, 'lost');
+    }
+
+    /** @test */
     public function a_deal_has_a_client()
     {
         $client = create(Client::class);

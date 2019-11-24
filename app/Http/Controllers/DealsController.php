@@ -87,4 +87,15 @@ class DealsController extends ApiController
 
         return redirect()->back();
     }
+
+    public function markAsLost(Deal $deal)
+    {
+        $this->authorize('markAsLost', $deal);
+
+        $deal->markAsLost();
+
+        flash('Deal has been marked as lost', 'success');
+
+        return redirect()->route('deals.show', $deal);
+    }
 }

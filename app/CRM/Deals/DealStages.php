@@ -42,6 +42,11 @@ trait DealStages
         $this->changeDealStageTo('pending');
     }
 
+    public function markAsLost()
+    {
+        $this->changeDealStageTo('lost');
+    }
+
     private function changeDealStageTo(String $dealStageSlug)
     {
         $dealStage = DealStage::where('slug', $dealStageSlug)->first();

@@ -26,6 +26,11 @@ class DealPolicy
         return $this->belongsToUser($user, $deal) && $this->hasNotes($user, $deal);
     }
 
+    public function markAsLost(User $user, Deal $deal)
+    {
+        return $this->belongsToUser($user, $deal) && $deal->stage->slug != 'lost';
+    }
+
     private function belongsToUser(User $user, Deal $deal)
     {
         return $user->id == $deal->user_id;

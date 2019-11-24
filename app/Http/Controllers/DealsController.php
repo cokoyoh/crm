@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\Deals\DealMarkedAsLost;
 use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreDealRequest;
 use CRM\Clients\ClientsRepository;
@@ -9,6 +10,7 @@ use CRM\Deals\DealsRepository;
 use CRM\Models\Client;
 use CRM\Models\Deal;
 use CRM\Transformers\DealTransformer;
+use Illuminate\Support\Facades\DB;
 
 class DealsController extends ApiController
 {
@@ -92,9 +94,13 @@ class DealsController extends ApiController
     {
         $this->authorize('markAsLost', $deal);
 
-        $deal->markAsLost();
+        DB::transaction(function () use ($deal) {
+            $deal->markAsLost();
 
-        flash('Deal has been marked as lost', 'success');
+            flash('Deal has been marked as lost', 'success');
+
+            event(new DealMarkedAsLost($deal->fresh()));
+        });
 
         return redirect()->route('deals.show', $deal);
     }

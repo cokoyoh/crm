@@ -2,6 +2,7 @@
 
 namespace CRM\Models;
 
+use CRM\Accessors\NameAccessors;
 use CRM\LeadClasses\ChangeLeadClass;
 use CRM\Leads\ExpungesLead;
 use CRM\Leads\LeadConversion;
@@ -15,7 +16,8 @@ class Lead extends Model
         ExpungesLead,
         ChangeLeadClass,
         LeadStatus,
-        LeadConversion;
+        LeadConversion,
+        NameAccessors;
 
     protected $table = 'leads';
 
@@ -29,21 +31,6 @@ class Lead extends Model
     protected $appends = [
         'name'
     ];
-
-    public function getFirstNameAttribute($value)
-    {
-        return ucfirst($value);
-    }
-
-    public function getLastNameAttribute($value)
-    {
-        return ucfirst($value);
-    }
-
-    public function getNameAttribute()
-    {
-        return "{$this->first_name} {$this->last_name}";
-    }
 
     public function leadAssignee()
     {

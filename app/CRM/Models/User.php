@@ -2,6 +2,7 @@
 
 namespace CRM\Models;
 
+use CRM\Accessors\NameAccessors;
 use CRM\Users\UserLeadsCount;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,10 @@ use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes, UserLeadsCount;
+    use Notifiable,
+        SoftDeletes,
+        UserLeadsCount,
+        NameAccessors;
 
     protected $appends = [
         'name', 'status'
@@ -47,11 +51,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'deactivated_at' => 'datetime'
     ];
-
-    public function getNameAttribute()
-    {
-        return "{$this->first_name} {$this->last_name}";
-    }
 
     public function getStatusAttribute()
     {

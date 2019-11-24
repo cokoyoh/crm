@@ -43,11 +43,12 @@
 
 <script>
     import ItemsRetrieval from '../../mixins/ItemsRetrieval'
+    import Collection from "../../mixins/Collection";
 
     export default {
         name: "deals",
 
-        mixins: [ItemsRetrieval],
+        mixins: [ItemsRetrieval, Collection],
 
         props: ['api'],
 

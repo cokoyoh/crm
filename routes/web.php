@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::post('/products', 'ProductsController@store')->name('products.store');
     Route::delete('/products/{product}', 'ProductsController@destroy')->name('products.destroy');
     Route::get('/apis/products', 'Apis\ProductsController@index');
+    Route::get('/get-company-products', 'ProductsController@products');
 
     Route::get('/deals', 'DealsController@index')->name('deals.index');
     Route::post('/deals', 'DealsController@store')->name('deals.store');
@@ -93,5 +94,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/apis/deals/pending', 'Apis\DealsController@pending');
     Route::get('/apis/deals/won', 'Apis\DealsController@won');
     Route::get('/apis/deals/verified', 'Apis\DealsController@verified');
+
+    Route::get('/get-user-contacts', 'ContactsController@userContacts');
 });
 

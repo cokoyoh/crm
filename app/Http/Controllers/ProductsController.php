@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Apis\ApiController;
 use CRM\Models\Product;
 use CRM\Products\ProductRepository;
+use CRM\Transformers\ProductTransformer;
 
 class ProductsController extends ApiController
 {
@@ -56,5 +57,19 @@ class ProductsController extends ApiController
         }
 
         return redirect()->back();
+    }
+
+    public function products()
+    {
+        $searchString = request('query');
+
+        $sources = Product::query()
+            ->where('company_id', auth()->user()->company_id)
+            ->where('name', 'like', "%{$searchString}%")
+            ->get();
+
+        return $this->respondWithJson(
+            (new ProductTransformer())->mapCollection($sources)
+        );
     }
 }

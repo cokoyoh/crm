@@ -3,7 +3,6 @@
 namespace CRM\Models;
 
 use CRM\Accessors\NameAccessors;
-use CRM\Deals\DealPercentageChanges;
 use CRM\Users\UserLeadsCount;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -15,8 +14,7 @@ class User extends Authenticatable
     use Notifiable,
         SoftDeletes,
         UserLeadsCount,
-        NameAccessors,
-        DealPercentageChanges;
+        NameAccessors;
 
     protected $appends = [
         'name', 'status'

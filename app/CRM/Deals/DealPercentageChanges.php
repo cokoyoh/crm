@@ -37,7 +37,7 @@ trait DealPercentageChanges
 
     private function userDeals()
     {
-        return $this->deals()->verified();
+        return auth()->user()->deals()->verified();
     }
 
     private function startOfMonth()

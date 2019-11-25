@@ -113,7 +113,6 @@
                 @include('.home.admin_overview')
 
                 @include('.home.companies')
-
             @else
                 @include('.home.users_overview')
 

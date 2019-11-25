@@ -5,6 +5,7 @@ namespace CRM\Users;
 
 
 use App\Events\Users\UserAccountDeleted;
+use CRM\Deals\DealPercentageChanges;
 use CRM\Models\User;
 use CRM\RepositoryInterfaces\CreateInterface;
 use CRM\RepositoryInterfaces\UpdateInterface;
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements CreateInterface, UpdateInterface
 {
+    use DealPercentageChanges;
+
     protected $user;
 
     /**

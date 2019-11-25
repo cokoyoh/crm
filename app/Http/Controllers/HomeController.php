@@ -38,6 +38,8 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $dealPercentageChange = $this->userRepository->dealPercentageChange();
+
         return view('home', [
             'assignedLeadsCount' => $this->userRepository->totalUserLeads(),
             'schedules' => $this->schedule->userSchedules(),
@@ -46,7 +48,7 @@ class HomeController extends Controller
             'userDeals' => $this->userRepository->totalUserDeals(),
             'verifiedDeals' => $this->userRepository->totalVerifiedDeals(),
             'companiesCount' => Company::count(),
-            'dealPercentageChange' => auth()->user()->dealPercentageChange()
+            'dealPercentageChange' => $dealPercentageChange
         ]);
     }
 

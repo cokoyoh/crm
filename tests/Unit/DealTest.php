@@ -3,12 +3,14 @@
 namespace Tests\Unit;
 
 use CRM\Models\Client;
+use CRM\Models\Company;
 use CRM\Models\Deal;
 use CRM\Models\DealNote;
 use CRM\Models\DealStage;
 use CRM\Models\Product;
 use CRM\Models\User;
 use Facades\Tests\Setup\DealFactory;
+use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 

@@ -6,24 +6,29 @@ use CRM\Models\Company;
 use CRM\Models\User;
 use CRM\Schedules\ScheduleRepository;
 use CRM\Transformers\CompanyTransformer;
+use CRM\Users\UserRepository;
 
 class HomeController extends Controller
 {
     protected $schedule;
     protected $companyTransformer;
+    protected $userRepository;
 
     /**
      * DashboardController constructor.
      * @param ScheduleRepository $schedule
      * @param CompanyTransformer $companyTransformer
+     * @param UserRepository $userRepository
      */
     public function __construct(
         ScheduleRepository $schedule,
-        CompanyTransformer $companyTransformer
+        CompanyTransformer $companyTransformer,
+        UserRepository $userRepository
     )
     {
         $this->schedule = $schedule;
         $this->companyTransformer = $companyTransformer;
+        $this->userRepository = $userRepository;
     }
 
     /**
@@ -33,24 +38,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $userSchedules = $this->schedule->userSchedules();
-
-        $companies = $this->companyTransformer->mapCollection(Company::all());
-
-        $latestCompanies = Company::latest()->take(2)->get();
-
-        $latestUsers = User::latest()->take(5)->get();
-
         return view('home', [
-            'assignedLeadsCount' => auth()->user()->leads()->count(),
-            'schedules' => $userSchedules,
+            'assignedLeadsCount' => $this->userRepository->totalUserLeads(),
+            'schedules' => $this->schedule->userSchedules(),
             'greeting' => $this->greeting(),
-            'companies' => $companies,
-            'companiesCount' => $companies->count(),
             'usersCount' => User::count(),
-            'dealsCount' => 0,
-            'latestCompanies' => $latestCompanies,
-            'latestUsers' => $latestUsers
+            'userDeals' => $this->userRepository->totalUserDeals(),
+            'verifiedDeals' => $this->userRepository->totalVerifiedDeals(),
+            'companiesCount' => Company::count()
         ]);
     }
 

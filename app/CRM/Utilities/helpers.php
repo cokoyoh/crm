@@ -1,6 +1,7 @@
 <?php
 
 use App\Mail\SimpleMail;
+use Facades\CRM\Formatters\CurrencyNumberFormatter;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
@@ -59,4 +60,19 @@ function getMessageLevel(String $level)
 function inProduction()
 {
     return env('APP_ENV') === 'production';
+}
+
+function formatCurrency($amount, $millions = false, $precision = null)
+{
+    $formatter = CurrencyNumberFormatter::amount($amount);
+
+    if ($millions) {
+        $formatter->millions();
+    }
+
+    if ($precision) {
+        $formatter->precison($precision);
+    }
+
+    return $formatter->format();
 }

@@ -44,7 +44,7 @@
                 <div class="block">
                     <p class="text-gray-600 text-sm font-normal">Your Deals</p>
                     <h3 class="flex items-center">
-                        <span class="text-gray-900 font-thin text-2xl">KES 2.320M</span>
+                        <span class="text-gray-900 font-thin text-2xl">{!! $userDeals !!}</span>
                         <span class="ml-2 flex items-center text-gray-900 text-sm">
                             <span class="flex items-center mr-1">
                                 <svg class="h-3 w-3 fill-current text-teal-600"
@@ -56,7 +56,7 @@
                         </span>
                     </h3>
 
-                    <a href="#">
+                    <a href="{!! route('deals.index') !!}">
                         <button class="mt-1 flex items-center text-sm text-gray-700 bg-gray-200 hover:bg-gray-100 active:bg-gray-300 rounded px-2 py-1 focus:outline-none">
                            <span>
                                 View Summary

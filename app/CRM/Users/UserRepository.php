@@ -103,7 +103,15 @@ class UserRepository implements CreateInterface, UpdateInterface
     public function totalUserDeals()
     {
         return formatCurrency(
-            auth()->user()->deals()->sum('amount'),
+            auth()->user()->deals()->won()->sum('amount'),
+            true
+        );
+    }
+
+    public function totalVerifiedDeals()
+    {
+        return formatCurrency(
+            auth()->user()->deals()->verified()->sum('amount'),
             true
         );
     }

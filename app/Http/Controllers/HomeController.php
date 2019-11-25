@@ -43,8 +43,8 @@ class HomeController extends Controller
             'schedules' => $this->schedule->userSchedules(),
             'greeting' => $this->greeting(),
             'usersCount' => User::count(),
-            'dealsCount' => 0,
             'userDeals' => $this->userRepository->totalUserDeals(),
+            'verifiedDeals' => $this->userRepository->totalVerifiedDeals(),
             'companiesCount' => Company::count()
         ]);
     }

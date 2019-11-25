@@ -1,10 +1,10 @@
 <div class="flex items-center justify-between mt-3">
     <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
         <h4 class="text-gray-600 text-sm font-medium">Total deals</h4>
-        <h2 class="text-gray-700 text-xl font-light">KES 2.89M</h2>
+        <h2 class="text-gray-700 text-xl font-light">{!! $userDeals !!}</h2>
         <div
             class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-            <a href="#">
+            <a href="{!! route('deals.index') !!}">
                 <button class="inline-flex items-center text-sm focus:outline-none">
                     View all deals
                     <span>
@@ -21,10 +21,10 @@
 
     <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
         <h4 class="text-gray-600 text-sm font-medium">Verified deals</h4>
-        <h2 class="text-gray-700 text-xl font-light">KES 1.24M</h2>
+        <h2 class="text-gray-700 text-xl font-light">{!! $verifiedDeals !!}</h2>
         <div
             class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-            <a href="#">
+            <a href="{!! route('deals.verified') !!}">
                 <button class="inline-flex items-center text-sm focus:outline-none">
                     View all deals
                     <span>
@@ -42,10 +42,10 @@
     <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
         <h4 class="text-gray-600 text-sm font-medium">Total Leads</h4>
         <h2 class="text-gray-700 text-xl font-light"><span
-                class="bg-teal-200 rounded-full font-medium text-xs p-1 text-teal-900">New</span> 21</h2>
+                class="bg-teal-200 rounded-full font-medium text-xs p-1 text-teal-900">New</span> {!! $assignedLeadsCount !!}</h2>
         <div
             class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-            <a href="#">
+            <a href="{!! route('leads.index') !!}">
                 <button class="inline-flex items-center text-sm focus:outline-none">
                     View all leads
                     <span>

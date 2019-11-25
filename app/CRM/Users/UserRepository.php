@@ -99,4 +99,20 @@ class UserRepository implements CreateInterface, UpdateInterface
 
         event(new UserAccountDeleted($this->user));
     }
+
+    public function totalUserDeals()
+    {
+        return formatCurrency(
+            auth()->user()->deals()->sum('amount'),
+            true
+        );
+    }
+
+    public function totalUserLeads()
+    {
+        return auth()
+            ->user()
+            ->leads()
+            ->count();
+    }
 }

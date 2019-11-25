@@ -14,7 +14,7 @@ class CurrencyNumberFormatter
 
     public function format()
     {
-        $numberFormatter = numfmt_create(config('app.faker_locale'), NumberFormatter::CURRENCY);
+        $numberFormatter =  NumberFormatter::create (config('app.faker_locale'), NumberFormatter::CURRENCY);
 
         $result = numfmt_format_currency($numberFormatter, round($this->amount, $this->precision), config('currency.symbol'));
 

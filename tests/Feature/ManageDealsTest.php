@@ -162,6 +162,18 @@ class ManageDealsTest extends TestCase
     }
 
     /** @test */
+    public function a_deal_in_stage_won_cannot_be_marked_as_lost()
+    {
+        $elonMusk = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($elonMusk)->won()->create();
+
+        $this->actingAs($elonMusk)
+            ->get(route('deals.mark-as-lost', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
     public function authorised_user_can_mark_a_deal_as_lost()
     {
         $elonMusk = UserFactory::regularUser()->create();

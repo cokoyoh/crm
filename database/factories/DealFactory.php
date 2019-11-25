@@ -29,6 +29,13 @@ $factory->define(\CRM\Models\Deal::class, function (Faker $faker) {
     ];
 });
 
+$factory->define(\CRM\Models\VerifiedDeal::class, function (Faker $faker) {
+    return [
+        'deal_id' => create(\CRM\Models\Deal::class)->id,
+        'user_id' => create(\CRM\Models\User::class)->id,
+    ];
+});
+
 $factory->define(\CRM\Models\DealNote::class, function (Faker $faker) {
     return [
         'user_id' => create(\CRM\Models\User::class)->id,

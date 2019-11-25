@@ -9,9 +9,11 @@ use CRM\Models\DealNote;
 use CRM\Models\DealStage;
 use CRM\Models\Product;
 use CRM\Models\User;
+use CRM\Models\VerifiedDeal;
 use Facades\Tests\Setup\DealFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Facades\Tests\Setup\VerifiedDealFactory;
 use Tests\TestCase;
 
 class DealTest extends TestCase
@@ -122,5 +124,31 @@ class DealTest extends TestCase
         $deal->addNotes(['user_id' => $user->id, 'body' => 'some notes']);
 
         $this->assertInstanceOf(DealNote::class, $deal->fresh()->notes);
+    }
+
+    /** @test */
+    public function it_has_a_verified_deal()
+    {
+        $deal = DealFactory::won()->create();
+
+        VerifiedDealFactory::associatedWith($deal)->create();
+
+        $this->assertInstanceOf(VerifiedDeal::class, $deal->verifiedDeal);
+    }
+
+    /** @test */
+    public function it_gets_deals_increase_or_decrease_month_on_month()
+    {
+        $user = UserFactory::regularUser()->create();
+
+        $dealA = DealFactory::belongingTo($user)->won()->create();
+
+        $dealB = DealFactory::belongingTo($user)->won()->create();
+
+        VerifiedDealFactory::associatedWith($dealA)->monthAgo()->create();
+
+        VerifiedDealFactory::associatedWith($dealB)->create();
+
+        $this->assertNotNull($user->dealPercentageChange());
     }
 }

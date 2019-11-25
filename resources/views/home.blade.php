@@ -47,12 +47,16 @@
                         <span class="text-gray-900 font-thin text-2xl">{!! $userDeals !!}</span>
                         <span class="ml-2 flex items-center text-gray-900 text-sm">
                             <span class="flex items-center mr-1">
-                                <svg class="h-3 w-3 fill-current text-teal-600"
+                                <svg class="h-3 w-3 fill-current @if($dealPercentageChange >= 0) text-teal-600 @else text-red-500 @endif"
                                     viewBox="0 0 20 20">
-                                    <path d="M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z"/>
+                                    @if($dealPercentageChange >= 0)
+                                        <path d="M9 3.828L2.929 9.899 1.515 8.485 10 0l.707.707 7.778 7.778-1.414 1.414L11 3.828V20H9V3.828z"/>
+                                    @else
+                                        <path d="M9 16.172l-6.071-6.071-1.414 1.414L10 20l.707-.707 7.778-7.778-1.414-1.414L11 16.172V0H9z"/>
+                                    @endif
                                 </svg>
                             </span>
-                            12% <span class="ml-1 text-gray-600">since last month</span>
+                            {!! abs($dealPercentageChange) !!}% <span class="ml-1 text-gray-600">since last month</span>
                         </span>
                     </h3>
 

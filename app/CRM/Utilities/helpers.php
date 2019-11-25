@@ -76,3 +76,14 @@ function formatCurrency($amount, $millions = false, $precision = null)
 
     return $formatter->format();
 }
+
+function percentage($divisor, $dividend, $precision = 0)
+{
+    if ($dividend == 0) {
+        return 0;
+    }
+
+    $quotient = ($divisor / $dividend) * 100;
+
+    return round($quotient, $precision);
+}

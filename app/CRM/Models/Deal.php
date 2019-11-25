@@ -50,4 +50,9 @@ class Deal extends Model
 
         return $this->notes()->create($input);
     }
+
+    public function verifiedDeal()
+    {
+        return $this->hasOne(VerifiedDeal::class);
+    }
 }

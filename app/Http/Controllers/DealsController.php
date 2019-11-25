@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Deals\DealMarkedAsLost;
+use App\Events\Deals\DealMarkedAsWon;
 use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreDealRequest;
 use CRM\Clients\ClientsRepository;
@@ -114,7 +115,7 @@ class DealsController extends ApiController
 
             flash('Congratulations, deal has been won!', 'success');
 
-            //send notification here
+            event(new DealMarkedAsWon($deal));
         });
 
         return redirect()->route('deals.show', $deal);

@@ -44,6 +44,10 @@ class EventServiceProvider extends ServiceProvider
 
         'App\Events\Deals\DealMarkedAsLost' => [
             'App\Listeners\Deals\WhenDealMarkedAsLost'
+        ],
+
+        'App\Events\Deals\DealMarkedAsWon' => [
+            'App\Listeners\Deals\WhenDealMarkedAsWon'
         ]
     ];
 

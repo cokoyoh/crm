@@ -88,6 +88,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/deals', 'DealsController@index')->name('deals.index');
     Route::get('/deals/{deal}/show', 'DealsController@show')->name('deals.show');
     Route::post('/deals', 'DealsController@store')->name('deals.store');
+    Route::delete('/deals/{deal}', 'DealsController@destroy')->name('deals.destroy');
     Route::get('/deals/pending', 'DealsController@pending')->name('deals.pending');
     Route::get('/deals/won', 'DealsController@won')->name('deals.won');
     Route::get('/deals/verified', 'DealsController@verified')->name('deals.verified');

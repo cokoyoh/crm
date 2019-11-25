@@ -69,13 +69,6 @@ class DealFactory
         return $this;
     }
 
-    public function verified()
-    {
-        $this->stage('verified');
-
-        return $this;
-    }
-
     public function wonAndVerified()
     {
         $this->stage('won-and-verified');

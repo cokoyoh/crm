@@ -120,4 +120,15 @@ class DealsController extends ApiController
 
         return redirect()->route('deals.show', $deal);
     }
+
+    public function destroy(Deal $deal)
+    {
+        $this->authorize('destroy', $deal);
+
+        $deal->delete();
+
+        flash('Deal has been deleted!', 'success');
+
+        return redirect()->route('deals.index');
+    }
 }

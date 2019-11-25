@@ -41,6 +41,15 @@ class DealPolicy
             && $currentDealStageSlug != 'won';
     }
 
+    public function destroy(User $user, Deal $deal)
+    {
+        $currentDealStageSlug = $deal->stage->slug;
+
+        return $this->belongsToUser($user, $deal)
+            && $currentDealStageSlug != 'won'
+            && $currentDealStageSlug != 'won-and-verified';
+    }
+
     private function belongsToUser(User $user, Deal $deal)
     {
         return $user->id == $deal->user_id;

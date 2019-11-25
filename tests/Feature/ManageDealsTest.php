@@ -36,6 +36,9 @@ class ManageDealsTest extends TestCase
 
         $this->get(route('deals.mark-as-won', $deal))
             ->assertRedirect('login');
+
+        $this->delete(route('deals.destroy', $deal))
+            ->assertRedirect('login');
     }
 
     /** @test */
@@ -226,5 +229,55 @@ class ManageDealsTest extends TestCase
             ->assertRedirect(route('deals.show', $deal));
 
         $this->assertEquals($deal->fresh()->stage->slug, 'won');
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_a_deal_which_they_do_not_own()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        $this->actingAs(create(User::class))
+            ->delete(route('deals.destroy', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_a_deal_that_has_been_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $wonDeal = DealFactory::belongingTo($auntMargery)->won()->create();
+
+        $this->actingAs($auntMargery)
+            ->delete(route('deals.destroy', $wonDeal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_a_deal_that_has_been_won_and_verified()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $verifiedDeal = DealFactory::belongingTo($auntMargery)->wonAndVerified()->create();
+
+        $this->actingAs($auntMargery)
+            ->delete(route('deals.destroy', $verifiedDeal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_users_can_delete_a_deal()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        $this->actingAs($auntMargery)
+            ->delete(route('deals.destroy', $deal))
+            ->assertRedirect(route('deals.index'));
+
+        $this->assertNotNull($deal->fresh()->deleted_at);
     }
 }

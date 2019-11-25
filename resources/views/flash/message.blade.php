@@ -10,7 +10,7 @@
                 @click="close"
                 class="absolute top-0 bottom-0 right-0 px-4 py-3">
                 <svg
-                    class="fill-current h-4 w-4  text-green-500 {!! flash()->class == 'alert-alert' ?: ' text-red-500' !!} rounded-lg hover:bg-gray-100 active:bg-white"
+                    class="fill-current h-4 w-4  text-green-500 {!! flash()->class == 'alert-alert' ?: ' text-red-500' !!} rounded-lg hover:bg-white active:bg-white hover:text-gray-600"
                     role="button"
                     viewBox="0 0 20 20"><title>Close</title>
                     <path

@@ -47,6 +47,11 @@ trait DealStages
         $this->changeDealStageTo('lost');
     }
 
+    public function markAsWon()
+    {
+        $this->changeDealStageTo('won');
+    }
+
     private function changeDealStageTo(String $dealStageSlug)
     {
         $dealStage = DealStage::where('slug', $dealStageSlug)->first();

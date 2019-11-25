@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Events\Deals\DealMarkedAsLost;
+use App\Events\Deals\DealMarkedAsWon;
 use App\Http\Controllers\Apis\ApiController;
 use App\Http\Requests\StoreDealRequest;
 use CRM\Clients\ClientsRepository;
@@ -103,5 +104,31 @@ class DealsController extends ApiController
         });
 
         return redirect()->route('deals.show', $deal);
+    }
+
+    public function markAsWon(Deal $deal)
+    {
+        $this->authorize('markAsWon', $deal);
+
+        DB::transaction(function () use ($deal) {
+            $deal->markAsWon();
+
+            flash('Congratulations, deal has been won!', 'success');
+
+            event(new DealMarkedAsWon($deal));
+        });
+
+        return redirect()->route('deals.show', $deal);
+    }
+
+    public function destroy(Deal $deal)
+    {
+        $this->authorize('destroy', $deal);
+
+        $deal->delete();
+
+        flash('Deal has been deleted!', 'success');
+
+        return redirect()->route('deals.index');
     }
 }

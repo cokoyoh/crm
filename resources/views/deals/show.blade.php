@@ -81,10 +81,19 @@
                             </button>
                         </template>
 
-                            @can('markAsLost', $deal)
-                                <li class="dropdown-menu-item"><a href="{!! route('deals.mark-as-lost', $deal) !!}">Lost</a></li>
-                            @endif
-                            <li class="dropdown-menu-item"><a href="{!! route('deals.mark-as-lost', $deal) !!}">Won</a></li>
+                        @can('markAsWon', $deal)
+                            <li class="dropdown-menu-item"><a href="{!! route('deals.mark-as-won', $deal) !!}">Won</a></li>
+                        @endcan
+                        @can('markAsLost', $deal)
+                            <li class="dropdown-menu-item"><a href="{!! route('deals.mark-as-lost', $deal) !!}">Lost</a></li>
+                        @endif
+                        @can('destroy', $deal)
+                            <form action="{!! route('deals.destroy', $deal) !!}" method="post">
+                                @csrf
+                                @method('delete')
+                                <li class="dropdown-menu-item"><button type="submit" class="outline-none focus:outline-none">Delete</button></li>
+                            </form>
+                        @endif
                     </dropdown>
                 </div>
             </div>

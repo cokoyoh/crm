@@ -33,6 +33,12 @@ class ManageDealsTest extends TestCase
 
         $this->get(route('deals.mark-as-lost', $deal))
             ->assertRedirect('login');
+
+        $this->get(route('deals.mark-as-won', $deal))
+            ->assertRedirect('login');
+
+        $this->delete(route('deals.destroy', $deal))
+            ->assertRedirect('login');
     }
 
     /** @test */
@@ -156,6 +162,18 @@ class ManageDealsTest extends TestCase
     }
 
     /** @test */
+    public function a_deal_in_stage_won_cannot_be_marked_as_lost()
+    {
+        $elonMusk = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($elonMusk)->won()->create();
+
+        $this->actingAs($elonMusk)
+            ->get(route('deals.mark-as-lost', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
     public function authorised_user_can_mark_a_deal_as_lost()
     {
         $elonMusk = UserFactory::regularUser()->create();
@@ -169,5 +187,109 @@ class ManageDealsTest extends TestCase
             ->assertRedirect(route('deals.show', $deal));
 
         $this->assertEquals($deal->fresh()->stage->slug, 'lost');
+    }
+
+    /** @test */
+    public function unauthorised_users_cannot_mark_a_deal_as_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $anImposter = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        $this->actingAs($anImposter)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_deal_that_is_already_marked_as_won_cannot_be_remarked_as_such()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->won()->create();
+
+        $this->actingAs($auntMargery)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_deal_that_is_already_marked_as_lost_cannot_be_marked_as_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->lost()->create();
+
+        $this->actingAs($auntMargery)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_users_can_mark_a_deal_as_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        create(DealStage::class, ['slug' => 'won']);
+
+        $this->actingAs($auntMargery)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertRedirect(route('deals.show', $deal));
+
+        $this->assertEquals($deal->fresh()->stage->slug, 'won');
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_a_deal_which_they_do_not_own()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        $this->actingAs(create(User::class))
+            ->delete(route('deals.destroy', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_a_deal_that_has_been_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $wonDeal = DealFactory::belongingTo($auntMargery)->won()->create();
+
+        $this->actingAs($auntMargery)
+            ->delete(route('deals.destroy', $wonDeal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_user_cannot_delete_a_deal_that_has_been_won_and_verified()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $verifiedDeal = DealFactory::belongingTo($auntMargery)->wonAndVerified()->create();
+
+        $this->actingAs($auntMargery)
+            ->delete(route('deals.destroy', $verifiedDeal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_users_can_delete_a_deal()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        $this->actingAs($auntMargery)
+            ->delete(route('deals.destroy', $deal))
+            ->assertRedirect(route('deals.index'));
+
+        $this->assertNotNull($deal->fresh()->deleted_at);
     }
 }

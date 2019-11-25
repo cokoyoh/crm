@@ -28,7 +28,22 @@ class DealPolicy
 
     public function markAsLost(User $user, Deal $deal)
     {
-        return $this->belongsToUser($user, $deal) && $deal->stage->slug != 'lost';
+        return $this->belongsToUser($user, $deal) && $this->neitherWonNorLost($deal);
+    }
+
+
+    public function markAsWon(User $user, Deal $deal)
+    {
+        return $this->belongsToUser($user, $deal) && $this->neitherWonNorLost($deal);
+    }
+
+    public function destroy(User $user, Deal $deal)
+    {
+        $currentDealStageSlug = $deal->stage->slug;
+
+        return $this->belongsToUser($user, $deal)
+            && $currentDealStageSlug != 'won'
+            && $currentDealStageSlug != 'won-and-verified';
     }
 
     private function belongsToUser(User $user, Deal $deal)
@@ -42,5 +57,12 @@ class DealPolicy
             ->notes()
             ->where('user_id', $user->id)
             ->first();
+    }
+
+    private function neitherWonNorLost(Deal $deal)
+    {
+        $currentDealStageSlug = $deal->stage->slug;
+
+        return $currentDealStageSlug != 'lost' && $currentDealStageSlug != 'won';
     }
 }

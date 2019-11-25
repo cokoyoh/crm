@@ -33,6 +33,9 @@ class ManageDealsTest extends TestCase
 
         $this->get(route('deals.mark-as-lost', $deal))
             ->assertRedirect('login');
+
+        $this->get(route('deals.mark-as-won', $deal))
+            ->assertRedirect('login');
     }
 
     /** @test */
@@ -169,5 +172,59 @@ class ManageDealsTest extends TestCase
             ->assertRedirect(route('deals.show', $deal));
 
         $this->assertEquals($deal->fresh()->stage->slug, 'lost');
+    }
+
+    /** @test */
+    public function unauthorised_users_cannot_mark_a_deal_as_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $anImposter = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        $this->actingAs($anImposter)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_deal_that_is_already_marked_as_won_cannot_be_remarked_as_such()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->won()->create();
+
+        $this->actingAs($auntMargery)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function a_deal_that_is_already_marked_as_lost_cannot_be_marked_as_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->lost()->create();
+
+        $this->actingAs($auntMargery)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertForbidden();
+    }
+
+    /** @test */
+    public function authorised_users_can_mark_a_deal_as_won()
+    {
+        $auntMargery = UserFactory::regularUser()->create();
+
+        $deal = DealFactory::belongingTo($auntMargery)->pending()->create();
+
+        create(DealStage::class, ['slug' => 'won']);
+
+        $this->actingAs($auntMargery)
+            ->get(route('deals.mark-as-won', $deal))
+            ->assertRedirect(route('deals.show', $deal));
+
+        $this->assertEquals($deal->fresh()->stage->slug, 'won');
     }
 }

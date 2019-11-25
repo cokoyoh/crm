@@ -59,7 +59,7 @@ class DealTest extends TestCase
     {
         create(DealStage::class, ['slug' => 'pending']);
 
-        $deal = create(Deal::class);
+        $deal = DealFactory::pending()->create();
 
         $deal->markAsPending();
 
@@ -71,11 +71,23 @@ class DealTest extends TestCase
     {
         create(DealStage::class, ['slug' => 'lost']);
 
-        $deal = create(Deal::class);
+        $deal = DealFactory::pending()->create();
 
         $deal->markAsLost();
 
         $this->assertEquals($deal->stage->slug, 'lost');
+    }
+
+    /** @test */
+    public function it_marks_a_deal_as_won()
+    {
+        create(DealStage::class, ['slug' => 'won']);
+
+        $deal =  DealFactory::pending()->create();
+
+        $deal->markAsWon();
+
+        $this->assertEquals($deal->stage->slug, 'won');
     }
 
     /** @test */

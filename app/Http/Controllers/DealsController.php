@@ -104,4 +104,19 @@ class DealsController extends ApiController
 
         return redirect()->route('deals.show', $deal);
     }
+
+    public function markAsWon(Deal $deal)
+    {
+        $this->authorize('markAsWon', $deal);
+
+        DB::transaction(function () use ($deal) {
+            $deal->markAsWon();
+
+            flash('Congratulations, deal has been won!', 'success');
+
+            //send notification here
+        });
+
+        return redirect()->route('deals.show', $deal);
+    }
 }

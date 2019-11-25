@@ -31,6 +31,16 @@ class DealPolicy
         return $this->belongsToUser($user, $deal) && $deal->stage->slug != 'lost';
     }
 
+
+    public function markAsWon(User $user, Deal $deal)
+    {
+        $currentDealStageSlug = $deal->stage->slug;
+
+        return $this->belongsToUser($user, $deal)
+            && $currentDealStageSlug != 'lost'
+            && $currentDealStageSlug != 'won';
+    }
+
     private function belongsToUser(User $user, Deal $deal)
     {
         return $user->id == $deal->user_id;

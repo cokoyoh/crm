@@ -9,17 +9,17 @@ use CRM\Users\UserRepository;
 
 class CompaniesController extends Controller
 {
-    protected $company;
+    protected $companyRepository;
     protected $user;
 
     /**
      * CompaniesController constructor.
-     * @param CompanyRepository $company
+     * @param CompanyRepository $companyRepository
      * @param UserRepository $user
      */
-    public function __construct(CompanyRepository $company, UserRepository $user)
+    public function __construct(CompanyRepository $companyRepository, UserRepository $user)
     {
-        $this->company = $company;
+        $this->companyRepository = $companyRepository;
         $this->user = $user;
     }
 
@@ -41,14 +41,16 @@ class CompaniesController extends Controller
     {
         $this->authorize('manageCompany', $company);
 
-        $usersCount = 0;
+        $dealsTotal = $this->companyRepository->dealsTotal($company);
 
-        $leadsCount = 0;
+        $verifiedDeals = $this->companyRepository->verifiedDeals($company);
 
         return view('companies.show', [
             'company' => $company,
-            'usersCount' => $usersCount,
-            'leadsCount' => $company->leads()->count()
+            'usersCount' => $company->users()->count(),
+            'leadsCount' => $company->leads()->count(),
+            'dealsTotal' => $dealsTotal,
+            'verifiedDeals' => $verifiedDeals
         ]);
     }
 
@@ -58,7 +60,7 @@ class CompaniesController extends Controller
 
         request()->validate(['email' => 'required|email']);
 
-        $company = $this->company->create(request()->except('_token'));
+        $company = $this->companyRepository->create(request()->except('_token'));
 
         event(new CompanyInvited($company));
 

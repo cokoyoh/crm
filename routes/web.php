@@ -31,6 +31,7 @@ Route::group(['middleware' => ['auth']], function (){
     Route::get('/companies/create', 'CompaniesController@create')->name('companies.create');
     Route::get('/companies/{company}/show', 'CompaniesController@show')->name('companies.show');
     Route::post('/companies', 'CompaniesController@store')->name('companies.store');
+    Route::get('/apis/companies/{company}/verified-deals', 'Apis\CompaniesController@verifiedDeals');
 
     Route::get('/companies/{company}/users/invites', 'UsersController@invite')->name('users.invite');
     Route::post('/companies/{company}/users/invites', 'UsersController@storeInvitedUser')->name('users.invite.store');

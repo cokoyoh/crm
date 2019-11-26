@@ -292,7 +292,8 @@
                                     href="#" class="inherits-color">Forever</a></h5>
                             <div class="text-blue-600 font-thin text-4xl leading-none">
                                 <div class="text-blue flex items-baseline font-semibold"><span
-                                        class="dollar text-lg">$</span> <span>30,000</span> <!----></div>
+{{--                                        class="dollar text-lg">$</span> <span>30,000</span> <!----></div>--}}
+                                        class="dollar text-lg">$</span> <span>Withheld</span> <!----></div>
                             </div>
                         </div>
                         <a href="#" class="flex justify-center"><img

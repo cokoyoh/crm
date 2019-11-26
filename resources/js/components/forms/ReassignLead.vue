@@ -67,7 +67,7 @@
                     })
                     .catch((error) => {
                         console.log(error);
-                        Event.fire('error-message', error.message)
+                        Event.fire('error-message', error)
                     })
             },
 

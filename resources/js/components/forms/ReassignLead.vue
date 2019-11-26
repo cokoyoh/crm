@@ -45,7 +45,7 @@
 
                 leadId: null,
 
-                options: [],   
+                options: [],
             }
         },
 
@@ -65,7 +65,7 @@
 
                         this.reload();
                     })
-                    .catch(() => Event.fire('error-message', 'Error occurred. Lead not reassigned!!'))
+                    .catch((error) => Event.fire('error-message', error.data.message))
             },
 
             fetchUsers(searchString) {

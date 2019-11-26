@@ -65,7 +65,7 @@
 
                         this.reload();
                     })
-                    .catch((error) => {
+                    .catch(error => {
                         console.log(error);
                         Event.fire('error-message', error)
                     })

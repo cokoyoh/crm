@@ -59,7 +59,7 @@ class HomeController extends Controller
 
         if ($time < 12) return 'Good Morning';
 
-        if ($time > 12 && $time < 16) return 'Good Afternoon';
+        if ($time >= 12 && $time < 16) return 'Good Afternoon';
 
         return 'Good Evening';
     }

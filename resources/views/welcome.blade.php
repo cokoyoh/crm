@@ -60,7 +60,7 @@
     <h3 class="text-3xl md:text-4xl text-center text-blue-900 mb-12 lg:mb-24 leading-tight">
         Jamiicare is serving
         <br class="md:hidden">
-        <span class="text-teal-500 border-b-4 border-teal-200 pb-1">100 companies</span>
+        <span class="text-teal-500 border-b-4 border-teal-200 pb-1">0 companies</span>
     </h3>
     <div class="flex flex-wrap sm:-mx-6">
         <div class="w-full sm:w-1/2 lg:w-1/3 sm:px-6 mb-12">

@@ -200,7 +200,7 @@
             },
 
             flash(message) {
-                Event.fire('flash-message', message);
+                Event.fire('flash-message', message);  
             },
 
             checkDuplicateEmails(email) {

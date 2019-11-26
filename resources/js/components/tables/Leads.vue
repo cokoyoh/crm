@@ -6,18 +6,17 @@
                     v-for="lead in items"
                     class="border border-gray-300 px-2 h-16 cursor-default"
                     :class="{'bg-white' : lead.id % 2 == 0, 'hover:bg-gray-200 cursor-pointer' : lead.viewable }"
-                    @click="view(lead)"
                 >
-                <td class="pl-0">
+                <td class="pl-0" @click="view(lead)">
                     <span v-if="lead.class_slug == 'not_followed_up'" class="badge-default lead-not-followed-up">Not Followed Up</span>
                     <span v-if="lead.class_slug == 'followed_up'" class="badge-default lead-followed-up">Followed Up</span>
                     <span v-if="lead.class_slug == 'converted'" class="badge-default lead-converted font-semibold">Converted</span>
                     <span v-if="lead.class_slug == 'lost'" class="badge-default lead-lost">Lost</span>
                     <span v-if="lead.class_slug == 'not_interested'" class="badge-default lead-not-interested">Not Interested</span>
                 </td>
-                <td class="text-sm text-gray-600 font-medium">{{lead.date}}</td>
-                <td class="text-sm text-gray-600 font-normal">
-                    <div class="w-full flex items-center pl-3">
+                <td class="text-sm text-gray-600 font-medium" @click="view(lead)">{{lead.date}}</td>
+                <td class="text-sm text-gray-600 font-normal" @click="view(lead)">
+                    <div class="w-full flex items-center pl-3" @click="view(lead)">
                         <svg class="h-3 w-3 mr-2 fill-current" viewBox="0 0 20 20">
                             <path
                                 d="M20 18.35V19a1 1 0 0 1-1 1h-2A17 17 0 0 1 0 3V1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v4c0 .56-.31 1.31-.7 1.7L3.16 8.84c1.52 3.6 4.4 6.48 8 8l2.12-2.12c.4-.4 1.15-.71 1.7-.71H19a1 1 0 0 1 .99 1v3.35z"/>
@@ -25,10 +24,10 @@
                         {{lead.phone}}
                     </div>
                 </td>
-                <td class="text-sm text-gray-600 font-normal">
+                <td class="text-sm text-gray-600 font-normal" @click="view(lead)">
                     {{lead.email}}
                 </td>
-                <td class="leading-snug">
+                <td class="leading-snug" @click="view(lead)">
                     <p class="text-xs text-gray-600 font-semibold">{{lead.source}}</p>
                     <p class="text-gray-700 text-sm font-semibold">{{lead.name}}</p>
                 </td>

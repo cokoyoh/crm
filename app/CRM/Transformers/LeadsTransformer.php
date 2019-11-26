@@ -37,7 +37,11 @@ class LeadsTransformer extends Transformer
 
     private function isReAssignable($lead)
     {
-        return auth()->user()->isAdmin()
+        $user = auth()->user();
+
+        if (is_null($user)) return false;
+
+        return $user->isAdmin()
             && $this->hasNoContact($lead)
             && $this->belongToSameCompany($lead);
     }

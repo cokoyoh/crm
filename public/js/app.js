@@ -3291,7 +3291,8 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.reload();
       })["catch"](function (error) {
-        return Event.fire('error-message', error.data.message);
+        console.log(error);
+        Event.fire('error-message', error.message);
       });
     },
     fetchUsers: function fetchUsers(searchString) {

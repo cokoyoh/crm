@@ -65,7 +65,10 @@
 
                         this.reload();
                     })
-                    .catch((error) => Event.fire('error-message', error.data.message))
+                    .catch((error) => {
+                        console.log(error);
+                        Event.fire('error-message', error.message)
+                    })
             },
 
             fetchUsers(searchString) {

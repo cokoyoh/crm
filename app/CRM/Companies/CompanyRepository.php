@@ -52,4 +52,18 @@ class CompanyRepository implements CreateInterface, FindInterface, UpdateInterfa
 
         return $this->company->fresh();
     }
+
+    public function dealsTotal(Company $company)
+    {
+        $dealsTotal = $company->deals()->sum('amount');
+
+        return formatCurrency($dealsTotal, true);
+    }
+
+    public function verifiedDeals(Company $company)
+    {
+        $verifiedDeals = $company->deals()->verified()->sum('amount');
+
+        return formatCurrency($verifiedDeals, true);
+    }
 }

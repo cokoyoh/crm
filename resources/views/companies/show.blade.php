@@ -46,7 +46,7 @@
                 <div class="block">
                     <p class="text-gray-600 text-sm font-normal">Related Deals</p>
                     <h3 class="flex items-center">
-                        <span class="text-gray-900 font-thin text-2xl">KES 2.320M</span>
+                        <span class="text-gray-900 font-thin text-2xl">{!! $dealsTotal !!}</span>
                         <span class="ml-2 flex items-center text-gray-900 text-sm">
                             <span class="ml-1 text-gray-600">since {!! $company->created_at->toFormattedDateString() !!}</span>
                         </span>
@@ -122,7 +122,7 @@
                     <h2 class="text-gray-700 text-xl font-light">{!! $usersCount !!} {!!  pluralise('User', $usersCount) !!}</h2>
                     <div
                         class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-                        <a href="#">
+                        <a href="{!! route('users.index') !!}">
                             <button class="inline-flex items-center text-sm focus:outline-none">
                                 View all users
                                 <span>
@@ -138,11 +138,11 @@
                 </div>
 
                 <div class="w-1/4 rounded bg-white px-5 pt-2 shadow-md leading-relaxed">
-                    <h4 class="text-gray-600 text-sm font-medium">Total Deals</h4>
-                    <h2 class="text-gray-700 text-xl font-light">$ 2.334M</h2>
+                    <h4 class="text-gray-600 text-sm font-medium">Verified Deals</h4>
+                    <h2 class="text-gray-700 text-xl font-light">{!! $verifiedDeals !!}</h2>
                     <div
                         class="mt-5 text-gray-700 bg-gray-100 hover:bg-gray-200 active:bg-gray-300 -mx-5 pb-2 text-center rounded-b">
-                        <a href="#">
+                        <a href="{!! route('deals.index') !!}">
                             <button class="inline-flex items-center text-sm focus:outline-none">
                                 View all deals
                                 <span>
@@ -159,8 +159,9 @@
             </div>
 
             <div class="mt-8 block">
-                <h3 class="text-sm text-gray-900 font-medium pb-0">Deals</h3>
-                <empty message="There are no deals recorded for this company yet."></empty>
+                <h3 class="text-sm text-gray-900 font-medium pb-3">Verified Deals</h3>
+
+                <deals api="/apis/companies/{!! $company->id !!}/verified-deals"></deals>
             </div>
         </div>
 

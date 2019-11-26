@@ -3290,9 +3290,8 @@ __webpack_require__.r(__webpack_exports__);
         _this2.hideModal();
 
         _this2.reload();
-      })["catch"](function (error) {
-        console.log(error);
-        Event.fire('error-message', error);
+      })["catch"](function () {
+        return Event.fire('error-message', 'Error occurred. Lead not reassigned!!');
       });
     },
     fetchUsers: function fetchUsers(searchString) {

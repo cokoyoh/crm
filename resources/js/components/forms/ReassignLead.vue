@@ -65,10 +65,7 @@
 
                         this.reload();
                     })
-                    .catch(error => {
-                        console.log(error);
-                        Event.fire('error-message', error)
-                    })
+                    .catch(() => Event.fire('error-message', 'Error occurred. Lead not reassigned!!'))
             },
 
             fetchUsers(searchString) {

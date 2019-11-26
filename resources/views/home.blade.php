@@ -19,11 +19,19 @@
                                 <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"/>
                             </svg>
 
-                            <a href="{!! route('companies.show', auth()->user()->company) !!}">
-                                <span class="ml-1 hover:underline">
-                                    {!! auth()->user()->company->name !!}
+                            @can('manageCompany', $company)
+                                <a href="{!! route('companies.show', $company) !!}">
+                                    <span class="ml-1 hover:underline">
+                                        {!! $company->name !!}
+                                    </span>
+                                </a>
+                            @endcan
+
+                            @cannot('manageCompany', $company)
+                                <span class="ml-1">
+                                     {!! $company->name !!}
                                 </span>
-                            </a>
+                            @endcannot
                         </span>
                             <span class="ml-5 flex items-center">
                             <span class="bg-teal-300 rounded-full p-1">

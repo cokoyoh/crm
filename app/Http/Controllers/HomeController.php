@@ -48,7 +48,8 @@ class HomeController extends Controller
             'userDeals' => $this->userRepository->totalUserDeals(),
             'verifiedDeals' => $this->userRepository->totalVerifiedDeals(),
             'companiesCount' => Company::count(),
-            'dealPercentageChange' => $dealPercentageChange
+            'dealPercentageChange' => $dealPercentageChange,
+            'company' => auth()->user()->company
         ]);
     }
 

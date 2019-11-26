@@ -69,7 +69,7 @@
                         :filterable="false"
                         label="name"
                         value="id"
-                        placeholder="Select user"
+                        placeholder="Select lead source"
                     >
                     </v-select>
 

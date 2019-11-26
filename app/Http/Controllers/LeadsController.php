@@ -85,9 +85,12 @@ class LeadsController extends ApiController
 
         $notes = $this->leadNotes->getNotes($lead);
 
+        $relatedDeals = $this->lead->deals($lead);
+
         return view('leads.details', [
             'lead' => $lead,
-            'notes' => $notes
+            'notes' => $notes,
+            'relatedDeals' => $relatedDeals
         ]);
     }
 

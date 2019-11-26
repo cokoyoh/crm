@@ -17,4 +17,9 @@ class Contact extends Model
     {
         return $this->hasOne(ContactUser::class);
     }
+
+    public function lead()
+    {
+        return $this->belongsTo(Lead::class);
+    }
 }

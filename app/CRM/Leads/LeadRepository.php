@@ -95,4 +95,11 @@ class LeadRepository implements CreateInterface
 
         return $user->assignedLeads()->latest();
     }
+
+    public function deals(Lead $lead)
+    {
+        $deals = $lead->deals()->sum('amount');
+
+        return formatCurrency($deals, true);
+    }
 }

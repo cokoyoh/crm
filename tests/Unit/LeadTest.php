@@ -2,6 +2,7 @@
 
 namespace Tests\Unit;
 
+use CRM\Models\Client;
 use CRM\Models\Contact;
 use CRM\Models\Interaction;
 use CRM\Models\Lead;
@@ -11,6 +12,7 @@ use CRM\Models\LeadNote;
 use CRM\Models\LeadSource;
 use CRM\Models\User;
 use Facades\Tests\Setup\ContactFactory;
+use Facades\Tests\Setup\DealFactory;
 use Facades\Tests\Setup\InteractionFactory;
 use Facades\Tests\Setup\LeadFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -286,5 +288,19 @@ class LeadTest extends TestCase
         $this->assertTrue($lostLeadsCollection->contains($lostLead));
 
         $this->assertFalse($lostLeadsCollection->contains($convertedLead));
+    }
+
+    /** @test */
+    public function a_lead_has_deals_associated_with_it()
+    {
+        $lead = LeadFactory::withClass('followed_up')->create();
+
+        $contact = ContactFactory::associatedWith($lead)->create();
+
+        $client = create(Client::class, ['contact_id' => $contact->id]);
+
+        $deal = DealFactory::associatedWith($client)->create();
+
+        $this->assertTrue($lead->deals()->get()->contains($deal));
     }
 }

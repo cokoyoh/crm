@@ -48,7 +48,7 @@
                 <div class="block">
                     <p class="text-gray-600 text-sm font-normal">Related Deals</p>
                     <h3 class="flex items-center">
-                        <span class="text-gray-900 font-thin text-2xl">KES 2.320M</span>
+                        <span class="text-gray-900 font-thin text-2xl">{!! $relatedDeals !!}</span>
                         <span class="ml-2 flex items-center text-gray-900 text-sm">
                             <span class="ml-1 text-gray-600">since {!! $lead->created_at->toFormattedDateString() !!}</span>
                         </span>

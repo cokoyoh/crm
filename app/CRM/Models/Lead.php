@@ -111,10 +111,17 @@ class Lead extends Model
         return $query->whereHas('leadClass', function ($leadClass) {
             $leadClass->where('slug', 'lost');
         });
-//        return $query->whereHas(
-//                'leadClass',
-//            function ($leadClass) {
-//                $leadClass->where('slug', 'lost');
-//            });
+    }
+
+    public function deals()
+    {
+        return Deal::whereHas('client', function ($client) {
+           $client->whereHas('contact', function ($contact) {
+               $contact->whereHas('lead', function ($lead) {
+                   $lead->where('id', $this->id);
+               });
+           });
+        })
+            ->latest();
     }
 }

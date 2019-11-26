@@ -10,6 +10,7 @@ use CRM\Models\DealStage;
 use CRM\Models\Product;
 use CRM\Models\User;
 use CRM\Models\VerifiedDeal;
+use CRM\Users\UserRepository;
 use Facades\Tests\Setup\DealFactory;
 use Facades\Tests\Setup\UserFactory;
 use Illuminate\Foundation\Testing\RefreshDatabase;
@@ -139,7 +140,7 @@ class DealTest extends TestCase
     /** @test */
     public function it_gets_deals_increase_or_decrease_month_on_month()
     {
-        $user = UserFactory::regularUser()->create();
+        $user = $this->signIn();
 
         $dealA = DealFactory::belongingTo($user)->won()->create();
 
@@ -149,6 +150,6 @@ class DealTest extends TestCase
 
         VerifiedDealFactory::associatedWith($dealB)->create();
 
-        $this->assertNotNull($user->dealPercentageChange());
+        $this->assertNotNull((new UserRepository($user))->dealPercentageChange());
     }
 }

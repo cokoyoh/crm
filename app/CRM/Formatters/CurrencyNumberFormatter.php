@@ -8,6 +8,7 @@ use NumberFormatter;
 
 class CurrencyNumberFormatter
 {
+    const ONE_MILLION = 1000000;
     private $amount;
     private $precision = 2;
     private $millions = false;
@@ -18,7 +19,11 @@ class CurrencyNumberFormatter
 
         $result = numfmt_format_currency($numberFormatter, round($this->amount, $this->precision), config('currency.symbol'));
 
-        return $this->millions ? $result . "M" : $result;
+        $value = $this->millions ? $result . "M" : $result;
+
+        $this->millions = false;
+
+        return $value;
     }
 
     public function amount($amount)
@@ -37,9 +42,11 @@ class CurrencyNumberFormatter
 
     public function millions()
     {
-        $this->millions = true;
+        if ($this->amount > self::ONE_MILLION) {
+            $this->millions = true;
 
-        $this->amount = $this->amount / 1000000;
+            $this->amount = $this->amount / self::ONE_MILLION;
+        }
 
         return $this;
     }

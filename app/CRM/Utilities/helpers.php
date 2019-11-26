@@ -66,7 +66,7 @@ function formatCurrency($amount, $millions = false, $precision = null)
 {
     $formatter = CurrencyNumberFormatter::amount($amount);
 
-    if ($millions) {
+    if ($millions && $amount >= 1000000) {
         $formatter->millions();
     }
 

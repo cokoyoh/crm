@@ -17,7 +17,7 @@
                                 <svg
                                     class="h-3 h-3 fill-current"
                                     viewBox="0 0 20 20">
-                                    <path d="M9 12H1v6a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-6h-8v2H9v-2zm0-1H0V5c0-1.1.9-2 2-2h4V2a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1h4a2 2 0 0 1 2 2v6h-9V9H9v2zm3-8V2H8v1h4z"/>
+                                    <path d="M8 20H3V10H0L10 0l10 10h-3v10h-5v-6H8v6z"/>
                                 </svg>
                                 <span class="ml-1">
                                     {!! optional($lead->leadSource)->name !!}
@@ -30,7 +30,7 @@
                         @if($lead->status == 'Prospect')
                             <span class="ml-3 text-yellow-900 bg-yellow-300 rounded-full px-2 text-xs">Prospect</span>
                         @elseif($lead->status == 'Converted')
-                            <span class="ml-3 text-teal-900 bg-teal-300 rounded-full px-2 text-xs">Converted</span>
+                            <span class="ml-3 text-white bg-green-900 rounded-full px-2 text-xs">Converted</span>
                         @elseif($lead->status == 'Lost')
                             <span class="ml-3 text-white bg-red-600 rounded-full px-2 text-xs">Lost</span>
                         @elseif($lead->status == 'New')

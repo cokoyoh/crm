@@ -3754,7 +3754,7 @@ __webpack_require__.r(__webpack_exports__);
       this.$modal.show('reassign-lead-modal');
     },
     actionable: function actionable(lead) {
-      return lead.assignable || lead.viewable;
+      return lead.re_assignable || lead.viewable;
     },
     view: function view(lead) {
       if (lead.viewable) {
@@ -50686,7 +50686,7 @@ var render = function() {
                         },
                         [
                           _vm._v(" "),
-                          lead.assignable
+                          lead.re_assignable
                             ? _c(
                                 "li",
                                 {
@@ -50698,9 +50698,9 @@ var render = function() {
                                   }
                                 },
                                 [
-                                  _c("a", { attrs: { href: "#" } }, [
-                                    _vm._v("Reassign")
-                                  ])
+                                  _vm._v(
+                                    "\n                        Reassign\n                    "
+                                  )
                                 ]
                               )
                             : _vm._e()

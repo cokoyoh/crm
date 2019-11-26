@@ -18,13 +18,14 @@ class LeadsTransformer extends Transformer
             'class_slug' => optional($lead->leadClass)->slug,
             'source' => optional($lead->leadSource)->name,
             'assignable' => $this->assignable($lead),
-            'viewable' => $this->viewable($lead)
+            'viewable' => $this->viewable($lead),
+            're_assignable' => $this->isReAssignable($lead)
         ];
     }
 
     private function assignable($lead)
     {
-        return is_null($lead->contact) ? true : false;
+        return $this->hasNoContact($lead);
     }
 
     private function viewable($lead)
@@ -32,5 +33,22 @@ class LeadsTransformer extends Transformer
         $user = auth()->user();
 
         return $user ? $lead->isAssigned($user) : false;
+    }
+
+    private function isReAssignable($lead)
+    {
+        return auth()->user()->isAdmin()
+            && $this->hasNoContact($lead)
+            && $this->belongToSameCompany($lead);
+    }
+
+    private function hasNoContact($lead)
+    {
+        return is_null($lead->contact);
+    }
+
+    private function belongToSameCompany($lead)
+    {
+        return $lead->company_id == auth()->user()->company_id;
     }
 }

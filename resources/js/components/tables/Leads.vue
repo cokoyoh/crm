@@ -46,9 +46,9 @@
                         </template>
 
                         <li class="dropdown-menu-item"
-                            v-if="lead.assignable"
+                            v-if="lead.re_assignable"
                             @click="reassign(lead.id)">
-                            <a href="#">Reassign</a>
+                            Reassign
                         </li>
                     </dropdown>
 
@@ -102,7 +102,7 @@
             },
 
             actionable(lead) {
-                return lead.assignable || lead.viewable;
+                return lead.re_assignable || lead.viewable;
             },
 
             view(lead) {

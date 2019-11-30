@@ -160,30 +160,48 @@
                         "{!! config('app.name') !!} is built for you and your clients, we merely provide the service."
                     </p>
                     <footer class="flex items-center">
-                        <img class="block w-16 rounded-full pr-3 mr-2" src="/images/default.png" alt="Member Image">
-                        <div class="text-lg">
+                        <img class="block w-16 rounded-full border-gray-200 border-2 object-center" src="/images/default.png" alt="Member Image">
+                        <div class="ml-5 text-lg">
                             <cite class="block not-italic font-medium text-gray-700 mb-1">Charles Okoyoh</cite>
                             <div class="text-gray-600 italic">
-                                Software Engineer, Founder & CEO
+                                Co-founder & Managing Partner
                                 {{--                                <a class="text-teal-500 hover:underline" href="#" target="_blank">Link</a>--}}
                             </div>
                         </div>
                     </footer>
                 </div>
+
                 <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow-lg mb-5">
                     <p class="font-medium text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
                         "{!! config('app.name') !!} is very well the best CRM product out there."
                     </p>
                     <footer class="flex items-center">
-                        <img class="block w-16 rounded-full pr-3 mr-2" src="/images/default.png" alt="Member Image">
-                        <div class="text-lg">
+                        <img class="block w-16 rounded-full border-gray-200 border-2 object-center" src="/images/edgar.jpeg" alt="Member Image">
+                        <div class="ml-5 text-lg">
                             <cite class="block not-italic font-medium text-gray-700 mb-1">Edgar Anjejo</cite>
                             <div class="text-gray-600 italic">
-                                Product & Marketing Manager
+                                Co-founder, Product & Marketing Manager
                             </div>
                         </div>
                     </footer>
                 </div>
+
+                <div class="block bg-white px-8 py-5 rounded-lg not-italic shadow-lg mb-5">
+                    <p class="font-medium text-blue-900 leading-tight pb-4 mb-4 border-b border-gray-100">
+                        "With {!! config('app.name') !!}, what you see is what you get. From the interface to the functionality"
+                    </p>
+                    <footer class="flex items-center">
+                        <img class="block w-16 rounded-full border-gray-200 border-2 object-center" src="/images/default.png" alt="Member Image">
+                        <div class="ml-5 text-lg">
+                            <cite class="block not-italic font-medium text-gray-700 mb-1">Raphael Karanja</cite>
+                            <div class="text-gray-600 italic">
+                                 Co-founder, & Head of Design
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+
+
             </div>
         </div>
     </div>

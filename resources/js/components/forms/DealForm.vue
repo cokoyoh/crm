@@ -142,7 +142,6 @@
             },
 
             addDeal(deal) {
-                console.log(deal, this.items);
                 Event.fire('itemAdded', deal)
             }
         }
